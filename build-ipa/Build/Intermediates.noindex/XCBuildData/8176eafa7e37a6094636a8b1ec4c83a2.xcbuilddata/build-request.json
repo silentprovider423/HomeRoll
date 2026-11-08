@@ -1,0 +1,79 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "8aed8172ab0eb36839e2ae8c315c705d63413844a68a67a50a7e7694e5ec14e7"
+    }
+  ],
+  "containerPath" : "/Users/colin/HomeRoll/HomeRoll.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "hostTargetedPlatform" : null,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos27.2",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/colin/HomeRoll/build-ipa/Build/Products",
+      "derivedDataPath" : "/Users/colin/HomeRoll/build-ipa",
+      "indexDataStoreFolderPath" : "/Users/colin/HomeRoll/build-ipa/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/colin/HomeRoll/build-ipa/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "CODE_SIGN_IDENTITY" : "",
+          "CODE_SIGNING_ALLOWED" : "NO",
+          "CODE_SIGNING_REQUIRED" : "NO",
+          "DEPLOYMENT_POSTPROCESSING" : "YES",
+          "OTHER_CFLAGS" : "-ffile-prefix-map=/Users/colin/HomeRoll=.",
+          "OTHER_SWIFT_FLAGS" : "-file-prefix-map /Users/colin/HomeRoll=.",
+          "SDKROOT" : "iphoneos27.2",
+          "STRIP_INSTALLED_PRODUCT" : "YES",
+          "STRIP_STYLE" : "non-global"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

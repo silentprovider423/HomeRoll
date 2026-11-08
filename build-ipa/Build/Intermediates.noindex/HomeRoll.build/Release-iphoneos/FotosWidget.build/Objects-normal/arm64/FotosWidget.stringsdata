@@ -1,0 +1,48 @@
+{
+  "source": "/Users/colin/HomeRoll/Widget/FotosWidget.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Öffne die Fotos-App, damit hier Bilder erscheinen.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblicke",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erinnerungen wie „Heute vor 2 Jahren“ aus deiner Mediathek.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausgewählte Fotos",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Jede Stunde ein anderes deiner Lieblingsfotos.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 86
+        }
+      }
+    ]
+  },
+  "version": 1
+}

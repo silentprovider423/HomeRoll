@@ -1,0 +1,104 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/SharedLibrary.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Geteilte Mediathek",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen mit %@ beenden?",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Noch niemand teilt seine Fotos mit dir.",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilt mit dir",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Eingeschaltet erscheinen die Fotos dieser Person in deiner Mediathek – ausblenden geht im Mediathek-Menü unter „Mit dir geteilt“.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Beenden",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ (%@)",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Person hinzufügen …",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "Du teilst mit",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Personen sehen alle deine Fotos (nicht „Ausgeblendet“ und „Zuletzt gelöscht“). Nur Nutzer deines eigenen Servers.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen beenden",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 53
+        }
+      }
+    ]
+  },
+  "version": 1
+}

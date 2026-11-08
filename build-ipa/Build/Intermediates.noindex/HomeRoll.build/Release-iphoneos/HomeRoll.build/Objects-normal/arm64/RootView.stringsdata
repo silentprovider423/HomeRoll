@@ -1,0 +1,24 @@
+{
+  "source": "/Users/colin/HomeRoll/App/RootView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Mediathek",
+        "location": {
+          "startingColumn": 75,
+          "startingLine": 279
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sammlungen",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 280
+        }
+      }
+    ]
+  },
+  "version": 1
+}

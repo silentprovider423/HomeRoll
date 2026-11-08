@@ -1,0 +1,56 @@
+{
+  "source": "/Users/colin/HomeRoll/App/API/ImmichClient.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Nicht angemeldet",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server-Fehler %lld: %@",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ungültige Server-Adresse",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Das ist eine E-Mail-Adresse. Ins erste Feld gehört die Adresse deines Immich-Servers, z. B. http://192.168.1.20:2283",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unter dieser Adresse antwortet kein Immich-Server. Stimmen Adresse und Port (meist 2283)?",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Adresse liegt im Internet, aber ohne https – Passwort und Fotos gingen unverschlüsselt durchs Netz. Bitte https:// verwenden (z. B. über einen Reverse-Proxy) oder per VPN die Heimnetz-Adresse.",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 17
+        }
+      }
+    ]
+  },
+  "version": 1
+}

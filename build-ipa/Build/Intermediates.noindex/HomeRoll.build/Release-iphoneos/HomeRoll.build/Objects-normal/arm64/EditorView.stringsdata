@@ -1,0 +1,384 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Editor/EditorView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Original wiederherstellen?",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird bereinigt …",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird gesichert …",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original wiederherstellen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle Änderungen an diesem Foto werden entfernt.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Möchtest du deine Änderungen wirklich verwerfen?",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Porträt-Blende",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Änderungen verwerfen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Format",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 116
+        }
+      },
+      {
+        "comment": "",
+        "key": "Frei",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 601
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original",
+        "location": {
+          "startingColumn": 82,
+          "startingLine": 601
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quadrat",
+        "location": {
+          "startingColumn": 127,
+          "startingLine": 601
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuschneiden zurücksetzen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 119
+        }
+      },
+      {
+        "comment": "",
+        "key": "Änderungen kopieren",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 168
+        }
+      },
+      {
+        "comment": "",
+        "key": "Änderungen einsetzen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Markieren",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Markierungen entfernen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Duplikat sichern",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 194
+        }
+      },
+      {
+        "comment": "",
+        "key": "Widerrufen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 202
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wiederholen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle Änderungen verwerfen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original wiederherstellen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 212
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen kopieren",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen einsetzen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen kopiert",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nur Licht, Farbe, Filter und Stil lassen sich kopieren",
+        "location": {
+          "startingColumn": 122,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Duplikat gesichert",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auto",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 625
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@  %lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 326
+        }
+      },
+      {
+        "comment": "",
+        "key": "PINSELGRÖSSE",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Über ein Objekt wischen, um es zu entfernen",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld entfernt · Widerrufen oben links",
+        "location": {
+          "startingColumn": 94,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "SCHLÜSSELBILD: ORIGINAL",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 379
+        }
+      },
+      {
+        "comment": "",
+        "key": "NEUES SCHLÜSSELBILD",
+        "location": {
+          "startingColumn": 116,
+          "startingLine": 379
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original-Schlüsselbild",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 404
+        }
+      },
+      {
+        "comment": "",
+        "key": "PALETTE  %lld",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 439
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ton %+d · Farbe %+d",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 442
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zurücksetzen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 444
+        }
+      },
+      {
+        "comment": "",
+        "key": "PORTRÄT AUS",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 461
+        }
+      },
+      {
+        "comment": "",
+        "key": "PORTRÄT",
+        "location": {
+          "startingColumn": 109,
+          "startingLine": 461
+        }
+      },
+      {
+        "comment": "",
+        "key": "BLENDE  ƒ %.1f",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 468
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tippe auf „Porträt“, um die Tiefenunschärfe einzuschalten",
+        "location": {
+          "startingColumn": 127,
+          "startingLine": 468
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein schiefer Horizont gefunden",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 500
+        }
+      },
+      {
+        "comment": "",
+        "key": "AUTO",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 503
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 666
+        }
+      },
+      {
+        "comment": "",
+        "key": "Steuerfeld Ton und Farbe",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 961
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ton %lld, Farbe %lld",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 962
+        }
+      }
+    ]
+  },
+  "version": 1
+}

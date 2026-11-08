@@ -1,0 +1,160 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Library/LibraryFooter.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "1 Foto",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Fotos",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Video",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Videos",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fortsetzen",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suche neue Fotos …",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pausieren",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Objekte werden gesichert",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pausieren",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup unterbrochen: %@",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erneut versuchen",
+        "location": {
+          "startingColumn": 98,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Objekte werden im Hintergrund gesichert",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pausieren",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Objekte noch nicht gesichert",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Jetzt sichern",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auf deinem Server gesichert · %@",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup für %@ Objekte pausiert",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup pausiert",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "·",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 90
+        }
+      }
+    ]
+  },
+  "version": 1
+}

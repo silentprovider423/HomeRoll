@@ -1,0 +1,400 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/Categories.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Videos",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Selfies",
+        "location": {
+          "startingColumn": 85,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Live Photos",
+        "location": {
+          "startingColumn": 133,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Porträt",
+        "location": {
+          "startingColumn": 183,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Panoramen",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zeitraffer",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Slo-Mo",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kino",
+        "location": {
+          "startingColumn": 185,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Serien",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmfotos",
+        "location": {
+          "startingColumn": 89,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmaufnahmen",
+        "location": {
+          "startingColumn": 151,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Animiert",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favoriten",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausgeblendet",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt gelöscht",
+        "location": {
+          "startingColumn": 138,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duplikate",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Große Videos",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Belege",
+        "location": {
+          "startingColumn": 148,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Handschrift",
+        "location": {
+          "startingColumn": 196,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Illustrationen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "QR-Codes",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt gesichert",
+        "location": {
+          "startingColumn": 152,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt angesehen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt bearbeitet",
+        "location": {
+          "startingColumn": 111,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt geteilt",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dokumente",
+        "location": {
+          "startingColumn": 104,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Importe",
+        "location": {
+          "startingColumn": 151,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Karte",
+        "location": {
+          "startingColumn": 192,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Haustiere",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album anzeigen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 220
+        }
+      },
+      {
+        "comment": "",
+        "key": "Face ID verwenden oder Code eingeben, um dieses Album anzuzeigen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 236
+        }
+      },
+      {
+        "comment": "",
+        "key": "Touch ID verwenden oder Code eingeben, um dieses Album anzuzeigen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 237
+        }
+      },
+      {
+        "comment": "",
+        "key": "Optic ID verwenden oder Code eingeben, um dieses Album anzuzeigen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 238
+        }
+      },
+      {
+        "comment": "",
+        "key": "Code eingeben, um dieses Album anzuzeigen",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 239
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "Code eingeben",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 248
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geschützte Alben anzeigen",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "Große Videos",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 298
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammen %@",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Videos geprüft …",
+        "location": {
+          "startingColumn": 76,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "Videos werden geprüft …",
+        "location": {
+          "startingColumn": 129,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Videos",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duplikate zusammenführen?",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammenführen",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 326
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duplikate",
+        "location": {
+          "startingColumn": 75,
+          "startingLine": 358
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Gruppen",
+        "location": {
+          "startingColumn": 130,
+          "startingLine": 358
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Duplikate",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 359
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammenführen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 364
+        }
+      },
+      {
+        "comment": "",
+        "key": "Das beste Foto bleibt, die anderen kommen in „Zuletzt gelöscht“ (30 Tage wiederherstellbar).",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 373
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,568 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/CollectionDetail.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Medienarten",
+        "location": {
+          "startingColumn": 74,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sonstige",
+        "location": {
+          "startingColumn": 70,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reisen",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblicke",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt",
+        "location": {
+          "startingColumn": 107,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Verlauf löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 89,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortieren und Zoomen",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Fotos oder Videos",
+        "location": {
+          "startingColumn": 79,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortieren",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neueste zuerst",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Älteste zuerst",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 140
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vergrößern",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "Verkleinern",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 243
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name hinzufügen",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausgeblendete anzeigen",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name hinzufügen",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Umbenennen",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name hinzufügen",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 273
+        }
+      },
+      {
+        "comment": "",
+        "key": "Umbenennen",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 273
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Favorit",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Favorit",
+        "location": {
+          "startingColumn": 85,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mit Person zusammenführen …",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 279
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weitere Fotos prüfen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 280
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag hinzufügen",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 281
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag ändern",
+        "location": {
+          "startingColumn": 102,
+          "startingLine": 281
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wieder anzeigen",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 285
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus „Personen“ ausblenden",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 285
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausgeblendet",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird wieder angezeigt",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 297
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 298
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 299
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 309
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 311
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 313
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 315
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag gesichert – erscheint in Rückblicken",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 319
+        }
+      },
+      {
+        "comment": "",
+        "key": "diese Person",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 347
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weitere Fotos prüfen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 379
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld von %lld",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ist das %@?",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Foto bestätigt",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos bestätigt",
+        "location": {
+          "startingColumn": 137,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine weiteren Vorschläge",
+        "location": {
+          "startingColumn": 191,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sobald der Server weitere Gesichter erkannt hat, erscheinen hier neue Vorschläge.",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 373
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ähnliche Gesichter werden gesucht …",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 375
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Foto zu %@ hinzugefügt",
+        "location": {
+          "startingColumn": 89,
+          "startingLine": 400
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos zu %@ hinzugefügt",
+        "location": {
+          "startingColumn": 143,
+          "startingLine": 400
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nein",
+        "location": {
+          "startingColumn": 82,
+          "startingLine": 364
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ja",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 366
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 381
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gleiche Person auswählen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 451
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 134,
+          "startingLine": 457
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Person ist „%@“?",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 457
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 153,
+          "startingLine": 458
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese %lld Personen sind „%@“?",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 458
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 443
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 454
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammenführen",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 455
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammenführen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 460
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zusammengeführt",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 463
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle Fotos dieser Personen erscheinen danach unter einem Namen.",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 466
+        }
+      },
+      {
+        "comment": "",
+        "key": "Karte",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 514
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 529
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 541
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 620
+        }
+      }
+    ]
+  },
+  "version": 1
+}

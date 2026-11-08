@@ -1,0 +1,24 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Library/PhotoGrid.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Video, ",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 243
+        }
+      },
+      {
+        "comment": "",
+        "key": "Foto, ",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 243
+        }
+      }
+    ]
+  },
+  "version": 1
+}

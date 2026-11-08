@@ -1,0 +1,33 @@
+{
+  "source" : "\/Users\/colin\/HomeRoll\/App\/Core\/Intents.swift",
+  "tables" : {
+    "AppShortcuts" : [
+      {
+        "appShortcutMetadata" : [
+          {
+            "actionIdentifier" : "SearchPhotosIntent",
+            "index" : 0,
+            "parameterDisplayRepresentations" : {
+
+            },
+            "parameterTypes" : {
+
+            },
+            "title" : "Fotos suchen"
+          }
+        ],
+        "key" : "Suche in ${applicationName}",
+        "location" : {
+          "startingColumn" : 0,
+          "startingLine" : 21
+        },
+        "values" : [
+          "Suche in ${applicationName}",
+          "${applicationName} durchsuchen",
+          "Fotos suchen in ${applicationName}"
+        ]
+      }
+    ]
+  },
+  "version" : 2
+}

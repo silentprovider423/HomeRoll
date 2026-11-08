@@ -1,0 +1,424 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Viewer/ViewerView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Ton an",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ton aus",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video-Diagnose kopieren",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diagnose kopiert",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Effekt",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wiederherstellen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "Info, Nachschlagen verfügbar",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 219
+        }
+      },
+      {
+        "comment": "",
+        "key": "Info",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 219
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeiten",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "Offline – Vorschau, Original nicht verfügbar",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 397
+        }
+      },
+      {
+        "comment": "",
+        "key": "Räumliche Szene",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 449
+        }
+      },
+      {
+        "comment": "",
+        "key": "Räumliche Szene nicht möglich",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 443
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video braucht Verbindung zum Server",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 473
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Video kann das iPhone nicht abspielen",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 501
+        }
+      },
+      {
+        "comment": "",
+        "key": "Das Dateiformat wird von iOS nicht unterstützt (z. B. HEVC mit Kennung „hev1“, VP9 oder AV1). Abhilfe in Immich unter Verwaltung → Einstellungen → Video-Transkodierung: Echtzeit-Transkodierung einschalten oder solche Videos in H.264 umwandeln lassen.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 502
+        }
+      },
+      {
+        "comment": "",
+        "key": "„%@“",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 586
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gefällt mir",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 592
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gefällt mir nicht mehr",
+        "location": {
+          "startingColumn": 107,
+          "startingLine": 592
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gefällt mir",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 589
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kommentar löschen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 601
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kommentar hinzufügen",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 606
+        }
+      },
+      {
+        "comment": "",
+        "key": "Senden",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 607
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kommentar nicht gesendet",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 628
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 710
+        }
+      },
+      {
+        "comment": "",
+        "key": "Untertitel hinzufügen",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 671
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nachschlagen",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 659
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pflanze, Tier, Sehenswürdigkeit oder Kunstwerk im Foto",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 660
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anpassen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 685
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmfoto",
+        "location": {
+          "startingColumn": 142,
+          "startingLine": 909
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmaufnahme",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 910
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmfoto",
+        "location": {
+          "startingColumn": 98,
+          "startingLine": 919
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmfoto",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 904
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 711
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 712
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 713
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wie heißt diese Person?",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 721
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 729
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name hinzufügen",
+        "location": {
+          "startingColumn": 104,
+          "startingLine": 734
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Titelbild für %@",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 740
+        }
+      },
+      {
+        "comment": "",
+        "key": "Das ist nicht %@",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 761
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titelbild festgelegt",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 751
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus „%@“ entfernt",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 765
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hat nicht geklappt",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 766
+        }
+      },
+      {
+        "comment": "",
+        "key": "In Album",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 792
+        }
+      },
+      {
+        "comment": "",
+        "key": "In %lld Alben",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 792
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbekannte Kamera",
+        "location": {
+          "startingColumn": 113,
+          "startingLine": 824
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Objektivinformationen",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 836
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anpassen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 877
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort hinzufügen",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 885
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmaufnahme",
+        "location": {
+          "startingColumn": 116,
+          "startingLine": 904
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gespeichert aus %@",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 921
+        }
+      }
+    ]
+  },
+  "version": 1
+}

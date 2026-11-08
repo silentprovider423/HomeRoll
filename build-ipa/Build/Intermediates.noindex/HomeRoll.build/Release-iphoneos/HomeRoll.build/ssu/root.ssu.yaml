@@ -1,0 +1,58 @@
+apiVersion: ssu/v1
+nlu:
+  shortcuts:
+    bundleIdentifier: org.homeroll.app
+    intents:
+    - metadata:
+        name: SearchPhotosIntent_0
+        title: Fotos suchen
+      corpuses:
+        training:
+        - locale: en
+          utterances:
+          - '{${+prefix} }Search ${+applicationName}'
+          - '{${+prefix} }Search photos in ${+applicationName}'
+          - '{${+prefix} }Search in ${+applicationName}'
+        - locale: de
+          utterances:
+          - '{${+prefix} }Suche in ${+applicationName}'
+          - '{${+prefix} }${+applicationName} durchsuchen'
+          - '{${+prefix} }Fotos suchen in ${+applicationName}'
+    - metadata:
+        name: +negative
+      corpuses:
+        training:
+        - locale: en
+          utterances:
+          - '{${+prefix} }${+standardAppShortcutNegatives}'
+        - locale: de
+          utterances:
+          - '{${+prefix} }${+standardAppShortcutNegatives}'
+variables:
+- name: +applicationName
+  type: ssu/expansion
+  definitions:
+  - locale: en
+    synomyms:
+    - HomeRoll
+  - locale: de
+    synomyms:
+    - HomeRoll
+- name: +prefix
+  type: ssu/expansion
+  definitions:
+  - locale: de
+    synomyms:
+      $ref: ssu://Resources/prefix/de.yaml
+  - locale: en
+    synomyms:
+      $ref: ssu://Resources/prefix/en.yaml
+- name: +standardAppShortcutNegatives
+  type: ssu/expansion
+  definitions:
+  - locale: de
+    synomyms:
+      $ref: ssu://Resources/standardAppShortcutNegatives/de.yaml
+  - locale: en
+    synomyms:
+      $ref: ssu://Resources/standardAppShortcutNegatives/en.yaml

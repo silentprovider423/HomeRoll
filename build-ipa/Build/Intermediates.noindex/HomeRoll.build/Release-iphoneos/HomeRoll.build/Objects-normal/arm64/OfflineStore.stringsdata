@@ -1,0 +1,32 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/OfflineStore.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Kleine Vorschauen",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "Große Vorschauen",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "iPhone-Speicher fast voll – pausiert",
+        "location": {
+          "startingColumn": 74,
+          "startingLine": 231
+        }
+      }
+    ]
+  },
+  "version": 1
+}

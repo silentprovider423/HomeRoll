@@ -247,6 +247,54 @@ final class ImmichClient: NSObject, URLSessionDelegate, @unchecked Sendable {
         let base = cfg?.externalDomain.flatMap { $0.isEmpty ? nil : URL(string: $0) } ?? baseURL
         return base?.appendingPathComponent("share").appendingPathComponent(l.key)
     }
+    /// Freigabelink mit allen Optionen aus Immichs Dialog (Beschreibung, Passwort, Ablauf, Metadaten, Herunterladen,
+    /// Hochladen, eigener Name). Mit Namen lautet die Adresse …/s/<name>, sonst …/share/<Schlüssel>.
+    func createShareLink(_ ids: [String], options o: ShareLinkOptions) async throws -> URL {
+        struct Link: Decodable { let key: String; let slug: String? }
+        struct Config: Decodable { let externalDomain: String? }
+        var body: [String: Any] = ["type": "INDIVIDUAL", "assetIds": ids, "allowDownload": o.allowDownload,
+                                   "allowUpload": o.allowUpload, "showMetadata": o.showMetadata]
+        let text = o.description.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !text.isEmpty { body["description"] = text }
+        if !o.password.isEmpty { body["password"] = o.password }
+        if let d = o.expiresAt { body["expiresAt"] = ISO8601DateFormatter().string(from: d) }
+        let slug = o.cleanSlug
+        if !slug.isEmpty { body["slug"] = slug }
+        let l: Link = try await request("shared-links", method: "POST", body: json(body))
+        guard let url = await linkURL(key: l.key, slug: l.slug) else { throw APIError.badURL }
+        return url
+    }
+
+    /// Adresse eines Links (Server-Einstellung „externe Domain“, sonst die Anmelde-Adresse).
+    func linkURL(key: String, slug: String?) async -> URL? {
+        struct Config: Decodable { let externalDomain: String? }
+        let cfg: Config? = try? await request("server/config")
+        guard let base = cfg?.externalDomain.flatMap({ $0.isEmpty ? nil : URL(string: $0) }) ?? baseURL else { return nil }
+        if let s = slug, !s.isEmpty { return base.appendingPathComponent("s").appendingPathComponent(s) }
+        return base.appendingPathComponent("share").appendingPathComponent(key)
+    }
+
+    /// Aktive (nicht abgelaufene) Einzel-Links, die mindestens eines dieser Objekte enthalten.
+    func sharedLinks(containing ids: [String]) async throws -> [SharedLinkDTO] {
+        let all: [SharedLinkDTO] = try await request("shared-links")
+        let want = Set(ids)
+        return all.filter { $0.type == "INDIVIDUAL" && $0.isActive && ($0.assets ?? []).contains { want.contains($0.id) } }
+            .sorted { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) }
+    }
+
+    /// Link ändern (PATCH). Leeres Passwortfeld = unverändert, „Passwort entfernen“ schickt „“.
+    func updateSharedLink(_ id: String, options o: ShareLinkOptions, hadSlug: Bool) async throws {
+        var body: [String: Any] = ["description": o.description.trimmingCharacters(in: .whitespacesAndNewlines),
+                                   "allowDownload": o.allowDownload, "allowUpload": o.allowUpload,
+                                   "showMetadata": o.showMetadata, "changeExpiryTime": true]
+        if let d = o.expiresAt { body["expiresAt"] = ISO8601DateFormatter().string(from: d) }
+        if o.removePassword { body["password"] = "" } else if !o.password.isEmpty { body["password"] = o.password }
+        let slug = o.cleanSlug
+        if !slug.isEmpty { body["slug"] = slug } else if hadSlug { body["slug"] = NSNull() }
+        try await raw("shared-links/\(id)", method: "PATCH", body: json(body))
+    }
+
+    func deleteSharedLink(_ id: String) async throws { try await raw("shared-links/\(id)", method: "DELETE") }
     /// Werte für Suchvorschläge (type: country | state | city | camera-make | camera-model)
     func suggestions(_ type: String) async throws -> [String] { try await request("search/suggestions", query: ["type": type]) }
     /// IDs geteilter Alben (die Liste „Alben mit Foto X“ liefert `shared` nicht zuverlässig)

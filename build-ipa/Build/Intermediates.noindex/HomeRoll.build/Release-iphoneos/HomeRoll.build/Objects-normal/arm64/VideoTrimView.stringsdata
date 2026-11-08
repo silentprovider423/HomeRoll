@@ -1,0 +1,120 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Editor/VideoTrimView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Original wird geladen …",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 232
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video wird geschnitten …",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 241
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird gesichert …",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 276
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zeitlupe gesichert",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gekürztes Video gesichert",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern fehlgeschlagen",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 302
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gelbe Griffe ziehen, um Anfang und Ende festzulegen. Das Original bleibt erhalten.",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weiße Griffe oben legen die Zeitlupe fest, gelbe unten Anfang und Ende. Das Original bleibt erhalten.",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zeitlupe",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ton ist aus",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ton ist an",
+        "location": {
+          "startingColumn": 106,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anfang",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ende",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zeitlupe Griff",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 159
+        }
+      }
+    ]
+  },
+  "version": 1
+}

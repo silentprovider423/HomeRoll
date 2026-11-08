@@ -1,0 +1,64 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Backup/BackupConsent.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Fotos auf deinem Server sichern?",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unverschlüsselte Verbindung (http) – nur im eigenen Heimnetz oder über VPN verwenden.",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auf dem iPhone wird nichts gelöscht. Ändern kannst du das jederzeit unter Backup.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nicht jetzt",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neue Fotos und Videos von diesem iPhone werden als Originale hochgeladen nach",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Fotos und Videos auf diesem iPhone",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup einschalten",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 32
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/colin/HomeRoll/App/Collections/Albums.swift" : {
+    "abi-baseline-json" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll.abi.json",
+    "const-values" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.swiftconstvalues",
+    "dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.d",
+    "diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.dia",
+    "objc-header" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-Swift.h",
+    "swiftdoc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll.swiftdoc",
+    "swiftmodule" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll.swiftmodule",
+    "swiftsourceinfo" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll.swiftsourceinfo"
+  }
+}

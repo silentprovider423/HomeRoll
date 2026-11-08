@@ -1,0 +1,285 @@
+2026-11-08 15:10:40.874 xcodebuild[53314:6631735]  DVTErrorPresenter: Unable to load simulator devices.
+Domain: DVTCoreSimulatorAdditionsErrorDomain
+Code: 3
+Failure Reason: The version of the CoreSimulator framework installed on this Mac is out-of-date and not supported by this version of Xcode.
+Recovery Suggestion: Please ensure that you have installed all available updates to your Mac's software, and that you are running the most recent version of Xcode supported by macOS.
+--
+CoreSimulator is out of date. Current version (1171.7.0) is older than build version (1174.21.0).
+Domain: DVTCoreSimulatorAdditionsErrorDomain
+Code: 3
+--
+
+2026-11-08 15:10:40.875 xcodebuild[53314:6631735]  iOSSimulator: [SimServiceContext sharedServiceContextForDeveloperDir:error:] returned nil (Error Domain=DVTCoreSimulatorAdditionsErrorDomain Code=3 "CoreSimulator is out of date. Current version (1171.7.0) is older than build version (1174.21.0)." UserInfo={NSLocalizedDescription=CoreSimulator is out of date. Current version (1171.7.0) is older than build version (1174.21.0).}). Simulator device support disabled.
+2026-11-08 15:10:41.149 xcodebuild[53314:6631732] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-08 15:10:41.159 xcodebuild[53314:6631732] [MT] IDESchemeActionsInvocationRecord: Device <DVTiPhonePlaceholder: 0x79a0432580 (Any iOS Device | undefined_arch)> is missing operatingSystemVersion, operatingSystemVersionWithBuildNumber.
+error: the following command failed with exit code 0 but produced no further output
+SwiftCompile normal arm64 (in target 'FotosShare' from project 'HomeRoll')
+/Users/colin/HomeRoll/Share/ShareViewController.swift:58:21: warning: capture of 'p' with non-Sendable type 'NSItemProvider' in a '@Sendable' closure [#SendableClosureCaptures]
+ 56 |                 guard let url else {
+ 57 |                     // manche Apps liefern nur Daten (z. B. ein Bild aus Safari)
+ 58 |                     p.loadDataRepresentation(forTypeIdentifier: preferred) { d, _ in
+    |                     `- warning: capture of 'p' with non-Sendable type 'NSItemProvider' in a '@Sendable' closure [#SendableClosureCaptures]
+ 59 |                         guard let d else { cont.resume(returning: nil); return }
+ 60 |                         let ext = UTType(preferred)?.preferredFilenameExtension ?? "jpg"
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSItemProvider.h:123:12: note: class 'NSItemProvider' does not conform to the 'Sendable' protocol
+121 | /// A single item provider may use custom blocks to provide its data in many different formats. When configuring an item provider, use the ``registerItem(forTypeIdentifier:loadHandler:)`` method to register your blocks and the formats each one supports. When a client requests data in a particular format, the item provider executes the corresponding block, which is then responsible for coercing the data to the appropriate type and returning it to the client.
+122 | API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0))
+123 | @interface NSItemProvider : NSObject <NSCopying>
+    |            `- note: class 'NSItemProvider' does not conform to the 'Sendable' protocol
+124 | 
+125 | #pragma mark - Binary interface
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-6ZVUE84UPLI0K732GWNF07UX1.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-6ZVUE84UPLI0K732GWNF07UX1.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-136S48N8QRK9R5NHP7LXQGND6.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-136S48N8QRK9R5NHP7LXQGND6.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WidgetKit.framework/./build-ipa/SDKExplicitPrecompiledModules/WidgetKit-61C1UDBVHXR1OHNOYEFVQ406Y.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WidgetKit.framework/./build-ipa/SDKExplicitPrecompiledModules/WidgetKit-61C1UDBVHXR1OHNOYEFVQ406Y.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-A6R3YB7OG4TANV4Y5YOF38MHW.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-A6R3YB7OG4TANV4Y5YOF38MHW.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-3AXZO0YWSBXU91BOW6R8R0C3C.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-3AXZO0YWSBXU91BOW6R8R0C3C.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-ABK376P3DTEKRZZN0XJQE7FMU.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-ABK376P3DTEKRZZN0XJQE7FMU.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-6ZVUE84UPLI0K732GWNF07UX1.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-6ZVUE84UPLI0K732GWNF07UX1.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-3AXZO0YWSBXU91BOW6R8R0C3C.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-3AXZO0YWSBXU91BOW6R8R0C3C.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-136S48N8QRK9R5NHP7LXQGND6.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-136S48N8QRK9R5NHP7LXQGND6.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-A6R3YB7OG4TANV4Y5YOF38MHW.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-A6R3YB7OG4TANV4Y5YOF38MHW.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework/./build-ipa/SDKExplicitPrecompiledModules/UniformTypeIdentifiers-1L01WPX992ZVNSXHISU97ULX2.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework/./build-ipa/SDKExplicitPrecompiledModules/UniformTypeIdentifiers-1L01WPX992ZVNSXHISU97ULX2.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/./build-ipa/SDKExplicitPrecompiledModules/Security-12XFAIB9M2PMXAIMMMJMUUFY6.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/./build-ipa/SDKExplicitPrecompiledModules/Security-12XFAIB9M2PMXAIMMMJMUUFY6.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-ABK376P3DTEKRZZN0XJQE7FMU.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-ABK376P3DTEKRZZN0XJQE7FMU.pcm
+error: the following command failed with exit code 0 but produced no further output
+SwiftCompile normal arm64 (in target 'HomeRoll' from project 'HomeRoll')
+/Users/colin/HomeRoll/App/Collections/Albums.swift:177:26: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+175 | 
+176 |     private func hero(_ list: [Asset]) -> some View {
+177 |         let w = UIScreen.main.bounds.width
+    |                          `- warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+178 |         return ZStack(alignment: .bottomLeading) {
+179 |             Group { if let cover { AssetThumb(id: cover, size: .preview).scaledToFill() } else { Color(white: 0.14) } }
+
+/Users/colin/HomeRoll/App/Core/AssetActions.swift:353:17: warning: cannot use generic class 'Autoconnect' in a property declaration member of a type not marked '@_implementationOnly'; 'Combine' was not imported by this file
+351 |     @State private var zoom = false
+352 |     @State private var paused = false
+353 |     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    |                 `- warning: cannot use generic class 'Autoconnect' in a property declaration member of a type not marked '@_implementationOnly'; 'Combine' was not imported by this file
+354 | 
+355 |     var body: some View {
+
+Combine.Publishers.Autoconnect:2:14: note: generic class declared here
+ 1 | enum Publishers {
+ 2 | public class Autoconnect<Upstream> : Publisher where Upstream : ConnectablePublisher {
+   |              `- note: generic class declared here
+ 3 |     public typealias Output = Upstream.Output
+ 4 |     public typealias Failure = Upstream.Failure
+
+/Users/colin/HomeRoll/App/Core/AssetActions.swift:353:17: warning: cannot use enum 'Publishers' in a property declaration member of a type not marked '@_implementationOnly'; 'Combine' was not imported by this file
+351 |     @State private var zoom = false
+352 |     @State private var paused = false
+353 |     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    |                 `- warning: cannot use enum 'Publishers' in a property declaration member of a type not marked '@_implementationOnly'; 'Combine' was not imported by this file
+354 | 
+355 |     var body: some View {
+
+Combine.Publishers:2:13: note: enum declared here
+1 | @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+2 | public enum Publishers {
+  |             `- note: enum declared here
+3 | }
+
+/Users/colin/HomeRoll/App/Core/AssetActions.swift:85:17: warning: result of 'try?' is unused [#NoUsage]
+ 83 |             let name = ((dto.originalFileName ?? "IMG") as NSString).deletingPathExtension + "_kopie.jpg"
+ 84 |             if let id = try? await api.upload(copy, filename: name, created: dto.fileCreatedAt) {
+ 85 |                 try? await api.raw("assets/copy", method: "PUT",
+    |                 `- warning: result of 'try?' is unused [#NoUsage]
+ 86 |                                    body: api.json(["sourceId": a.id, "targetId": id, "albums": true, "favorite": true] as [String: Any]))
+ 87 |                 n += 1
+
+/Users/colin/HomeRoll/App/Core/AssetActions.swift:269:17: warning: result of 'try?' is unused [#NoUsage]
+267 |                 let f = DateFormatter(); f.locale = Locale(identifier: "en_US_POSIX"); f.timeZone = DateParsing.utc
+268 |                 f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+269 |                 try? await api.raw("assets/\(first.id)", method: "PUT", body: api.json(["dateTimeOriginal": f.string(from: date)]))
+    |                 `- warning: result of 'try?' is unused [#NoUsage]
+270 |             } else if minutes != 0 {
+271 |                 try? await api.update(assets.map(\.id), ["dateTimeRelative": minutes])
+
+/Users/colin/HomeRoll/App/Editor/EditModel.swift:1035:26: warning: result of 'try?' is unused [#NoUsage]
+1033 |     private func dropCopy() async throws {
+1034 |         let api = ImmichClient.shared
+1035 |         if let stackID { try? await api.raw("stacks/\(stackID)", method: "DELETE") }
+     |                          `- warning: result of 'try?' is unused [#NoUsage]
+1036 |         try await api.trash([asset.id])
+1037 |     }
+
+/Users/colin/HomeRoll/App/Editor/EditorView.swift:276:52: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+ 274 |                 .scrollTargetLayout()
+ 275 |             }
+ 276 |             .contentMargins(.horizontal, (UIScreen.main.bounds.width - AdjustDial.size) / 2, for: .scrollContent)
+     |                                                    `- warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+ 277 |             .scrollTargetBehavior(.viewAligned)
+ 278 |             .scrollPosition(id: $current, anchor: .center)
+
+/Users/colin/HomeRoll/App/Collections/Pinned.swift:216:44: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+214 |             .padding(20)
+215 |         }
+216 |         .environment(\.cardSide, (UIScreen.main.bounds.width - 56) / 2)
+    |                                            `- warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context. [#DeprecatedDeclaration]
+217 |         .background(Color.black)
+218 |         .navigationTitle(String(localized: "Angepinnt"))
+
+/Users/colin/HomeRoll/App/RootView.swift:175:102: warning: main actor-isolated property 'localDragSession' can not be referenced from a nonisolated context
+173 |     private func report(_ t: Tab?) { guard t != current else { return }; current = t; onHover(t) }
+174 | 
+175 |     nonisolated func dropInteraction(_ i: UIDropInteraction, canHandle s: UIDropSession) -> Bool { s.localDragSession != nil }
+    |                                                                                                      `- warning: main actor-isolated property 'localDragSession' can not be referenced from a nonisolated context
+176 |     nonisolated func dropInteraction(_ i: UIDropInteraction, sessionDidUpdate s: UIDropSession) -> UIDropProposal {
+177 |         // UIDropProposal.init ist im neuen SDK auf den Main Actor beschränkt → hier drinnen erzeugen
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDragSession.h:91:61: note: property declared here
+ 89 |  * If the drag was started in a different app, this is nil.
+ 90 |  */
+ 91 | @property (nonatomic, readonly, nullable) id<UIDragSession> localDragSession;
+    |                                                             `- note: property declared here
+ 92 | 
+ 93 | /* The kind of progress and cancellation UI that UIKit will display
+
+/Users/colin/HomeRoll/App/Collections/SharedLibrary.swift:69:9: warning: result of 'try?' is unused [#NoUsage]
+67 |     }
+68 |     private func share(with id: String) async {
+69 |         try? await ImmichClient.shared.raw("partners", method: "POST", body: ImmichClient.shared.json(["sharedWithId": id]))
+   |         `- warning: result of 'try?' is unused [#NoUsage]
+70 |         await load()
+71 |     }
+
+/Users/colin/HomeRoll/App/Collections/SharedLibrary.swift:73:9: warning: result of 'try?' is unused [#NoUsage]
+71 |     }
+72 |     private func stop(_ p: Partner) async {
+73 |         try? await ImmichClient.shared.raw("partners/\(p.id)", method: "DELETE")
+   |         `- warning: result of 'try?' is unused [#NoUsage]
+74 |         await load()
+75 |     }
+
+/Users/colin/HomeRoll/App/Collections/SharedLibrary.swift:77:9: warning: result of 'try?' is unused [#NoUsage]
+75 |     }
+76 |     private func setTimeline(_ p: Partner, _ on: Bool) async {
+77 |         try? await ImmichClient.shared.raw("partners/\(p.id)", method: "PUT", body: ImmichClient.shared.json(["inTimeline": on]))
+   |         `- warning: result of 'try?' is unused [#NoUsage]
+78 |         await load(); await timeline.reload()
+79 |     }
+
+/Users/colin/HomeRoll/App/Core/SpotlightIndex.swift:40:81: warning: capture of 'index2' with non-Sendable type '() -> Void' in a '@Sendable' closure [#SendableClosureCaptures]
+38 |         // anderes Konto: alte Einträge weg (sonst führen sie zu fremden Alben)
+39 |         if UserDefaults.standard.string(forKey: "spotlight.account") != account {
+40 |             index.deleteSearchableItems(withDomainIdentifiers: [domain]) { _ in index2() }
+   |                                                                                 |- warning: capture of 'index2' with non-Sendable type '() -> Void' in a '@Sendable' closure [#SendableClosureCaptures]
+   |                                                                                 `- note: a function type must be marked '@Sendable' to conform to 'Sendable'
+41 |         } else {
+42 |             index2()
+
+/Users/colin/HomeRoll/App/Editor/VideoTrimView.swift:249:36: warning: 'AVMutableVideoComposition' was deprecated in iOS 26.0: Use AVVideoComposition.Configuration instead [#DeprecatedDeclaration]
+247 |                 let comp = try await slow.composition(source, trim: start...end, audio: !muted)
+248 |                 guard let ex = AVAssetExportSession(asset: comp, presetName: AVAssetExportPresetHEVCHighestQuality) else { throw APIError.badURL }
+249 |                 let vc = try await AVMutableVideoComposition.videoComposition(withPropertiesOf: comp)
+    |                                    `- warning: 'AVMutableVideoComposition' was deprecated in iOS 26.0: Use AVVideoComposition.Configuration instead [#DeprecatedDeclaration]
+250 |                 vc.frameDuration = CMTime(value: 1, timescale: 30)
+251 |                 vc.sourceTrackIDForFrameTiming = kCMPersistentTrackID_Invalid   // sonst übernimmt der Export die 240-fps-Bildzeiten
+
+/Users/colin/HomeRoll/App/Editor/VideoTrimView.swift:284:13: warning: result of 'try?' is unused [#NoUsage]
+282 |                                                        "deviceAssetId": "fotos-trim-\(UUID().uuidString)", "deviceId": "fotos-app"],
+283 |                                               checksum: sum, expensive: true)
+284 |             try? await api.raw("assets/copy", method: "PUT",
+    |             `- warning: result of 'try?' is unused [#NoUsage]
+285 |                                body: api.json(["sourceId": asset.id, "targetId": r.id, "albums": true, "favorite": true] as [String: Any]))
+286 |             try? await api.createStack([r.id, asset.id])
+
+/Users/colin/HomeRoll/App/Editor/VideoTrimView.swift:291:13: warning: result of 'try?' is unused [#NoUsage]
+289 |             let when = dto.exifInfo?.dateTimeOriginal ?? dto.fileCreatedAt
+290 |             try? await Task.sleep(for: .seconds(2))
+291 |             try? await api.raw("assets/\(r.id)", method: "PUT", body: api.json(["dateTimeOriginal": when]))
+    |             `- warning: result of 'try?' is unused [#NoUsage]
+292 |             try? await api.tag([r.id], with: "Kategorie/Bearbeitet")
+293 |             try? FileManager.default.removeItem(at: dir)
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-B5N6O05DUCMEMF3B8BW4TR5LX.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SwiftUI.framework/./build-ipa/SDKExplicitPrecompiledModules/SwiftUI-B5N6O05DUCMEMF3B8BW4TR5LX.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-38T1CLKUS0RP4QQ48P0YIVY6W.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/./build-ipa/SDKExplicitPrecompiledModules/Foundation-38T1CLKUS0RP4QQ48P0YIVY6W.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Photos.framework/./build-ipa/SDKExplicitPrecompiledModules/Photos-8HPSATX5ZT66EPT86C957FJJY.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Photos.framework/./build-ipa/SDKExplicitPrecompiledModules/Photos-8HPSATX5ZT66EPT86C957FJJY.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-AVES52JSDGRPHS6UD00L8TYG7.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/./build-ipa/SDKExplicitPrecompiledModules/UIKit-AVES52JSDGRPHS6UD00L8TYG7.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Vision.framework/./build-ipa/SDKExplicitPrecompiledModules/Vision-E9U5NKFQ0LA4QST6J5MWCC873.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Vision.framework/./build-ipa/SDKExplicitPrecompiledModules/Vision-E9U5NKFQ0LA4QST6J5MWCC873.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreImage.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreImage-976B09BQ0M92LQZX9MO4IWG19.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreImage.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreImage-976B09BQ0M92LQZX9MO4IWG19.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFAudio.framework/./build-ipa/SDKExplicitPrecompiledModules/AVFAudio-D8TTEH0TW4R2KEMYGR17AJXV1.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFAudio.framework/./build-ipa/SDKExplicitPrecompiledModules/AVFAudio-D8TTEH0TW4R2KEMYGR17AJXV1.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFoundation.framework/./build-ipa/SDKExplicitPrecompiledModules/AVFoundation-2IPG9R96LPJ86ZO0IC9RCL13U.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFoundation.framework/./build-ipa/SDKExplicitPrecompiledModules/AVFoundation-2IPG9R96LPJ86ZO0IC9RCL13U.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreGraphics.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreGraphics-1A4386F2HDX2U6XOOTS1MQ28B.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreGraphics.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreGraphics-1A4386F2HDX2U6XOOTS1MQ28B.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreFoundation.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreFoundation-9TQI6VWCLLFPM9VP9KKF8DJQD.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreFoundation.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreFoundation-9TQI6VWCLLFPM9VP9KKF8DJQD.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/./build-ipa/SDKExplicitPrecompiledModules/UserNotifications-A0NML2G8MW1STPJ7C5ZZ6EU46.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/./build-ipa/SDKExplicitPrecompiledModules/UserNotifications-A0NML2G8MW1STPJ7C5ZZ6EU46.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/LocalAuthentication.framework/./build-ipa/SDKExplicitPrecompiledModules/LocalAuthentication-3P9FFK0LEFSKVFGL9V2EH2QSB.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/LocalAuthentication.framework/./build-ipa/SDKExplicitPrecompiledModules/LocalAuthentication-3P9FFK0LEFSKVFGL9V2EH2QSB.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-ANCUY8EHNYL1WECZAFZ9BAJOX.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift/shims/./build-ipa/SDKExplicitPrecompiledModules/_SwiftConcurrencyShims-ANCUY8EHNYL1WECZAFZ9BAJOX.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework/./build-ipa/SDKExplicitPrecompiledModules/UniformTypeIdentifiers-78N29AWGNDPUDTJ5OPL4CA3NF.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework/./build-ipa/SDKExplicitPrecompiledModules/UniformTypeIdentifiers-78N29AWGNDPUDTJ5OPL4CA3NF.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ImageIO.framework/./build-ipa/SDKExplicitPrecompiledModules/ImageIO-CFOIXG4C3Q8JDFM4U5AB6MX91.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ImageIO.framework/./build-ipa/SDKExplicitPrecompiledModules/ImageIO-CFOIXG4C3Q8JDFM4U5AB6MX91.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/BackgroundTasks.framework/./build-ipa/SDKExplicitPrecompiledModules/BackgroundTasks-11L4KJDJ0NCHGZH34YXC43W2T.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/BackgroundTasks.framework/./build-ipa/SDKExplicitPrecompiledModules/BackgroundTasks-11L4KJDJ0NCHGZH34YXC43W2T.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PencilKit.framework/./build-ipa/SDKExplicitPrecompiledModules/PencilKit-1VVCSYQENPMQWS43AU9T7VS9M.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PencilKit.framework/./build-ipa/SDKExplicitPrecompiledModules/PencilKit-1VVCSYQENPMQWS43AU9T7VS9M.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreSpotlight.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreSpotlight-EUC62PL5AAKYGN7CSQ4UR8P4W.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreSpotlight.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreSpotlight-EUC62PL5AAKYGN7CSQ4UR8P4W.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AppIntents.framework/./build-ipa/SDKExplicitPrecompiledModules/AppIntents-4X0X0J42M95KTLYHE840AX16O.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AppIntents.framework/./build-ipa/SDKExplicitPrecompiledModules/AppIntents-4X0X0J42M95KTLYHE840AX16O.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/./build-ipa/SDKExplicitPrecompiledModules/Security-EPSLQW8XP5412JS301ZCKA3KL.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/./build-ipa/SDKExplicitPrecompiledModules/Security-EPSLQW8XP5412JS301ZCKA3KL.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Network.framework/./build-ipa/SDKExplicitPrecompiledModules/Network-6SP504H3UQEG96ZCRL038EWVS.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Network.framework/./build-ipa/SDKExplicitPrecompiledModules/Network-6SP504H3UQEG96ZCRL038EWVS.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuartzCore.framework/./build-ipa/SDKExplicitPrecompiledModules/QuartzCore-CTB3OPOA858EJG7W6CZBLT9S1.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuartzCore.framework/./build-ipa/SDKExplicitPrecompiledModules/QuartzCore-CTB3OPOA858EJG7W6CZBLT9S1.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/VisionKit.framework/./build-ipa/SDKExplicitPrecompiledModules/VisionKit-9Q380AMM8KF7POQB78Z15EXBM.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/VisionKit.framework/./build-ipa/SDKExplicitPrecompiledModules/VisionKit-9Q380AMM8KF7POQB78Z15EXBM.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WidgetKit.framework/./build-ipa/SDKExplicitPrecompiledModules/WidgetKit-B4F40GKY8MCQ8POFW1XPVANTS.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WidgetKit.framework/./build-ipa/SDKExplicitPrecompiledModules/WidgetKit-B4F40GKY8MCQ8POFW1XPVANTS.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/DeveloperToolsSupport.framework/./build-ipa/SDKExplicitPrecompiledModules/DeveloperToolsSupport-3KDZXFJXARC83SMWJ4Z40ZT35.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/DeveloperToolsSupport.framework/./build-ipa/SDKExplicitPrecompiledModules/DeveloperToolsSupport-3KDZXFJXARC83SMWJ4Z40ZT35.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MapKit.framework/./build-ipa/SDKExplicitPrecompiledModules/MapKit-33QAQ96NOOHEH0YBSGYQWCCP2.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MapKit.framework/./build-ipa/SDKExplicitPrecompiledModules/MapKit-33QAQ96NOOHEH0YBSGYQWCCP2.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/_LocationEssentials.framework/./build-ipa/SDKExplicitPrecompiledModules/_LocationEssentials-A4LKNO3C6RIUI157JLCLXJB1O.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/_LocationEssentials.framework/./build-ipa/SDKExplicitPrecompiledModules/_LocationEssentials-A4LKNO3C6RIUI157JLCLXJB1O.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/Dispatch-5ZAFIQT6J67WRKL7MZEZHRCQM.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/Dispatch-5ZAFIQT6J67WRKL7MZEZHRCQM.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-3E1H2D85CNTJFSK03HZASDHAW.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/ObjectiveC-3E1H2D85CNTJFSK03HZASDHAW.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMedia.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreMedia-BHRFL457Q7ZKOP8XMOZ43KRS9.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMedia.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreMedia-BHRFL457Q7ZKOP8XMOZ43KRS9.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVKit.framework/./build-ipa/SDKExplicitPrecompiledModules/AVKit-8YMLE9QMOKWMA8JTD02N6RAS5.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVKit.framework/./build-ipa/SDKExplicitPrecompiledModules/AVKit-8YMLE9QMOKWMA8JTD02N6RAS5.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudioTypes.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreAudioTypes-35NIWWR243NEBLMDO0XODNKZ.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudioTypes.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreAudioTypes-35NIWWR243NEBLMDO0XODNKZ.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreVideo.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreVideo-DDIJQHDBDF1PDN6LIIWNKUFNI.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreVideo.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreVideo-DDIJQHDBDF1PDN6LIIWNKUFNI.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/Darwin-D21GR0FINIFREPKOYW2QY1W5U.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/./build-ipa/SDKExplicitPrecompiledModules/Darwin-D21GR0FINIFREPKOYW2QY1W5U.pcm
+warning: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreMotion-EZGDOPABFOP176XD4NF9SE3DB.pcm: No such file or directory
+note: while processing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework/./build-ipa/SDKExplicitPrecompiledModules/CoreMotion-EZGDOPABFOP176XD4NF9SE3DB.pcm
+note: Using codesigning identity override: 

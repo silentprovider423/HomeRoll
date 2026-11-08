@@ -1,0 +1,40 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Backup/BackupEngine.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Server nicht erreichbar",
+        "location": {
+          "startingColumn": 85,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Zugriff auf Fotos – in den Einstellungen erlauben.",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 174
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Original gefunden",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 418
+        }
+      },
+      {
+        "comment": "",
+        "key": "Liegt nur in iCloud (nicht auf dem iPhone)",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 419
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,128 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Library/SelectionBar.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Objekte auswählen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Foto ausgewählt",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos ausgewählt",
+        "location": {
+          "startingColumn": 134,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Video ausgewählt",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Videos ausgewählt",
+        "location": {
+          "startingColumn": 135,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt ausgewählt",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte ausgewählt",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Foto löschen",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos löschen",
+        "location": {
+          "startingColumn": 131,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Video löschen",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Videos löschen",
+        "location": {
+          "startingColumn": 132,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt löschen",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte löschen",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Objekte kommen in „Zuletzt gelöscht“ und bleiben dort 30 Tage wiederherstellbar.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 38
+        }
+      }
+    ]
+  },
+  "version": 1
+}

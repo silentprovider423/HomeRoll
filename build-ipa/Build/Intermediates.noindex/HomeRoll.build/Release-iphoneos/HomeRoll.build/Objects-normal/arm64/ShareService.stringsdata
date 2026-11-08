@@ -1,0 +1,24 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/ShareService.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Wird vorbereitet … %lld von %lld",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird vorbereitet …",
+        "location": {
+          "startingColumn": 128,
+          "startingLine": 15
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,276 @@
+{
+  "" : {
+    "const-values" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.swiftconstvalues",
+    "dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.d",
+    "diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.dia",
+    "emit-module-dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary-emit-module.dia",
+    "pch" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/HomeRoll-primary.swiftdeps"
+  },
+  "/Users/colin/HomeRoll/App/API/ImmichClient.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ImmichClient.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ImmichClient.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ImmichClient.o"
+  },
+  "/Users/colin/HomeRoll/App/API/Models.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Models.o"
+  },
+  "/Users/colin/HomeRoll/App/Backup/BackgroundUploader.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackgroundUploader.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackgroundUploader.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackgroundUploader.o"
+  },
+  "/Users/colin/HomeRoll/App/Backup/BackupConsent.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupConsent.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupConsent.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupConsent.o"
+  },
+  "/Users/colin/HomeRoll/App/Backup/BackupEngine.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupEngine.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupEngine.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupEngine.o"
+  },
+  "/Users/colin/HomeRoll/App/Backup/BackupView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/BackupView.o"
+  },
+  "/Users/colin/HomeRoll/App/Backup/FreeUp.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FreeUp.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FreeUp.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FreeUp.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/Albums.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Albums.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Albums.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Albums.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/Categories.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Categories.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Categories.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Categories.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/CollectionDetail.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionDetail.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionDetail.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionDetail.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/CollectionsView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionsView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionsView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/CollectionsView.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/Memories.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Memories.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Memories.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Memories.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/MemoryExport.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryExport.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryExport.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryExport.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/MemoryNotifications.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryNotifications.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryNotifications.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryNotifications.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/MemoryPlayer.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryPlayer.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryPlayer.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MemoryPlayer.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/Pinned.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Pinned.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Pinned.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Pinned.o"
+  },
+  "/Users/colin/HomeRoll/App/Collections/SharedLibrary.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SharedLibrary.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SharedLibrary.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SharedLibrary.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/AssetActions.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AssetActions.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AssetActions.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AssetActions.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/Intents.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Intents.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Intents.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Intents.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/Keychain.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Keychain.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Keychain.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/Keychain.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/LocalCopy.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LocalCopy.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LocalCopy.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LocalCopy.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/OfflineStore.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/OfflineStore.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/OfflineStore.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/OfflineStore.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/PerfLog.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PerfLog.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PerfLog.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PerfLog.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/RemoteImage.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RemoteImage.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RemoteImage.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RemoteImage.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/ShareLinkSheet.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareLinkSheet.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareLinkSheet.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareLinkSheet.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/ShareService.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareService.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareService.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ShareService.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/SpotlightIndex.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpotlightIndex.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpotlightIndex.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpotlightIndex.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/ThumbHash.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ThumbHash.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ThumbHash.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ThumbHash.o"
+  },
+  "/Users/colin/HomeRoll/App/Core/WidgetFeeder.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/WidgetFeeder.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/WidgetFeeder.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/WidgetFeeder.o"
+  },
+  "/Users/colin/HomeRoll/App/Editor/EditModel.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditModel.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditModel.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditModel.o"
+  },
+  "/Users/colin/HomeRoll/App/Editor/EditorView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditorView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditorView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/EditorView.o"
+  },
+  "/Users/colin/HomeRoll/App/Editor/MarkupEditor.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MarkupEditor.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MarkupEditor.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/MarkupEditor.o"
+  },
+  "/Users/colin/HomeRoll/App/Editor/VideoTrimView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoTrimView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoTrimView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoTrimView.o"
+  },
+  "/Users/colin/HomeRoll/App/FotosApp.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FotosApp.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FotosApp.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FotosApp.o"
+  },
+  "/Users/colin/HomeRoll/App/Library/LibraryFooter.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryFooter.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryFooter.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryFooter.o"
+  },
+  "/Users/colin/HomeRoll/App/Library/LibraryView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LibraryView.o"
+  },
+  "/Users/colin/HomeRoll/App/Library/PhotoGrid.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoGrid.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoGrid.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoGrid.o"
+  },
+  "/Users/colin/HomeRoll/App/Library/SelectionBar.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SelectionBar.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SelectionBar.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SelectionBar.o"
+  },
+  "/Users/colin/HomeRoll/App/Library/TimelineStore.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/TimelineStore.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/TimelineStore.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/TimelineStore.o"
+  },
+  "/Users/colin/HomeRoll/App/Login/LoginView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LoginView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LoginView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LoginView.o"
+  },
+  "/Users/colin/HomeRoll/App/RootView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RootView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RootView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/RootView.o"
+  },
+  "/Users/colin/HomeRoll/App/Search/SearchView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SearchView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SearchView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SearchView.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/LiveEffects.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LiveEffects.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LiveEffects.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/LiveEffects.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/PhotoAnalysis.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoAnalysis.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoAnalysis.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PhotoAnalysis.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/PlaybackAudioSession.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PlaybackAudioSession.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PlaybackAudioSession.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/PlaybackAudioSession.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/ScrubberStrip.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ScrubberStrip.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ScrubberStrip.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ScrubberStrip.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/SlowMo.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SlowMo.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SlowMo.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SlowMo.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/SpatialScene.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpatialScene.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpatialScene.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/SpatialScene.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/VideoState.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoState.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoState.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/VideoState.o"
+  },
+  "/Users/colin/HomeRoll/App/Viewer/ViewerView.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ViewerView.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ViewerView.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/ViewerView.o"
+  },
+  "/Users/colin/HomeRoll/Shared/AppGroup.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AppGroup.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AppGroup.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/AppGroup.o"
+  },
+  "/Users/colin/HomeRoll/Shared/FileChunks.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FileChunks.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FileChunks.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/FileChunks.o"
+  },
+  "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/HomeRoll.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

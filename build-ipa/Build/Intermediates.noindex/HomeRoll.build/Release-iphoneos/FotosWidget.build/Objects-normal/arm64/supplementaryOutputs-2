@@ -1,0 +1,12 @@
+{
+  "/Users/colin/HomeRoll/Shared/AppGroup.swift" : {
+    "abi-baseline-json" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.abi.json",
+    "const-values" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.swiftconstvalues",
+    "dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.d",
+    "diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.dia",
+    "objc-header" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-Swift.h",
+    "swiftdoc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.swiftdoc",
+    "swiftmodule" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.swiftmodule",
+    "swiftsourceinfo" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.swiftsourceinfo"
+  }
+}

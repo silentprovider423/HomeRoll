@@ -1,0 +1,752 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/Albums.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Zuletzt geändert",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neueste zuerst",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Älteste zuerst",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte",
+        "location": {
+          "startingColumn": 75,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album umbenennen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Möchtest du das Album „%@“ wirklich löschen?",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Album ist leer.",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos hinzufügen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt hinzugefügt",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte hinzugefügt",
+        "location": {
+          "startingColumn": 107,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 158
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album gelöscht",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "Die Fotos und Videos bleiben in deiner Mediathek.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 213
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auswählen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 240
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos hinzufügen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 242
+        }
+      },
+      {
+        "comment": "",
+        "key": "Karte einblenden",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album löschen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Rückblick abspielen",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 244
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel bearbeiten",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 238
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zu wenige Fotos für einen Rückblick",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Fotos mit Ort in diesem Album",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 255
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortieren",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "Älteste zuerst",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 262
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neueste zuerst",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 263
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortieren",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 265
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Schlüsselfoto festlegen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 273
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Album entfernen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 277
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schlüsselfoto festgelegt",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 275
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Schlüsselfoto festlegen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 291
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Album entfernen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schlüsselfoto festgelegt",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 293
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Album entfernt",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 300
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld aus Album entfernt",
+        "location": {
+          "startingColumn": 104,
+          "startingLine": 300
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zu „%@“ hinzugefügt",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 338
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte zu „%@“ hinzugefügt",
+        "location": {
+          "startingColumn": 119,
+          "startingLine": 338
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album umbenennen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 392
+        }
+      },
+      {
+        "comment": "",
+        "key": "Möchtest du das Album „%@“ wirklich löschen?",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 397
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos teilen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 359
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos hinzufügen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel bearbeiten",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 363
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 378
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nicht mehr anpinnen",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 380
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anpinnen",
+        "location": {
+          "startingColumn": 94,
+          "startingLine": 380
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus „%@“ entfernen",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 374
+        }
+      },
+      {
+        "comment": "",
+        "key": "In Ordner bewegen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zu „%@“ hinzugefügt",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 389
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 393
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 394
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 395
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 399
+        }
+      },
+      {
+        "comment": "",
+        "key": "Die Fotos und Videos bleiben in deiner Mediathek.",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 404
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neuer Ordner",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 496
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ordner umbenennen",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 496
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 477
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alben",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 488
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alben lange drücken → „In Ordner bewegen“.",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 493
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ordner ist leer",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 492
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 498
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 499
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 500
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Album",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 510
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortieren",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 514
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neuer Ordner",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Album",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 545
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Alben",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 545
+        }
+      },
+      {
+        "comment": "",
+        "key": "Umbenennen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 550
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ordner löschen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 551
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ordner gelöscht – die Alben bleiben erhalten",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 553
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Album",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 604
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos hinzufügen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 587
+        }
+      },
+      {
+        "comment": "",
+        "key": "Albumname",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 592
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 583
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Album",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 622
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album „%@“ erstellt",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 628
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erstellen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 611
+        }
+      },
+      {
+        "comment": "",
+        "key": "Objekte auswählen",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 662
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Objekt ausgewählt",
+        "location": {
+          "startingColumn": 127,
+          "startingLine": 662
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte ausgewählt",
+        "location": {
+          "startingColumn": 171,
+          "startingLine": 662
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suchbegriff",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 265
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wonach soll ich suchen?",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 265
+        }
+      },
+      {
+        "comment": "",
+        "key": "Urlaub 2025",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 528
+        }
+      },
+      {
+        "comment": "",
+        "key": "Istanbul",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 528
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sonnenuntergänge",
+        "location": {
+          "startingColumn": 109,
+          "startingLine": 528
+        }
+      },
+      {
+        "comment": "",
+        "key": "Essen mit Freunden",
+        "location": {
+          "startingColumn": 149,
+          "startingLine": 529
+        }
+      },
+      {
+        "comment": "",
+        "key": "Berge und Natur",
+        "location": {
+          "startingColumn": 190,
+          "startingLine": 529
+        }
+      },
+      {
+        "comment": "",
+        "key": "Familie",
+        "location": {
+          "startingColumn": 228,
+          "startingLine": 530
+        }
+      }
+    ]
+  },
+  "version": 1
+}

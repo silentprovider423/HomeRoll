@@ -1,0 +1,376 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Backup/BackupView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Backup & Offline",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nicht gesichert (%lld)",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pausiert bis %@ morgen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fortsetzen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Für einen Tag pausieren",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Jetzt sichern",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup pausiert",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mediathek wird geprüft …",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ von %@ gesichert",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup ist aktiv",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup ist aus",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld hochgeladen",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld schon da",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld fehlgeschlagen",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt %@",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "Noch nicht gelaufen",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos sichern",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nur im WLAN",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neue Fotos und Videos landen auf deinem eigenen Server – im Hintergrund, wenn das iPhone nachts am Strom hängt, und sobald du die App öffnest. Auf dem iPhone wird nur gelöscht, wenn du unten „Speicher freigeben“ wählst.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ältere Fotos sind schon auf dem Server",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Übernommen bis",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ganze Mediathek prüfen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Die App sichert die ganze Mediathek, auch Fotos, die nur in iCloud liegen (sie werden dafür geladen). Hast du ältere Fotos schon anders auf den Server gebracht, z. B. mit icloudpd, schalte das ein: Dann sichert die App nur, was danach dazukommt.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alles vor dem %@ ist schon aus iCloud übernommen. Eingeschaltet prüft die App auch ältere Fotos – aber nur die, die auf dem iPhone liegen, ohne sie aus iCloud zu laden.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 54
+        }
+      },
+      {
+        "comment": "",
+        "key": "Protokoll leeren",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Leistungsprotokoll",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Leistungsprotokoll teilen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Leistung",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Die App merkt sich, wann sie hängt oder beim Scrollen ruckelt – ohne Fotos oder Namen. Schick das Protokoll, wenn etwas langsam ist.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gespeicherte Vorschauen löschen?",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vorschauen auf dem iPhone speichern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kleine Vorschauen",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "Große Vorschauen",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Große Vorschauen höchstens",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Offline-Speicher leeren",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 137
+        }
+      },
+      {
+        "comment": "",
+        "key": "2 GB",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "10 GB",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "30 GB",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle",
+        "location": {
+          "startingColumn": 107,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ werden geladen …",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ohne Internet",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auf dem Server bleibt alles. Die Vorschauen werden danach im WLAN neu geladen.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ von %@ · %@",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 151
+        }
+      }
+    ]
+  },
+  "version": 1
+}

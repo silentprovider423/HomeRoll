@@ -1,0 +1,24 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Viewer/VideoState.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Pause",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 332
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wiedergabe",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 332
+        }
+      }
+    ]
+  },
+  "version": 1
+}

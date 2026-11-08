@@ -1,0 +1,304 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Search/SearchView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Person",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Land",
+        "location": {
+          "startingColumn": 124,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Karte",
+        "location": {
+          "startingColumn": 163,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album",
+        "location": {
+          "startingColumn": 204,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medienart",
+        "location": {
+          "startingColumn": 248,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Jahr",
+        "location": {
+          "startingColumn": 292,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 386
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mediathek durchsuchen …",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suchen",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 163
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 165
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 193
+        }
+      },
+      {
+        "comment": "",
+        "key": "Orte",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 212
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medienarten",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vorschläge",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Strand",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Essen",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auto",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Berge",
+        "location": {
+          "startingColumn": 124,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Moschee",
+        "location": {
+          "startingColumn": 152,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sonnenuntergang",
+        "location": {
+          "startingColumn": 182,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hund",
+        "location": {
+          "startingColumn": 220,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zuletzt angesehen",
+        "location": {
+          "startingColumn": 101,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Text in Fotos",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 315
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weitere Fotos",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 319
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Treffer",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 330
+        }
+      },
+      {
+        "comment": "",
+        "key": "Probier einen anderen Begriff oder entferne ein Kärtchen.",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 331
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Sammlungen",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 306
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suchen",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 287
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auswählen",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos (%@)",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 307
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sammlungen (%lld)",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 308
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mehr laden",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Objekte kommen in „Zuletzt gelöscht“ und bleiben dort 30 Tage wiederherstellbar.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 390
+        }
+      }
+    ]
+  },
+  "version": 1
+}

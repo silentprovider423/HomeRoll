@@ -1,0 +1,304 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/CollectionsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Rückblicke",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Angepinnt",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alben",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 156
+        }
+      },
+      {
+        "comment": "",
+        "key": "Empfohlene Fotos",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Letzte Tage",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 158
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reisen",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 159
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medienarten",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sonstige",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Alben verfügbar",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 327
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hier werden Alben angezeigt, sobald du eines erstellst oder Fotos hinzufügst.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 328
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erstellen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 329
+        }
+      },
+      {
+        "comment": "",
+        "key": "Noch keine Personen",
+        "location": {
+          "startingColumn": 76,
+          "startingLine": 348
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen erscheinen hier, sobald der Server Gesichter in deinen Fotos erkannt hat.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 349
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sammlungen",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle einblenden",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 185
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle reduzieren",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neu anordnen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Klein",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mittel",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Groß",
+        "location": {
+          "startingColumn": 119,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Backup",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 198
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geteilte Mediathek",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aktualisieren",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 200
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 204
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ Objekte auf deinem Server",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 210
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 219
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 220
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeiten",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 248
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Rückblicke verfügbar",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 307
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblicke erscheinen hier, wenn mehr Fotos und Videos zur Mediathek hinzugefügt werden.",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 308
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unbenannt",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Empfohlenen entfernen",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 386
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird nicht mehr empfohlen",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reise",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 444
+        }
+      },
+      {
+        "comment": "",
+        "key": "Karte",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 576
+        }
+      }
+    ]
+  },
+  "version": 1
+}

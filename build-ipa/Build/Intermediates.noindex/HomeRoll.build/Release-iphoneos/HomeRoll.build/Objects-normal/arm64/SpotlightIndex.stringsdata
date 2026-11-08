@@ -1,0 +1,32 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/SpotlightIndex.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Album in Fotos",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Person in Fotos",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 32
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.swiftconstvalues",
+    "dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.d",
+    "diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.dia",
+    "emit-module-dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary-emit-module.dia",
+    "pch" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget-primary.swiftdeps"
+  },
+  "/Users/colin/HomeRoll/Shared/AppGroup.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/AppGroup.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/AppGroup.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/AppGroup.o"
+  },
+  "/Users/colin/HomeRoll/Shared/FileChunks.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FileChunks.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FileChunks.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FileChunks.o"
+  },
+  "/Users/colin/HomeRoll/Widget/FotosWidget.swift" : {
+    "index-unit-output-path" : "/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.o",
+    "llvm-bc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.bc",
+    "object" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosWidget.build/Objects-normal/arm64/FotosWidget.o"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source": "/Users/colin/HomeRoll/App/API/Models.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Heute",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gestern",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 290
+        }
+      }
+    ]
+  },
+  "version": 1
+}

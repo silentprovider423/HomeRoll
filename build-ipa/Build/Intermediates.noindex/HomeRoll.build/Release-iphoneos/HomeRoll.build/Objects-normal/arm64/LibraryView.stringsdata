@@ -1,0 +1,272 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Library/LibraryView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Noch keine Fotos",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server nicht erreichbar",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erneut versuchen",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden / anderer Server",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte werden gesichert …",
+        "location": {
+          "startingColumn": 74,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Offline – nur Vorschauen",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mediathek",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sortierung",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aktualisieren",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auswählen",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 97
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abmelden",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 115
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach zuletzt hinzugefügten Inhalten sortieren",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 123
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach Aufnahmedatum sortieren",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vergrößern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Verkleinern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anzeigen:",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "Seitenverhältnisraster",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Videos & Live Photos automatisch abspielen",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bildschirmfotos",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mit dir geteilt",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Darstellungsoptionen",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Objekte",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 287
+        }
+      },
+      {
+        "comment": "",
+        "key": "Für „%@“ gibt es nichts.",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 288
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gefiltert: %@",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 298
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video, ",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 447
+        }
+      },
+      {
+        "comment": "",
+        "key": "Foto, ",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 447
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favorit",
+        "location": {
+          "startingColumn": 70,
+          "startingLine": 448
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 586
+        }
+      }
+    ]
+  },
+  "version": 1
+}

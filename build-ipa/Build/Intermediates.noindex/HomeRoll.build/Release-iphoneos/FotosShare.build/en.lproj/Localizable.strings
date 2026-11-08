@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%lld Objekte auf deinen Server sichern</key>
+	<string>Back up %lld items to your server</string>
+	<key>%lld fehlgeschlagen</key>
+	<string>%lld failed</string>
+	<key>%lld gesichert</key>
+	<string>%lld backed up</string>
+	<key>%lld waren schon da</key>
+	<string>%lld were already there</string>
+	<key>1 Objekt auf deinen Server sichern</key>
+	<string>Back up 1 item to your server</string>
+	<key>Abbrechen</key>
+	<string>Cancel</string>
+	<key>Auf deinem Server sichern</key>
+	<string>Back Up to Your Server</string>
+	<key>Bitte zuerst die Fotos-App öffnen und anmelden.</key>
+	<string>Please open HomeRoll and sign in first.</string>
+	<key>Fertig</key>
+	<string>Done</string>
+	<key>Fotos</key>
+	<string>Photos</string>
+</dict>
+</plist>

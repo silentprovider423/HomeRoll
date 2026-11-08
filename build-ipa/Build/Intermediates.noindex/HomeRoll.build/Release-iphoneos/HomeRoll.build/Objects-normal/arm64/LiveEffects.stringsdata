@@ -1,0 +1,48 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Viewer/LiveEffects.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Live",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Endlosschleife",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abpraller",
+        "location": {
+          "startingColumn": 129,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Langzeitbelichtung",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 14
+        }
+      }
+    ]
+  },
+  "version": 1
+}

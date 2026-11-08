@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key> </key>
+	<string> </string>
+	<key>%1$lld Objekte vom iPhone gelöscht · %2$@ frei</key>
+	<string>%1$lld items deleted from iPhone · %2$@ freed</string>
+	<key>%1$lld Objekte vom iPhone löschen (%2$@)?</key>
+	<string>Delete %1$lld items from iPhone (%2$@)?</string>
+	<key>%@  %lld</key>
+	<string>%1$@  %2$lld</string>
+	<key>%@ (%@)</key>
+	<string>%1$@ (%2$@)</string>
+	<key>%@ Fotos</key>
+	<string>%@ Photos</string>
+	<key>%@ Fotos und Videos auf diesem iPhone</key>
+	<string>%@ photos and videos on this iPhone</string>
+	<key>%@ Objekte auf deinem Server</key>
+	<string>%@ items on your server</string>
+	<key>%@ Objekte noch nicht gesichert</key>
+	<string>%@ Items Not Backed Up Yet</string>
+	<key>%@ Objekte werden gesichert</key>
+	<string>Backing Up %@ Items</string>
+	<key>%@ Objekte werden im Hintergrund gesichert</key>
+	<string>Backing Up %@ Items in the Background</string>
+	<key>%@ Videos</key>
+	<string>%@ Videos</string>
+	<key>%@ ausblenden</key>
+	<string>Hide %@</string>
+	<key>%@ im Laufe der Jahre</key>
+	<string>%@ Over the Years</string>
+	<key>%@ löschen</key>
+	<string>Delete %@</string>
+	<key>%@ von %@ gesichert</key>
+	<string>%1$@ of %2$@ backed up</string>
+	<key>%@ von %@ · %@</key>
+	<string>%1$@ of %2$@ · %3$@</string>
+	<key>%@ weniger zeigen</key>
+	<string>Feature %@ Less</string>
+	<key>%@ werden geladen …</key>
+	<string>Loading %@ …</string>
+	<key>%lld</key>
+	<string>%lld</string>
+	<key>%lld Alben</key>
+	<string>%lld Albums</string>
+	<key>%lld Fotos</key>
+	<string>%lld Photos</string>
+	<key>%lld Fotos ausgewählt</key>
+	<string>%lld Photos Selected</string>
+	<key>%lld Fotos bestätigt</key>
+	<string>%lld photos confirmed</string>
+	<key>%lld Fotos löschen</key>
+	<string>Delete %lld Photos</string>
+	<key>%lld Fotos vom %@</key>
+	<string>%1$lld photos from %2$@</string>
+	<key>%lld Fotos zu %@ hinzugefügt</key>
+	<string>%1$lld photos added to %2$@</string>
+	<key>%lld Gruppen</key>
+	<string>%lld groups</string>
+	<key>%lld Mitteilungen geplant</key>
+	<string>%lld notifications scheduled</string>
+	<key>%lld Objekte</key>
+	<string>%lld Items</string>
+	<key>%lld Objekte ausgewählt</key>
+	<string>%lld Items Selected</string>
+	<key>%lld Objekte hinzugefügt</key>
+	<string>%lld items added</string>
+	<key>%lld Objekte kopiert</key>
+	<string>%lld items copied</string>
+	<key>%lld Objekte löschen</key>
+	<string>Delete %lld Items</string>
+	<key>%lld Objekte werden gesichert …</key>
+	<string>Backing up %lld items …</string>
+	<key>%lld Objekte zu „%@“ hinzugefügt</key>
+	<string>%lld items added to “%@”</string>
+	<key>%lld Tage</key>
+	<string>%lld days</string>
+	<key>%lld Videos</key>
+	<string>%lld Videos</string>
+	<key>%lld Videos ausgewählt</key>
+	<string>%lld Videos Selected</string>
+	<key>%lld Videos geprüft …</key>
+	<string>%lld videos checked …</string>
+	<key>%lld Videos löschen</key>
+	<string>Delete %lld Videos</string>
+	<key>%lld aus Album entfernt</key>
+	<string>%lld removed from album</string>
+	<key>%lld ausgeblendet</key>
+	<string>%lld hidden</string>
+	<key>%lld dupliziert</key>
+	<string>%lld duplicated</string>
+	<key>%lld eingeblendet</key>
+	<string>%lld unhidden</string>
+	<key>%lld endgültig gelöscht</key>
+	<string>%lld permanently deleted</string>
+	<key>%lld entfernt · Widerrufen oben links</key>
+	<string>%lld removed · undo at top left</string>
+	<key>%lld fehlgeschlagen</key>
+	<string>%lld failed</string>
+	<key>%lld hochgeladen</key>
+	<string>%lld uploaded</string>
+	<key>%lld schon da</key>
+	<string>%lld already there</string>
+	<key>%lld von %lld</key>
+	<string>%1$lld of %2$lld</string>
+	<key>%lld wiederhergestellt</key>
+	<string>%lld recovered</string>
+	<key>1 Album</key>
+	<string>1 Album</string>
+	<key>1 Foto</key>
+	<string>1 Photo</string>
+	<key>1 Foto ausgewählt</key>
+	<string>1 Photo Selected</string>
+	<key>1 Foto bestätigt</key>
+	<string>1 photo confirmed</string>
+	<key>1 Foto löschen</key>
+	<string>Delete 1 Photo</string>
+	<key>1 Foto zu %@ hinzugefügt</key>
+	<string>1 photo added to %@</string>
+	<key>1 Jahr</key>
+	<string>1 Year</string>
+	<key>1 Mitteilung geplant</key>
+	<string>1 notification scheduled</string>
+	<key>1 Objekt</key>
+	<string>1 Item</string>
+	<key>1 Objekt ausgewählt</key>
+	<string>1 Item Selected</string>
+	<key>1 Objekt hinzugefügt</key>
+	<string>1 item added</string>
+	<key>1 Objekt löschen</key>
+	<string>Delete 1 Item</string>
+	<key>1 Tag</key>
+	<string>1 day</string>
+	<key>1 Video</key>
+	<string>1 Video</string>
+	<key>1 Video ausgewählt</key>
+	<string>1 Video Selected</string>
+	<key>1 Video löschen</key>
+	<string>Delete 1 Video</string>
+	<key>10 GB</key>
+	<string>10 GB</string>
+	<key>2 GB</key>
+	<string>2 GB</string>
+	<key>30 GB</key>
+	<string>30 GB</string>
+	<key>30 Tage</key>
+	<string>30 Days</string>
+	<key>7 Tage</key>
+	<string>7 Days</string>
+	<key>AUTO</key>
+	<string>AUTO</string>
+	<key>Abbrechen</key>
+	<string>Cancel</string>
+	<key>Ablaufdatum des Links</key>
+	<string>Expiry date</string>
+	<key>Abmelden</key>
+	<string>Sign Out</string>
+	<key>Abmelden / anderer Server</key>
+	<string>Sign Out / Change Server</string>
+	<key>Abpraller</key>
+	<string>Bounce</string>
+	<key>Aktive Links</key>
+	<string>Active Links</string>
+	<key>Aktualisieren</key>
+	<string>Refresh</string>
+	<key>Alben</key>
+	<string>Albums</string>
+	<key>Alben lange drücken → „In Ordner bewegen“.</key>
+	<string>Touch and hold an album → “Move to Folder”.</string>
+	<key>Album</key>
+	<string>Album</string>
+	<key>Album anzeigen</key>
+	<string>View Album</string>
+	<key>Album gelöscht</key>
+	<string>Album deleted</string>
+	<key>Album in Fotos</key>
+	<string>Album in Photos</string>
+	<key>Album löschen</key>
+	<string>Delete Album</string>
+	<key>Album umbenennen</key>
+	<string>Rename Album</string>
+	<key>Album „%@“ erstellt</key>
+	<string>Album “%@” created</string>
+	<key>Albumname</key>
+	<string>Album Name</string>
+	<key>Alle</key>
+	<string>All</string>
+	<key>Alle %lld Objekte werden um denselben Abstand verschoben.</key>
+	<string>All %lld items will be shifted by the same amount.</string>
+	<key>Alle Fotos anzeigen</key>
+	<string>Show All Photos</string>
+	<key>Alle Fotos dieser Personen erscheinen danach unter einem Namen.</key>
+	<string>All photos of these people will then appear under one name.</string>
+	<key>Alle Objekte</key>
+	<string>All Items</string>
+	<key>Alle einblenden</key>
+	<string>Unhide All</string>
+	<key>Alle reduzieren</key>
+	<string>Collapse All</string>
+	<key>Alle Änderungen an diesem Foto werden entfernt.</key>
+	<string>All edits to this photo will be removed.</string>
+	<key>Alle Änderungen verwerfen</key>
+	<string>Discard All Changes</string>
+	<key>Alles vor dem %@ ist schon aus iCloud übernommen. Eingeschaltet prüft die App auch ältere Fotos – aber nur die, die auf dem iPhone liegen, ohne sie aus iCloud zu laden.</key>
+	<string>Everything before %@ has already been imported from iCloud. When turned on, the app also checks older photos – but only those stored on the iPhone, without downloading them from iCloud.</string>
+	<key>Als Duplikat gesichert</key>
+	<string>Saved as duplicate</string>
+	<key>Als Duplikat sichern</key>
+	<string>Save as Duplicate</string>
+	<key>Als Favorit</key>
+	<string>Favorite</string>
+	<key>Als Nächstes</key>
+	<string>Up Next</string>
+	<key>Als Rückblick abspielen</key>
+	<string>Play as Memory</string>
+	<key>Als Schlüsselfoto festlegen</key>
+	<string>Make Key Photo</string>
+	<key>Als Titelbild für %@</key>
+	<string>Make Key Photo for %@</string>
+	<key>Als Titelbild verwenden</key>
+	<string>Make Key Photo</string>
+	<key>Als Video teilen</key>
+	<string>Share as Video</string>
+	<key>Anfang</key>
+	<string>Start</string>
+	<key>Angepinnt</key>
+	<string>Pinned</string>
+	<key>Anhalten</key>
+	<string>Pause</string>
+	<key>Animiert</key>
+	<string>Animated</string>
+	<key>Anmelden</key>
+	<string>Sign In</string>
+	<key>Anpassen</key>
+	<string>Adjust</string>
+	<key>Anpinnen</key>
+	<string>Pin</string>
+	<key>Anzeigen:</key>
+	<string>Show:</string>
+	<key>Auf deinem Server bleibt alles erhalten.</key>
+	<string>Everything stays on your server.</string>
+	<key>Auf deinem Server gesichert · %@</key>
+	<string>Backed Up to Your Server · %@</string>
+	<key>Auf dem Server bleibt alles. Die Vorschauen werden danach im WLAN neu geladen.</key>
+	<string>Everything stays on the server. Previews will be downloaded again over Wi-Fi.</string>
+	<key>Auf dem iPhone wird nichts gelöscht. Ändern kannst du das jederzeit unter Backup.</key>
+	<string>Nothing is deleted from your iPhone. You can change this any time in Backup.</string>
+	<key>Auflösung</key>
+	<string>Definition</string>
+	<key>Aus</key>
+	<string>Off</string>
+	<key>Aus Album entfernen</key>
+	<string>Remove from Album</string>
+	<key>Aus Album entfernt</key>
+	<string>Removed from album</string>
+	<key>Aus Empfohlenen entfernen</key>
+	<string>Remove from Featured</string>
+	<key>Aus Favoriten entfernen</key>
+	<string>Remove from Favorites</string>
+	<key>Aus Rückblick entfernen</key>
+	<string>Remove from Memory</string>
+	<key>Aus Rückblick entfernt</key>
+	<string>Removed from memory</string>
+	<key>Aus „%@“ entfernen</key>
+	<string>Remove from “%@”</string>
+	<key>Aus „%@“ entfernt</key>
+	<string>Removed from “%@”</string>
+	<key>Aus „Personen“ ausblenden</key>
+	<string>Hide from “People”</string>
+	<key>Ausblenden</key>
+	<string>Hide</string>
+	<key>Ausgeblendet</key>
+	<string>Hidden</string>
+	<key>Ausgeblendete anzeigen</key>
+	<string>Show Hidden</string>
+	<key>Auswählen</key>
+	<string>Select</string>
+	<key>Auto</key>
+	<string>Auto</string>
+	<key>BLENDE  ƒ %.1f</key>
+	<string>APERTURE  ƒ %.1f</string>
+	<key>Backup</key>
+	<string>Backup</string>
+	<key>Backup &amp; Offline</key>
+	<string>Backup &amp; Offline</string>
+	<key>Backup einschalten</key>
+	<string>Turn On Backup</string>
+	<key>Backup für %@ Objekte pausiert</key>
+	<string>Backup Paused for %@ Items</string>
+	<key>Backup ist aktiv</key>
+	<string>Backup is on</string>
+	<key>Backup ist aus</key>
+	<string>Backup is off</string>
+	<key>Backup pausiert</key>
+	<string>Backup Paused</string>
+	<key>Backup unterbrochen: %@</key>
+	<string>Backup Stopped: %@</string>
+	<key>Bearbeiten</key>
+	<string>Edit</string>
+	<key>Bearbeitet</key>
+	<string>Edited</string>
+	<key>Bearbeitungen auf %lld Fotos eingesetzt</key>
+	<string>Edits pasted on %lld photos</string>
+	<key>Bearbeitungen eingesetzt</key>
+	<string>Edits pasted</string>
+	<key>Bearbeitungen einsetzen</key>
+	<string>Paste Edits</string>
+	<key>Bearbeitungen einsetzen … %lld von %lld</key>
+	<string>Pasting edits… %lld of %lld</string>
+	<key>Bearbeitungen konnten nicht eingesetzt werden</key>
+	<string>Edits couldn't be pasted</string>
+	<key>Bearbeitungen kopieren</key>
+	<string>Copy Edits</string>
+	<key>Bearbeitungen kopiert</key>
+	<string>Edits copied</string>
+	<key>Bearbeitungen werden eingesetzt …</key>
+	<string>Pasting edits…</string>
+	<key>Beenden</key>
+	<string>Stop</string>
+	<key>Begradigen</key>
+	<string>Straighten</string>
+	<key>Belege</key>
+	<string>Receipts</string>
+	<key>Belichtung</key>
+	<string>Exposure</string>
+	<key>Bereinigen</key>
+	<string>Clean Up</string>
+	<key>Bereinigen in voller Auflösung fehlgeschlagen</key>
+	<string>Clean Up at full resolution failed</string>
+	<key>Bereinigen nicht erreichbar – läuft der Server?</key>
+	<string>Clean Up unavailable – is the server running?</string>
+	<key>Berge</key>
+	<string>Mountains</string>
+	<key>Berge und Natur</key>
+	<string>Mountains and nature</string>
+	<key>Bernstein</key>
+	<string>Amber</string>
+	<key>Beschreibe den Rückblick, den du sehen möchtest – zum Beispiel einen Ort, ein Jahr, eine Person oder ein Motiv.</key>
+	<string>Describe the memory you want to see – for example a place, a year, a person or a subject.</string>
+	<key>Beschreibe einen Rückblick …</key>
+	<string>Describe a memory …</string>
+	<key>Beschreibung des Links (optional)</key>
+	<string>Link description (optional)</string>
+	<key>Bild konnte nicht berechnet werden</key>
+	<string>Couldn’t render the image</string>
+	<key>Bild konnte nicht geladen werden</key>
+	<string>Couldn’t load the image</string>
+	<key>Bildschirmaufnahme</key>
+	<string>Screen Recording</string>
+	<key>Bildschirmaufnahmen</key>
+	<string>Screen Recordings</string>
+	<key>Bildschirmfoto</key>
+	<string>Screenshot</string>
+	<key>Bildschirmfotos</key>
+	<string>Screenshots</string>
+	<key>Blau</key>
+	<string>Blue</string>
+	<key>Brillanz</key>
+	<string>Brilliance</string>
+	<key>Code eingeben</key>
+	<string>Enter Passcode</string>
+	<key>Code eingeben, um dieses Album anzuzeigen</key>
+	<string>Enter your passcode to view this album</string>
+	<key>Cyan</key>
+	<string>Cyan</string>
+	<key>Darstellungsoptionen</key>
+	<string>View Options</string>
+	<key>Das Beste aus %@</key>
+	<string>Best of %@</string>
+	<key>Das Dateiformat wird von iOS nicht unterstützt (z. B. HEVC mit Kennung „hev1“, VP9 oder AV1). Abhilfe in Immich unter Verwaltung → Einstellungen → Video-Transkodierung: Echtzeit-Transkodierung einschalten oder solche Videos in H.264 umwandeln lassen.</key>
+	<string>iOS doesn't support this file format (e.g. HEVC tagged “hev1”, VP9 or AV1). To fix it in Immich, go to Administration → Settings → Video Transcoding and turn on real-time transcoding, or have these videos transcoded to H.264.</string>
+	<key>Das beste Foto bleibt, die anderen kommen in „Zuletzt gelöscht“ (30 Tage wiederherstellbar).</key>
+	<string>The best photo stays, the others go to “Recently Deleted” (recoverable for 30 days).</string>
+	<key>Das ist eine E-Mail-Adresse. Ins erste Feld gehört die Adresse deines Immich-Servers, z. B. http://192.168.1.20:2283</key>
+	<string>That's an email address. The first field needs your Immich server's address, e.g. http://192.168.1.20:2283</string>
+	<key>Das ist nicht %@</key>
+	<string>This Is Not %@</string>
+	<key>Datum</key>
+	<string>Date</string>
+	<key>Datum &amp; Uhrzeit anpassen</key>
+	<string>Adjust Date &amp; Time</string>
+	<key>Datum/Uhrzeit</key>
+	<string>Date/Time</string>
+	<key>Dauer</key>
+	<string>Duration</string>
+	<key>Dazu habe ich keine passenden Fotos gefunden.</key>
+	<string>I couldn’t find any matching photos.</string>
+	<key>Deine Mediathek auf deinem eigenen Server</key>
+	<string>Your library on your own server</string>
+	<key>Der Link funktioniert danach nicht mehr.</key>
+	<string>The link will stop working.</string>
+	<key>Der Link lautet dann …/s/name statt eines zufälligen Schlüssels.</key>
+	<string>The link will be …/s/name instead of a random key.</string>
+	<key>Diagnose kopiert</key>
+	<string>Diagnostics copied</string>
+	<key>Diashow</key>
+	<string>Slideshow</string>
+	<key>Die App merkt sich, wann sie hängt oder beim Scrollen ruckelt – ohne Fotos oder Namen. Schick das Protokoll, wenn etwas langsam ist.</key>
+	<string>The app notes when it hangs or stutters while scrolling – without photos or names. Send the log if something is slow.</string>
+	<key>Die App sichert die ganze Mediathek, auch Fotos, die nur in iCloud liegen (sie werden dafür geladen). Hast du ältere Fotos schon anders auf den Server gebracht, z. B. mit icloudpd, schalte das ein: Dann sichert die App nur, was danach dazukommt.</key>
+	<string>The app backs up your entire library, including photos that are only in iCloud (they are downloaded for this). If you already moved older photos to the server another way, e.g. with icloudpd, turn this on: the app then only backs up what comes after.</string>
+	<key>Die Fotos und Videos bleiben in deiner Mediathek.</key>
+	<string>The photos and videos stay in your library.</string>
+	<key>Diese %lld Fotos werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>These %lld photos will be hidden, but you can still see them in the Hidden album.</string>
+	<key>Diese %lld Objekte werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>These %lld items will be hidden, but you can still see them in the Hidden album.</string>
+	<key>Diese %lld Objekte werden endgültig gelöscht. Dieser Vorgang kann nicht widerrufen werden.</key>
+	<string>These %lld items will be permanently deleted. This action can’t be undone.</string>
+	<key>Diese %lld Personen sind „%@“?</key>
+	<string>Are these %1$lld people “%2$@”?</string>
+	<key>Diese %lld Videos werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>These %lld videos will be hidden, but you can still see them in the Hidden album.</string>
+	<key>Diese Adresse liegt im Internet, aber ohne https – Passwort und Fotos gingen unverschlüsselt durchs Netz. Bitte https:// verwenden (z. B. über einen Reverse-Proxy) oder per VPN die Heimnetz-Adresse.</key>
+	<string>This address is on the internet but has no https – your password and photos would travel unencrypted. Please use https:// (e.g. through a reverse proxy) or your home network address over a VPN.</string>
+	<key>Diese Objekte kommen in „Zuletzt gelöscht“ und bleiben dort 30 Tage wiederherstellbar.</key>
+	<string>These items go to “Recently Deleted” and can be recovered there for 30 days.</string>
+	<key>Diese Person ist „%@“?</key>
+	<string>Is this person “%@”?</string>
+	<key>Diese Personen sehen alle deine Fotos (nicht „Ausgeblendet“ und „Zuletzt gelöscht“). Nur Nutzer deines eigenen Servers.</key>
+	<string>These people see all your photos (except “Hidden” and “Recently Deleted”). Only users of your own server.</string>
+	<key>Diese Tage erscheinen seltener</key>
+	<string>These days will be featured less</string>
+	<key>Diese Tage weniger zeigen</key>
+	<string>Feature These Days Less</string>
+	<key>Diesen Link löschen</key>
+	<string>Delete This Link</string>
+	<key>Dieser Linkname ist schon vergeben.</key>
+	<string>That link name is already taken.</string>
+	<key>Dieses Album ist leer.</key>
+	<string>This album is empty.</string>
+	<key>Dieses Foto hat keine Licht- oder Farbbearbeitungen</key>
+	<string>This photo has no light or color edits</string>
+	<key>Dieses Foto wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>This photo will be hidden, but you can still see it in the Hidden album.</string>
+	<key>Dieses Objekt wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>This item will be hidden, but you can still see it in the Hidden album.</string>
+	<key>Dieses Objekt wird endgültig gelöscht. Dieser Vorgang kann nicht widerrufen werden.</key>
+	<string>This item will be permanently deleted. This action can’t be undone.</string>
+	<key>Dieses Video kann das iPhone nicht abspielen</key>
+	<string>This video can't be played on iPhone</string>
+	<key>Dieses Video wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.</key>
+	<string>This video will be hidden, but you can still see it in the Hidden album.</string>
+	<key>Dokumente</key>
+	<string>Documents</string>
+	<key>Dramatisch</key>
+	<string>Dramatic</string>
+	<key>Dramatisch kühl</key>
+	<string>Dramatic Cool</string>
+	<key>Dramatisch warm</key>
+	<string>Dramatic Warm</string>
+	<key>Drucken</key>
+	<string>Print</string>
+	<key>Du teilst mit</key>
+	<string>You Share With</string>
+	<key>Duplikate</key>
+	<string>Duplicates</string>
+	<key>Duplikate zusammenführen?</key>
+	<string>Merge Duplicates?</string>
+	<key>Duplizieren</key>
+	<string>Duplicate</string>
+	<key>Durchsucht deine Mediathek auf dem eigenen Server, z. B. nach „Strand 2019“ oder „Belege“.</key>
+	<string>Searches your library on your own server, e.g. for “beach 2019” or “receipts”.</string>
+	<key>E-Mail</key>
+	<string>Email</string>
+	<key>Effekt</key>
+	<string>Effect</string>
+	<key>Eigener Linkname (optional)</key>
+	<string>Custom link name (optional)</string>
+	<key>Eigener Mix</key>
+	<string>Custom Mix</string>
+	<key>Eigenes Datum …</key>
+	<string>Custom date…</string>
+	<key>Einblenden</key>
+	<string>Unhide</string>
+	<key>Eingeblendet</key>
+	<string>Unhidden</string>
+	<key>Eingeschaltet erscheinen die Fotos dieser Person in deiner Mediathek – ausblenden geht im Mediathek-Menü unter „Mit dir geteilt“.</key>
+	<string>When on, this person’s photos appear in your library – hide them in the library menu under “Shared With You”.</string>
+	<key>Empfohlene Fotos</key>
+	<string>Featured Photos</string>
+	<key>Empfänger dürfen herunterladen</key>
+	<string>Allow recipients to download</string>
+	<key>Empfänger dürfen hochladen</key>
+	<string>Allow recipients to upload</string>
+	<key>Ende</key>
+	<string>End</string>
+	<key>Endgültig gelöscht</key>
+	<string>Permanently deleted</string>
+	<key>Endlosschleife</key>
+	<string>Loop</string>
+	<key>Episch</key>
+	<string>Epic</string>
+	<key>Erinnerungen</key>
+	<string>Memories</string>
+	<key>Erneut versuchen</key>
+	<string>Try Again</string>
+	<key>Erstellen</key>
+	<string>Create</string>
+	<key>Essen</key>
+	<string>Food</string>
+	<key>Essen mit Freunden</key>
+	<string>Dinner with friends</string>
+	<key>Face ID verwenden oder Code eingeben, um dieses Album anzuzeigen</key>
+	<string>Use Face ID or enter your passcode to view this album</string>
+	<key>Familie</key>
+	<string>Family</string>
+	<key>Farbton</key>
+	<string>Tint</string>
+	<key>Favorit</key>
+	<string>Favorite</string>
+	<key>Favoriten</key>
+	<string>Favorites</string>
+	<key>Favoriten auf dem iPhone behalten</key>
+	<string>Keep Favorites on iPhone</string>
+	<key>Fertig</key>
+	<string>Done</string>
+	<key>Filter</key>
+	<string>Filters</string>
+	<key>Format</key>
+	<string>Format</string>
+	<key>Fortsetzen</key>
+	<string>Resume</string>
+	<key>Foto</key>
+	<string>Photo</string>
+	<key>Foto konnte nicht geladen werden</key>
+	<string>Couldn't load the photo</string>
+	<key>Foto, </key>
+	<string>Photo, </string>
+	<key>Fotos</key>
+	<string>Photos</string>
+	<key>Fotos (%@)</key>
+	<string>Photos (%@)</string>
+	<key>Fotos auf deinem Server sichern?</key>
+	<string>Back Up Photos to Your Server?</string>
+	<key>Fotos hinzufügen</key>
+	<string>Add Photos</string>
+	<key>Fotos sichern</key>
+	<string>Back Up Photos</string>
+	<key>Fotos suchen</key>
+	<string>Search Photos</string>
+	<key>Fotos teilen</key>
+	<string>Share Photos</string>
+	<key>Fotos älter als</key>
+	<string>Photos Older Than</string>
+	<key>Frei</key>
+	<string>Freeform</string>
+	<key>Fröhlich</key>
+	<string>Happy</string>
+	<key>Frühling</key>
+	<string>Spring</string>
+	<key>Für einen Tag pausieren</key>
+	<string>Pause for One Day</string>
+	<key>Für „%@“ gibt es nichts.</key>
+	<string>Nothing for “%@”.</string>
+	<key>Ganze Mediathek prüfen</key>
+	<string>Check Entire Library</string>
+	<key>Geburtstag</key>
+	<string>Birthday</string>
+	<key>Geburtstag gesichert – erscheint in Rückblicken</key>
+	<string>Birthday saved – it will appear in Memories</string>
+	<key>Geburtstag hinzufügen</key>
+	<string>Add Birthday</string>
+	<key>Geburtstag von %@</key>
+	<string>%@’s Birthday</string>
+	<key>Geburtstag ändern</key>
+	<string>Change Birthday</string>
+	<key>Gedämpftes S/W</key>
+	<string>Muted B&amp;W</string>
+	<key>Gefiltert: %@</key>
+	<string>Filtered: %@</string>
+	<key>Gefällt mir</key>
+	<string>Like</string>
+	<key>Gefällt mir nicht mehr</key>
+	<string>Unlike</string>
+	<key>Gekürztes Video gesichert</key>
+	<string>Trimmed video saved</string>
+	<key>Gelb</key>
+	<string>Yellow</string>
+	<key>Gelbe Griffe ziehen, um Anfang und Ende festzulegen. Das Original bleibt erhalten.</key>
+	<string>Drag the yellow handles to set start and end. The original is kept.</string>
+	<key>Gemütlich</key>
+	<string>Cozy</string>
+	<key>Geschützte Alben anzeigen</key>
+	<string>Show protected albums</string>
+	<key>Gespeichert aus %@</key>
+	<string>Saved from %@</string>
+	<key>Gespeicherte Vorschauen löschen?</key>
+	<string>Delete Stored Previews?</string>
+	<key>Gestern</key>
+	<string>Yesterday</string>
+	<key>Geteilt mit dir</key>
+	<string>Shared With You</string>
+	<key>Geteilte Mediathek</key>
+	<string>Shared Library</string>
+	<key>Glanzlichter</key>
+	<string>Highlights</string>
+	<key>Gleiche Person auswählen</key>
+	<string>Choose the Same Person</string>
+	<key>Gold</key>
+	<string>Gold</string>
+	<key>Groß</key>
+	<string>Large</string>
+	<key>Große Videos</key>
+	<string>Large Videos</string>
+	<key>Große Vorschauen</key>
+	<string>Large previews</string>
+	<key>Große Vorschauen höchstens</key>
+	<string>Large Previews Up To</string>
+	<key>Grün</key>
+	<string>Green</string>
+	<key>Handschrift</key>
+	<string>Handwriting</string>
+	<key>Hat nicht geklappt</key>
+	<string>That didn't work</string>
+	<key>Haustiere</key>
+	<string>Pets</string>
+	<key>Helligkeit</key>
+	<string>Brightness</string>
+	<key>Herbst</key>
+	<string>Fall</string>
+	<key>Heute</key>
+	<string>Today</string>
+	<key>Heute vor %lld Jahren</key>
+	<string>%lld Years Ago Today</string>
+	<key>Heute vor 1 Jahr</key>
+	<string>1 Year Ago Today</string>
+	<key>Hier werden Alben angezeigt, sobald du eines erstellst oder Fotos hinzufügst.</key>
+	<string>Albums appear here as soon as you create one or add photos.</string>
+	<key>HomeRoll</key>
+	<string>HomeRoll</string>
+	<key>Horizontal</key>
+	<string>Horizontal</string>
+	<key>Hund</key>
+	<string>Dog</string>
+	<key>ISO %lld</key>
+	<string>ISO %lld</string>
+	<key>Illustrationen</key>
+	<string>Illustrations</string>
+	<key>Importe</key>
+	<string>Imports</string>
+	<key>In %lld Alben</key>
+	<string>In %lld Albums</string>
+	<key>In Album</key>
+	<string>In Album</string>
+	<key>In Mediathek zeigen</key>
+	<string>Show in Library</string>
+	<key>In Ordner bewegen</key>
+	<string>Move to Folder</string>
+	<key>In keinem Album</key>
+	<string>Not in Any Album</string>
+	<key>In „Alle Fotos“ anzeigen</key>
+	<string>Show in “All Photos”</string>
+	<key>Info</key>
+	<string>Info</string>
+	<key>Info, Nachschlagen verfügbar</key>
+	<string>Info, Look Up available</string>
+	<key>Ist das %@?</key>
+	<string>Is this %@?</string>
+	<key>Istanbul</key>
+	<string>Istanbul</string>
+	<key>Ja</key>
+	<string>Yes</string>
+	<key>Jahr</key>
+	<string>Year</string>
+	<key>Jahre</key>
+	<string>Years</string>
+	<key>Jetzt sichern</key>
+	<string>Back Up Now</string>
+	<key>Karte</key>
+	<string>Map</string>
+	<key>Karte einblenden</key>
+	<string>Show Map</string>
+	<key>Kein Favorit</key>
+	<string>Unfavorite</string>
+	<key>Kein Original gefunden</key>
+	<string>No original found</string>
+	<key>Kein Ort</key>
+	<string>No Location</string>
+	<key>Kein Zugriff auf Fotos – in den Einstellungen erlauben.</key>
+	<string>No access to Photos – allow it in Settings.</string>
+	<key>Kein schiefer Horizont gefunden</key>
+	<string>No tilted horizon found</string>
+	<key>Keine Alben verfügbar</key>
+	<string>No Albums</string>
+	<key>Keine Duplikate</key>
+	<string>No Duplicates</string>
+	<key>Keine Favoriten</key>
+	<string>No Favorites</string>
+	<key>Keine Fotos mit Ort in diesem Album</key>
+	<string>No photos with a location in this album</string>
+	<key>Keine Fotos oder Videos</key>
+	<string>No Photos or Videos</string>
+	<key>Keine Objekte</key>
+	<string>No Items</string>
+	<key>Keine Objektivinformationen</key>
+	<string>No lens information</string>
+	<key>Keine Rückblicke verfügbar</key>
+	<string>No Memories</string>
+	<key>Keine Sammlungen</key>
+	<string>No Collections</string>
+	<key>Keine Treffer</key>
+	<string>No Results</string>
+	<key>Keine Videos</key>
+	<string>No Videos</string>
+	<key>Keine weiteren Vorschläge</key>
+	<string>No More Suggestions</string>
+	<key>Kino</key>
+	<string>Cinematic</string>
+	<key>Klein</key>
+	<string>Small</string>
+	<key>Kleine Vorschauen</key>
+	<string>Small previews</string>
+	<key>Kommentar hinzufügen</key>
+	<string>Add a Comment</string>
+	<key>Kommentar löschen</key>
+	<string>Delete Comment</string>
+	<key>Kommentar nicht gesendet</key>
+	<string>Comment not sent</string>
+	<key>Kontrast</key>
+	<string>Contrast</string>
+	<key>Kontrastreich</key>
+	<string>High Contrast</string>
+	<key>Kontrastreiches S/W</key>
+	<string>Stark B&amp;W</string>
+	<key>Kopieren</key>
+	<string>Copy</string>
+	<key>Kopiert</key>
+	<string>Copied</string>
+	<key>Kurz</key>
+	<string>Short</string>
+	<key>Kühl</key>
+	<string>Cool</string>
+	<key>Kühles Rosé</key>
+	<string>Cool Rose</string>
+	<key>Land</key>
+	<string>Country</string>
+	<key>Lang</key>
+	<string>Long</string>
+	<key>Langzeitbelichtung</key>
+	<string>Long Exposure</string>
+	<key>Lebendig</key>
+	<string>Vivid</string>
+	<key>Lebendig kühl</key>
+	<string>Vivid Cool</string>
+	<key>Lebendig warm</key>
+	<string>Vivid Warm</string>
+	<key>Lebendigkeit</key>
+	<string>Vibrance</string>
+	<key>Leistung</key>
+	<string>Performance</string>
+	<key>Leistungsprotokoll</key>
+	<string>Performance Log</string>
+	<key>Leistungsprotokoll teilen</key>
+	<string>Share Performance Log</string>
+	<key>Letzte Tage</key>
+	<string>Recent Days</string>
+	<key>Leuchtend</key>
+	<string>Luminous</string>
+	<key>Liegt nur in iCloud (nicht auf dem iPhone)</key>
+	<string>Only in iCloud (not on the iPhone)</string>
+	<key>Lila</key>
+	<string>Purple</string>
+	<key>Link aktualisiert</key>
+	<string>Link updated</string>
+	<key>Link anlegen</key>
+	<string>Create Link</string>
+	<key>Link bearbeiten</key>
+	<string>Edit Link</string>
+	<key>Link erstellt und kopiert</key>
+	<string>Link created and copied</string>
+	<key>Link gelöscht</key>
+	<string>Link deleted</string>
+	<key>Link konnte nicht erstellt werden</key>
+	<string>Couldn’t create the link</string>
+	<key>Link kopiert</key>
+	<string>Link copied</string>
+	<key>Link kopiert · 30 Tage gültig</key>
+	<string>Link copied · valid for 30 days</string>
+	<key>Link läuft ab</key>
+	<string>Link expires</string>
+	<key>Link ohne Beschreibung</key>
+	<string>Untitled link</string>
+	<key>Link teilen (Heimnetz/VPN)</key>
+	<string>Share Link (Home Network/VPN)</string>
+	<key>Link wird erstellt …</key>
+	<string>Creating link …</string>
+	<key>Link-Optionen</key>
+	<string>Share Options</string>
+	<key>Linkadresse kopieren</key>
+	<string>Copy Link Address</string>
+	<key>Linkadresse teilen</key>
+	<string>Share Link Address</string>
+	<key>Live</key>
+	<string>Live</string>
+	<key>Live Photos</key>
+	<string>Live Photos</string>
+	<key>Läuft ab: %@</key>
+	<string>Expires: %@</string>
+	<key>Läuft nie ab</key>
+	<string>Never expires</string>
+	<key>Löschen</key>
+	<string>Delete</string>
+	<key>Löscht auf dem iPhone nur Fotos und Videos, die nachweislich auf deinem Server liegen. iOS fragt vorher nach, und in Apples Fotos-App liegen sie danach noch 30 Tage unter „Zuletzt gelöscht“. Achtung: Ist iCloud-Fotos eingeschaltet, löscht iOS sie auch dort.</key>
+	<string>Deletes only photos and videos from the iPhone that are verified to be on your server. iOS asks first, and they stay in “Recently Deleted” in Apple’s Photos app for 30 days. Note: if iCloud Photos is on, iOS deletes them there too.</string>
+	<key>Magenta</key>
+	<string>Magenta</string>
+	<key>Markiere einen Rückblick mit dem Herz, um ihn hier zu sehen.</key>
+	<string>Tap the heart on a memory to see it here.</string>
+	<key>Markieren</key>
+	<string>Markup</string>
+	<key>Markierungen entfernen</key>
+	<string>Remove Markup</string>
+	<key>Mediathek</key>
+	<string>Library</string>
+	<key>Mediathek durchsuchen …</key>
+	<string>Search Library …</string>
+	<key>Mediathek wird geprüft …</key>
+	<string>Checking library …</string>
+	<key>Medienart</key>
+	<string>Media Type</string>
+	<key>Medienarten</key>
+	<string>Media Types</string>
+	<key>Mehr laden</key>
+	<string>Load More</string>
+	<key>Metadaten für Empfänger zeigen</key>
+	<string>Show metadata to recipients</string>
+	<key>Mit Person zusammenführen …</key>
+	<string>Merge with Person …</string>
+	<key>Mit dir geteilt</key>
+	<string>Shared With You</string>
+	<key>Mitteilung „Heute vor … Jahren“</key>
+	<string>“Years Ago Today” Notification</string>
+	<key>Mittel</key>
+	<string>Medium</string>
+	<key>Monate</key>
+	<string>Months</string>
+	<key>Moschee</key>
+	<string>Mosque</string>
+	<key>Musik</key>
+	<string>Music</string>
+	<key>Musik: %@</key>
+	<string>Music: %@</string>
+	<key>Möchtest du das Album „%@“ wirklich löschen?</key>
+	<string>Are you sure you want to delete the album “%@”?</string>
+	<key>Möchtest du deine Änderungen wirklich verwerfen?</key>
+	<string>Are you sure you want to discard your changes?</string>
+	<key>NEUES SCHLÜSSELBILD</key>
+	<string>NEW KEY PHOTO</string>
+	<key>Nach 1 Jahr</key>
+	<string>After 1 year</string>
+	<key>Nach 1 Stunde</key>
+	<string>After 1 hour</string>
+	<key>Nach 1 Tag</key>
+	<string>After 1 day</string>
+	<key>Nach 3 Monaten</key>
+	<string>After 3 months</string>
+	<key>Nach 30 Minuten</key>
+	<string>After 30 minutes</string>
+	<key>Nach 30 Tagen</key>
+	<string>After 30 days</string>
+	<key>Nach 6 Stunden</key>
+	<string>After 6 hours</string>
+	<key>Nach 7 Tagen</key>
+	<string>After 7 days</string>
+	<key>Nach Aufnahmedatum sortieren</key>
+	<string>Sort by Date Captured</string>
+	<key>Nach zuletzt hinzugefügten Inhalten sortieren</key>
+	<string>Sort by Recently Added</string>
+	<key>Nachdenklich</key>
+	<string>Thoughtful</string>
+	<key>Nachschlagen</key>
+	<string>Look Up</string>
+	<key>Name</key>
+	<string>Name</string>
+	<key>Name hinzufügen</key>
+	<string>Add Name</string>
+	<key>Natürlich</key>
+	<string>Natural</string>
+	<key>Nein</key>
+	<string>No</string>
+	<key>Neu anordnen</key>
+	<string>Reorder</string>
+	<key>Neue Fotos und Videos landen auf deinem eigenen Server – im Hintergrund, wenn das iPhone nachts am Strom hängt, und sobald du die App öffnest. Auf dem iPhone wird nur gelöscht, wenn du unten „Speicher freigeben“ wählst.</key>
+	<string>New photos and videos go to your own server – in the background while the iPhone charges at night, and whenever you open the app. Nothing is deleted from the iPhone unless you choose “Free Up Space” below.</string>
+	<key>Neue Fotos und Videos von diesem iPhone werden als Originale hochgeladen nach</key>
+	<string>New photos and videos from this iPhone will be uploaded as originals to</string>
+	<key>Neuer Link</key>
+	<string>New Link</string>
+	<key>Neuer Ordner</key>
+	<string>New Folder</string>
+	<key>Neues Album</key>
+	<string>New Album</string>
+	<key>Neues Album …</key>
+	<string>New Album …</string>
+	<key>Neues Passwort (leer lassen = unverändert)</key>
+	<string>New password (leave empty to keep)</string>
+	<key>Neueste zuerst</key>
+	<string>Newest First</string>
+	<key>Neutral</key>
+	<string>Neutral</string>
+	<key>Nicht angemeldet</key>
+	<string>Not signed in</string>
+	<key>Nicht gesichert (%lld)</key>
+	<string>Not Backed Up (%lld)</string>
+	<key>Nicht jetzt</key>
+	<string>Not Now</string>
+	<key>Nicht mehr anpinnen</key>
+	<string>Unpin</string>
+	<key>Nichts zu löschen – keine passenden Fotos, die schon auf dem Server liegen.</key>
+	<string>Nothing to delete – no matching photos that are already on the server.</string>
+	<key>Noch keine Fotos</key>
+	<string>No Photos Yet</string>
+	<key>Noch keine Personen</key>
+	<string>No People Yet</string>
+	<key>Noch nicht gelaufen</key>
+	<string>Hasn’t run yet</string>
+	<key>Noch niemand teilt seine Fotos mit dir.</key>
+	<string>Nobody is sharing their photos with you yet.</string>
+	<key>Nochmal</key>
+	<string>Again</string>
+	<key>Nur Licht, Farbe, Filter und Stil lassen sich kopieren</key>
+	<string>Only light, color, filter and style can be copied</string>
+	<key>Nur im WLAN</key>
+	<string>Wi-Fi Only</string>
+	<key>Objekt</key>
+	<string>Item</string>
+	<key>Objekte auswählen</key>
+	<string>Select Items</string>
+	<key>Offline – Vorschau, Original nicht verfügbar</key>
+	<string>Offline – preview, original unavailable</string>
+	<key>Offline – nur Vorschauen</key>
+	<string>Offline – previews only</string>
+	<key>Offline-Speicher leeren</key>
+	<string>Clear Offline Storage</string>
+	<key>Ohne Internet</key>
+	<string>Offline</string>
+	<key>Ohne Musik</key>
+	<string>No Music</string>
+	<key>Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei.</key>
+	<string>Without a connection to the server you see all photos as previews; videos and originals need the server. Downloads only happen over Wi-Fi, and the iPhone always keeps at least 10 GB free.</string>
+	<key>Optic ID verwenden oder Code eingeben, um dieses Album anzuzeigen</key>
+	<string>Use Optic ID or enter your passcode to view this album</string>
+	<key>Orange</key>
+	<string>Orange</string>
+	<key>Ordner gelöscht – die Alben bleiben erhalten</key>
+	<string>Folder deleted – the albums are kept</string>
+	<key>Ordner ist leer</key>
+	<string>Folder Is Empty</string>
+	<key>Ordner löschen</key>
+	<string>Delete Folder</string>
+	<key>Ordner umbenennen</key>
+	<string>Rename Folder</string>
+	<key>Original</key>
+	<string>Original</string>
+	<key>Original wiederherstellen</key>
+	<string>Revert to Original</string>
+	<key>Original wiederherstellen?</key>
+	<string>Revert to Original?</string>
+	<key>Original wird geladen …</key>
+	<string>Loading original …</string>
+	<key>Original-Schlüsselbild</key>
+	<string>Original Key Photo</string>
+	<key>Ort</key>
+	<string>Location</string>
+	<key>Ort anpassen</key>
+	<string>Adjust Location</string>
+	<key>Ort hinzufügen</key>
+	<string>Add Location</string>
+	<key>Ort suchen</key>
+	<string>Search Location</string>
+	<key>Orte</key>
+	<string>Places</string>
+	<key>PALETTE  %lld</key>
+	<string>PALETTE  %lld</string>
+	<key>PINSELGRÖSSE</key>
+	<string>BRUSH SIZE</string>
+	<key>PORTRÄT</key>
+	<string>PORTRAIT</string>
+	<key>PORTRÄT AUS</key>
+	<string>PORTRAIT OFF</string>
+	<key>Panoramen</key>
+	<string>Panoramas</string>
+	<key>Passwort</key>
+	<string>Password</string>
+	<key>Passwort entfernen</key>
+	<string>Remove password</string>
+	<key>Passwort für den Link (optional)</key>
+	<string>Password (optional)</string>
+	<key>Pause</key>
+	<string>Pause</string>
+	<key>Pausieren</key>
+	<string>Pause</string>
+	<key>Pausiert bis %@ morgen</key>
+	<string>Paused until %@ tomorrow</string>
+	<key>Person</key>
+	<string>Person</string>
+	<key>Person hinzufügen …</key>
+	<string>Add Person …</string>
+	<key>Person in Fotos</key>
+	<string>Person in Photos</string>
+	<key>Personen</key>
+	<string>People</string>
+	<key>Personen erscheinen hier, sobald der Server Gesichter in deinen Fotos erkannt hat.</key>
+	<string>People appear here once the server has recognized faces in your photos.</string>
+	<key>Pflanze, Tier, Sehenswürdigkeit oder Kunstwerk im Foto</key>
+	<string>Plant, animal, landmark or artwork in the photo</string>
+	<key>Porträt</key>
+	<string>Portrait</string>
+	<key>Porträt-Blende</key>
+	<string>Portrait Aperture</string>
+	<key>Probier einen anderen Begriff oder entferne ein Kärtchen.</key>
+	<string>Try a different term or remove a filter chip.</string>
+	<key>Protokoll leeren</key>
+	<string>Clear Log</string>
+	<key>QR-Codes</key>
+	<string>QR Codes</string>
+	<key>Quadrat</key>
+	<string>Square</string>
+	<key>Rauschreduzierung</key>
+	<string>Noise Reduction</string>
+	<key>Reise</key>
+	<string>Trip</string>
+	<key>Reisen</key>
+	<string>Trips</string>
+	<key>Roségold</key>
+	<string>Rose Gold</string>
+	<key>Rot</key>
+	<string>Red</string>
+	<key>Ruhig</key>
+	<string>Quiet</string>
+	<key>Räumliche Szene</key>
+	<string>Spatial Scene</string>
+	<key>Räumliche Szene nicht möglich</key>
+	<string>Spatial scene not available</string>
+	<key>Rückblick</key>
+	<string>Memory</string>
+	<key>Rückblick entfernt – zu wenige Fotos</key>
+	<string>Memory removed – too few photos</string>
+	<key>Rückblick erstellen</key>
+	<string>Create Memory</string>
+	<key>Rückblick gelöscht</key>
+	<string>Memory deleted</string>
+	<key>Rückblick löschen</key>
+	<string>Delete Memory</string>
+	<key>Rückblick wird erstellt …</key>
+	<string>Creating memory …</string>
+	<key>Rückblick-Mix</key>
+	<string>Memory Mix</string>
+	<key>Rückblicke</key>
+	<string>Memories</string>
+	<key>Rückblicke erscheinen hier, wenn mehr Fotos und Videos zur Mediathek hinzugefügt werden.</key>
+	<string>Memories appear here as more photos and videos are added to your library.</string>
+	<key>Rückblicke erscheinen hier, wenn mehr Fotos zur Mediathek hinzugefügt werden.</key>
+	<string>Memories appear here as more photos are added to your library.</string>
+	<key>SCHLÜSSELBILD: ORIGINAL</key>
+	<string>KEY PHOTO: ORIGINAL</string>
+	<key>Sammlungen</key>
+	<string>Collections</string>
+	<key>Sammlungen (%lld)</key>
+	<string>Collections (%lld)</string>
+	<key>Sanft</key>
+	<string>Gentle</string>
+	<key>Schatten</key>
+	<string>Shadows</string>
+	<key>Schließen</key>
+	<string>Close</string>
+	<key>Schlüsselfoto festgelegt</key>
+	<string>Key photo set</string>
+	<key>Schwarzpunkt</key>
+	<string>Black Point</string>
+	<key>Schwarzweiß</key>
+	<string>Black &amp; White</string>
+	<key>Schärfe</key>
+	<string>Sharpness</string>
+	<key>Seitenverhältnisraster</key>
+	<string>Aspect Ratio Grid</string>
+	<key>Selfies</key>
+	<string>Selfies</string>
+	<key>Senden</key>
+	<string>Send</string>
+	<key>Serien</key>
+	<string>Bursts</string>
+	<key>Server nicht erreichbar</key>
+	<string>Server unreachable</string>
+	<key>Server, z. B. https://fotos.example.com</key>
+	<string>Server, e.g. https://photos.example.com</string>
+	<key>Server-Fehler %lld: %@</key>
+	<string>Server error %1$lld: %2$@</string>
+	<key>Sichern</key>
+	<string>Save</string>
+	<key>Sichern fehlgeschlagen</key>
+	<string>Saving failed</string>
+	<key>Silberton</key>
+	<string>Silvertone</string>
+	<key>Slo-Mo</key>
+	<string>Slo-mo</string>
+	<key>Sobald der Server weitere Gesichter erkannt hat, erscheinen hier neue Vorschläge.</key>
+	<string>New suggestions appear here once the server has recognized more faces.</string>
+	<key>Sommer</key>
+	<string>Summer</string>
+	<key>Sonnenuntergang</key>
+	<string>Sunset</string>
+	<key>Sonnenuntergänge</key>
+	<string>Sunsets</string>
+	<key>Sonstige</key>
+	<string>Utilities</string>
+	<key>Sortieren</key>
+	<string>Sort</string>
+	<key>Sortieren und Zoomen</key>
+	<string>Sort and Zoom</string>
+	<key>Sortierung</key>
+	<string>Sort Order</string>
+	<key>Speicher freigeben …</key>
+	<string>Free Up Space …</string>
+	<key>Standard</key>
+	<string>Standard</string>
+	<key>Steuerfeld Ton und Farbe</key>
+	<string>Tone and color pad</string>
+	<key>Stil</key>
+	<string>Style</string>
+	<key>Stile</key>
+	<string>Styles</string>
+	<key>Strand</key>
+	<string>Beach</string>
+	<key>Suchbegriff</key>
+	<string>Search Term</string>
+	<key>Suche neue Fotos …</key>
+	<string>Looking for New Photos …</string>
+	<key>Suchen</key>
+	<string>Search</string>
+	<key>Sättigung</key>
+	<string>Saturation</string>
+	<key>Teilen</key>
+	<string>Share</string>
+	<key>Teilen beenden</key>
+	<string>Stop Sharing</string>
+	<key>Teilen mit %@ beenden?</key>
+	<string>Stop sharing with %@?</string>
+	<key>Teilt mit dir</key>
+	<string>Shares With You</string>
+	<key>Text in Fotos</key>
+	<string>Text in Photos</string>
+	<key>Tippe auf „Porträt“, um die Tiefenunschärfe einzuschalten</key>
+	<string>Tap “Portrait” to turn on depth blur</string>
+	<key>Titel</key>
+	<string>Title</string>
+	<key>Titel bearbeiten</key>
+	<string>Edit Title</string>
+	<key>Titelbild festgelegt</key>
+	<string>Key photo set</string>
+	<key>Ton %+d · Farbe %+d</key>
+	<string>Tone %1$+d · Color %2$+d</string>
+	<key>Ton %lld, Farbe %lld</key>
+	<string>Tone %1$lld, color %2$lld</string>
+	<key>Ton an</key>
+	<string>Sound On</string>
+	<key>Ton aus</key>
+	<string>Sound Off</string>
+	<key>Ton ist an</key>
+	<string>Sound is on</string>
+	<key>Ton ist aus</key>
+	<string>Sound is off</string>
+	<key>Touch ID verwenden oder Code eingeben, um dieses Album anzuzeigen</key>
+	<string>Use Touch ID or enter your passcode to view this album</string>
+	<key>Umbenennen</key>
+	<string>Rename</string>
+	<key>Unbekannte Kamera</key>
+	<string>Unknown camera</string>
+	<key>Unbenannt</key>
+	<string>Unnamed</string>
+	<key>Ungültige Server-Adresse</key>
+	<string>Invalid server address</string>
+	<key>Unter dieser Adresse antwortet kein Immich-Server. Stimmen Adresse und Port (meist 2283)?</key>
+	<string>No Immich server answered at this address. Are the address and port (usually 2283) right?</string>
+	<key>Untertitel hinzufügen</key>
+	<string>Add a Caption</string>
+	<key>Unverschlüsselte Verbindung (http) – nur im eigenen Heimnetz oder über VPN verwenden.</key>
+	<string>Unencrypted connection (http) – only use this on your home network or over a VPN.</string>
+	<key>Urlaub 2025</key>
+	<string>Vacation 2025</string>
+	<key>Vergrößern</key>
+	<string>Zoom In</string>
+	<key>Verkleinern</key>
+	<string>Zoom Out</string>
+	<key>Verlauf löschen</key>
+	<string>Clear History</string>
+	<key>Vertikal</key>
+	<string>Vertical</string>
+	<key>Video</key>
+	<string>Video</string>
+	<key>Video braucht Verbindung zum Server</key>
+	<string>Video needs a connection to the server</string>
+	<key>Video konnte nicht erstellt werden</key>
+	<string>Couldn’t create the video</string>
+	<key>Video wird erstellt …</key>
+	<string>Creating video …</string>
+	<key>Video wird erstellt … %lld %%</key>
+	<string>Creating video … %lld %%</string>
+	<key>Video wird geschnitten …</key>
+	<string>Trimming video …</string>
+	<key>Video, </key>
+	<string>Video, </string>
+	<key>Video-Diagnose kopieren</key>
+	<string>Copy Video Diagnostics</string>
+	<key>Videos</key>
+	<string>Videos</string>
+	<key>Videos &amp; Live Photos automatisch abspielen</key>
+	<string>Autoplay Videos &amp; Live Photos</string>
+	<key>Videos können nicht dupliziert werden</key>
+	<string>Videos can’t be duplicated</string>
+	<key>Videos lassen sich nicht drucken</key>
+	<string>Videos can't be printed</string>
+	<key>Videos werden geprüft …</key>
+	<string>Checking videos …</string>
+	<key>Vignette</key>
+	<string>Vignette</string>
+	<key>Vom iPhone löschen</key>
+	<string>Delete from iPhone</string>
+	<key>Vorschauen auf dem iPhone speichern</key>
+	<string>Store Previews on iPhone</string>
+	<key>Vorschläge</key>
+	<string>Suggestions</string>
+	<key>Warm</key>
+	<string>Warm</string>
+	<key>Weitere Fotos</key>
+	<string>More Photos</string>
+	<key>Weitere Fotos prüfen</key>
+	<string>Review More Photos</string>
+	<key>Weiße Griffe oben legen die Zeitlupe fest, gelbe unten Anfang und Ende. Das Original bleibt erhalten.</key>
+	<string>The white handles on top set the slow-motion part, the yellow ones below set start and end. The original is kept.</string>
+	<key>Weniger aus %@</key>
+	<string>Featuring %@ less</string>
+	<key>Weniger von %@</key>
+	<string>Featuring %@ less</string>
+	<key>Weniger zeigen</key>
+	<string>Feature Less</string>
+	<key>Wer den Link öffnet, muss dieses Passwort eingeben.</key>
+	<string>Anyone opening the link must enter this password.</string>
+	<key>Widerrufen</key>
+	<string>Undo</string>
+	<key>Wie heißt diese Person?</key>
+	<string>What’s this person’s name?</string>
+	<key>Wieder anzeigen</key>
+	<string>Show Again</string>
+	<key>Wiedergabe</key>
+	<string>Playback</string>
+	<key>Wiederhergestellt</key>
+	<string>Recovered</string>
+	<key>Wiederherstellen</key>
+	<string>Recover</string>
+	<key>Wiederholen</key>
+	<string>Repeat</string>
+	<key>Winter</key>
+	<string>Winter</string>
+	<key>Wird bereinigt …</key>
+	<string>Cleaning up …</string>
+	<key>Wird dupliziert … %lld von %lld</key>
+	<string>Duplicating … %1$lld of %2$lld</string>
+	<key>Wird gesichert …</key>
+	<string>Saving …</string>
+	<key>Wird kopiert …</key>
+	<string>Copying …</string>
+	<key>Wird nicht mehr empfohlen</key>
+	<string>Won't be featured anymore</string>
+	<key>Wird vorbereitet …</key>
+	<string>Preparing…</string>
+	<key>Wird vorbereitet … %lld von %lld</key>
+	<string>Preparing… %lld of %lld</string>
+	<key>Wird wieder angezeigt</key>
+	<string>Shown again</string>
+	<key>Wonach soll ich suchen?</key>
+	<string>What should I search for?</string>
+	<key>Wärme</key>
+	<string>Warmth</string>
+	<key>Zeitlupe</key>
+	<string>Slow Motion</string>
+	<key>Zeitlupe Griff</key>
+	<string>Slow-motion handle</string>
+	<key>Zeitlupe gesichert</key>
+	<string>Slow-motion video saved</string>
+	<key>Zeitraffer</key>
+	<string>Time-lapse</string>
+	<key>Zu Favoriten</key>
+	<string>Add to Favorites</string>
+	<key>Zu wenige Fotos für einen Rückblick</key>
+	<string>Too few photos for a memory</string>
+	<key>Zu „%@“ hinzugefügt</key>
+	<string>Added to “%@”</string>
+	<key>Zuletzt</key>
+	<string>Recent</string>
+	<key>Zuletzt %@</key>
+	<string>Last run %@</string>
+	<key>Zuletzt angesehen</key>
+	<string>Recently Viewed</string>
+	<key>Zuletzt bearbeitet</key>
+	<string>Recently Edited</string>
+	<key>Zuletzt gelöscht</key>
+	<string>Recently Deleted</string>
+	<key>Zuletzt gesichert</key>
+	<string>Recently Saved</string>
+	<key>Zuletzt geteilt</key>
+	<string>Recently Shared</string>
+	<key>Zuletzt geändert</key>
+	<string>Recently Modified</string>
+	<key>Zum Album hinzufügen</key>
+	<string>Add to Album</string>
+	<key>Zum Album hinzugefügt</key>
+	<string>Added to album</string>
+	<key>Zum Neigen ziehen</key>
+	<string>Drag to tilt</string>
+	<key>Zum Ändern seitlich wischen</key>
+	<string>Swipe sideways to change</string>
+	<key>Zurücksetzen</key>
+	<string>Reset</string>
+	<key>Zusammen %@</key>
+	<string>Total %@</string>
+	<key>Zusammenführen</key>
+	<string>Merge</string>
+	<key>Zusammengeführt</key>
+	<string>Merged</string>
+	<key>Zuschneiden</key>
+	<string>Crop</string>
+	<key>Zuschneiden zurücksetzen</key>
+	<string>Reset Crop</string>
+	<key>diese Person</key>
+	<string>this person</string>
+	<key>iPhone neigen</key>
+	<string>Tilt your iPhone</string>
+	<key>iPhone-Speicher</key>
+	<string>iPhone Storage</string>
+	<key>iPhone-Speicher fast voll – pausiert</key>
+	<string>iPhone storage almost full – paused</string>
+	<key>in %lld s · Abbrechen</key>
+	<string>in %lld s · Cancel</string>
+	<key>Ähnliche Gesichter werden gesucht …</key>
+	<string>Looking for similar faces …</string>
+	<key>Ältere Fotos sind schon auf dem Server</key>
+	<string>Older Photos Are Already on the Server</string>
+	<key>Älteste zuerst</key>
+	<string>Oldest First</string>
+	<key>Änderungen einsetzen</key>
+	<string>Paste Edits</string>
+	<key>Änderungen kopieren</key>
+	<string>Copy Edits</string>
+	<key>Änderungen sichern</key>
+	<string>Save Changes</string>
+	<key>Änderungen verwerfen</key>
+	<string>Discard Changes</string>
+	<key>Ätherisch</key>
+	<string>Ethereal</string>
+	<key>Über ein Objekt wischen, um es zu entfernen</key>
+	<string>Brush over an object to remove it</string>
+	<key>Übernommen bis</key>
+	<string>Imported Up To</string>
+	<key>„%@“</key>
+	<string>“%@”</string>
+</dict>
+</plist>

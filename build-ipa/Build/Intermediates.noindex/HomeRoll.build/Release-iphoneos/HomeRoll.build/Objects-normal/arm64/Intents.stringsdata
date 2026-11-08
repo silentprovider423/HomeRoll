@@ -1,0 +1,40 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/Intents.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Fotos suchen",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 6
+        }
+      },
+      {
+        "comment": "",
+        "key": "Durchsucht deine Mediathek auf dem eigenen Server, z. B. nach „Strand 2019“ oder „Belege“.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 7
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suchbegriff"
+      },
+      {
+        "comment": "",
+        "key": "Wonach soll ich suchen?"
+      },
+      {
+        "comment": "",
+        "key": "Fotos suchen",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 24
+        }
+      }
+    ]
+  },
+  "version": 1
+}

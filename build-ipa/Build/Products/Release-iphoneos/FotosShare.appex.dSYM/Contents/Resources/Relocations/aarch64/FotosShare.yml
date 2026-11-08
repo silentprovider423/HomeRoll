@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/colin/HomeRoll/build-ipa/Build/Products/Release-iphoneos/FotosShare.appex/FotosShare'
+relocations:     []
+...

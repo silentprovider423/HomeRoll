@@ -1,0 +1,480 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Editor/EditModel.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Bearbeitungen kopiert",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 731
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Foto hat keine Licht- oder Farbbearbeitungen",
+        "location": {
+          "startingColumn": 104,
+          "startingLine": 731
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen werden eingesetzt …",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 713
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen einsetzen … %lld von %lld",
+        "location": {
+          "startingColumn": 121,
+          "startingLine": 713
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen konnten nicht eingesetzt werden",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 722
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen eingesetzt",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 723
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen auf %lld Fotos eingesetzt",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 723
+        }
+      },
+      {
+        "comment": "",
+        "key": "Belichtung",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Brillanz",
+        "location": {
+          "startingColumn": 94,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Glanzlichter",
+        "location": {
+          "startingColumn": 143,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schatten",
+        "location": {
+          "startingColumn": 193,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kontrast",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Helligkeit",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schwarzpunkt",
+        "location": {
+          "startingColumn": 143,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sättigung",
+        "location": {
+          "startingColumn": 196,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendigkeit",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wärme",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Farbton",
+        "location": {
+          "startingColumn": 133,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schärfe",
+        "location": {
+          "startingColumn": 180,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auflösung",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rauschreduzierung",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vignette",
+        "location": {
+          "startingColumn": 156,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendig",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendig warm",
+        "location": {
+          "startingColumn": 135,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendig kühl",
+        "location": {
+          "startingColumn": 188,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dramatisch",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dramatisch warm",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dramatisch kühl",
+        "location": {
+          "startingColumn": 154,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Silberton",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Standard",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bernstein",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gold",
+        "location": {
+          "startingColumn": 131,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Roségold",
+        "location": {
+          "startingColumn": 174,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neutral",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kühles Rosé",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendig",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Natürlich",
+        "location": {
+          "startingColumn": 185,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Leuchtend",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dramatisch",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ruhig",
+        "location": {
+          "startingColumn": 137,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gemütlich",
+        "location": {
+          "startingColumn": 177,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ätherisch",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gedämpftes S/W",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kontrastreiches S/W",
+        "location": {
+          "startingColumn": 144,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rot",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Orange",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gelb",
+        "location": {
+          "startingColumn": 121,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Grün",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cyan",
+        "location": {
+          "startingColumn": 80,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Blau",
+        "location": {
+          "startingColumn": 119,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lila",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Magenta",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bild konnte nicht geladen werden",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 786
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bereinigen in voller Auflösung fehlgeschlagen",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 951
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bild konnte nicht berechnet werden",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 958
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bereinigen nicht erreichbar – läuft der Server?",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 830
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bereinigen in voller Auflösung fehlgeschlagen",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 996
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bild konnte nicht berechnet werden",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 1003
+        }
+      }
+    ]
+  },
+  "version": 1
+}

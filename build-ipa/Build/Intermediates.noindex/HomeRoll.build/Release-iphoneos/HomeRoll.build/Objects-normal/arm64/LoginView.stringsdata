@@ -1,0 +1,56 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Login/LoginView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "HomeRoll",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Deine Mediathek auf deinem eigenen Server",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server, z. B. https://fotos.example.com",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "E-Mail",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Passwort",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anmelden",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 47
+        }
+      }
+    ]
+  },
+  "version": 1
+}

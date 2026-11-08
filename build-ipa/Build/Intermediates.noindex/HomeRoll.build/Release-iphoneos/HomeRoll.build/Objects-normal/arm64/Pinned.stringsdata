@@ -1,0 +1,152 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/Pinned.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Rückblicke",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 8
+        }
+      },
+      {
+        "comment": "",
+        "key": "Angepinnt",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 8
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alben",
+        "location": {
+          "startingColumn": 137,
+          "startingLine": 8
+        }
+      },
+      {
+        "comment": "",
+        "key": "Personen",
+        "location": {
+          "startingColumn": 179,
+          "startingLine": 8
+        }
+      },
+      {
+        "comment": "",
+        "key": "Empfohlene Fotos",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Letzte Tage",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reisen",
+        "location": {
+          "startingColumn": 147,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medienarten",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 10
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sonstige",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 10
+        }
+      },
+      {
+        "comment": "",
+        "key": "Album",
+        "location": {
+          "startingColumn": 148,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Empfohlene Fotos",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Angepinnt",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vorschläge",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neu anordnen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "Standard",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 198
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "Angepinnt",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Album",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 260
+        }
+      }
+    ]
+  },
+  "version": 1
+}

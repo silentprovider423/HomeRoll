@@ -1,0 +1,208 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/MemoryPlayer.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Titel bearbeiten",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Rückblick entfernt",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 234
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick entfernt – zu wenige Fotos",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titelbild festgelegt",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 239
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 246
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sichern",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ohne Musik",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 424
+        }
+      },
+      {
+        "comment": "",
+        "key": "Musik: %@",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 424
+        }
+      },
+      {
+        "comment": "",
+        "key": "Titel bearbeiten",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 431
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle Fotos anzeigen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 436
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Video teilen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 437
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kurz",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 433
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mittel",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 433
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lang",
+        "location": {
+          "startingColumn": 130,
+          "startingLine": 433
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dauer",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 434
+        }
+      },
+      {
+        "comment": "",
+        "key": "Eigener Mix",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 451
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Ändern seitlich wischen",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 457
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nochmal",
+        "location": {
+          "startingColumn": 123,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 533
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Nächstes",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 541
+        }
+      },
+      {
+        "comment": "",
+        "key": "in %lld s · Abbrechen",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 545
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick-Mix",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 576
+        }
+      },
+      {
+        "comment": "",
+        "key": "Musik",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 577
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stil",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 592
+        }
+      }
+    ]
+  },
+  "version": 1
+}

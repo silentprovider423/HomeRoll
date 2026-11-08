@@ -1,0 +1,40 @@
+{
+  "source": "/Users/colin/HomeRoll/App/FotosApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Alle Objekte",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favoriten",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitet",
+        "location": {
+          "startingColumn": 136,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos",
+        "location": {
+          "startingColumn": 183,
+          "startingLine": 66
+        }
+      }
+    ]
+  },
+  "version": 1
+}

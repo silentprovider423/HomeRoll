@@ -9,6 +9,7 @@ enum ActionSheet: Identifiable {
     case dateTime([Asset])
     case location([Asset])
     case slideshow([Asset])
+    case shareLink([String])
     /// Rückfragen wie bei Apple; `done` läuft nach der Aktion (z. B. Einzelansicht weiterblättern).
     case confirmHide([Asset], done: () -> Void)
     case confirmDeleteForever([Asset], done: () -> Void)
@@ -18,6 +19,7 @@ enum ActionSheet: Identifiable {
         case .dateTime(let a): "date\(a.map(\.id))"
         case .location(let a): "loc\(a.map(\.id))"
         case .slideshow(let a): "show\(a.map(\.id))"
+        case .shareLink(let i): "link\(i)"
         case .confirmHide(let a, _): "hide\(a.map(\.id))"
         case .confirmDeleteForever(let a, _): "forever\(a.map(\.id))"
         }
@@ -101,15 +103,9 @@ enum AssetActions {
         return CGImageDestinationFinalize(dst) ? out as Data : nil
     }
 
-    /// „Link teilen“ (wie Apples iCloud-Link): öffnet nur, wer den Server erreicht (Heimnetz oder WireGuard), 30 Tage gültig.
+    /// „Link teilen“: öffnet den Bogen mit den Link-Optionen (Passwort, Ablauf, Herunterladen … wie in Immich).
     static func shareLink(_ ids: [String], app: AppModel) async {
-        app.busy = String(localized: "Link wird erstellt …")
-        let url = try? await ImmichClient.shared.shareLink(ids)
-        app.busy = nil
-        guard let url else { app.toast(String(localized: "Link konnte nicht erstellt werden")); return }
-        UIPasteboard.general.url = url
-        app.toast(String(localized: "Link kopiert · 30 Tage gültig"))
-        ShareService.present([url])
+        app.sheet = .shareLink(ids)
     }
 
     static func hide(_ ids: [String], app: AppModel, timeline: TimelineStore) {
@@ -484,7 +480,7 @@ struct AssetMenu: View {
         }
         Button(String(localized: "Kopieren"), systemImage: "doc.on.doc") { Task { await AssetActions.copy(assets, app: app) } }
         if style != .context {
-            Button(String(localized: "Link teilen (Heimnetz/VPN)"), systemImage: "link") { Task { await AssetActions.shareLink(ids, app: app) } }
+            Button(String(localized: "Link teilen (Heimnetz/VPN)"), systemImage: "link") { present(.shareLink(ids)) }
         }
         Button(String(localized: "Duplizieren"), systemImage: "plus.square.on.square") { Task { await AssetActions.duplicate(assets, app: app, timeline: timeline) } }
         if style != .context, assets.contains(where: \.isImage) {
@@ -560,6 +556,7 @@ extension View {
                 case .addToAlbum(let ids): AddToAlbumSheet(ids: ids)
                 case .dateTime(let a): DateTimeSheet(assets: a).presentationDetents([.large])
                 case .location(let a): LocationSheet(assets: a)
+                case .shareLink(let ids): ShareLinkSheet(ids: ids).presentationDetents([.large])
                 case .slideshow, .confirmHide, .confirmDeleteForever: EmptyView()
                 }
             }

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/MemoryExport.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Video wird erstellt …",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video konnte nicht erstellt werden",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video wird erstellt … %lld %%",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 17
+        }
+      }
+    ]
+  },
+  "version": 1
+}

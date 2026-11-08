@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Begradigen</key>
+	<string>Begradigen</string>
+	<key>Bereinigen</key>
+	<string>Bereinigen</string>
+	<key>Frühling</key>
+	<string>Frühling</string>
+	<key>Herbst</key>
+	<string>Herbst</string>
+	<key>Horizontal</key>
+	<string>Horizontal</string>
+	<key>Jahre</key>
+	<string>Jahre</string>
+	<key>Monate</key>
+	<string>Monate</string>
+	<key>Sommer</key>
+	<string>Sommer</string>
+	<key>Stile</key>
+	<string>Stile</string>
+	<key>Vertikal</key>
+	<string>Vertikal</string>
+	<key>Winter</key>
+	<string>Winter</string>
+	<key>Zuschneiden</key>
+	<string>Zuschneiden</string>
+</dict>
+</plist>

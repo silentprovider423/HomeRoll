@@ -1,0 +1,12 @@
+{
+  "/Users/colin/HomeRoll/Shared/AppGroup.swift" : {
+    "abi-baseline-json" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare.abi.json",
+    "const-values" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare-primary.swiftconstvalues",
+    "dependencies" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare-primary.d",
+    "diagnostics" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare-primary.dia",
+    "objc-header" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare-Swift.h",
+    "swiftdoc" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare.swiftdoc",
+    "swiftmodule" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare.swiftmodule",
+    "swiftsourceinfo" : "/Users/colin/HomeRoll/build-ipa/Build/Intermediates.noindex/HomeRoll.build/Release-iphoneos/FotosShare.build/Objects-normal/arm64/FotosShare.swiftsourceinfo"
+  }
+}

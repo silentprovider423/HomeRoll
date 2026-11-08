@@ -1,0 +1,32 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Viewer/SpatialScene.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Schließen",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "iPhone neigen",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Neigen ziehen",
+        "location": {
+          "startingColumn": 106,
+          "startingLine": 63
+        }
+      }
+    ]
+  },
+  "version": 1
+}

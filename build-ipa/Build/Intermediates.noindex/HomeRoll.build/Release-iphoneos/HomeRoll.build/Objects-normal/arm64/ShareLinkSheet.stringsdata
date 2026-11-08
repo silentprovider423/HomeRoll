@@ -1,0 +1,416 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/ShareLinkSheet.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Läuft nie ab",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 10
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 30 Minuten",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 1 Stunde",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 6 Stunden",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 1 Tag",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 7 Tagen",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 30 Tagen",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 3 Monaten",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nach 1 Jahr",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Eigenes Datum …",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Beschreibung des Links (optional)",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Passwort (leer lassen = unverändert)",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Passwort für den Link (optional)",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Passwort entfernen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wer den Link öffnet, muss dieses Passwort eingeben.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link läuft ab",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ablaufdatum des Links",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ablaufdatum des Links",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 147
+        }
+      },
+      {
+        "comment": "",
+        "key": "Metadaten für Empfänger zeigen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Empfänger dürfen herunterladen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Empfänger dürfen hochladen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Eigener Linkname (optional)",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 158
+        }
+      },
+      {
+        "comment": "",
+        "key": "Der Link lautet dann …/s/name statt eines zufälligen Schlüssels.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link ohne Beschreibung",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 174
+        }
+      },
+      {
+        "comment": "",
+        "key": "Läuft ab: %@",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "Läuft nie ab",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link-Optionen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 242
+        }
+      },
+      {
+        "comment": "",
+        "key": "Der Link funktioniert danach nicht mehr.",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 251
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aktive Links",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 213
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neuer Link",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diesen Link löschen",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "Linkadresse kopieren",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "Linkadresse teilen",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 227
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diesen Link löschen",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 228
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link kopiert",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link erstellt und kopiert",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieser Linkname ist schon vergeben.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 301
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link anlegen",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 236
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diesen Link löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link gelöscht",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 284
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link bearbeiten",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 342
+        }
+      },
+      {
+        "comment": "",
+        "key": "Der Link funktioniert danach nicht mehr.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 352
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diesen Link löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 337
+        }
+      },
+      {
+        "comment": "",
+        "key": "Änderungen sichern",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 346
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link aktualisiert",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 363
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieser Linkname ist schon vergeben.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 368
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 350
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diesen Link löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link gelöscht",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 380
+        }
+      }
+    ]
+  },
+  "version": 1
+}

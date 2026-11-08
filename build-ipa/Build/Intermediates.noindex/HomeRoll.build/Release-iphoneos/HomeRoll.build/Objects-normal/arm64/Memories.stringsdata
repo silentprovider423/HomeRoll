@@ -1,0 +1,440 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Collections/Memories.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Heute vor 1 Jahr",
+        "location": {
+          "startingColumn": 79,
+          "startingLine": 396
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heute vor %lld Jahren",
+        "location": {
+          "startingColumn": 119,
+          "startingLine": 396
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erinnerungen",
+        "location": {
+          "startingColumn": 165,
+          "startingLine": 396
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heute vor 1 Jahr",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 406
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heute vor %lld Jahren",
+        "location": {
+          "startingColumn": 103,
+          "startingLine": 406
+        }
+      },
+      {
+        "comment": "",
+        "key": "Das Beste aus %@",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 419
+        }
+      },
+      {
+        "comment": "",
+        "key": "Geburtstag von %@",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Natürlich",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "Warm",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kühl",
+        "location": {
+          "startingColumn": 126,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lebendig",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kontrastreich",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "Schwarzweiß",
+        "location": {
+          "startingColumn": 135,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ohne Musik",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 537
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sanft",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 537
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fröhlich",
+        "location": {
+          "startingColumn": 127,
+          "startingLine": 537
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nachdenklich",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 538
+        }
+      },
+      {
+        "comment": "",
+        "key": "Episch",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 538
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblicke",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 718
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Favoriten",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 710
+        }
+      },
+      {
+        "comment": "",
+        "key": "Keine Rückblicke verfügbar",
+        "location": {
+          "startingColumn": 112,
+          "startingLine": 710
+        }
+      },
+      {
+        "comment": "",
+        "key": "Markiere einen Rückblick mit dem Herz, um ihn hier zu sehen.",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 711
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblicke erscheinen hier, wenn mehr Fotos zur Mediathek hinzugefügt werden.",
+        "location": {
+          "startingColumn": 82,
+          "startingLine": 712
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 702
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick erstellen",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 697
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle",
+        "location": {
+          "startingColumn": 75,
+          "startingLine": 702
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favoriten",
+        "location": {
+          "startingColumn": 119,
+          "startingLine": 702
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Mitteilung geplant",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 725
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Mitteilungen geplant",
+        "location": {
+          "startingColumn": 115,
+          "startingLine": 725
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mitteilung „Heute vor … Jahren“",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 724
+        }
+      },
+      {
+        "comment": "",
+        "key": "Urlaub 2025"
+      },
+      {
+        "comment": "",
+        "key": "Istanbul"
+      },
+      {
+        "comment": "",
+        "key": "Sonnenuntergänge"
+      },
+      {
+        "comment": "",
+        "key": "Essen mit Freunden"
+      },
+      {
+        "comment": "",
+        "key": "Berge und Natur"
+      },
+      {
+        "comment": "",
+        "key": "Familie"
+      },
+      {
+        "comment": "",
+        "key": "Aus Favoriten entfernen",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 747
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zu Favoriten",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 747
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotos teilen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 750
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick löschen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 772
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ weniger zeigen",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 754
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ weniger zeigen",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 759
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Tage weniger zeigen",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 765
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weniger von %@",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 755
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weniger aus %@",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 760
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese Tage erscheinen seltener",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 767
+        }
+      },
+      {
+        "comment": "",
+        "key": "Weniger zeigen",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 770
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick gelöscht",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 774
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick erstellen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 814
+        }
+      },
+      {
+        "comment": "",
+        "key": "Beschreibe den Rückblick, den du sehen möchtest – zum Beispiel einen Ort, ein Jahr, eine Person oder ein Motiv.",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 796
+        }
+      },
+      {
+        "comment": "",
+        "key": "Beschreibe einen Rückblick …",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 798
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dazu habe ich keine passenden Fotos gefunden.",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 809
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rückblick wird erstellt …",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 813
+        }
+      },
+      {
+        "comment": "",
+        "key": "Erstellen",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 819
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 877
+        }
+      },
+      {
+        "comment": "",
+        "key": "Als Titelbild verwenden",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 867
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aus Rückblick entfernen",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 870
+        }
+      }
+    ]
+  },
+  "version": 1
+}

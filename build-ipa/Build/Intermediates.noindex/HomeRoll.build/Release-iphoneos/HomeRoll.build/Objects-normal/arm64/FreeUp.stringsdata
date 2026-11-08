@@ -1,0 +1,120 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Backup/FreeUp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Fotos älter als",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favoriten auf dem iPhone behalten",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nichts zu löschen – keine passenden Fotos, die schon auf dem Server liegen.",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte vom iPhone gelöscht · %@ frei",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 95
+        }
+      },
+      {
+        "comment": "",
+        "key": "7 Tage",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "30 Tage",
+        "location": {
+          "startingColumn": 82,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Jahr",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speicher freigeben …",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "iPhone-Speicher",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löscht auf dem iPhone nur Fotos und Videos, die nachweislich auf deinem Server liegen. iOS fragt vorher nach, und in Apples Fotos-App liegen sie danach noch 30 Tage unter „Zuletzt gelöscht“. Achtung: Ist iCloud-Fotos eingeschaltet, löscht iOS sie auch dort.",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte vom iPhone löschen (%@)?",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vom iPhone löschen",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auf deinem Server bleibt alles erhalten.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 107
+        }
+      }
+    ]
+  },
+  "version": 1
+}

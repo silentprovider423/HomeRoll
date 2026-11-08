@@ -1,0 +1,688 @@
+{
+  "source": "/Users/colin/HomeRoll/App/Core/AssetActions.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Wird kopiert …",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kopiert",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte kopiert",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird vorbereitet …",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird vorbereitet … %lld von %lld",
+        "location": {
+          "startingColumn": 106,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "Foto konnte nicht geladen werden",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Videos lassen sich nicht drucken",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wird dupliziert … %lld von %lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Videos können nicht dupliziert werden",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld dupliziert",
+        "location": {
+          "startingColumn": 108,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausgeblendet",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld ausgeblendet",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Eingeblendet",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld eingeblendet",
+        "location": {
+          "startingColumn": 90,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wiederhergestellt",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld wiederhergestellt",
+        "location": {
+          "startingColumn": 95,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Endgültig gelöscht",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld endgültig gelöscht",
+        "location": {
+          "startingColumn": 98,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Foto",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Fotos",
+        "location": {
+          "startingColumn": 105,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Video",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Videos",
+        "location": {
+          "startingColumn": 106,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "Objekt",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Objekte",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Foto wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese %lld Fotos werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 150
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Video wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese %lld Videos werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Objekt wird ausgeblendet, ist aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 156
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese %lld Objekte werden ausgeblendet, sind aber weiterhin im Album „Ausgeblendet“ zu sehen.",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Album hinzufügen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 209
+        }
+      },
+      {
+        "comment": "",
+        "key": "Neues Album …",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": " ",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 191
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Album hinzugefügt",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 201
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 211
+        }
+      },
+      {
+        "comment": "",
+        "key": "Datum & Uhrzeit anpassen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 250
+        }
+      },
+      {
+        "comment": "",
+        "key": "Original",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 238
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alle %lld Objekte werden um denselben Abstand verschoben.",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 241
+        }
+      },
+      {
+        "comment": "",
+        "key": "Datum",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 246
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 253
+        }
+      },
+      {
+        "comment": "",
+        "key": "Anpassen",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort suchen",
+        "location": {
+          "startingColumn": 120,
+          "startingLine": 318
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort anpassen",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Ort",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 305
+        }
+      },
+      {
+        "comment": "",
+        "key": "Abbrechen",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 328
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fertig",
+        "location": {
+          "startingColumn": 84,
+          "startingLine": 329
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wiederherstellen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 431
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 434
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diashow",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 462
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 443
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 445
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Favorit",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 472
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favorit",
+        "location": {
+          "startingColumn": 79,
+          "startingLine": 472
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kopieren",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 481
+        }
+      },
+      {
+        "comment": "",
+        "key": "Link teilen (Heimnetz/VPN)",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 483
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duplizieren",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 485
+        }
+      },
+      {
+        "comment": "",
+        "key": "Einblenden",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 501
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausblenden",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 503
+        }
+      },
+      {
+        "comment": "",
+        "key": "In Mediathek zeigen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 479
+        }
+      },
+      {
+        "comment": "",
+        "key": "Drucken",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 487
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen kopieren",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 491
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bearbeitungen einsetzen",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 496
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Album hinzufügen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 508
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diashow",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 452
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 454
+        }
+      },
+      {
+        "comment": "",
+        "key": "Datum/Uhrzeit",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ort anpassen",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 513
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 466
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teilen",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 525
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kein Favorit",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favorit",
+        "location": {
+          "startingColumn": 98,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "Löschen",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 529
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kopieren",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 538
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duplizieren",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 539
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ausblenden",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 542
+        }
+      },
+      {
+        "comment": "",
+        "key": "Zum Album hinzufügen",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 543
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Tag",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 580
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heute",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 580
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Tage",
+        "location": {
+          "startingColumn": 110,
+          "startingLine": 580
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dieses Objekt wird endgültig gelöscht. Dieser Vorgang kann nicht widerrufen werden.",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 615
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diese %lld Objekte werden endgültig gelöscht. Dieser Vorgang kann nicht widerrufen werden.",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 616
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ ausblenden",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 598
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ löschen",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 602
+        }
+      }
+    ]
+  },
+  "version": 1
+}
