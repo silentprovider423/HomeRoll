@@ -10,6 +10,8 @@ final class ShareViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // gleiches Erscheinungsbild wie die App (Einstellungen → Erscheinungsbild); „Automatisch“ = wie das iPhone
+        overrideUserInterfaceStyle = switch AppGroup.loadTheme() { case "light": .light; case "dark": .dark; default: .unspecified }
         let host = UIHostingController(rootView: ShareView(model: model) { [weak self] in
             self?.extensionContext?.completeRequest(returningItems: nil)
         })

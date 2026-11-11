@@ -63,7 +63,7 @@ struct PhotoWidgetView: View {
             }
         }
         .containerBackground(for: .widget) {
-            if let img = entry.image { Image(uiImage: img).resizable().scaledToFill() } else { Color(white: 0.12) }
+            if let img = entry.image { Image(uiImage: img).resizable().scaledToFill() } else { Color(.secondarySystemBackground) }
         }
         .widgetURL(entry.item.map { URL(string: "homeroll://\($0.memory ? "memory" : "asset")/\($0.id)")! })
     }

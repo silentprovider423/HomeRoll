@@ -35,7 +35,7 @@ struct LibraryView: View {
         }
         .overlay {
             if timeline.buckets.isEmpty {
-                if timeline.loading { ProgressView().tint(.white) }
+                if timeline.loading { ProgressView().tint(Color.primary) }
                 else if let e = timeline.error {
                     ContentUnavailableView {
                         Label(String(localized: "Server nicht erreichbar"), systemImage: "wifi.exclamationmark")
@@ -80,8 +80,8 @@ struct LibraryHeader: View {
                     .contentTransition(.numericText())
                     .animation(.default, value: subtitle)
             }
-            .foregroundStyle(.white)
-            .shadow(color: .black.opacity(0.35), radius: 6)
+            .foregroundStyle(.primary)
+            .shadow(color: Color.appBackground.opacity(0.35), radius: 6)
             Spacer()
             GlassEffectContainer {
                 HStack(spacing: 10) {
@@ -89,7 +89,7 @@ struct LibraryHeader: View {
                         HStack(spacing: 0) {
                             Menu { libraryMenu } label: {
                                 Image(systemName: "line.3.horizontal.decrease").font(.system(size: 18, weight: .semibold))
-                                    .foregroundStyle(.white).frame(width: 50, height: 46).contentShape(.rect)
+                                    .foregroundStyle(.primary).frame(width: 50, height: 46).contentShape(.rect)
                             }
                             SelectionMenuButton()
                         }
@@ -97,14 +97,14 @@ struct LibraryHeader: View {
                         .glassEffect(.regular.interactive(), in: .capsule)
                         Button { withAnimation(.snappy) { app.endSelection() } } label: {
                             Image(systemName: "xmark").font(.system(size: 18, weight: .semibold))
-                                .foregroundStyle(.white).frame(width: 46, height: 46).contentShape(.rect)
+                                .foregroundStyle(.primary).frame(width: 46, height: 46).contentShape(.rect)
                         }
                         .glassEffect(.regular.interactive(), in: .circle)
                     } else {
                         Menu { libraryMenu } label: {
                             Image(systemName: "line.3.horizontal.decrease")
                                 .font(.system(size: 18, weight: .semibold))
-                                .foregroundStyle(app.libraryCustomized ? Color.black : .white)
+                                .foregroundStyle(app.libraryCustomized ? Color.black : Color.primary)
                                 .frame(width: 46, height: 46)
                                 .background { if app.libraryCustomized { Circle().fill(.blue).padding(3) } }
                         }
@@ -112,7 +112,7 @@ struct LibraryHeader: View {
                         Button { withAnimation(.snappy) { app.selecting = true } } label: {
                             Text(String(localized: "Auswählen"))
                                 .font(.system(size: 17, weight: .semibold))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.primary)
                                 .padding(.horizontal, 18)
                                 .frame(height: 46)
                         }
@@ -158,6 +158,7 @@ struct LibraryHeader: View {
             .pickerStyle(.inline)
         } label: { Label(String(localized: "Filter"), systemImage: "line.3.horizontal.decrease.circle") }
         Divider()
+        Button(String(localized: "Einstellungen", table: "Theme"), systemImage: "gearshape") { app.showSettings = true }
         Button(String(localized: "Aktualisieren"), systemImage: "arrow.clockwise") { Task { await timeline.reload() } }
         Button(String(localized: "Abmelden"), systemImage: "rectangle.portrait.and.arrow.right", role: .destructive) { confirmSignOut = true }
     }
@@ -176,7 +177,7 @@ struct TopBlur: View {
             Rectangle().fill(.ultraThinMaterial)
                 .mask(LinearGradient(stops: [.init(color: .black, location: 0), .init(color: .black, location: 0.45),
                                              .init(color: .clear, location: 1)], startPoint: .top, endPoint: .bottom))
-            LinearGradient(colors: [.black.opacity(0.7), .black.opacity(0.3), .clear], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [Color.appBackground.opacity(0.7), Color.appBackground.opacity(0.3), .clear], startPoint: .top, endPoint: .bottom)
         }
         .ignoresSafeArea(edges: .top)
         .allowsHitTesting(false)
@@ -190,7 +191,7 @@ struct BottomBlur: View {
             Rectangle().fill(.ultraThinMaterial)
                 .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.55),
                                              .init(color: .black, location: 1)], startPoint: .top, endPoint: .bottom))
-            LinearGradient(colors: [.clear, .black.opacity(0.35), .black.opacity(0.75)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.clear, Color.appBackground.opacity(0.35), Color.appBackground.opacity(0.75)], startPoint: .top, endPoint: .bottom)
         }
         .frame(height: 190)
         .frame(maxHeight: .infinity, alignment: .bottom)
@@ -300,7 +301,7 @@ struct AllGrid: View {
             }
             .overlay {
                 if app.libraryCustomized {
-                    if query.list == nil { ProgressView().tint(.white) }
+                    if query.list == nil { ProgressView().tint(Color.primary) }
                     else if query.list?.isEmpty == true {
                         ContentUnavailableView(String(localized: "Keine Objekte"), systemImage: app.filter.icon,
                                                description: Text(String(localized: "Für „\(app.filter.title)“ gibt es nichts.")))
@@ -316,7 +317,7 @@ struct AllGrid: View {
                             Text(String(localized: "Gefiltert: \(app.filter.title)")).font(.system(size: 15, weight: .semibold))
                             Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary)
                         }
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                         .padding(.horizontal, 16).frame(height: 40)
                         .glassEffect(.regular.interactive(), in: .capsule)
                     }
@@ -327,7 +328,7 @@ struct AllGrid: View {
             }
             .overlay(alignment: .topLeading) {
                 if !capsule.isEmpty {
-                    Text(capsule).font(.system(size: 30, weight: .bold)).foregroundStyle(.white)
+                    Text(capsule).font(.system(size: 30, weight: .bold)).foregroundStyle(.primary)
                         .padding(.horizontal, 16).padding(.vertical, 6)
                         .glassEffect(.regular, in: .capsule)
                         .padding(.leading, 14).padding(.top, 118)
@@ -579,7 +580,7 @@ struct MonthDays: View {
     var body: some View {
         let days = timeline.days(in: bucket.timeBucket)
         if days.isEmpty {
-            RoundedRectangle(cornerRadius: 24).fill(Color(white: 0.11))
+            RoundedRectangle(cornerRadius: 24).fill(Color.appFill)
                 .frame(height: 230).padding(.horizontal, 16).padding(.vertical, 5)
                 .listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(Color.clear)
                 .task { await timeline.load(bucket.timeBucket) }
@@ -692,7 +693,7 @@ struct YearCard: View {
         let key = months.reversed().lazy.compactMap { timeline.assets($0.timeBucket)?.last(where: { $0.isImage && ImageCache.shared.hash($0.id) != nil }) }.first
             ?? months.reversed().lazy.compactMap { timeline.assets($0.timeBucket)?.last(where: \.isImage) }.first
         ZStack {
-            if let key { AssetThumb(id: key.id, size: .preview) } else { Color(white: 0.12) }
+            if let key { AssetThumb(id: key.id, size: .preview) } else { Color.appFill }
         }
         .frame(height: 300)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))

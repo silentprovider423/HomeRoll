@@ -40,7 +40,6 @@ targets:
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [en, de]
         UILaunchScreen: {}
-        UIUserInterfaceStyle: Dark
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         # iPad: alle vier Richtungen (Voraussetzung für Split View/Stage Manager, GitHub #47)
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]

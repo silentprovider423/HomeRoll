@@ -23,7 +23,7 @@ struct SelectionBar: View {
             Text(SelectionText.make(app.selected, timeline))
                 .font(.system(size: 17, weight: .semibold))
                 .frame(maxWidth: .infinity)
-                .shadow(color: .black.opacity(0.5), radius: 6)
+                .shadow(color: Color.appBackground.opacity(0.5), radius: 6)
             Button { confirmDelete = true } label: {
                 Image(systemName: "trash").frame(width: 58, height: 58).contentShape(.rect)
             }
@@ -31,7 +31,7 @@ struct SelectionBar: View {
             .disabled(ids.isEmpty)
         }
         .font(.system(size: 21, weight: .medium))
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .buttonStyle(.plain)
         .confirmationDialog("", isPresented: $confirmDelete) {
             Button(SelectionText.deleteTitle(app.selected, timeline), role: .destructive) {
@@ -76,7 +76,7 @@ struct SelectionMenuButton: View {
             }
         } label: {
             Image(systemName: "ellipsis").font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(.white).frame(width: 46, height: 46).contentShape(.rect)
+                .foregroundStyle(.primary).frame(width: 46, height: 46).contentShape(.rect)
         }
         .disabled(assets.isEmpty)
     }

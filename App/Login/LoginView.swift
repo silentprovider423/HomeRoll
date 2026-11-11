@@ -25,7 +25,7 @@ struct LoginView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [Color(red: 0.05, green: 0.07, blue: 0.16), .black], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [Color.loginTop, Color.appBackground], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack(spacing: 18) {
                 Spacer()

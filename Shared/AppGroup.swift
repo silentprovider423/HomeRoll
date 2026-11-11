@@ -32,6 +32,18 @@ enum AppGroup {
         guard let f = accessFile, let d = try? Data(contentsOf: f) else { return nil }
         return try? JSONDecoder().decode(Access.self, from: d)
     }
+
+    /// Erscheinungsbild der App (auto/light/dark) für die Teilen-Erweiterung, damit sie dasselbe zeigt wie die App.
+    /// Die Widgets folgen immer dem System (iOS lässt Widgets keine eigene Einstellung der App annehmen).
+    private static var themeFile: URL? { container?.appendingPathComponent("erscheinungsbild.txt") }
+    static func saveTheme(_ raw: String) {
+        guard let f = themeFile else { return }
+        try? Data(raw.utf8).write(to: f, options: .atomic)
+    }
+    static func loadTheme() -> String? {
+        guard let f = themeFile, let d = try? Data(contentsOf: f) else { return nil }
+        return String(decoding: d, as: UTF8.self)
+    }
 }
 
 /// Was das Widget zeigt (die App schreibt es, das Widget liest es – ohne eigenen Serverzugriff).

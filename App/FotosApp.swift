@@ -10,6 +10,7 @@ struct FotosApp: App {
 
     init() {
         BackupEngine.registerBackgroundTask()
+        AppGroup.saveTheme(AppTheme.saved.rawValue)   // Teilen-Erweiterung zeigt dasselbe Erscheinungsbild wie die App
         BackgroundUploader.shared.reconnect()   // Ergebnisse von Übertragungen aus früheren Sitzungen abholen
         PerfLog.start()
         #if DEBUG
@@ -27,7 +28,7 @@ struct FotosApp: App {
             }
             .environment(app)
             .environment(timeline)
-            .preferredColorScheme(.dark)
+            .appTheme(app.theme)
             .onReceive(NotificationCenter.default.publisher(for: .sessionExpired)) { _ in
                 app.loggedIn = false
             }
@@ -101,6 +102,13 @@ final class AppModel {
         loggedIn = false
     }
     var tab: Tab = .library
+    /// Erscheinungsbild: Automatisch (wie das iPhone), Hell oder Dunkel – bleibt gespeichert (Einstellungen)
+    var theme = AppTheme.saved { didSet {
+        UserDefaults.standard.set(theme.rawValue, forKey: AppTheme.key)
+        AppGroup.saveTheme(theme.rawValue)
+    } }
+    /// Einstellungen-Bogen (aus dem Mediathek-Menü und dem Konto-Menü der Sammlungen)
+    var showSettings = false
     /// Backup-Fenster (aus der Mediathek-Fußzeile)
     var showBackup = false
     var scale: LibraryScale = .all

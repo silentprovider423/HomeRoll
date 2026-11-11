@@ -10,7 +10,7 @@ struct RootView: View {
     var body: some View {
         @Bindable var app = app
         ZStack(alignment: .bottom) {
-            Color.black.ignoresSafeArea()
+            Color.appBackground.ignoresSafeArea()
             Group {
                 switch app.tab {
                 case .library: LibraryView()
@@ -29,6 +29,7 @@ struct RootView: View {
         }
         .overlay(alignment: .top) { VStack { BusyBadge(); ToastBadge() } }
         .actionSheets($app.sheet)
+        .sheet(isPresented: $app.showSettings) { SettingsView() }
         .sheet(isPresented: Binding(get: { backupConsent }, set: { if !$0 { backupConsent = false } })) { BackupConsentView() }
         .task {
             if timeline.buckets.isEmpty { await timeline.showCached() }
@@ -238,7 +239,7 @@ struct BottomBar: View {
                 Button { app.showSearch = true } label: {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 22, weight: .medium))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                         .frame(width: 58, height: 58)
                 }
                 .glassEffect(.regular.interactive(), in: .circle)
@@ -260,7 +261,7 @@ private struct ScaleSwitcher: View {
                 } label: {
                     Text(L(s.rawValue))
                         .font(.system(size: 17, weight: app.scale == s ? .semibold : .regular))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                         .lineLimit(1).minimumScaleFactor(0.7)
                         // Text mit Innenabstand IN der Zelle: so passt das fette „Months“ immer in die Markierung
                         // (vorher füllte der Text die ganze Zelle, die Markierung war 4 pt schmaler – GitHub #44)
@@ -269,7 +270,7 @@ private struct ScaleSwitcher: View {
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                         .background {
                             if app.scale == s {
-                                Capsule().fill(.white.opacity(0.16))
+                                Capsule().fill(Color.primary.opacity(0.16))
                                     .matchedGeometryEffect(id: "sel", in: sel)
                                     .padding(.vertical, 4).padding(.horizontal, 2)
                             }
@@ -302,10 +303,10 @@ private struct TabSwitcher: View {
                 Image(systemName: icon).font(.system(size: 21, weight: .medium))
                 Text(title).font(.system(size: 11, weight: .medium))
             }
-            .foregroundStyle(on ? Color.blue : .white)
+            .foregroundStyle(on ? Color.blue : Color.primary)
             .frame(width: 100, height: 54)
             .background {
-                if on { Capsule().fill(.white.opacity(0.14)).matchedGeometryEffect(id: "tabsel", in: sel) }
+                if on { Capsule().fill(Color.primary.opacity(0.14)).matchedGeometryEffect(id: "tabsel", in: sel) }
             }
             .contentShape(Rectangle())
         }

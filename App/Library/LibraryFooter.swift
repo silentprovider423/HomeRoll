@@ -17,7 +17,7 @@ struct LibraryFooter: View {
             if let stats { Text(countText(stats)).font(.system(size: 15, weight: .semibold)) }
             if backup.enabled { status }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12).padding(.horizontal, 18)
         .contentShape(.rect)
@@ -79,15 +79,15 @@ struct LibraryFooter: View {
     private func bar(_ value: Double, dimmed: Bool) -> some View {
         ProgressView(value: value)
         .progressViewStyle(.linear)
-        .tint(dimmed ? .white.opacity(0.45) : .white)
+        .tint(dimmed ? Color.primary.opacity(0.45) : Color.primary)
         .frame(maxWidth: 260)
     }
 
     private func line(_ text: String, action: String?, _ run: @escaping () -> Void) -> some View {
         HStack(spacing: 5) {
-            Text(text).foregroundStyle(.white.opacity(0.75)).lineLimit(1).truncationMode(.middle)
+            Text(text).foregroundStyle(Color.primary.opacity(0.75)).lineLimit(1).truncationMode(.middle)
             if let action {
-                Text("·").foregroundStyle(.white.opacity(0.5))
+                Text("·").foregroundStyle(Color.primary.opacity(0.5))
                 Button(action, action: run).buttonStyle(.plain).foregroundStyle(.tint).fontWeight(.semibold)
             }
         }

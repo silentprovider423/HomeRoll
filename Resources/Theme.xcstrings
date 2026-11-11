@@ -1,0 +1,33 @@
+{
+  "sourceLanguage": "de",
+  "strings": {
+    "Automatisch": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Automatic" } } }
+    },
+    "Hell": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Light" } } }
+    },
+    "Dunkel": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Dark" } } }
+    },
+    "Gerade: Dunkel": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Currently: Dark" } } }
+    },
+    "Gerade: Hell": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Currently: Light" } } }
+    },
+    "Erscheinungsbild": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Appearance" } } }
+    },
+    "„Automatisch“ folgt der Einstellung deines iPhones und wechselt mit ihr zwischen Hell und Dunkel. Hell und Dunkel gelten dauerhaft, egal was das iPhone vorgibt.": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "“Automatic” follows your iPhone’s setting and switches between Light and Dark with it. Light and Dark always apply, whatever your iPhone is set to." } } }
+    },
+    "Einstellungen": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Settings" } } }
+    },
+    "Fertig": {
+      "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Done" } } }
+    }
+  },
+  "version": "1.0"
+}
