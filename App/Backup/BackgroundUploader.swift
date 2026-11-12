@@ -75,6 +75,16 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
 
     // MARK: URLSessionDataDelegate
 
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64,
+                    totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        guard totalBytesExpectedToSend > 0,
+              let meta = task.taskDescription.flatMap({ try? JSONDecoder().decode(Meta.self, from: Data($0.utf8)) }) else { return }
+        let p = Double(totalBytesSent) / Double(totalBytesExpectedToSend)
+        Task { @MainActor in
+            if BackupEngine.shared.currentLocalID == meta.localID { BackupEngine.shared.progress = p }
+        }
+    }
+
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         lock.withLock { received[dataTask.taskIdentifier, default: Data()].append(data) }
     }

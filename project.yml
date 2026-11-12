@@ -43,7 +43,7 @@ targets:
         UIUserInterfaceStyle: Dark
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIBackgroundModes: [fetch, processing]
-        BGTaskSchedulerPermittedIdentifiers: [org.homeroll.app.backup]
+        BGTaskSchedulerPermittedIdentifiers: [org.homeroll.app.backup, org.homeroll.app.refresh]
         NSPhotoLibraryUsageDescription: "Damit deine Fotos auf deinem eigenen Server gesichert werden."
         NSPhotoLibraryAddUsageDescription: "Damit Fotos vom Server auf dem iPhone gespeichert werden können."
         NSFaceIDUsageDescription: "Damit „Ausgeblendet“ und „Zuletzt gelöscht“ nur du öffnen kannst."

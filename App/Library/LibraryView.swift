@@ -256,11 +256,12 @@ struct AllGrid: View {
                   onOpen: { i, rect in
                       guard i < items.count, case .asset(let a, _) = items[i] else { return }
                       zoomRect = rect
-                      let all = app.libraryCustomized ? (query.list ?? []) : timeline.allLoaded
+                      // noch nicht gesicherte iPhone-Fotos stehen hinter der Server-Zeitleiste
+                      let all = app.libraryCustomized ? (query.list ?? []) : timeline.allLoaded + timeline.localAssets.sorted { $0.date < $1.date }
                       app.open(all, at: all.firstIndex { $0.id == a.id } ?? 0)
                   },
                   onToggle: { app.toggle($0) },
-                  onSelect: { app.selected = $0 },
+                  onSelect: { app.selected = $0.filter { !$0.hasPrefix(LocalPending.prefix) } },
                   menu: { a in AssetMenuUIKit.context(a, app: app, timeline: timeline) },
                   // nicht hinter der Einzelansicht oder in anderen Tabs weiterspielen (Akku, Leitung fürs Video vorn)
                   autoplay: app.autoplay && app.tab == .library && app.viewer == nil && app.memory == nil,

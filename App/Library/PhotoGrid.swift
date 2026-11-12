@@ -154,6 +154,10 @@ final class AssetCell: UICollectionViewCell {
     private let dim = UIView()
     private let check = UIImageView()
     private let flash = UIView()
+    /// Noch nicht gesichertes iPhone-Foto: durchgestrichene Wolke bzw. Fortschrittsring (wie die Immich-App, plus Ring)
+    private let cloud = UIImageView()
+    private let ring = CAShapeLayer()
+    private let ringTrack = CAShapeLayer()
     private(set) var id = ""
     private var size: ImmichClient.Size = .thumbnail
     private var task: Task<Void, Never>?
@@ -179,7 +183,18 @@ final class AssetCell: UICollectionViewCell {
             .applyingSymbolConfiguration(.init(pointSize: 22, weight: .semibold))?
             .applyingSymbolConfiguration(.init(paletteColors: [.white, .systemBlue]))
         check.layer.shadowColor = UIColor.black.cgColor; check.layer.shadowOpacity = 0.4; check.layer.shadowRadius = 2; check.layer.shadowOffset = .zero
-        for v in [image, dim, duration, heart, shared, check, flash] { contentView.addSubview(v) }
+        cloud.tintColor = .white; cloud.contentMode = .scaleAspectFit
+        cloud.layer.shadowColor = UIColor.black.cgColor; cloud.layer.shadowOpacity = 0.55; cloud.layer.shadowRadius = 2; cloud.layer.shadowOffset = .zero
+        for l in [ringTrack, ring] {
+            l.fillColor = UIColor.clear.cgColor; l.lineWidth = 2.5; l.lineCap = .round; l.isHidden = true
+            contentView.layer.addSublayer(l)
+        }
+        ringTrack.strokeColor = UIColor(white: 1, alpha: 0.3).cgColor
+        ring.strokeColor = UIColor.white.cgColor
+        for v in [image, dim, duration, heart, shared, check, flash, cloud] { contentView.addSubview(v) }
+        NotificationCenter.default.addObserver(forName: .localBadgesChanged, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.updateCloud() }
+        }
         isAccessibilityElement = true
         accessibilityTraits = .image
     }
@@ -196,6 +211,31 @@ final class AssetCell: UICollectionViewCell {
         heart.frame = CGRect(x: 5, y: b.maxY - s - 5, width: s, height: s)
         shared.frame = CGRect(x: b.maxX - s * 1.4 - 5, y: 5, width: s * 1.4, height: s)
         check.frame = CGRect(x: b.maxX - 27, y: b.maxY - 27, width: 22, height: 22)
+        let c: CGFloat = b.width < 80 ? 13 : 16
+        cloud.frame = CGRect(x: b.maxX - c - 5, y: 5, width: c, height: c)
+        let r = CGRect(x: b.maxX - c - 7, y: 3, width: c + 4, height: c + 4)
+        let path = UIBezierPath(arcCenter: CGPoint(x: r.midX, y: r.midY), radius: r.width / 2, startAngle: -.pi / 2, endAngle: 1.5 * .pi, clockwise: true).cgPath
+        ring.path = path; ringTrack.path = path
+    }
+
+    /// Wolke/Ring für noch nicht gesicherte Fotos (LocalPending)
+    func updateCloud() {
+        guard id.hasPrefix(LocalPending.prefix), let b = LocalPending.shared.badges[id] else {
+            cloud.isHidden = true; ring.isHidden = true; ringTrack.isHidden = true; return
+        }
+        cloud.isHidden = false
+        switch b {
+        case .waiting:
+            cloud.image = UIImage(systemName: "icloud.slash"); ring.isHidden = true; ringTrack.isHidden = true
+        case .uploading(let p):
+            cloud.image = UIImage(systemName: "arrow.up"); cloud.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            ring.isHidden = false; ringTrack.isHidden = false
+            CATransaction.begin(); CATransaction.setDisableActions(true); ring.strokeEnd = max(0.03, p); CATransaction.commit()
+            return
+        case .processing:
+            cloud.image = UIImage(systemName: "checkmark.icloud"); ring.isHidden = true; ringTrack.isHidden = true
+        }
+        cloud.transform = .identity
     }
 
     override func prepareForReuse() {
@@ -245,6 +285,8 @@ final class AssetCell: UICollectionViewCell {
         shared.isHidden = !sharedFromOther
         update(selected: selected, highlighted: highlighted)
         accessibilityLabel = (a.isVideo ? String(localized: "Video, ") : String(localized: "Foto, ")) + Fmt.dayLongMonthYear.string(from: a.date)
+            + (a.isLocalOnly ? String(localized: ", noch nicht gesichert") : "")
+        updateCloud()
         if changed { loadImage() }
         setNeedsLayout()
     }
@@ -303,7 +345,7 @@ final class DenseCell: UICollectionViewCell {
         let c = ImageCache.shared
         if let i = c.get("\(a.id)-thumbnail") { image.image = i; return }
         image.image = nil
-        guard c.hash(a.id) != nil else { return }
+        guard c.hash(a.id) != nil || a.isLocalOnly else { return }
         let want = a.id
         // Beim Wechsel in diese Stufe entstehen ~600 Kacheln auf einmal → Unschärfe-Bild und Datei vom iPhone
         // im Hintergrund holen, sonst blockiert der Hauptthread über eine Sekunde.
@@ -529,7 +571,7 @@ struct PhotoGrid: UIViewRepresentable {
 
         func collectionView(_ cv: UICollectionView, contextMenuConfigurationForItemsAt ips: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
             guard parent.selection == nil, columns < GridZoom.dense, let ip = ips.first, ip.item < parent.items.count,
-                  case .asset(let a, _) = parent.items[ip.item] else { return nil }
+                  case .asset(let a, _) = parent.items[ip.item], !a.isLocalOnly else { return nil }
             let menu = parent.menu
             return UIContextMenuConfiguration(identifier: ip.item as NSNumber, previewProvider: { PreviewController(asset: a) },
                                               actionProvider: { _ in menu(a) })
@@ -577,7 +619,7 @@ struct PhotoGrid: UIViewRepresentable {
             for c in cells {
                 guard let ip = v.indexPath(for: c), ip.item < parent.items.count, case .asset(let a, _) = parent.items[ip.item] else { continue }
                 let vid = a.isVideo ? a.id : a.livePhotoVideoId
-                guard let vid else { continue }
+                guard let vid, !a.isLocalOnly else { continue }   // Abspielen im Raster nur vom Server
                 let d = abs(c.frame.midY - mid)
                 if best == nil || d < best!.2 { best = (c, vid, d) }
             }

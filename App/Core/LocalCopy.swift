@@ -23,6 +23,7 @@ enum LocalCopy {
     /// (Uploads aus der Immich-App – deren Kennung liefert der Server seit v3 nicht mehr aus).
     static func asset(_ id: String) async -> PHAsset? {
         guard allowed else { return nil }
+        if id.hasPrefix(LocalPending.prefix) { return fetch(String(id.dropFirst(LocalPending.prefix.count))) }
         if let hit = await known.get(id) { return hit.flatMap(fetch) }
         if let lid = await MainActor.run(body: { BackupEngine.shared.localID(forRemote: id) }), let a = fetch(lid) {
             await known.set(id, lid)

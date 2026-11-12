@@ -131,6 +131,7 @@ struct ViewerView: View {
                 .accessibilityLabel(video.muted ? String(localized: "Ton an") : String(localized: "Ton aus"))
                 AirPlayButton().frame(width: 46, height: 46).glassEffect(.regular.interactive(), in: .circle)
             }
+            if !a.isLocalOnly {
             Menu {
                 AssetMenu(assets: [a], style: .viewer, present: { sheet = $0 }) { removeLocal(a) }
                 if a.isVideo {
@@ -158,6 +159,7 @@ struct ViewerView: View {
                     .foregroundStyle(.white).frame(width: 46, height: 46).contentShape(.rect)
             }
             .glassEffect(.regular.interactive(), in: .circle)
+            }
         }
         .padding(.horizontal, 16)
     }
@@ -183,7 +185,27 @@ struct ViewerView: View {
     }
 
     @ViewBuilder private func bottomBar(_ a: Asset) -> some View {
-        if a.trashedAt != nil { trashBar(a) } else { normalBar(a) }
+        if a.isLocalOnly { localBar(a) } else if a.trashedAt != nil { trashBar(a) } else { normalBar(a) }
+    }
+
+    /// Noch nicht gesichert: Bearbeiten, Favorit usw. gehen erst, wenn das Foto auf dem Server ist
+    private func localBar(_ a: Asset) -> some View {
+        HStack(spacing: 8) {
+            if case .uploading(let p) = LocalPending.shared.badges[a.id] {
+                ProgressView(value: p).progressViewStyle(.circular).controlSize(.small).tint(.white)
+                Text(String(localized: "Wird gesichert …"))
+            } else if LocalPending.shared.badges[a.id] == .processing {
+                Image(systemName: "checkmark.icloud")
+                Text(String(localized: "Gesichert, wird verarbeitet …"))
+            } else {
+                Image(systemName: "icloud.slash")
+                Text(String(localized: "Noch nicht gesichert"))
+            }
+        }
+        .font(.system(size: 15, weight: .medium)).foregroundStyle(.white)
+        .padding(.horizontal, 18).frame(height: 46)
+        .glassEffect(.regular, in: .capsule)
+        .padding(.bottom, 6)
     }
 
     /// In „Zuletzt gelöscht“ wie bei Apple: Löschen · verbleibende Tage · Wiederherstellen.

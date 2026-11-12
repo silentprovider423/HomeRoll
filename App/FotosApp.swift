@@ -149,7 +149,8 @@ final class AppModel {
     // Auswahl
     var selecting = false
     var selected: Set<String> = []
-    func toggle(_ id: String) { if selected.contains(id) { selected.remove(id) } else { selected.insert(id) } }
+    /// Noch nicht gesicherte iPhone-Fotos lassen sich nicht auswählen (Aktionen laufen über den Server)
+    func toggle(_ id: String) { guard !id.hasPrefix(LocalPending.prefix) else { return }; if selected.contains(id) { selected.remove(id) } else { selected.insert(id) } }
     func endSelection() { selecting = false; selected = [] }
 
     /// Kurze Statusanzeige (z. B. „Wird vorbereitet …“ beim Teilen).

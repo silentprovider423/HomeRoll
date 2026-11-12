@@ -40,6 +40,9 @@ struct RootView: View {
             if ProcessInfo.processInfo.environment["FOTOS_BACKUP_NOW"] != nil, BackupEngine.shared.needsConsent { BackupEngine.shared.consent(true) }
             #endif
             if BackupEngine.shared.needsConsent { backupConsent = true }
+            LocalPending.shared.timeline = timeline
+            LibraryWatcher.shared.start()
+            LocalPending.shared.refresh()
             BackupEngine.shared.runIfDue()
             WidgetFeeder.syncAccess()
             OfflineSync.shared.timeline = timeline
@@ -55,7 +58,10 @@ struct RootView: View {
         .onChange(of: perfScreen, initial: true) { _, s in PerfLog.setScreen(s) }
         .onChange(of: phase) { _, p in
             // erst nachladen, wenn das Konto feststeht (beim Start erledigt das .task)
-            if p == .active, !app.userID.isEmpty { BackupEngine.shared.runIfDue(); Task { await timeline.reload(); OfflineSync.shared.kick() } }
+            if p == .active, !app.userID.isEmpty {
+                LibraryWatcher.shared.start(); LocalPending.shared.refresh()
+                BackupEngine.shared.runIfDue(); Task { await timeline.reload(); OfflineSync.shared.kick() }
+            }
             // wie Fotos: geschützte Alben sperren sich wieder, sobald die App in den Hintergrund geht
             guard p == .background else { return }
             BackupEngine.shared.schedule()

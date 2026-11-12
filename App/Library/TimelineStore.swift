@@ -65,6 +65,15 @@ final class TimelineStore {
 
     var totalCount: Int { buckets.reduce(0) { $0 + $1.count } }
 
+    /// Neue iPhone-Fotos, die noch nicht auf dem Server sind (LocalPending) – stehen am Ende des Rasters „Alle“.
+    /// Nicht in `allLoaded`: Sammlungen, Suche usw. arbeiten nur mit Server-Objekten.
+    @ObservationIgnored private(set) var localAssets: [Asset] = []
+    func setLocal(_ a: [Asset]) {
+        guard a != localAssets else { return }
+        localAssets = a
+        scheduleRebuild()
+    }
+
     /// Objekt per Kennung über das Raster-Verzeichnis – `allLoaded.filter` ging bei 85 000 Objekten jedes Mal alle
     /// durch (gemessen ~25 ms für „Zuletzt angesehen“ je Tastendruck, ~7 ms je Auswahl-Änderung).
     func asset(_ id: String) -> Asset? {
@@ -305,17 +314,18 @@ final class TimelineStore {
             await prev?.value
             guard builtRevision != contentRevision else { return }
             let rev = contentRevision
-            let bs = buckets, lists = bs.map { data[$0.timeBucket]?.assets }
-            let (all, cells, idx) = await Task.detached(priority: .userInitiated) { Self.build(bs, lists) }.value
+            let bs = buckets, lists = bs.map { data[$0.timeBucket]?.assets }, local = localAssets
+            let (all, cells, idx) = await Task.detached(priority: .userInitiated) { Self.build(bs, lists, local) }.value
             allLoaded = all; gridCells = cells; gridIndex = idx
             builtRevision = rev
             version += 1
+            if !localAssets.isEmpty { LocalPending.shared.refresh() }
         }
         rebuildChain = t
         await t.value
     }
 
-    private nonisolated static func build(_ bs: [TimeBucket], _ lists: [[Asset]?]) -> ([Asset], [GridItemRef], [String: Int]) {
+    private nonisolated static func build(_ bs: [TimeBucket], _ lists: [[Asset]?], _ local: [Asset] = []) -> ([Asset], [GridItemRef], [String: Int]) {
         let total = bs.reduce(0) { $0 + $1.count }
         var all: [Asset] = []; all.reserveCapacity(total)
         var cells: [GridItemRef] = []; cells.reserveCapacity(total)
@@ -327,6 +337,8 @@ final class TimelineStore {
                 cells += (0..<b.count).map { .placeholder(bucket: b.timeBucket, index: $0) }
             }
         }
+        // iPhone-Fotos ohne Server-Gegenstück: die neuesten Aufnahmen → ganz unten wie in Fotos
+        cells += local.sorted { $0.date < $1.date }.map { .asset($0, bucket: "local") }
         var idx: [String: Int] = [:]; idx.reserveCapacity(cells.count)
         for (i, c) in cells.enumerated() { idx[c.id] = i }
         return (all, cells, idx)

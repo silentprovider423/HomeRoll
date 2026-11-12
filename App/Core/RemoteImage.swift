@@ -115,6 +115,11 @@ final class ImageCache: @unchecked Sendable {
             let t = Task<UIImage?, Never> { [weak self] in
                 // nur den eigenen Eintrag entfernen (nach einem Abbruch kann schon ein neuer Download laufen)
                 defer { self?.lock.withLock { if self?.inflight[key]?.token == token { self?.inflight.removeValue(forKey: key) } } }
+                if id.hasPrefix(LocalPending.prefix) {
+                    let img = await LocalPending.image(String(id.dropFirst(LocalPending.prefix.count)), size)
+                    if let img { self?.set(key, img) }
+                    return img
+                }
                 if let i = await self?.loadStored(id, size) { return i }
                 guard !Task.isCancelled, let self else { return nil }
                 if !self.isMissing(id), let url = ImmichClient.shared.thumbnailURL(id, size),

@@ -14,6 +14,8 @@ import BackgroundTasks
 final class BackupEngine {
     static let shared = BackupEngine()
     nonisolated static let taskID = "org.homeroll.app.backup"
+    /// Kurzer Hintergrund-Auftrag (wie die Immich-App): neue Fotos einreihen, auch ohne Ladekabel
+    nonisolated static let refreshID = "org.homeroll.app.refresh"
 
     enum Phase: Equatable { case idle, scanning, uploading, done, failed(String) }
 
@@ -28,6 +30,13 @@ final class BackupEngine {
     }
     var wifiOnly = UserDefaults.standard.object(forKey: "backup.wifiOnly") as? Bool ?? true { didSet { save() } }
     var fullLibrary = UserDefaults.standard.bool(forKey: "backup.full") { didSet { save() } }
+    /// Großer Hintergrund-Lauf nur am Ladekabel (vorher immer so); aus = auch im Akkubetrieb, wenn iOS es zulässt
+    var chargingOnly = UserDefaults.standard.bool(forKey: "backup.chargingOnly") { didSet { save(); schedule() } }
+    /// Gerade übertragenes iPhone-Foto und sein Fortschritt (0…1) – für den Ring auf der Kachel
+    var currentLocalID: String?
+    var progress: Double = 0 { didSet { LocalPending.shared.progressChanged() } }
+    /// Während eines Laufs kam ein neues Foto dazu → danach gleich noch einmal
+    @ObservationIgnored private var rerun = false
     /// Bis hierher ist die Mediathek schon auf dem Server (eigener Import); nil = ganze Mediathek sichern.
     var importCutoff = UserDefaults.standard.object(forKey: "backup.importCutoff") as? Date { didSet { save() } }
     var lastRun = UserDefaults.standard.object(forKey: "backup.lastRun") as? Date
@@ -83,7 +92,7 @@ final class BackupEngine {
     private func save() {
         let d = UserDefaults.standard
         d.set(enabled, forKey: "backup.enabled"); d.set(wifiOnly, forKey: "backup.wifiOnly"); d.set(fullLibrary, forKey: "backup.full")
-        d.set(importCutoff, forKey: "backup.importCutoff")
+        d.set(importCutoff, forKey: "backup.importCutoff"); d.set(chargingOnly, forKey: "backup.chargingOnly")
     }
 
     // MARK: Start / Hintergrund
@@ -94,6 +103,26 @@ final class BackupEngine {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: taskID, using: .main) { t in
             nonisolated(unsafe) let task = t   // läuft auf .main, wird nur dort benutzt
             MainActor.assumeIsolated { BackupEngine.shared.handle(task) }
+        }
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: refreshID, using: .main) { t in
+            nonisolated(unsafe) let task = t
+            MainActor.assumeIsolated { BackupEngine.shared.handleRefresh(task) }
+        }
+    }
+
+    /// Kurzer Auftrag (iOS gibt ~30 s): neue Fotos prüfen und an die Hintergrund-Übertragung übergeben – die läuft
+    /// nach dem Ende des Auftrags im System weiter, `adopt` trägt das Ergebnis später ein.
+    private func handleRefresh(_ t: BGTask) {
+        t.expirationHandler = { Task { @MainActor in BackupEngine.shared.cancel() } }
+        Task {
+            if !paused {
+                start()
+                let deadline = Date().addingTimeInterval(22)
+                while running, Date() < deadline { try? await Task.sleep(for: .milliseconds(500)) }
+                cancel()
+            }
+            t.setTaskCompleted(success: true)
+            schedule()
         }
     }
 
@@ -112,15 +141,24 @@ final class BackupEngine {
         guard enabled, !hardOff else { BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.taskID); return }
         let r = BGProcessingTaskRequest(identifier: Self.taskID)
         r.requiresNetworkConnectivity = true
-        r.requiresExternalPower = true
+        r.requiresExternalPower = chargingOnly
         r.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
         try? BGTaskScheduler.shared.submit(r)
+        let q = BGAppRefreshTaskRequest(identifier: Self.refreshID)
+        q.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        try? BGTaskScheduler.shared.submit(q)
     }
 
-    /// Im Vordergrund: höchstens alle 10 Minuten automatisch.
+    /// Beim Öffnen der App: jedes Mal abgleichen (nur Neues kostet Zeit), höchstens alle 30 s.
     func runIfDue() {
-        guard enabled, !paused, !running, !needsConsent, Date().timeIntervalSince(lastRun ?? .distantPast) > 600 else { return }
+        guard enabled, !paused, !running, !needsConsent, Date().timeIntervalSince(lastRun ?? .distantPast) > 30 else { return }
         start()
+    }
+
+    /// Neues Foto oder Bildschirmfoto, während die App offen ist (LibraryWatcher) → gleich sichern.
+    func libraryChanged() {
+        guard enabled, !paused, !needsConsent, !hardOff else { return }
+        if running { rerun = true } else { start() }
     }
 
     func start() {
@@ -130,6 +168,7 @@ final class BackupEngine {
             // gilt als nicht gesichert und kommt beim nächsten Lauf dran)
             let bg = UIApplication.shared.beginBackgroundTask(withName: "backup") { BackupEngine.shared.cancel() }
             await run()
+            while rerun, !Task.isCancelled { rerun = false; await run() }
             UIApplication.shared.endBackgroundTask(bg)
         }
     }
@@ -197,6 +236,8 @@ final class BackupEngine {
             if Task.isCancelled { break }
             if inFlight.contains(a.localIdentifier) { continue }   // läuft schon im Hintergrund (frühere Sitzung)
             current = PHAssetResource.assetResources(for: a).first?.originalFilename ?? ""
+            currentLocalID = a.localIdentifier; progress = 0
+            defer { currentLocalID = nil; LocalPending.shared.refresh() }
             do {
                 if let r = try await backup(a) {
                     let (id, edited, isNew) = r
@@ -422,6 +463,9 @@ final class BackupEngine {
         if let d = try? JSONEncoder().encode(state) { try? d.write(to: stateURL, options: .atomic) }
     }
     var backedUpCount: Int { state.count }
+    /// Für die Mediathek: Sicherungsstand dieses Kontos kennen, ohne einen Lauf zu starten
+    func useAccount(_ user: String) { if !user.isEmpty { loadState(user: user) } }
+    func remoteID(forLocal lid: String) -> String? { state[lid]?.remote }
 
     // MARK: Speicher freigeben (für FreeUpSection)
 
