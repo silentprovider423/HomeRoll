@@ -129,6 +129,7 @@ struct LibraryHeader: View {
             Button(String(localized: "Verkleinern"), systemImage: "minus.magnifyingglass") { step(1) }.disabled(app.columns >= GridZoom.steps.last!)
             Toggle(isOn: $app.aspectGrid) { Label(String(localized: "Seitenverhältnisraster"), systemImage: "aspectratio") }
             Toggle(isOn: $app.autoplay) { Label(String(localized: "Videos & Live Photos automatisch abspielen"), systemImage: "play.square") }
+            Toggle(isOn: $app.alwaysOriginal) { Label(String(localized: "Original immer anzeigen (HDR)"), systemImage: "sun.max") }
             Section(String(localized: "Anzeigen:")) {
                 Toggle(isOn: $app.showScreenshots) { Label(String(localized: "Bildschirmfotos"), systemImage: "camera.viewfinder") }
                 Toggle(isOn: $app.showShared) { Label(String(localized: "Mit dir geteilt"), systemImage: "person.2") }

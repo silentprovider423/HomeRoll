@@ -472,10 +472,11 @@ private struct ZoomableImage: View {
             try? await Task.sleep(for: .seconds(3))
             if vitality != nil { withAnimation(.easeOut(duration: 0.3)) { vitality = nil } }
         }
-        .task(id: analysis != nil) {
-            // nur das gerade gezeigte Foto, kurz verzögert (beim schnellen Wischen nichts laden)
-            guard analysis != nil, full == nil else { return }
-            try? await Task.sleep(for: .milliseconds(350))
+        .task(id: "\(analysis != nil)\(app.alwaysOriginal || scale > 1.01)") {
+            // nur das gerade gezeigte Foto, kurz verzögert (beim schnellen Wischen nichts laden);
+            // „Original immer anzeigen“ aus → erst beim Hineinzoomen (Immichs Vorschau ist ohne HDR)
+            guard analysis != nil, full == nil, app.alwaysOriginal || scale > 1.01 else { return }
+            try? await Task.sleep(for: .milliseconds(app.alwaysOriginal ? 200 : 0))
             guard !Task.isCancelled, let img = await OriginalImages.shared.load(asset.id) else { return }
             withAnimation(.easeOut(duration: 0.2)) { full = img; spatialAvailable = OriginalImages.shared.hasDepth(asset.id) }
         }

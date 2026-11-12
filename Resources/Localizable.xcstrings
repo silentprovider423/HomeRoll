@@ -1,6 +1,46 @@
 {
   "sourceLanguage": "de",
   "strings": {
+    "Gesichert, wird verarbeitet …": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backed up, processing …"
+          }
+        }
+      }
+    },
+    "Noch nicht gesichert": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not backed up yet"
+          }
+        }
+      }
+    },
+    ", noch nicht gesichert": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ", not backed up yet"
+          }
+        }
+      }
+    },
+    "Original immer anzeigen (HDR)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always Show Original (HDR)"
+          }
+        }
+      }
+    },
     "1 Objekt passt": {
       "localizations": {
         "en": {

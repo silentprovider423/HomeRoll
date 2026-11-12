@@ -136,6 +136,9 @@ final class AppModel {
     var filter = LibraryFilter(rawValue: UserDefaults.standard.string(forKey: "lib.filter") ?? "") ?? .all { didSet { save() } }
     var aspectGrid = UserDefaults.standard.bool(forKey: "lib.aspect") { didSet { save() } }
     var autoplay = UserDefaults.standard.object(forKey: "lib.autoplay") as? Bool ?? true { didSet { UserDefaults.standard.set(autoplay, forKey: "lib.autoplay") } }
+    /// Einzelansicht: Original (HDR/Gain-Map, volle Auflösung) gleich laden statt nur Immichs SDR-Vorschau (GitHub #36);
+    /// aus = Original erst beim Hineinzoomen (spart Daten)
+    var alwaysOriginal = UserDefaults.standard.object(forKey: "viewer.alwaysOriginal") as? Bool ?? true { didSet { UserDefaults.standard.set(alwaysOriginal, forKey: "viewer.alwaysOriginal") } }
     var showScreenshots = UserDefaults.standard.object(forKey: "lib.showShots") as? Bool ?? true { didSet { save() } }
     var showShared = UserDefaults.standard.object(forKey: "lib.showShared") as? Bool ?? true { didSet { save() } }
     var columns = GridZoom.normalized(UserDefaults.standard.object(forKey: "lib.columns") as? Int ?? 3) { didSet { save() } }

@@ -87,7 +87,8 @@ final class BackupEngine {
     }
 
     /// `tagged`: Kategorie-Tags (Bildschirmfotos, Panoramen …) sind sicher auf dem Server; nil = noch nachholen.
-    struct Entry: Codable { var remote: String; var edited: String?; var tagged: Bool? }
+    /// `editedAt`: Stand der Bearbeitung (Änderungsdatum in Fotos), die als `edited` auf dem Server liegt.
+    struct Entry: Codable { var remote: String; var edited: String?; var tagged: Bool?; var editedAt: Date? }
 
     private func save() {
         let d = UserDefaults.standard
@@ -241,7 +242,7 @@ final class BackupEngine {
             do {
                 if let r = try await backup(a) {
                     let (id, edited, isNew) = r
-                    state[a.localIdentifier] = Entry(remote: id, edited: edited)
+                    state[a.localIdentifier] = Entry(remote: id, edited: edited, editedAt: edited != nil ? a.modificationDate : nil)
                     if isNew { uploaded += 1 } else { duplicates += 1 }
                     saveState()
                     // Tags sofort setzen, nicht erst am Ende des Laufs: wird die App vorher beendet,
@@ -262,10 +263,59 @@ final class BackupEngine {
             }
             finished += 1
         }
+        if !Task.isCancelled { await syncEdits() }
         current = ""
         lastRun = Date(); UserDefaults.standard.set(lastRun, forKey: "backup.lastRun")
         storedPending = max(0, total - uploaded - duplicates); UserDefaults.standard.set(storedPending, forKey: "backup.pending")
         phase = Task.isCancelled ? .idle : .done
+    }
+
+    // MARK: Bearbeitungen aus Fotos nachziehen (Änderungs-Token, ab iOS 16)
+
+    /// Token je Konto: welche Fotos sich seit dem letzten Lauf in Fotos geändert haben (statt alles zu vergleichen)
+    private var tokenKey: String { "backup.changeToken.\(stateUser)" }
+
+    /// Fotos, die nach dem Sichern in Apples Fotos bearbeitet wurden: neue Fassung hochladen und auf den Stapel
+    /// über das Original legen (wie beim ersten Sichern). Ohne gespeichertes Token nur das Token merken.
+    private func syncEdits() async {
+        let lib = PHPhotoLibrary.shared()
+        let now = lib.currentChangeToken
+        defer { if let d = try? NSKeyedArchiver.archivedData(withRootObject: now, requiringSecureCoding: true) { UserDefaults.standard.set(d, forKey: tokenKey) } }
+        guard let raw = UserDefaults.standard.data(forKey: tokenKey),
+              let since = try? NSKeyedUnarchiver.unarchivedObject(ofClass: PHPersistentChangeToken.self, from: raw),
+              let changes = try? lib.fetchPersistentChanges(since: since) else { return }   // abgelaufen → ab jetzt neu
+        var updated: Set<String> = []
+        for c in changes {
+            if let d = try? c.changeDetails(for: .asset) { updated.formUnion(d.updatedLocalIdentifiers) }
+        }
+        let ids = updated.filter { state[$0] != nil }
+        guard !ids.isEmpty else { return }
+        let api = ImmichClient.shared
+        for lid in ids {
+            if Task.isCancelled { return }
+            guard var e = state[lid], let a = PHAsset.fetchAssets(withLocalIdentifiers: [lid], options: nil).firstObject else { continue }
+            let res = PHAssetResource.assetResources(for: a)
+            guard let full = res.first(where: { $0.type == (a.mediaType == .video ? .fullSizeVideo : .fullSizePhoto) }),
+                  let main = res.first(where: { $0.type == (a.mediaType == .video ? .video : .photo) }) else { continue }
+            // nur wenn sich die Bearbeitung seit dem letzten Hochladen geändert hat
+            let stamp = a.modificationDate ?? Date()
+            if let done = e.editedAt, done >= stamp { continue }
+            if e.edited != nil, e.editedAt == nil { e.editedAt = stamp; state[lid] = e; continue }   // Altbestand: nichts doppelt
+            current = main.originalFilename; currentLocalID = lid; progress = 0
+            defer { currentLocalID = nil }
+            var x: [String: String] = [:]
+            if a.isFavorite { x["isFavorite"] = "true" }
+            if a.isHidden { x["visibility"] = "archive" }
+            let stem = (main.originalFilename as NSString).deletingPathExtension
+            let ext = (full.originalFilename as NSString).pathExtension
+            guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
+            else { continue }
+            if r.isNew { try? await api.createStack([r.id, e.remote]); try? await api.tag([r.id], with: "Kategorie/Bearbeitet") }
+            e.edited = r.id; e.editedAt = stamp; state[lid] = e
+            saveState()
+            uploaded += r.isNew ? 1 : 0
+        }
+        LocalPending.shared.reloadSoon()
     }
 
     /// Ein Objekt sichern → (Server-ID, ID der bearbeiteten Fassung, neu hochgeladen?) oder nil = übersprungen.
