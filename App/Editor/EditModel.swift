@@ -1163,7 +1163,7 @@ final class EditSession {
         }.value
         guard let jpeg else { throw APIError.http(0, String(localized: "Bild konnte nicht berechnet werden")) }
         let orig = try await api.asset(originalID)
-        let name = ((orig.originalFileName ?? "IMG") as NSString).deletingPathExtension + "_bearbeitet.jpg"
+        let name = ((orig.originalFileName ?? "IMG") as NSString).deletingPathExtension + Category.editedSuffix + ".jpg"
         let newID = try await api.upload(jpeg, filename: name, created: orig.fileCreatedAt)
         if isCopy { try await dropCopy() }
         if hadServerEdits { try? await api.removeEdits(originalID) }

@@ -308,7 +308,7 @@ final class BackupEngine {
             if a.isHidden { x["visibility"] = "archive" }
             let stem = (main.originalFilename as NSString).deletingPathExtension
             let ext = (full.originalFilename as NSString).pathExtension
-            guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
+            guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)\(Category.editedSuffix).\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
             else { continue }
             if r.isNew { try? await api.createStack([r.id, e.remote]); try? await api.tag([r.id], with: "Kategorie/Bearbeitet") }
             e.edited = r.id; e.editedAt = stamp; state[lid] = e
@@ -351,7 +351,7 @@ final class BackupEngine {
             if a.isHidden { e["visibility"] = "archive" }
             let stem = (main.originalFilename as NSString).deletingPathExtension
             let ext = (full.originalFilename as NSString).pathExtension
-            let er = try await send(full, of: a, network: true, extra: e, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
+            let er = try await send(full, of: a, network: true, extra: e, name: "\(stem)\(Category.editedSuffix).\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
             if er.isNew { try? await api.createStack([er.id, r.id]) }
             editedID = er.id
         }

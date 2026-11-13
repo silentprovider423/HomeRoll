@@ -433,7 +433,7 @@ enum MemoryEngine {
         let byCity = Dictionary(grouping: photos.filter { $0.city != nil }) { $0.city! }
         for (city, list) in byCity.sorted(by: { $0.value.count > $1.value.count }).prefix(6) {
             let years = Set(list.map { cal.component(.year, from: $0.date) })
-            if years.count >= 3 { add("city-\(city)", "\(city) im Laufe der Jahre", list, min: 15, max: 45, place: city) }
+            if years.count >= 3 { add("city-\(city)", String(localized: "\(city) im Laufe der Jahre"), list, min: 15, max: 45, place: city) }
         }
 
         // 6. Selbst erstellte (oben, neueste zuerst)
