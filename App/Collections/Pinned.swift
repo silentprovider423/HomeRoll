@@ -2,10 +2,10 @@ import SwiftUI
 
 /// Abschnitte der Sammlungen (Reihenfolge per „Neu anordnen“ änderbar).
 enum Sec: String, CaseIterable {
-    case memories, pinned, albums, people, featured, recentDays, trips, mediaTypes, others
+    case memories, pinned, albums, folders, people, featured, recentDays, trips, mediaTypes, others
     var title: String {
         switch self {
-        case .memories: String(localized: "Rückblicke"); case .pinned: String(localized: "Angepinnt"); case .albums: String(localized: "Alben"); case .people: String(localized: "Personen")
+        case .memories: String(localized: "Rückblicke"); case .pinned: String(localized: "Angepinnt"); case .albums: String(localized: "Alben"); case .folders: String(localized: "Ordner"); case .people: String(localized: "Personen")
         case .featured: String(localized: "Empfohlene Fotos"); case .recentDays: String(localized: "Letzte Tage"); case .trips: String(localized: "Reisen")
         case .mediaTypes: String(localized: "Medienarten"); case .others: String(localized: "Sonstige")
         }

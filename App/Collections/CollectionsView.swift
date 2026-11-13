@@ -7,6 +7,8 @@ enum CollectionRoute: Hashable {
     case album(AlbumRef), person(PersonRef)
     case allAlbums, allPeople, allTrips, allMemories, allMediaTypes, allOthers, allPinned
     case albumFolder(String)
+    /// Server-Ordner (GitHub #42): Übersicht eines Ordners bzw. nur seine Fotos
+    case folder(String), folderPhotos(String)
     /// intelligentes Album (ID)
     case smart(String)
 }
@@ -53,6 +55,7 @@ final class CollectionsModel {
         async let r = try? c.random(size: 12)
         async let mk = try? c.mapMarkers()
         async let me = try? c.me()
+        async let folders: Void = FolderStore.shared.load()
         memories = (await m ?? []).filter { !$0.assets.isEmpty }
         if let a = await a { albums = a; AlbumNames.byID = Dictionary(a.map { ($0.id, $0.albumName) }, uniquingKeysWith: { x, _ in x }) }
         people = (await p ?? []).filter { !$0.name.isEmpty } + (await p ?? []).filter { $0.name.isEmpty }
@@ -67,6 +70,7 @@ final class CollectionsModel {
         }
         featured = picks
         markers = await mk ?? []
+        await folders
         userName = (await me)?.name ?? ""
         loaded = true
         // danach einzeln prüfen (Fotos ohne KI-Merkmale fängt die Suche oben nicht)
@@ -156,6 +160,10 @@ struct CollectionsView: View {
         case .memories: section(String(localized: "Rückblicke"), route: .allMemories) { memoriesRow }
         case .pinned: section(String(localized: "Angepinnt"), route: .allPinned, edit: true) { pinnedRow }
         case .albums: section(String(localized: "Alben"), route: model.albums.isEmpty ? nil : .allAlbums) { albumsRow }
+        case .folders:
+            if !FolderStore.shared.paths.isEmpty {
+                section(String(localized: "Ordner"), route: .folder(FolderStore.shared.root)) { foldersRow }
+            }
         case .people: section(String(localized: "Personen"), route: model.people.isEmpty ? nil : .allPeople) { peopleRow }
         case .featured: if !model.featured.isEmpty { section(String(localized: "Empfohlene Fotos")) { featuredRow } }
         case .recentDays: section(String(localized: "Letzte Tage")) { recentDaysRow }
@@ -342,6 +350,14 @@ struct CollectionsView: View {
                 }
                 .buttonStyle(.plain)
                 .albumContextMenu(a)
+            }
+        }
+    }
+
+    private var foldersRow: some View {
+        row {
+            ForEach(FolderStore.shared.children(of: FolderStore.shared.root).prefix(30), id: \.self) { f in
+                NavigationLink(value: CollectionRoute.folder(f)) { FolderCard(path: f) }.buttonStyle(.plain)
             }
         }
     }

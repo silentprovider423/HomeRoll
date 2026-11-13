@@ -298,6 +298,10 @@ final class ImmichClient: NSObject, URLSessionDelegate, @unchecked Sendable {
     }
 
     func albums() async throws -> [AlbumDTO] { try await request("albums") }
+    /// Ordner, in denen der Server Fotos ablegt (externe Bibliotheken: echte Ordnerstruktur)
+    func folderPaths() async throws -> [String] { try await request("view/folder/unique-paths") }
+    /// Fotos direkt in einem Ordner (ohne Unterordner)
+    func folderAssets(_ path: String) async throws -> [AssetDTO] { try await request("view/folder", query: ["path": path]) }
     func people() async throws -> [PersonDTO] {
         let p: PeopleDTO = try await request("people", query: ["withHidden": "false"])
         return p.people.filter { !($0.isHidden ?? false) }

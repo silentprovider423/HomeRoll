@@ -1,6 +1,36 @@
 {
   "sourceLanguage": "de",
   "strings": {
+    "Ordner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folders"
+          }
+        }
+      }
+    },
+    "Fotos in diesem Ordner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photos in This Folder"
+          }
+        }
+      }
+    },
+    "%lld Ordner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Folders"
+          }
+        }
+      }
+    },
     "Gesichert, wird verarbeitet …": {
       "localizations": {
         "en": {
