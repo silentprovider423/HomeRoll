@@ -310,7 +310,12 @@ final class BackupEngine {
             let ext = (full.originalFilename as NSString).pathExtension
             guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
             else { continue }
-            if r.isNew { try? await api.createStack([r.id, e.remote]); try? await api.tag([r.id], with: "Kategorie/Bearbeitet") }
+            if r.isNew {
+                try? await api.createStack([r.id, e.remote]); try? await api.tag([r.id], with: "Kategorie/Bearbeitet")
+                // Erneut bearbeitet: Der neue Stapel nimmt dem alten das Original weg, die frühere Fassung stünde dann
+                // allein in der Mediathek. Wie im Editor der App ersetzt die neue Fassung sie → frühere in den Papierkorb.
+                if let previous = e.edited, previous != r.id { try? await api.trash([previous]) }
+            }
             e.edited = r.id; e.editedAt = stamp; state[lid] = e
             saveState()
             uploaded += r.isNew ? 1 : 0
