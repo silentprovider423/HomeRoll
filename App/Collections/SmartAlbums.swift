@@ -122,7 +122,7 @@ struct SmartAlbumEditor: View {
             }
             .task {
                 people = ((try? await ImmichClient.shared.people()) ?? []).filter { !$0.name.isEmpty }
-                tags = ((try? await ImmichClient.shared.tags()) ?? []).sorted { $0.value < $1.value }
+                tags = ((try? await ImmichClient.shared.tags()) ?? []).sorted { Category.displayName(forTag: $0.value) < Category.displayName(forTag: $1.value) }
             }
             .task(id: album.conditions) {
                 try? await Task.sleep(for: .milliseconds(400))
@@ -150,7 +150,7 @@ struct SmartAlbumEditor: View {
         case .tag:
             Picker(String(localized: "Schlagwort"), selection: c.text) {
                 Text(String(localized: "Auswählen …")).tag("")
-                ForEach(tags, id: \.id) { Text($0.value).tag($0.id) }
+                ForEach(tags, id: \.id) { Text(Category.displayName(forTag: $0.value)).tag($0.id) }
             }
         default:
             TextField(String(localized: "Wert"), text: c.text).textInputAutocapitalization(.never).autocorrectionDisabled()

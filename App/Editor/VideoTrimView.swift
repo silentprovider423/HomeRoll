@@ -274,7 +274,7 @@ struct VideoTrimView: View {
             try await ex.export(to: out, as: .mov)
             }
             saving = String(localized: "Wird gesichert …")
-            let name = ((dto.originalFileName ?? "VIDEO") as NSString).deletingPathExtension + "_bearbeitet.mov"
+            let name = ((dto.originalFileName ?? "VIDEO") as NSString).deletingPathExtension + Category.editedSuffix + ".mov"
             let sum = try Self.sha1(out)
             let iso = ISO8601DateFormatter().string(from: Date())
             let r = try await api.uploadAsset(file: out, filename: name, uti: "com.apple.quicktime-movie",

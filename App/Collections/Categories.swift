@@ -52,8 +52,10 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
     /// Name des Tags unter „Kategorie/…“ (gleiche Namen setzt später auch die App beim Sichern).
     var tag: String? {
         switch self {
-        case .selfies, .livePhotos, .panoramas, .bursts, .screenshots, .screenRecordings, .animated, .receipts,
-             .handwriting, .illustrations, .documents: title
+        // feste (deutsche) Namen wie auf dem Server – nicht `title`, das ist übersetzt
+        case .selfies: "Selfies"; case .livePhotos: "Live Photos"; case .panoramas: "Panoramen"; case .bursts: "Serien"
+        case .screenshots: "Bildschirmfotos"; case .screenRecordings: "Bildschirmaufnahmen"; case .animated: "Animiert"
+        case .receipts: "Belege"; case .handwriting: "Handschrift"; case .illustrations: "Illustrationen"; case .documents: "Dokumente"
         case .portrait: "Porträt"; case .timelapse: "Zeitraffer"; case .slomo: "Slo-Mo"; case .cinematic: "Kino"
         case .raw: "RAW"; case .prores: "ProRes"; case .qrCodes: "QR-Codes"; case .imports: "Importe"
         case .recentlyEdited: "Bearbeitet"   // setzt der Editor der App
@@ -62,6 +64,23 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
     }
 
     var locked: Bool { self == .hidden || self == .trash }
+
+    /// Anhang an den Dateinamen bearbeiteter Fassungen (in der Sprache des iPhones; liest niemand zurück).
+    static var editedSuffix: String { String(localized: "_bearbeitet", comment: "Anhang an Dateinamen bearbeiteter Fotos") }
+
+    /// Server-Tag „Kategorie/<Name>“ in der Sprache des iPhones anzeigen (gespeichert bleibt der deutsche Name).
+    static func displayName(forTag value: String) -> String {
+        let prefix = "Kategorie/"
+        guard value.hasPrefix(prefix) else { return value }
+        let name = String(value.dropFirst(prefix.count))
+        let shown: String
+        switch name {
+        case "Bearbeitet": shown = String(localized: "Bearbeitet")
+        case "Bereinigt": shown = String(localized: "Bereinigt")
+        default: shown = allCases.first { $0.tag == name }?.title ?? name
+        }
+        return String(localized: "Kategorie") + "/" + shown
+    }
 
     /// Suchwörter, mit denen die Suche direkt auf die Kategorie springt.
     var synonyms: [String] {

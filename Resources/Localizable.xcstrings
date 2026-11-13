@@ -7851,6 +7851,37 @@
           }
         }
       }
+    },
+    "Kategorie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
+          }
+        }
+      }
+    },
+    "Bereinigt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleaned Up"
+          }
+        }
+      }
+    },
+    "_bearbeitet": {
+      "comment": "Anhang an Dateinamen bearbeiteter Fotos",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "_edited"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
