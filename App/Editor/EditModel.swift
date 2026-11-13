@@ -1165,6 +1165,7 @@ final class EditSession {
         let orig = try await api.asset(originalID)
         let name = ((orig.originalFileName ?? "IMG") as NSString).deletingPathExtension + "_bearbeitet.jpg"
         let newID = try await api.upload(jpeg, filename: name, created: orig.fileCreatedAt)
+        Self.keepCaptureTime(newID, of: orig)
         if isCopy { try await dropCopy() }
         if hadServerEdits { try? await api.removeEdits(originalID) }
         let stateJSON = String(data: try JSONEncoder().encode(state), encoding: .utf8) ?? "{}"
@@ -1179,6 +1180,14 @@ final class EditSession {
         let ratio = state.angle % 180 == 0 ? cropped : 1 / cropped
         return Asset(id: newID, isImage: true, isFavorite: asset.isFavorite, date: asset.date, ratio: ratio,
                      durationMs: nil, livePhotoVideoId: nil, city: asset.city, country: asset.country)
+    }
+
+    /// Aufnahmezeit des Originals mit Zeitzone übernehmen (wie beim Kürzen von Videos). Sonst gilt `fileCreatedAt`
+    /// (UTC), wenn die Datei selbst keine Zeitzone trägt (Bildschirmfotos, PNG, iCloud-Importe) → Uhrzeit verschoben.
+    /// Setzen + prüfen übernimmt `setCaptureTime` (der Server liest die Datei erst nach dem Hochladen aus).
+    private static func keepCaptureTime(_ id: String, of orig: AssetDTO) {
+        guard let when = orig.captureTimeWithZone else { return }
+        ImmichClient.shared.setCaptureTime(id, when)
     }
 
     /// Der Server rechnet die neue Vorschau im Hintergrund – warten, bis sich ihr Fingerabdruck (Thumbhash) ändert.
@@ -1211,6 +1220,7 @@ final class EditSession {
         let orig = try await api.asset(originalID)
         let name = ((orig.originalFileName ?? "IMG") as NSString).deletingPathExtension + "_kopie.jpg"
         let id = try await api.upload(jpeg, filename: name, created: orig.fileCreatedAt)
+        Self.keepCaptureTime(id, of: orig)
         try? await api.tag([id], with: "Kategorie/Bearbeitet")
         return try await api.asset(id).asset
     }

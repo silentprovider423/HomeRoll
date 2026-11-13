@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Photos
+import ImageIO
 import CryptoKit
 import BackgroundTasks
 
@@ -308,7 +309,8 @@ final class BackupEngine {
             if a.isHidden { x["visibility"] = "archive" }
             let stem = (main.originalFilename as NSString).deletingPathExtension
             let ext = (full.originalFilename as NSString).pathExtension
-            guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
+            let local = Self.needsLocalDate(a, full) ? Self.localISO(a.creationDate ?? Date()) : nil
+            guard let r = try? await send(full, of: a, network: true, extra: x, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited", localDate: local)
             else { continue }
             if r.isNew { try? await api.createStack([r.id, e.remote]); try? await api.tag([r.id], with: "Kategorie/Bearbeitet") }
             e.edited = r.id; e.editedAt = stamp; state[lid] = e
@@ -338,10 +340,8 @@ final class BackupEngine {
         if a.isHidden { extra["visibility"] = "archive" }
         if a.mediaType == .video { extra["duration"] = String(Int(a.duration * 1000)) }
         // Bildschirmfotos (PNG) und Videos tragen keine Zeitzone → Immich zeigte sonst UTC (wie beim iCloud-Import).
-        let needsLocal = a.mediaType == .video || a.mediaSubtypes.contains(.photoScreenshot) || main.uniformTypeIdentifier == "public.png"
-        let local = needsLocal ? Self.localISO(a.creationDate ?? Date()) : nil
+        let local = Self.needsLocalDate(a, main) ? Self.localISO(a.creationDate ?? Date()) : nil
         let r = try await send(main, of: a, network: allowNetwork, extra: extra, localDate: local)
-        if r.isNew, let local { try? await api.update([r.id], ["dateTimeOriginal": local]) }
 
         // Bearbeitung aus Fotos: gerenderte Fassung oben auf den Stapel (nur für neue Objekte).
         var editedID: String?
@@ -351,7 +351,8 @@ final class BackupEngine {
             if a.isHidden { e["visibility"] = "archive" }
             let stem = (main.originalFilename as NSString).deletingPathExtension
             let ext = (full.originalFilename as NSString).pathExtension
-            let er = try await send(full, of: a, network: true, extra: e, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited")
+            let elocal = Self.needsLocalDate(a, full) ? Self.localISO(a.creationDate ?? Date()) : nil
+            let er = try await send(full, of: a, network: true, extra: e, name: "\(stem)_bearbeitet.\(ext.isEmpty ? "jpg" : ext)", kind: "edited", localDate: elocal)
             if er.isNew { try? await api.createStack([er.id, r.id]) }
             editedID = er.id
         }
@@ -367,6 +368,11 @@ final class BackupEngine {
         let sha1 = try await Task.detached { try Self.sha1(of: file) }.value
         let api = ImmichClient.shared
         if let existing = try await api.bulkUploadCheck(id: a.localIdentifier, checksum: sha1) { return (existing, false) }
+        // Von Fotos gerenderte Bearbeitungen (fullSizePhoto) tragen oft gar kein Aufnahmedatum → Immich nähme UTC.
+        var localDate = localDate
+        if localDate == nil, kind != "live", a.mediaType == .image, !Self.fileHasTimeZone(file) {
+            localDate = Self.localISO(a.creationDate ?? Date())
+        }
         let created = ISO8601DateFormatter().string(from: a.creationDate ?? Date())
         let modified = ISO8601DateFormatter().string(from: a.modificationDate ?? a.creationDate ?? Date())
         var fields = ["fileCreatedAt": created, "fileModifiedAt": modified, "filename": name ?? res.originalFilename]
@@ -384,6 +390,7 @@ final class BackupEngine {
         let meta = BackgroundUploader.Meta(user: stateUser, localID: a.localIdentifier, kind: kind, body: body.path,
                                            localDate: localDate, checksum: sha1)
         let r = try await BackgroundUploader.shared.upload(req, body: body, meta: meta)
+        if r.status != "duplicate", let localDate { api.setCaptureTime(r.id, localDate) }
         return (r.id, r.status != "duplicate")
     }
 
@@ -420,6 +427,19 @@ final class BackupEngine {
                 if let err { c.resume(throwing: network ? err : BackupError.onlyInICloud) } else { c.resume() }
             }
         }
+    }
+
+    /// Dateien ohne Zeitzone (Videos, Bildschirmfotos, PNG) – sonst zeigt Immich UTC. Gilt auch für bearbeitete Fassungen.
+    static func needsLocalDate(_ a: PHAsset, _ res: PHAssetResource) -> Bool {
+        a.mediaType == .video || a.mediaSubtypes.contains(.photoScreenshot) || res.uniformTypeIdentifier == "public.png"
+    }
+
+    /// Trägt das Bild Aufnahmedatum und Zeitzonen-Versatz in den EXIF-Daten?
+    nonisolated static func fileHasTimeZone(_ url: URL) -> Bool {
+        guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
+              let p = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [CFString: Any],
+              let exif = p[kCGImagePropertyExifDictionary] as? [CFString: Any] else { return false }
+        return exif[kCGImagePropertyExifDateTimeOriginal] != nil && exif[kCGImagePropertyExifOffsetTimeOriginal] != nil
     }
 
     /// Zeitpunkt mit Zeitzonen-Versatz des iPhones, z. B. 2026-11-05T00:20:01+01:00.
@@ -485,6 +505,7 @@ final class BackupEngine {
     func adopt(_ r: ImmichClient.UploadResult, meta: BackgroundUploader.Meta) async {
         PerfLog.mark("Hintergrund-Übertragung fertig (\(meta.kind))")
         background = max(0, background - 1)
+        if meta.kind == "edited", r.status != "duplicate", let d = meta.localDate { ImmichClient.shared.setCaptureTime(r.id, d) }
         guard meta.kind == "main", !meta.user.isEmpty else { return }
         loadState(user: meta.user)
         guard state[meta.localID] == nil else { return }
@@ -493,7 +514,7 @@ final class BackupEngine {
         guard !edited else { return }
         state[meta.localID] = Entry(remote: r.id, edited: nil)   // Tags holt repairTags beim nächsten Lauf nach
         saveState()
-        if r.status != "duplicate", let d = meta.localDate { try? await ImmichClient.shared.update([r.id], ["dateTimeOriginal": d]) }
+        if r.status != "duplicate", let d = meta.localDate { ImmichClient.shared.setCaptureTime(r.id, d) }
         if let p = storedPending, p > 0 { storedPending = p - 1; UserDefaults.standard.set(p - 1, forKey: "backup.pending") }
     }
 
