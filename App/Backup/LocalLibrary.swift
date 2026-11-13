@@ -78,8 +78,10 @@ final class LocalPending {
         PHAsset.fetchAssets(with: o).enumerateObjects { a, _, _ in
             let lid = a.localIdentifier
             let remote = engine.remoteID(forLocal: lid)
-            // schon gesichert und in der Zeitleiste → das Server-Objekt zeigt es
+            // schon gesichert und in der Zeitleiste → das Server-Objekt zeigt es. Bei Bearbeiteten zeigt die Zeitleiste
+            // nur die Fassung oben auf dem Stapel, das Original selbst nie → auch nach der bearbeiteten Fassung schauen.
             if let remote, timeline.asset(remote) != nil { return }
+            if let edited = engine.editedID(forLocal: lid), timeline.asset(edited) != nil { return }
             let badge: Badge = engine.currentLocalID == lid ? .uploading(engine.progress) : remote != nil ? .processing : .waiting
             let created = a.creationDate ?? Date()
             let wall = created.addingTimeInterval(TimeInterval(TimeZone.current.secondsFromGMT(for: created)))
