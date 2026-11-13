@@ -75,6 +75,23 @@ struct Asset: Identifiable, Hashable, Sendable {
     var isLivePhoto: Bool { livePhotoVideoId != nil }
 }
 
+extension AssetDTO {
+    /// Aufnahmezeit mit der Zeitzone des Originals, z. B. 2026-07-15T15:30:00+02:00 – für PUT dateTimeOriginal.
+    /// Versatz = `localDateTime` (Ortszeit mit falschem „Z“) − `fileCreatedAt` (echte UTC-Zeit); beide liefert Immich immer.
+    var captureTimeWithZone: String? {
+        func parse(_ s: String) -> Date? {
+            let f = ISO8601DateFormatter(); f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let d = f.date(from: s) { return d }
+            f.formatOptions = [.withInternetDateTime]; return f.date(from: s)
+        }
+        guard let ls = localDateTime, let local = parse(ls), let utc = parse(fileCreatedAt) else { return nil }
+        let offset = Int((local.timeIntervalSince(utc) / 60).rounded()) * 60
+        guard abs(offset) <= 14 * 3600, let tz = TimeZone(secondsFromGMT: offset) else { return nil }
+        let f = ISO8601DateFormatter(); f.timeZone = tz; f.formatOptions = [.withInternetDateTime]
+        return f.string(from: utc)
+    }
+}
+
 /// Vollständiges Asset (GET /assets/{id}, Suche, Rückblicke, Alben).
 struct AssetDTO: Decodable {
     let id: String
@@ -119,6 +136,7 @@ struct AssetDTO: Decodable {
         let lensModel: String?
         let description: String?
         var dateTimeOriginal: String? = nil   // mit Zeitzone, z. B. 2026-07-15T15:30:00+02:00
+        var timeZone: String? = nil           // z. B. „UTC-8“ oder „Europe/Berlin“; nil = keine bekannt
     }
 
     var asset: Asset {

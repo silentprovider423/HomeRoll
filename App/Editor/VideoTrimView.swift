@@ -286,9 +286,8 @@ struct VideoTrimView: View {
             try? await api.createStack([r.id, asset.id])
             // Server liest das Datum aus der neuen Datei (= heute) → Aufnahmezeit des Originals setzen
             // (mit Zeitzone wie im Original, sonst rechnet der Server die Uhrzeit um)
-            let when = dto.exifInfo?.dateTimeOriginal ?? dto.fileCreatedAt
-            try? await Task.sleep(for: .seconds(2))
-            try? await api.raw("assets/\(r.id)", method: "PUT", body: api.json(["dateTimeOriginal": when]))
+            let when = dto.captureTimeWithZone ?? dto.exifInfo?.dateTimeOriginal ?? dto.fileCreatedAt
+            api.setCaptureTime(r.id, when)
             try? await api.tag([r.id], with: "Kategorie/Bearbeitet")
             try? FileManager.default.removeItem(at: dir)
             saving = nil

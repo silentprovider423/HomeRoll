@@ -534,6 +534,23 @@ final class ImmichClient: NSObject, URLSessionDelegate, @unchecked Sendable {
         try await raw("assets", method: "PUT", body: json(body))
     }
 
+    /// Aufnahmezeit mit Zeitzone (z. B. 2026-11-12T20:05:22-08:00) für ein frisch hochgeladenes Objekt setzen.
+    /// Der Server liest die Metadaten der Datei erst einige Sekunden nach dem Hochladen aus und überschreibt dabei
+    /// einen zu früh gesetzten Wert (Datei ohne Datum → UTC). Deshalb: setzen, prüfen, bei Bedarf wiederholen.
+    /// Läuft für sich, damit Sichern/Bearbeiten nicht warten müssen.
+    nonisolated func setCaptureTime(_ id: String, _ when: String) {
+        let wall = String(when.prefix(19))   // Ortszeit ohne Versatz, z. B. 2026-11-12T20:05:22
+        Task.detached {
+            for wait in [0, 3, 6, 12, 30] {
+                if wait > 0 { try? await Task.sleep(for: .seconds(wait)) }
+                try? await self.update([id], ["dateTimeOriginal": when])
+                try? await Task.sleep(for: .seconds(2))
+                if let dto = try? await self.asset(id), dto.localDateTime?.hasPrefix(wall) == true,
+                   dto.exifInfo?.timeZone != nil { return }
+            }
+        }
+    }
+
     func addToAlbum(_ albumID: String, _ ids: [String]) async throws {
         try await raw("albums/\(albumID)/assets", method: "PUT", body: json(["ids": ids]))
     }
