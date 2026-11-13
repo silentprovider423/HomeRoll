@@ -259,7 +259,10 @@ private struct ScaleSwitcher: View {
                     Text(L(s.rawValue))
                         .font(.system(size: 17, weight: app.scale == s ? .semibold : .regular))
                         .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .lineLimit(1).minimumScaleFactor(0.8)
+                        // minWidth 0: alle drei gleich breit – sonst bekam das längere „Monate“/„Months“ mehr Platz
+                        // und die Markierung saß schief (GitHub #37)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                         .background {
                             if app.scale == s {
                                 Capsule().fill(.white.opacity(0.16))

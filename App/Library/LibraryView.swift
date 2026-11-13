@@ -4,18 +4,25 @@ struct LibraryView: View {
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
     @State private var subtitle = ""
+    @State private var gridSubtitle = ""
 
     var body: some View {
         ZStack(alignment: .top) {
+            // Das Raster bleibt bestehen und wird nur ausgeblendet: es jedes Mal neu aufzubauen (80 000 Kacheln) ließ
+            // das Umschalten Jahre/Monate/Alle ruckeln (GitHub #37) – und so bleibt auch die Scrollposition erhalten
+            AllGrid(subtitle: $gridSubtitle)
+                .opacity(app.scale == .all ? 1 : 0)
+                .allowsHitTesting(app.scale == .all)
+                .accessibilityHidden(app.scale != .all)
             Group {
                 switch app.scale {
-                case .all: AllGrid(subtitle: $subtitle)
+                case .all: EmptyView()
                 case .months: MonthsList(subtitle: $subtitle)
                 case .years: YearsList(subtitle: $subtitle)
                 }
             }
             .transition(.opacity)
-            LibraryHeader(subtitle: subtitle)
+            LibraryHeader(subtitle: app.scale == .all ? gridSubtitle : subtitle)
         }
         .overlay {
             if timeline.buckets.isEmpty {
@@ -265,7 +272,7 @@ struct AllGrid: View {
                   onSelect: { app.selected = $0.filter { !$0.hasPrefix(LocalPending.prefix) } },
                   menu: { a in AssetMenuUIKit.context(a, app: app, timeline: timeline) },
                   // nicht hinter der Einzelansicht oder in anderen Tabs weiterspielen (Akku, Leitung fürs Video vorn)
-                  autoplay: app.autoplay && app.tab == .library && app.viewer == nil && app.memory == nil,
+                  autoplay: app.autoplay && app.tab == .library && app.scale == .all && app.viewer == nil && app.memory == nil,
                   showsScrollIndicator: true,
                   footer: app.libraryCustomized ? nil : AnyView(LibraryFooter(refresh: timeline.totalCount) { app.showBackup = true }))
             .ignoresSafeArea()
@@ -324,6 +331,11 @@ struct AllGrid: View {
                     grid.scroll(to: first, anchor: .top); app.scrollTarget = nil
                 }
                 reveal()
+            }
+            // Raster bleibt im Hintergrund bestehen → Sprungziel aus Jahre/Monate beim Zurückwechseln anwenden
+            .onChange(of: app.scale) { _, s in
+                guard s == .all, let t = app.scrollTarget, let first = items.firstIndex(where: { $0.bucket == t }) else { return }
+                grid.scroll(to: first, anchor: .top); app.scrollTarget = nil
             }
             .onChange(of: app.revealID) { reveal() }
             // In der Einzelansicht weitergewischt → Kachel dieses Fotos ins Bild holen, dorthin zurückzoomen
