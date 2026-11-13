@@ -15,7 +15,11 @@ import SwiftUI
 
     func load() async {
         guard let all = try? await ImmichClient.shared.folderPaths() else { return }
+        #if DEBUG
         let showAll = ProcessInfo.processInfo.environment["FOTOS_FOLDERS_ALL"] != nil
+        #else
+        let showAll = false
+        #endif
         let keep = showAll ? all : all.filter { !Self.isInternal($0) }
         paths = keep.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
         root = Self.commonDirectory(paths)
