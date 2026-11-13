@@ -516,6 +516,8 @@ final class BackupEngine {
     /// Für die Mediathek: Sicherungsstand dieses Kontos kennen, ohne einen Lauf zu starten
     func useAccount(_ user: String) { if !user.isEmpty { loadState(user: user) } }
     func remoteID(forLocal lid: String) -> String? { state[lid]?.remote }
+    /// Server-ID der zuletzt gesicherten bearbeiteten Fassung (liegt oben auf dem Stapel, das Original darunter).
+    func editedID(forLocal lid: String) -> String? { state[lid]?.edited }
 
     // MARK: Speicher freigeben (für FreeUpSection)
 
