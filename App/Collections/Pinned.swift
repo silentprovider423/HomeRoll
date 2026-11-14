@@ -206,14 +206,18 @@ struct SectionOrderEditor: View {
 struct PinnedScreen: View {
     let items: [PinItem]
     let model: CollectionsModel
+    @State private var width: CGFloat = 390
     var body: some View {
+        // iPad: mehr Spalten statt riesiger Karten; Breite aus dem Fenster, nicht vom Bildschirm (Split View)
+        let n = max(2, Int((width - 40) / 200))
         ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: n), spacing: 16) {
                 ForEach(items, id: \.self) { p in PinCard(item: p, model: model) }
             }
             .padding(20)
         }
-        .environment(\.cardSide, (UIScreen.main.bounds.width - 56) / 2)
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+        .environment(\.cardSide, (width - 40 - CGFloat(n - 1) * 16) / CGFloat(n))
         .background(Color.black)
         .navigationTitle(String(localized: "Angepinnt"))
     }

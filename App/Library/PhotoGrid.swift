@@ -71,7 +71,15 @@ final class GridCollectionView: UICollectionView {
 /// Raster-Layout wie Apples Kachel-Engine: rechnet nur, was sichtbar ist. (UICollectionViewFlowLayout fragt bei
 /// jedem Neuladen die Größe aller 80 000 Kacheln ab – bei jedem nachkommenden Monat und jedem Zoomschritt.)
 final class GridLayout: UICollectionViewLayout {
+    /// Zoomstufe (gleiche Werte wie auf dem iPhone)
     var columns = 3
+    /// Tatsächliche Spalten: auf breiten Bildschirmen (iPad, Querformat) mehr, damit Kacheln etwa iPhone-groß
+    /// bleiben (GitHub #47) – 3 Spalten ≈ 130 pt pro Kachel. 1 Spalte bleibt 1 Foto in voller Breite.
+    private(set) var cols = 3
+    static func effective(_ columns: Int, width: CGFloat) -> Int {
+        guard columns > 1, width > 500 else { return columns }
+        return max(columns, Int((CGFloat(columns) * width / 430).rounded()))
+    }
     /// Seitenverhältnis je Objekt – nur für die 1-Spalten-Stufe (Fotos in voller Breite, unterschiedlich hoch).
     var ratio: (Int) -> CGFloat = { _ in 1 }
     private var spacing: CGFloat { columns >= GridZoom.dense ? 1 : 2 }
@@ -86,9 +94,10 @@ final class GridLayout: UICollectionViewLayout {
         n = cv.numberOfSections > 0 ? cv.numberOfItems(inSection: 0) : 0
         width = cv.bounds.width
         scale = cv.traitCollection.displayScale > 0 ? cv.traitCollection.displayScale : 3
-        let c = CGFloat(columns)
+        cols = Self.effective(columns, width: width)
+        let c = CGFloat(cols)
         // Kacheln füllen die Breite exakt (kein Restspalt rechts), Kanten auf ganze Pixel
-        xs = (0..<columns).map { k in
+        xs = (0..<cols).map { k in
             let x0 = px(CGFloat(k) * (width + spacing) / c), x1 = px(CGFloat(k + 1) * (width + spacing) / c - spacing)
             return (x0, x1 - x0)
         }
@@ -102,14 +111,14 @@ final class GridLayout: UICollectionViewLayout {
     }
 
     override var collectionViewContentSize: CGSize {
-        let h = columns == 1 ? (tops.last ?? 0) : CGFloat((n + columns - 1) / columns) * pitch
+        let h = columns == 1 ? (tops.last ?? 0) : CGFloat((n + cols - 1) / cols) * pitch
         return CGSize(width: width, height: max(0, h - spacing))
     }
 
     private func frame(_ i: Int) -> CGRect {
         if columns == 1, i + 1 < tops.count { return CGRect(x: 0, y: tops[i], width: width, height: tops[i + 1] - tops[i] - spacing) }
-        let (x, w) = xs.isEmpty ? (0, width) : xs[i % columns]
-        return CGRect(x: x, y: CGFloat(i / columns) * pitch, width: w, height: pitch - spacing)
+        let (x, w) = xs.isEmpty ? (0, width) : xs[i % cols]
+        return CGRect(x: x, y: CGFloat(i / cols) * pitch, width: w, height: pitch - spacing)
     }
 
     private func attributes(_ i: Int) -> UICollectionViewLayoutAttributes {
@@ -131,7 +140,7 @@ final class GridLayout: UICollectionViewLayout {
             range = lo...last
         } else {
             let first = max(0, Int(rect.minY / pitch)), lastRow = max(0, Int(rect.maxY / pitch))
-            let lo = first * columns, hi = min(n - 1, (lastRow + 1) * columns - 1)
+            let lo = first * cols, hi = min(n - 1, (lastRow + 1) * cols - 1)
             guard lo <= hi else { return [] }
             range = lo...hi
         }

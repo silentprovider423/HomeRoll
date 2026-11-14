@@ -22,6 +22,8 @@ struct RootView: View {
             Group {
                 if app.selecting { SelectionBar() } else { BottomBar() }
             }
+            // iPad: Leiste nicht über die ganze Breite ziehen (GitHub #47)
+            .frame(maxWidth: 600)
             .padding(.horizontal, 22)
             .padding(.bottom, 4)
         }

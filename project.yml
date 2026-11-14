@@ -42,6 +42,8 @@ targets:
         UILaunchScreen: {}
         UIUserInterfaceStyle: Dark
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        # iPad: alle vier Richtungen (Voraussetzung für Split View/Stage Manager, GitHub #47)
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIBackgroundModes: [fetch, processing]
         BGTaskSchedulerPermittedIdentifiers: [org.homeroll.app.backup, org.homeroll.app.refresh]
         NSPhotoLibraryUsageDescription: "Damit deine Fotos auf deinem eigenen Server gesichert werden."
@@ -56,7 +58,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.homeroll.app
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
@@ -90,7 +92,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.homeroll.app.share
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO
   FotosWidget:
     type: app-extension
@@ -115,5 +117,5 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.homeroll.app.widget
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO

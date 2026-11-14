@@ -2,6 +2,8 @@ import SwiftUI
 
 /// Bearbeiten wie in Fotos (iOS 26): Anpassen · Filter · Zuschneiden, mit Widerrufen/Wiederholen und „…“-Menü.
 struct EditorView: View {
+    /// Breite der Reglerleiste (Fenster statt Bildschirm – iPad/Split View, GitHub #47)
+    @State private var dialWidth: CGFloat = 390
     let asset: Asset
     let onDone: (Asset) -> Void
     @State private var session: EditSession
@@ -289,7 +291,8 @@ struct EditorView: View {
                 }
                 .scrollTargetLayout()
             }
-            .contentMargins(.horizontal, (UIScreen.main.bounds.width - AdjustDial.size) / 2, for: .scrollContent)
+            .contentMargins(.horizontal, max(0, (dialWidth - AdjustDial.size) / 2), for: .scrollContent)
+            .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { dialWidth = $0 }
             .scrollTargetBehavior(.viewAligned)
             .scrollPosition(id: $current, anchor: .center)
             .scrollIndicators(.hidden)

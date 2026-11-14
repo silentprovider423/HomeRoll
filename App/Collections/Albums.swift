@@ -70,6 +70,8 @@ struct AlbumScreen: View {
     @State private var markers: [MapMarkerDTO] = []
     /// Zoom mit zwei Fingern wie in der Mediathek (1/3/5/7 Spalten)
     @AppStorage("album.columns") private var columns = 3
+    /// Fensterbreite (iPad, Split View) statt Bildschirmbreite
+    @State private var width: CGFloat = 390
     private static let zoomSteps = [1, 3, 5, 7]
 
     private var name: String { info?.albumName ?? ref.name }
@@ -88,7 +90,7 @@ struct AlbumScreen: View {
         ScrollView {
             VStack(spacing: 0) {
                 if !list.isEmpty { hero(list) } else { Color.clear.frame(height: 150) }
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: columns > 5 ? 1 : 2), count: columns), spacing: columns > 5 ? 1 : 2) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: columns > 5 ? 1 : 2), count: GridLayout.effective(columns, width: width)), spacing: columns > 5 ? 1 : 2) {
                     ForEach(Array(list.enumerated()), id: \.element.id) { i, a in
                         Button {
                             // beim Zoomen mit zwei Fingern nicht versehentlich ein Foto öffnen (wie in der Mediathek)
@@ -125,6 +127,7 @@ struct AlbumScreen: View {
             if next != i { withAnimation(.snappy) { columns = Self.zoomSteps[next] } }
         })
         .ignoresSafeArea(edges: .top)
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
         .background(Color.black)
         .overlay(alignment: .top) { topBar(list) }
         .overlay {
@@ -174,10 +177,10 @@ struct AlbumScreen: View {
     // MARK: Kopf
 
     private func hero(_ list: [Asset]) -> some View {
-        let w = UIScreen.main.bounds.width
+        let w = width, h = min(width * 1.12, 560)
         return ZStack(alignment: .bottomLeading) {
             Group { if let cover { AssetThumb(id: cover, size: .preview).scaledToFill() } else { Color(white: 0.14) } }
-                .frame(width: w, height: w * 1.12).clipped()
+                .frame(width: w, height: h).clipped()
             LinearGradient(colors: [.black.opacity(0.35), .clear, .clear, .black.opacity(0.55)], startPoint: .top, endPoint: .bottom)
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -193,7 +196,7 @@ struct AlbumScreen: View {
             }
             .padding(20)
         }
-        .frame(width: w, height: w * 1.12)
+        .frame(width: w, height: h)
         .padding(.bottom, 2)
     }
 

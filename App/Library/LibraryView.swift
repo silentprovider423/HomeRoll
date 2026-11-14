@@ -565,6 +565,16 @@ struct MonthDays: View {
     @Binding var subtitle: String
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    private var wide: Bool { sizeClass == .regular }
+
+    private func dayButton(_ d: DayGroup) -> some View {
+        Button {
+            app.scrollTarget = bucket.timeBucket
+            withAnimation(.snappy) { app.scale = .all }
+        } label: { DayCard(group: d) }
+        .buttonStyle(.plain)
+    }
 
     var body: some View {
         let days = timeline.days(in: bucket.timeBucket)
@@ -573,13 +583,20 @@ struct MonthDays: View {
                 .frame(height: 230).padding(.horizontal, 16).padding(.vertical, 5)
                 .listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(Color.clear)
                 .task { await timeline.load(bucket.timeBucket) }
+        } else if wide {
+            // iPad: zwei Tage nebeneinander statt bildschirmbreiter Karten (GitHub #47)
+            ForEach(Array(stride(from: 0, to: days.count, by: 2)), id: \.self) { i in
+                HStack(spacing: 12) {
+                    ForEach(days[i..<min(i + 2, days.count)]) { d in dayButton(d) }
+                    if i + 1 >= days.count { Color.clear.frame(maxWidth: .infinity) }
+                }
+                .padding(.horizontal, 16).padding(.vertical, 5)
+                .listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(Color.clear)
+                .onAppear { timeline.touch(bucket.timeBucket); subtitle = String(Calendar.wall.component(.year, from: days[i].day)) }
+            }
         } else {
             ForEach(days) { d in
-                Button {
-                    app.scrollTarget = bucket.timeBucket
-                    withAnimation(.snappy) { app.scale = .all }
-                } label: { DayCard(group: d) }
-                .buttonStyle(.plain)
+                dayButton(d)
                 .padding(.horizontal, 16).padding(.vertical, 5)
                 .listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(Color.clear)
                 .onAppear { timeline.touch(bucket.timeBucket); subtitle = String(Calendar.wall.component(.year, from: d.day)) }
@@ -631,18 +648,28 @@ struct DayCard: View {
 struct YearsList: View {
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
+    @State private var width: CGFloat = 390
 
     var body: some View {
+        // iPad: zwei Spalten statt bildschirmbreiter Karten (GitHub #47); Reihen von oben, das neueste Jahr unten rechts
+        let n = width > 700 ? 2 : 1
+        let years = timeline.years
+        let rows = stride(from: 0, to: years.count, by: n).map { Array(years[$0..<min($0 + n, years.count)]) }
         ScrollView {
             // nur ~12 Karten → normaler VStack: LazyVStack + Anker unten landete hinter dem Inhalt (schwarzer Schirm)
             VStack(spacing: 16) {
                 Color.clear.frame(height: 100)
-                ForEach(timeline.years, id: \.self) { y in
-                    Button {
-                        app.scrollTarget = timeline.buckets(inYear: y).first?.timeBucket
-                        withAnimation(.snappy) { app.scale = .months }
-                    } label: { YearCard(year: y) }
-                    .buttonStyle(.plain)
+                ForEach(rows, id: \.self) { row in
+                    HStack(spacing: 16) {
+                        ForEach(row, id: \.self) { y in
+                            Button {
+                                app.scrollTarget = timeline.buckets(inYear: y).first?.timeBucket
+                                withAnimation(.snappy) { app.scale = .months }
+                            } label: { YearCard(year: y) }
+                            .buttonStyle(.plain)
+                        }
+                        if row.count < n { Color.clear.frame(maxWidth: .infinity) }
+                    }
                 }
             }
             .padding(.horizontal, 16)
@@ -651,6 +678,7 @@ struct YearsList: View {
         .defaultScrollAnchor(.bottom)
         .scrollIndicators(.hidden)
         .ignoresSafeArea(edges: .top)
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
     }
 }
 

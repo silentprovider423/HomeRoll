@@ -68,6 +68,7 @@ struct LoginView: View {
                 }
                 Spacer(); Spacer()
             }
+            .frame(maxWidth: 520)   // iPad: Formular nicht über die ganze Breite
             .padding(.horizontal, 28)
         }
         // Nach dem Tippen der Adresse kurz warten, dann die Anmeldearten des Servers abfragen
