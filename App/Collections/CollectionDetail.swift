@@ -35,7 +35,8 @@ struct CollectionDetail: View {
         AssetGridScreen(title: renamed ?? title, subtitle: loaded.map { $0.count == 1 ? String(localized: "1 Objekt") : String(localized: "\($0.count) Objekte") } ?? "",
                         assets: loaded ?? [], loading: loaded == nil,
                         menu: personMenu,
-                        onRemove: { id in withAnimation(.snappy) { loaded?.removeAll { $0.id == id } } })
+                        onRemove: { id in withAnimation(.snappy) { loaded?.removeAll { $0.id == id } } },
+                        back: { if case .folderPhotos = route { true } else { false } }())
             .task { if loaded == nil { loaded = await load() } }
             // nach Einblenden/Wiederherstellen in der Einzelansicht die Liste auffrischen
             .onChange(of: app.viewer == nil) { _, closed in
@@ -104,6 +105,7 @@ struct AssetGridScreen: View {
     var loading = false
     var menu: AnyView? = nil
     var onRemove: ((String) -> Void)? = nil
+    var back = false
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
     @AppStorage("collections.newestFirst") private var newestFirst = true
@@ -132,7 +134,7 @@ struct AssetGridScreen: View {
         }
         .background(Color.black)
         .overlay(alignment: .top) {
-            ScreenHeader(title: title, subtitle: subtitle, menu: AnyView(HStack(spacing: 10) { sortMenu; if let menu { menu } }))
+            ScreenHeader(title: title, subtitle: subtitle, menu: AnyView(HStack(spacing: 10) { sortMenu; if let menu { menu } }), back: back)
         }
         .overlay {
             if loading { ProgressView().tint(.white) }

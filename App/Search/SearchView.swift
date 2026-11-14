@@ -10,24 +10,33 @@ enum SearchToken: Hashable, Identifiable {
     /// Ort aus Apple Karten (auch ohne Fotos mit genau diesem Ortsnamen): Fotos im Umkreis
     case area(name: String, lat: Double, lon: Double, km: Double)
     case album(id: String, name: String)
+    /// Server-Ordner (GitHub #45): öffnet den Ordner statt zu filtern
+    case folder(String)
     case category(Category)
     case year(Int)
-    var id: String { title }
+    /// gleichnamige Ordner an verschiedenen Stellen sind verschiedene Treffer
+    var id: String { if case .folder(let p) = self { "folder:" + p } else { title } }
     var title: String {
         switch self {
-        case .person(_, let n): n; case .place(let p): p; case .album(_, let n): n; case .country(let c): CountryName.de(c); case .area(let n, _, _, _): n
+        case .person(_, let n): n; case .place(let p): p; case .album(_, let n): n; case .folder(let p): FolderStore.name(p); case .country(let c): CountryName.de(c); case .area(let n, _, _, _): n
         case .category(let c): c.title; case .year(let y): String(y)
         }
     }
     var icon: String {
         switch self {
-        case .person: "person.crop.circle"; case .place: "mappin.circle"; case .album: "rectangle.stack"; case .country: "globe.europe.africa"; case .area: "map"
+        case .person: "person.crop.circle"; case .place: "mappin.circle"; case .album: "rectangle.stack"; case .folder: "folder"; case .country: "globe.europe.africa"; case .area: "map"
         case .category(let c): c.icon; case .year: "calendar"
         }
     }
     var kind: String {
         switch self {
-        case .person: String(localized: "Person"); case .place: String(localized: "Ort"); case .country: String(localized: "Land"); case .area: String(localized: "Karte"); case .album: String(localized: "Album"); case .category: String(localized: "Medienart"); case .year: String(localized: "Jahr")
+        case .person: String(localized: "Person"); case .place: String(localized: "Ort"); case .country: String(localized: "Land"); case .area: String(localized: "Karte"); case .album: String(localized: "Album")
+        case .folder(let p): MainActor.assumeIsolated {
+            let parent = (p as NSString).deletingLastPathComponent
+            let kind = String(localized: "folder.kind", defaultValue: "Ordner")
+            return parent == FolderStore.shared.root ? kind : kind + " · " + FolderStore.name(parent)
+        }
+        case .category: String(localized: "Medienart"); case .year: String(localized: "Jahr")
         }
     }
 }
@@ -84,6 +93,7 @@ struct SearchView: View {
         }
         .actionSheets($sheet)
         .overlay(alignment: .top) { VStack { BusyBadge(); ToastBadge() } }
+        .task { if !FolderStore.shared.loaded { await FolderStore.shared.load() } }
         .task {
             focused = true
             async let c = try? ImmichClient.shared.cities()
@@ -255,6 +265,7 @@ struct SearchView: View {
             }
         }
         out += model.albums.filter { hit($0.albumName) }.prefix(3).map { .album(id: $0.id, name: $0.albumName) }
+        out += FolderStore.shared.allDirectories.filter { hit(FolderStore.name($0)) }.prefix(3).map { .folder($0) }
         out += Category.allCases.filter { c in c != .map && (hit(c.title) || c.synonyms.contains { $0.hasPrefix(q) }) }
             .prefix(3).map { .category($0) }
         if q.allSatisfy(\.isNumber), q.count >= 2 {
@@ -275,6 +286,7 @@ struct SearchView: View {
         for p in people where hit(p.name) {
             out.append((.person(id: p.id, name: p.name), .person(PersonRef(id: p.id, name: p.name))))
         }
+        for f in FolderStore.shared.allDirectories where hit(FolderStore.name(f)) { out.append((.folder(f), .folder(f))) }
         for c in Category.allCases where c != .map && hit(c.title) { out.append((.category(c), .category(c))) }
         return out
     }
@@ -299,7 +311,11 @@ struct SearchView: View {
 
             if !sugg.isEmpty && !selecting {
                 VStack(spacing: 0) {
-                    ForEach(sugg) { t in row(icon: t.icon, t.title, sub: t.kind) { add(t) } }
+                    ForEach(sugg) { t in
+                        row(icon: t.icon, t.title, sub: t.kind) {
+                            if case .folder(let f) = t { remember(); path.append(CollectionRoute.folder(f)) } else { add(t) }
+                        }
+                    }
                 }
             }
 
@@ -558,6 +574,7 @@ struct SearchPlan {
             case .place(let c): filter["city"] = ["eq": c]
             case .country(let c): filter["country"] = ["eq": c]
             case .area: break   // wird nach der Suche über die Kartenpunkte gefiltert
+            case .folder: break   // öffnet den Ordner, kein Filter
             case .album(let id, _): filter["albumIds"] = ["any": [id]]
             case .year(let y):
                 let iso = ISO8601DateFormatter(); var cal = Calendar(identifier: .gregorian); cal.timeZone = .gmt

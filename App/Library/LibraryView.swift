@@ -3,8 +3,11 @@ import SwiftUI
 struct LibraryView: View {
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
-    @State private var subtitle = ""
+    @State private var monthsSubtitle = ""
     @State private var gridSubtitle = ""
+    /// Monate/Jahre werden beim ersten Öffnen gebaut und danach wie das Raster nur ausgeblendet (GitHub #44)
+    @State private var monthsBuilt = false
+    @State private var yearsBuilt = false
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -14,15 +17,21 @@ struct LibraryView: View {
                 .opacity(app.scale == .all ? 1 : 0)
                 .allowsHitTesting(app.scale == .all)
                 .accessibilityHidden(app.scale != .all)
-            Group {
-                switch app.scale {
-                case .all: EmptyView()
-                case .months: MonthsList(subtitle: $subtitle)
-                case .years: YearsList(subtitle: $subtitle)
-                }
+            if monthsBuilt || app.scale == .months {
+                MonthsList(subtitle: $monthsSubtitle)
+                    .opacity(app.scale == .months ? 1 : 0)
+                    .allowsHitTesting(app.scale == .months)
+                    .accessibilityHidden(app.scale != .months)
+                    .onAppear { monthsBuilt = true }
             }
-            .transition(.opacity)
-            LibraryHeader(subtitle: app.scale == .all ? gridSubtitle : subtitle)
+            if yearsBuilt || app.scale == .years {
+                YearsList()
+                    .opacity(app.scale == .years ? 1 : 0)
+                    .allowsHitTesting(app.scale == .years)
+                    .accessibilityHidden(app.scale != .years)
+                    .onAppear { yearsBuilt = true }
+            }
+            LibraryHeader(subtitle: app.scale == .all ? gridSubtitle : app.scale == .months ? monthsSubtitle : "")
         }
         .overlay {
             if timeline.buckets.isEmpty {
@@ -503,23 +512,32 @@ struct MonthsList: View {
             .scrollIndicators(.hidden)
             .environment(\.defaultMinListRowHeight, 0)
             .ignoresSafeArea(edges: .top)
-            .task {
-                if let t = app.scrollTarget {
-                    app.scrollTarget = nil
-                    await timeline.load(t)
-                    try? await Task.sleep(for: .milliseconds(50))
-                    proxy.scrollTo(t, anchor: .top)
-                    if let b = timeline.buckets.first(where: { $0.timeBucket == t }) {
-                        subtitle = String(Calendar.wall.component(.year, from: b.monthDate))
-                    }
-                    return
-                }
-                guard !timeline.buckets.isEmpty else { return }
-                for b in timeline.buckets.suffix(2) { await timeline.load(b.timeBucket) }
-                try? await Task.sleep(for: .milliseconds(50))
-                proxy.scrollTo("ende", anchor: .bottom)
+            .task { await arrive(proxy, first: true) }
+            // bleibt im Hintergrund bestehen: beim Zurückkommen nur noch zum gewählten Jahr springen
+            .onChange(of: app.scale) { _, s in
+                guard s == .months, app.scrollTarget != nil else { return }
+                Task { await arrive(proxy, first: false) }
             }
         }
+    }
+}
+
+extension MonthsList {
+    func arrive(_ proxy: ScrollViewProxy, first: Bool) async {
+        if let t = app.scrollTarget {
+            app.scrollTarget = nil
+            await timeline.load(t)
+            try? await Task.sleep(for: .milliseconds(50))
+            proxy.scrollTo(t, anchor: .top)
+            if let b = timeline.buckets.first(where: { $0.timeBucket == t }) {
+                subtitle = String(Calendar.wall.component(.year, from: b.monthDate))
+            }
+            return
+        }
+        guard first, !timeline.buckets.isEmpty else { return }
+        for b in timeline.buckets.suffix(2) { await timeline.load(b.timeBucket) }
+        try? await Task.sleep(for: .milliseconds(50))
+        proxy.scrollTo("ende", anchor: .bottom)
     }
 }
 
@@ -611,7 +629,6 @@ struct DayCard: View {
 // MARK: - Jahre
 
 struct YearsList: View {
-    @Binding var subtitle: String
     @Environment(AppModel.self) private var app
     @Environment(TimelineStore.self) private var timeline
 
@@ -634,7 +651,6 @@ struct YearsList: View {
         .defaultScrollAnchor(.bottom)
         .scrollIndicators(.hidden)
         .ignoresSafeArea(edges: .top)
-        .onAppear { subtitle = "" }
     }
 }
 

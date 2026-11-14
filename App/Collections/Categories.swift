@@ -400,19 +400,30 @@ struct ScreenHeader: View {
     var subtitle: String = ""
     /// zusätzlicher Knopf links vom Schließen (z. B. „…“ einer Person)
     var menu: AnyView? = nil
+    /// tiefer in einem Stapel (z. B. Ordner in Ordnern): Zurück-Pfeil links statt Schließen-Kreuz (GitHub #46)
+    var back = false
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         HStack(alignment: .top) {
+            if back {
+                Button { dismiss() } label: {
+                    Image(systemName: "chevron.left").font(.system(size: 17, weight: .semibold)).frame(width: 44, height: 44).contentShape(.rect)
+                }
+                .glassEffect(.regular.interactive(), in: .circle)
+                .accessibilityLabel(String(localized: "Zurück"))
+            }
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.system(size: 30, weight: .bold)).lineLimit(1)
                 if !subtitle.isEmpty { Text(subtitle).font(.system(size: 16, weight: .semibold)).opacity(0.8) }
             }
             Spacer()
             if let menu { menu }
-            Button { dismiss() } label: {
-                Image(systemName: "xmark").font(.system(size: 17, weight: .semibold)).frame(width: 44, height: 44).contentShape(.rect)
+            if !back {
+                Button { dismiss() } label: {
+                    Image(systemName: "xmark").font(.system(size: 17, weight: .semibold)).frame(width: 44, height: 44).contentShape(.rect)
+                }
+                .glassEffect(.regular.interactive(), in: .circle)
             }
-            .glassEffect(.regular.interactive(), in: .circle)
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 20).padding(.bottom, 28)
