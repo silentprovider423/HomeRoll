@@ -371,7 +371,15 @@ extension PersonMenu {
             fields["birthDate"] = String(format: "%04d-%02d-%02d", y, m, d)
             birthday = Calendar.current.date(from: DateComponents(year: y, month: m, day: d))
         }
-        if !fields.isEmpty { Task { try? await ImmichClient.shared.updatePerson(person.id, fields) } }
+        if !fields.isEmpty {
+            let id = person.id, name = fields["name"] as? String, birth = fields["birthDate"] as? String
+            Task {
+                var f: [String: Any] = [:]
+                if let name { f["name"] = name }
+                if let birth { f["birthDate"] = birth }
+                try? await ImmichClient.shared.updatePerson(id, f)
+            }
+        }
         app.toast(String(localized: "Mit Kontakt verknüpft"))
     }
 }
