@@ -16,6 +16,12 @@
             "state" : "translated",
             "value" : "HomeRoll"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HomeRoll"
+          }
         }
       }
     },
@@ -30,6 +36,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HomeRoll"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HomeRoll"
@@ -52,6 +64,12 @@
             "state" : "translated",
             "value" : "So only you can open “Hidden” and “Recently Deleted”."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы только вы могли открывать альбомы «Скрытые» и «Недавно удалённые»."
+          }
         }
       }
     },
@@ -69,6 +87,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connection to your photo server on the home network."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для подключения к вашему фотосерверу в домашней сети."
           }
         }
       }
@@ -88,6 +112,12 @@
             "state" : "translated",
             "value" : "So photos from your server can be saved to the iPhone."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы сохранять фото с сервера на iPhone."
+          }
         }
       }
     },
@@ -105,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "So your photos can be backed up to your own server."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы создавать резервные копии ваших фото на вашем сервере."
           }
         }
       }

@@ -23,6 +23,16 @@
               "Search photos in ${applicationName}"
             ]
           }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Поиск в ${applicationName}",
+              "Найти в ${applicationName}",
+              "Найти фото в ${applicationName}"
+            ]
+          }
         }
       }
     }

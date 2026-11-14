@@ -8,6 +8,12 @@
             "state" : "translated",
             "value" : "Featured Photos"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подборка фото"
+          }
         }
       }
     },
@@ -17,6 +23,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memories like “2 Years Ago Today” from your library."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Воспоминания из вашей медиатеки, например «В этот день 2 года назад»."
           }
         }
       }
@@ -28,6 +40,12 @@
             "state" : "translated",
             "value" : "A different favorite photo every hour."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый час — другое любимое фото."
+          }
         }
       }
     },
@@ -38,6 +56,12 @@
             "state" : "translated",
             "value" : "Open HomeRoll so pictures appear here."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откройте HomeRoll, чтобы здесь появились фото."
+          }
         }
       }
     },
@@ -47,6 +71,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memories"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Воспоминания"
           }
         }
       }

@@ -38,7 +38,7 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: HomeRoll
         CFBundleDevelopmentRegion: en
-        CFBundleLocalizations: [en, de]
+        CFBundleLocalizations: [en, de, ru]
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         # iPad: alle vier Richtungen (Voraussetzung für Split View/Stage Manager, GitHub #47)
@@ -78,7 +78,7 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: HomeRoll
         CFBundleDevelopmentRegion: en
-        CFBundleLocalizations: [en, de]
+        CFBundleLocalizations: [en, de, ru]
         NSExtension:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
@@ -110,7 +110,7 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: HomeRoll
         CFBundleDevelopmentRegion: en
-        CFBundleLocalizations: [en, de]
+        CFBundleLocalizations: [en, de, ru]
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:

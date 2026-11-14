@@ -8,6 +8,12 @@
             "state" : "translated",
             "value" : "%lld failed"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось: %lld"
+          }
         }
       }
     },
@@ -17,6 +23,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld backed up"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранено: %lld"
           }
         }
       }
@@ -28,6 +40,36 @@
             "state" : "translated",
             "value" : "Back up %lld items to your server"
           }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Сохранить на вашем сервере %lld объект"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Сохранить на вашем сервере %lld объекта"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Сохранить на вашем сервере %lld объектов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Сохранить на вашем сервере %lld объектов"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -37,6 +79,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld were already there"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже на сервере: %lld"
           }
         }
       }
@@ -48,6 +96,12 @@
             "state" : "translated",
             "value" : "Back up 1 item to your server"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить на вашем сервере 1 объект"
+          }
         }
       }
     },
@@ -57,6 +111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменить"
           }
         }
       }
@@ -68,6 +128,12 @@
             "state" : "translated",
             "value" : "Back Up to Your Server"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить на вашем сервере"
+          }
         }
       }
     },
@@ -77,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please open HomeRoll and sign in first."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сначала откройте HomeRoll и войдите в аккаунт."
           }
         }
       }
@@ -88,6 +160,12 @@
             "state" : "translated",
             "value" : "Done"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
         }
       }
     },
@@ -97,6 +175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Photos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фото"
           }
         }
       }
