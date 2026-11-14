@@ -284,6 +284,13 @@ struct AllGrid: View {
                   // nicht hinter der Einzelansicht oder in anderen Tabs weiterspielen (Akku, Leitung fürs Video vorn)
                   autoplay: app.autoplay && app.tab == .library && app.scale == .all && app.viewer == nil && app.memory == nil,
                   showsScrollIndicator: true,
+                  scrubLabel: { i in
+                      guard i < items.count else { return nil }
+                      switch items[i] {
+                      case .asset(let a, _): return Fmt.monthYear.string(from: app.sortByAdded ? (a.addedAt ?? a.date) : a.date)
+                      case .placeholder(let b, _): return timeline.buckets.first { $0.timeBucket == b }.map { Fmt.monthYear.string(from: $0.monthDate) }
+                      }
+                  },
                   footer: app.libraryCustomized ? nil : AnyView(LibraryFooter(refresh: timeline.totalCount) { app.showBackup = true }))
             .ignoresSafeArea()
             .overlay {

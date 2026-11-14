@@ -401,6 +401,8 @@ struct PhotoGrid: UIViewRepresentable {
     var startAtTop = false
     /// Normale iOS-Scrollleiste: lässt sich greifen und ziehen → schnell durch große Mediatheken (Idee: Fork vands2013)
     var showsScrollIndicator = false
+    /// Schneller Rollbalken mit Datumsblase (ersetzt die iOS-Leiste): Text für das oberste sichtbare Objekt
+    var scrubLabel: ((Int) -> String?)? = nil
     /// SwiftUI-Fußzeile unter dem letzten Objekt (wie Apples Mediathek-Fußzeile)
     var footer: AnyView? = nil
     var footerHeight: CGFloat = 92
@@ -411,7 +413,7 @@ struct PhotoGrid: UIViewRepresentable {
         let layout = GridLayout()
         let v = GridCollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = .clear
-        v.showsVerticalScrollIndicator = showsScrollIndicator
+        v.showsVerticalScrollIndicator = showsScrollIndicator && scrubLabel == nil
         if let footer {
             let h = UIHostingController(rootView: footer)
             h.view.backgroundColor = .clear
@@ -424,7 +426,18 @@ struct PhotoGrid: UIViewRepresentable {
         v.alwaysBounceVertical = true
         let c = context.coordinator
         c.view = v; c.layout = layout; controller.view = v
-        v.onLayout = { [weak c] in c?.checkTop() }
+        v.onLayout = { [weak c] in c?.checkTop(); c?.scrubber?.update(scrolling: false) }
+        if scrubLabel != nil {
+            let s = GridScrubber()
+            s.scrollView = v
+            s.label = { [weak c] in
+                guard let c, let i = c.topIndex() else { return nil }
+                return c.parent.scrubLabel?(i)
+            }
+            s.onDrag = { [weak c] on in c?.scrubbing(on) }
+            v.addSubview(s)
+            c.scrubber = s
+        }
         c.columns = columns; layout.columns = columns
         layout.ratio = { [weak c] i in
             guard let c, i < c.parent.items.count, case .asset(let a, _) = c.parent.items[i] else { return 1 }
@@ -497,6 +510,14 @@ struct PhotoGrid: UIViewRepresentable {
     final class Coordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate,
                              UICollectionViewDataSourcePrefetching, UIGestureRecognizerDelegate, UICollectionViewDragDelegate {
         var footerHost: UIHostingController<AnyView>?
+        var scrubber: GridScrubber?
+        /// Ziehen am schnellen Rollbalken wirkt wie Scrollen: Videos anhalten, Offline-Laden pausieren
+        func scrubbing(_ on: Bool) {
+            if on {
+                view?.visibleCells.forEach { ($0 as? AssetCell)?.stopPlayback() }
+                OfflineSync.shared.userBusy(true)
+            } else { motionEnded() }
+        }
         func gestureRecognizer(_ g: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith o: UIGestureRecognizer) -> Bool {
             g !== swipe && o !== swipe
         }
@@ -768,7 +789,10 @@ struct PhotoGrid: UIViewRepresentable {
             extendSwipe()
         }
 
-        func scrollViewDidScroll(_ sv: UIScrollView) { checkTop() }
+        func scrollViewDidScroll(_ sv: UIScrollView) {
+            checkTop()
+            if let s = scrubber { s.update(scrolling: sv.isDragging || sv.isDecelerating || s.dragging) }
+        }
 
         func checkTop() {
             guard let i = topIndex(), i != lastTop else { return }
