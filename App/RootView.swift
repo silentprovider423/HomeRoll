@@ -81,12 +81,13 @@ struct RootView: View {
         .fullScreenCover(item: $app.viewer) { req in
             ViewerView(assets: req.assets, start: req.index)
                 .navigationTransition(.zoom(sourceID: app.zoomID, in: zoom))
+                .preferredColorScheme(.dark)   // Fotos-Ansicht und Editor bleiben auch im hellen Modus dunkel
         }
         .fullScreenCover(isPresented: $app.showSearch) { SearchView() }
         // Tippen aufs Widget: homeroll://memory/<id> bzw. homeroll://asset/<id>
         .onOpenURL { open($0) }
         .onReceive(NotificationCenter.default.publisher(for: .openFotosURL)) { n in if let u = n.object as? URL { open(u) } }
-        .fullScreenCover(item: $app.memory) { MemoryPlayer(memory: $0) }
+        .fullScreenCover(item: $app.memory) { MemoryPlayer(memory: $0).preferredColorScheme(.dark) }
     }
 
     private func open(_ url: URL) {

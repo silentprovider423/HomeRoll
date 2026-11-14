@@ -170,17 +170,17 @@ struct CategoryTile: View {
     let category: Category
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: category.icon).font(.system(size: 18)).frame(width: 24).foregroundStyle(.white.opacity(0.85))
+            Image(systemName: category.icon).font(.system(size: 18)).frame(width: 24).foregroundStyle(.primary.opacity(0.85))
             Text(category.title).font(.system(size: 19)).lineLimit(1).minimumScaleFactor(0.85)
             Spacer(minLength: 0)
             if category.locked {
                 Image(systemName: "lock.fill").font(.system(size: 13)).foregroundStyle(.secondary)
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .padding(.horizontal, 12)
         .frame(width: 256, height: 42)
-        .background(RoundedRectangle(cornerRadius: 11, style: .continuous).fill(Color(white: 0.13)))
+        .background(RoundedRectangle(cornerRadius: 11, style: .continuous).fill(Color.appFill))
     }
 }
 
@@ -216,7 +216,7 @@ struct CategoryListScreen: View {
         }
         .navigationTitle(title)
         .scrollContentBackground(.hidden)
-        .background(Color.black)
+        .background(Color.appBackground)
     }
 }
 
@@ -241,7 +241,7 @@ struct LockGate<Content: View>: View {
             }
             .padding(.horizontal, 44)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black)
+            .background(Color.appBackground)
             .overlay(alignment: .top) { ScreenHeader(title: title) }
             .toolbar(.hidden, for: .navigationBar)
             .task { await unlock(allowCode: false) }
@@ -311,11 +311,11 @@ struct LargeVideosScreen: View {
             .padding(.top, 8)
         }
         .overlay {
-            if videos == nil { ProgressView(loaded > 0 ? String(localized: "\(loaded) Videos geprüft …") : String(localized: "Videos werden geprüft …")).tint(.white) }
+            if videos == nil { ProgressView(loaded > 0 ? String(localized: "\(loaded) Videos geprüft …") : String(localized: "Videos werden geprüft …")) }
             else if list.isEmpty { ContentUnavailableView(String(localized: "Keine Videos"), systemImage: "video") }
         }
         .navigationTitle(String(localized: "Große Videos"))
-        .background(Color.black)
+        .background(Color.appBackground)
         .task {
             // Immich sortiert nicht nach Größe → alle Videos mit Dateigröße holen (in Seiten), hier sortieren
             let all = (try? await ImmichClient.shared.search(filter: ["type": ["eq": "VIDEO"]], size: 50_000)) ?? []
@@ -373,7 +373,7 @@ struct DuplicatesScreen: View {
             .padding(.top, 130).padding(.bottom, 110)
         }
         .ignoresSafeArea(edges: .top)
-        .background(Color.black)
+        .background(Color.appBackground)
         .overlay(alignment: .top) { ScreenHeader(title: String(localized: "Duplikate"), subtitle: groups.map { String(localized: "\($0.count) Gruppen") } ?? "") }
         .overlay { if groups?.isEmpty == true { ContentUnavailableView(String(localized: "Keine Duplikate"), systemImage: "square.on.square") } }
         .toolbar(.hidden, for: .navigationBar)
@@ -425,7 +425,7 @@ struct ScreenHeader: View {
                 .glassEffect(.regular.interactive(), in: .circle)
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .padding(.horizontal, 20).padding(.bottom, 28)
         .background(alignment: .top) { TopBlur() }
     }

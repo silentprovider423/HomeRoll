@@ -241,7 +241,7 @@ struct AssetThumb: View {
 
     var body: some View {
         Rectangle()
-            .fill(Color(white: 0.13))
+            .fill(Color.appFill)
             .overlay {
                 if let image {
                     Image(uiImage: image).resizable().scaledToFill()
@@ -320,7 +320,7 @@ struct PersonThumb: View {
     @State private var image: UIImage?
     @State private var reload = 0
     var body: some View {
-        Rectangle().fill(Color(white: 0.15))
+        Rectangle().fill(Color.appFill2)
             .overlay { if let image { Image(uiImage: image).resizable().scaledToFill() } }
             .clipped()
             .onReceive(NotificationCenter.default.publisher(for: .personThumbChanged)) { n in

@@ -132,12 +132,12 @@ struct AssetGridScreen: View {
                     .ignoresSafeArea()
             }
         }
-        .background(Color.black)
+        .background(Color.appBackground)
         .overlay(alignment: .top) {
             ScreenHeader(title: title, subtitle: subtitle, menu: AnyView(HStack(spacing: 10) { sortMenu; if let menu { menu } }), back: back)
         }
         .overlay {
-            if loading { ProgressView().tint(.white) }
+            if loading { ProgressView() }
             else if assets.isEmpty { ContentUnavailableView(String(localized: "Keine Fotos oder Videos"), systemImage: "photo.on.rectangle") }
         }
         .toolbar(.hidden, for: .navigationBar)
@@ -198,10 +198,10 @@ struct CardGridScreen: View {
                 ForEach(Array(items.enumerated()), id: \.offset) { _, it in
                     NavigationLink(value: it.2) {
                         VStack(alignment: .leading, spacing: 6) {
-                            Group { if let id = it.0 { AssetThumb(id: id, size: .preview) } else { Color(white: 0.14) } }
+                            Group { if let id = it.0 { AssetThumb(id: id, size: .preview) } else { Color.appFill } }
                                 .aspectRatio(1, contentMode: .fit)
                                 .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                            Text(it.1).font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                            Text(it.1).font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
                         }
                     }
                     .buttonStyle(.plain)
@@ -209,7 +209,7 @@ struct CardGridScreen: View {
             }
             .padding(20)
         }
-        .background(Color.black)
+        .background(Color.appBackground)
         .navigationTitle(title)
     }
 }
@@ -241,7 +241,7 @@ struct PeopleScreen: View {
                                     }
                                 }
                             Text(p.name.isEmpty ? String(localized: "Name hinzufügen") : p.name).font(.system(size: 14, weight: .medium))
-                                .foregroundStyle(p.name.isEmpty ? Color.blue : .white).lineLimit(1)
+                                .foregroundStyle(p.name.isEmpty ? Color.blue : .primary).lineLimit(1)
                         }
                     }
                     .buttonStyle(.plain)
@@ -249,7 +249,7 @@ struct PeopleScreen: View {
             }
             .padding(20)
         }
-        .background(Color.black)
+        .background(Color.appBackground)
         .navigationTitle(String(localized: "Personen"))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -405,16 +405,16 @@ struct FaceReviewSheet: View {
                 if let queue, let f = current {
                     Text(String(localized: "\(index + 1) von \(queue.count)")).font(.subheadline).foregroundStyle(.secondary)
                     ZStack {
-                        if let face { Image(uiImage: face).resizable().scaledToFill() } else { Color(white: 0.15); ProgressView() }
+                        if let face { Image(uiImage: face).resizable().scaledToFill() } else { Color.appFill2; ProgressView() }
                     }
                     .frame(width: 220, height: 220).clipShape(Circle())
-                    .overlay(Circle().stroke(.white.opacity(0.25), lineWidth: 1))
+                    .overlay(Circle().stroke(Color.primary.opacity(0.2), lineWidth: 1))
                     AssetThumb(id: f.assetId, size: .thumbnail).frame(width: 88, height: 88)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     Text(String(localized: "Ist das \(name)?")).font(.title2.bold())
                     HStack(spacing: 14) {
                         Button { answer(false) } label: { Text(String(localized: "Nein")).frame(maxWidth: .infinity).frame(height: 50) }
-                            .buttonStyle(.bordered).tint(.white)
+                            .buttonStyle(.bordered).tint(.primary)
                         Button { answer(true) } label: { Text("Ja").bold().frame(maxWidth: .infinity).frame(height: 50) }
                             .buttonStyle(.borderedProminent)
                     }
@@ -424,7 +424,7 @@ struct FaceReviewSheet: View {
                                            systemImage: "person.crop.circle.badge.checkmark",
                                            description: Text(String(localized: "Sobald der Server weitere Gesichter erkannt hat, erscheinen hier neue Vorschläge.")))
                 } else {
-                    ProgressView(String(localized: "Ähnliche Gesichter werden gesucht …")).tint(.white)
+                    ProgressView(String(localized: "Ähnliche Gesichter werden gesucht …"))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -432,7 +432,6 @@ struct FaceReviewSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(String(localized: "Fertig")) { dismiss() } } }
         }
-        .preferredColorScheme(.dark)
         .task {
             let rejected = Set(rejectedRaw.split(separator: ",").map(String.init))
             queue = (await ImmichClient.shared.similarFaces(person.id) ?? []).filter { !rejected.contains($0.faceId) }
@@ -584,7 +583,7 @@ struct MapScreen: View {
                 }
                 .glassEffect(.regular.interactive(), in: .circle)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(.primary)
             .padding(.horizontal, 16)
         }
         .toolbar(.hidden, for: .navigationBar)

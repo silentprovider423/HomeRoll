@@ -696,7 +696,7 @@ struct MemoriesScreen: View {
                 Button { create = true } label: {
                     Label(String(localized: "Rückblick erstellen"), systemImage: "sparkles")
                         .font(.system(size: 17, weight: .semibold)).frame(maxWidth: .infinity).frame(height: 52)
-                        .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color(white: 0.14)))
+                        .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color.appFill))
                 }
                 .buttonStyle(.plain)
                 Picker("", selection: $onlyFavs) { Text(String(localized: "Alle")).tag(false); Text(String(localized: "Favoriten")).tag(true) }
@@ -714,7 +714,7 @@ struct MemoriesScreen: View {
             }
             .padding(20).padding(.bottom, 90)
         }
-        .background(Color.black)
+        .background(Color.appBackground)
         .navigationTitle(String(localized: "Rückblicke"))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -797,12 +797,12 @@ struct CreateMemorySheet: View {
                     .foregroundStyle(.secondary)
                 TextField(String(localized: "Beschreibe einen Rückblick …"), text: $text, axis: .vertical)
                     .font(.system(size: 20)).lineLimit(1...3)
-                    .padding(16).background(RoundedRectangle(cornerRadius: 18).fill(Color(white: 0.14)))
+                    .padding(16).background(RoundedRectangle(cornerRadius: 18).fill(Color.appFill))
                     .focused($focused).submitLabel(.go).onSubmit { Task { await create() } }
                 FlowLayout(spacing: 8) {
                     ForEach(ideas, id: \.self) { i in
-                        Button(i) { text = i }.font(.system(size: 15, weight: .medium)).foregroundStyle(.white)
-                            .padding(.horizontal, 14).frame(height: 36).background(Capsule().fill(Color(white: 0.17)))
+                        Button(i) { text = i }.font(.system(size: 15, weight: .medium)).foregroundStyle(.primary)
+                            .padding(.horizontal, 14).frame(height: 36).background(Capsule().fill(Color.appFill2))
                             .buttonStyle(.plain)
                     }
                 }
@@ -810,7 +810,7 @@ struct CreateMemorySheet: View {
                 Spacer()
             }
             .padding(20)
-            .overlay { if working { ProgressView(String(localized: "Rückblick wird erstellt …")).tint(.white).padding(24).glassEffect(.regular, in: .rect(cornerRadius: 20)) } }
+            .overlay { if working { ProgressView(String(localized: "Rückblick wird erstellt …")).padding(24).glassEffect(.regular, in: .rect(cornerRadius: 20)) } }
             .navigationTitle(String(localized: "Rückblick erstellen"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

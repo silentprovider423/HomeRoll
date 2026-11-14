@@ -108,7 +108,7 @@ struct AlbumScreen: View {
                     }
                     if !app.selecting && assets != nil {
                         Button { picker = true } label: {
-                            Color(white: 0.13).aspectRatio(1, contentMode: .fit)
+                            Color.appFill.aspectRatio(1, contentMode: .fit)
                                 .overlay { Image(systemName: "plus").font(.system(size: 30, weight: .medium)).foregroundStyle(.blue) }
                         }
                         .buttonStyle(.plain)
@@ -128,10 +128,10 @@ struct AlbumScreen: View {
         })
         .ignoresSafeArea(edges: .top)
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
-        .background(Color.black)
+        .background(Color.appBackground)
         .overlay(alignment: .top) { topBar(list) }
         .overlay {
-            if assets == nil { ProgressView().tint(.white) }
+            if assets == nil { ProgressView() }
             else if list.isEmpty {
                 ContentUnavailableView {
                     Label(name, systemImage: "rectangle.stack")
@@ -179,7 +179,7 @@ struct AlbumScreen: View {
     private func hero(_ list: [Asset]) -> some View {
         let w = width, h = min(width * 1.12, 560)
         return ZStack(alignment: .bottomLeading) {
-            Group { if let cover { AssetThumb(id: cover, size: .preview).scaledToFill() } else { Color(white: 0.14) } }
+            Group { if let cover { AssetThumb(id: cover, size: .preview).scaledToFill() } else { Color.appFill } }
                 .frame(width: w, height: h).clipped()
             LinearGradient(colors: [.black.opacity(0.35), .clear, .clear, .black.opacity(0.55)], startPoint: .top, endPoint: .bottom)
             HStack(alignment: .bottom) {
@@ -228,7 +228,7 @@ struct AlbumScreen: View {
                 }
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .buttonStyle(.plain)
         .padding(.horizontal, 16)
         .padding(.top, 4)
@@ -478,10 +478,10 @@ struct AlbumsListScreen: View {
                 ForEach(visible(sort)) { a in
                     NavigationLink(value: CollectionRoute.album(AlbumRef(id: a.id, name: a.albumName))) {
                         VStack(alignment: .leading, spacing: 4) {
-                            Group { if let t = a.albumThumbnailAssetId { AssetThumb(id: t, size: .preview) } else { Color(white: 0.14) } }
+                            Group { if let t = a.albumThumbnailAssetId { AssetThumb(id: t, size: .preview) } else { Color.appFill } }
                                 .aspectRatio(1, contentMode: .fit)
                                 .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                            Text(a.albumName).font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                            Text(a.albumName).font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
                             Text("\(a.assetCount)").font(.system(size: 14)).foregroundStyle(.secondary)
                         }
                     }
@@ -492,7 +492,7 @@ struct AlbumsListScreen: View {
             .padding(20)
             .padding(.bottom, 90)
         }
-        .background(Color.black)
+        .background(Color.appBackground)
         .navigationTitle(folder?.name ?? String(localized: "Alben"))
         .onAppear { folders.use(app.userID); smart.use(app.userID) }
         .sheet(item: $editingSmart) { s in SmartAlbumEditor(album: s) { smart.save($0) } }
@@ -537,10 +537,10 @@ struct AlbumsListScreen: View {
     private func smartTile(_ s: SmartAlbum) -> some View {
         NavigationLink(value: CollectionRoute.smart(s.id)) {
             VStack(alignment: .leading, spacing: 4) {
-                RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color(white: 0.14))
+                RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color.appFill)
                     .aspectRatio(1, contentMode: .fit)
                     .overlay { Image(systemName: "gearshape").font(.system(size: 44)).foregroundStyle(.secondary) }
-                Text(s.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                Text(s.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
                 Text(String(localized: "Intelligentes Album")).font(.system(size: 14)).foregroundStyle(.secondary)
             }
         }
@@ -556,7 +556,7 @@ struct AlbumsListScreen: View {
         let covers = model.albums.filter { f.albums.contains($0.id) }.compactMap(\.albumThumbnailAssetId).prefix(4)
         return NavigationLink(value: CollectionRoute.albumFolder(f.id)) {
             VStack(alignment: .leading, spacing: 4) {
-                RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color(white: 0.14))
+                RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color.appFill)
                     .aspectRatio(1, contentMode: .fit)
                     .overlay {
                         if covers.isEmpty {
@@ -569,7 +569,7 @@ struct AlbumsListScreen: View {
                             .padding(8)
                         }
                     }
-                Label(f.name, systemImage: "folder").font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                Label(f.name, systemImage: "folder").font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
                 Text(f.albums.count == 1 ? "1 Album" : "\(f.albums.count) Alben").font(.system(size: 14)).foregroundStyle(.secondary)
             }
         }
@@ -602,7 +602,7 @@ struct NewAlbumSheet: View {
             VStack(spacing: 14) {
                 Group {
                     if let first = ids.first { AssetThumb(id: first, size: .preview).scaledToFill() }
-                    else { Color(white: 0.16).overlay { Image(systemName: "photo").font(.system(size: 40)).foregroundStyle(.secondary) } }
+                    else { Color.appFill2.overlay { Image(systemName: "photo").font(.system(size: 40)).foregroundStyle(.secondary) } }
                 }
                 .frame(width: 230, height: 230)
                 .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
@@ -615,12 +615,12 @@ struct NewAlbumSheet: View {
                 Button(String(localized: "Fotos hinzufügen")) { picker = true }
                     .font(.system(size: 16, weight: .semibold)).foregroundStyle(.blue)
                     .padding(.horizontal, 18).frame(height: 38)
-                    .background(Capsule().fill(Color(white: 0.18)))
+                    .background(Capsule().fill(Color.appFill2))
                     .buttonStyle(.plain)
                 TextField(String(localized: "Albumname"), text: $name)
                     .font(.system(size: 20))
                     .padding(.horizontal, 22).frame(height: 62)
-                    .background(Capsule().fill(Color(white: 0.14)))
+                    .background(Capsule().fill(Color.appFill))
                     .focused($focused)
                     .submitLabel(.done)
                     .onSubmit(create)
@@ -686,7 +686,7 @@ struct PhotoPicker: View {
                 .padding(.bottom, 20)
             }
             .defaultScrollAnchor(.bottom)
-            .background(Color.black)
+            .background(Color.appBackground)
             .navigationTitle(chosen.isEmpty ? String(localized: "Objekte auswählen") : chosen.count == 1 ? String(localized: "1 Objekt ausgewählt") : String(localized: "\(chosen.count) Objekte ausgewählt"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

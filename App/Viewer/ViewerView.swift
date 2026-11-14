@@ -94,6 +94,7 @@ struct ViewerView: View {
             if let a = current {
                 InfoSheet(asset: a, lookUp: analysis.hasLookUp(a.id) ? { showInfo = false; analysis.lookUp = true } : nil)
                     .presentationDetents([.medium, .large])
+                    .preferredColorScheme(.dark)   // wie die Fotos-Ansicht immer dunkel (Bögen erben das Fenster-Erscheinungsbild)
             }
         }
     }

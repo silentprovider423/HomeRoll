@@ -287,7 +287,7 @@ struct AddToAlbumSheet: View {
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)], spacing: 18) {
                     Button { askName = true } label: {
                         VStack(alignment: .leading, spacing: 6) {
-                            RoundedRectangle(cornerRadius: 16, style: .continuous).fill(Color(white: 0.16))
+                            RoundedRectangle(cornerRadius: 16, style: .continuous).fill(Color.appFill2)
                                 .aspectRatio(1, contentMode: .fit)
                                 .overlay { Image(systemName: "plus").font(.system(size: 34, weight: .medium)).foregroundStyle(.blue) }
                             Text(String(localized: "Neues Album …")).font(.system(size: 15, weight: .semibold))
@@ -297,7 +297,7 @@ struct AddToAlbumSheet: View {
                     ForEach(albums) { a in
                         Button { add(a.id) } label: {
                             VStack(alignment: .leading, spacing: 6) {
-                                Group { if let t = a.albumThumbnailAssetId { AssetThumb(id: t, size: .preview) } else { Color(white: 0.16) } }
+                                Group { if let t = a.albumThumbnailAssetId { AssetThumb(id: t, size: .preview) } else { Color.appFill2 } }
                                     .aspectRatio(1, contentMode: .fit)
                                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                                 Text(a.albumName).font(.system(size: 15, weight: .semibold)).lineLimit(1)
@@ -692,7 +692,7 @@ extension View {
             }
             .fullScreenCover(item: Binding(get: { if case .slideshow = item.wrappedValue { item.wrappedValue } else { nil } },
                                            set: { item.wrappedValue = $0 })) { s in
-                if case .slideshow(let a) = s { SlideshowView(assets: a) }
+                if case .slideshow(let a) = s { SlideshowView(assets: a).preferredColorScheme(.dark) }
             }
     }
 }

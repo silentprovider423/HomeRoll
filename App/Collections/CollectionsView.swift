@@ -118,7 +118,7 @@ struct CollectionsView: View {
                 .padding(.bottom, 120)
             }
             .scrollIndicators(.hidden)
-            .background(Color.black)
+            .background(Color.appBackground)
             .overlay(alignment: .top) {
                 header.padding(.bottom, 26).background(alignment: .top) { TopBlur() }
             }
@@ -201,13 +201,14 @@ struct CollectionsView: View {
                     Button(String(localized: "Neu anordnen")) { reorder = true }
                 } label: {
                     Image(systemName: "ellipsis").font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(.white).frame(width: 46, height: 46).contentShape(.rect)
+                        .foregroundStyle(.primary).frame(width: 46, height: 46).contentShape(.rect)
                 }
                 .glassEffect(.regular.interactive(), in: .circle)
                 Menu {
                     Section(model.userName) {
                         Button(String(localized: "Backup"), systemImage: "arrow.triangle.2.circlepath.icloud") { showBackup = true }
                         Button(String(localized: "Geteilte Mediathek"), systemImage: "person.2") { showShared = true }
+                        Button(String(localized: "Einstellungen", table: "Theme"), systemImage: "gearshape") { app.showSettings = true }
                         Button(String(localized: "Aktualisieren"), systemImage: "arrow.clockwise") {
                             Task { await model.load(); await timeline.reload(); await timeline.loadAll() }
                         }
@@ -250,7 +251,7 @@ struct CollectionsView: View {
                         Text(title).font(.system(size: 26, weight: .bold))
                         if route != nil { Image(systemName: "chevron.right").font(.system(size: 20, weight: .bold)).foregroundStyle(.secondary) }
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 }
                 .buttonStyle(.plain)
                 Spacer()
@@ -258,7 +259,7 @@ struct CollectionsView: View {
                     Button { editPinned = true } label: {
                         Text(String(localized: "Bearbeiten")).font(.system(size: 16, weight: .semibold)).foregroundStyle(.blue)
                             .padding(.horizontal, 14).frame(height: 34)
-                            .background(Capsule().fill(Color(white: 0.15)))
+                            .background(Capsule().fill(Color.appFill2))
                     }
                     .buttonStyle(.plain)
                 }
@@ -270,7 +271,7 @@ struct CollectionsView: View {
                         .rotationEffect(.degrees(collapsed ? -90 : 0))
                         .foregroundStyle(.blue)
                         .frame(width: 34, height: 34)
-                        .background(Circle().fill(Color(white: 0.15)))
+                        .background(Circle().fill(Color.appFill2))
                 }
                 .buttonStyle(.plain)
             }
@@ -300,7 +301,7 @@ struct CollectionsView: View {
             if memories.items.isEmpty && !memories.settled {
                 // wie Fotos: graue Karten, solange die Rückblicke noch berechnet werden
                 ForEach(0..<2, id: \.self) { _ in
-                    RoundedRectangle(cornerRadius: 26, style: .continuous).fill(Color(white: 0.12))
+                    RoundedRectangle(cornerRadius: 26, style: .continuous).fill(Color.appFill)
                         .frame(width: side * 2.1, height: side * 2.1)
                 }
             }
@@ -506,7 +507,7 @@ struct BigCard: View {
     var play = false
     var body: some View {
         ZStack {
-            if let assetID { AssetThumb(id: assetID, size: .preview) } else { Color(white: 0.12) }
+            if let assetID { AssetThumb(id: assetID, size: .preview) } else { Color.appFill }
         }
         .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
         .overlay {
@@ -536,7 +537,7 @@ struct SmallCard: View {
     @Environment(\.cardSide) private var side
     var body: some View {
         ZStack {
-            if let assetID { AssetThumb(id: assetID, size: .preview) } else { Color(white: 0.14) }
+            if let assetID { AssetThumb(id: assetID, size: .preview) } else { Color.appFill }
         }
         .frame(width: side, height: side)
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
@@ -562,7 +563,7 @@ struct MosaicCard: View {
         let g = [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)]
         LazyVGrid(columns: g, spacing: 2) {
             ForEach(0..<4, id: \.self) { i in
-                Group { if i < ids.count { AssetThumb(id: ids[i]) } else { Color(white: 0.14) } }
+                Group { if i < ids.count { AssetThumb(id: ids[i]) } else { Color.appFill } }
                     .frame(height: side / 2 - 1)
             }
         }
@@ -587,7 +588,7 @@ struct MapCard: View {
     var body: some View {
         ZStack(alignment: .top) {
             // Bild ist höher als die Kachel: Karten-Logo unten links liegt außerhalb und wird abgeschnitten
-            if let image { Image(uiImage: image).resizable().frame(width: side, height: side * 1.375) } else { Color(white: 0.14) }
+            if let image { Image(uiImage: image).resizable().frame(width: side, height: side * 1.375) } else { Color.appFill }
         }
         .frame(width: side, height: side, alignment: .top)
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))

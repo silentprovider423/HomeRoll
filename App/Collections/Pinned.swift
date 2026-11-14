@@ -97,11 +97,11 @@ struct PinCard: View {
         case .category(.map):
             MapCard(markers: model.markers)
         case .category(let c) where c.locked:
-            RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color(white: 0.16))
+            RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color.appFill2)
                 .frame(width: side, height: side)
                 .overlay { Image(systemName: "lock.fill").font(.system(size: 26)).foregroundStyle(.secondary) }
                 .overlay(alignment: .bottomLeading) {
-                    Text(item.title).font(.system(size: 17, weight: .semibold)).foregroundStyle(.white).lineLimit(2).padding(12)
+                    Text(item.title).font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary).lineLimit(2).padding(12)
                 }
         default:
             SmallCard(assetID: cover, title: item.title,
@@ -157,7 +157,7 @@ struct PinnedEditor: View {
                             HStack(spacing: 14) {
                                 Image(systemName: "plus.circle.fill").symbolRenderingMode(.palette)
                                     .foregroundStyle(.white, .green).font(.system(size: 22))
-                                Text(p.title).font(.system(size: 19, weight: .semibold)).foregroundStyle(.white)
+                                Text(p.title).font(.system(size: 19, weight: .semibold)).foregroundStyle(.primary)
                             }
                         }
                     }
@@ -218,7 +218,7 @@ struct PinnedScreen: View {
         }
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
         .environment(\.cardSide, (width - 40 - CGFloat(n - 1) * 16) / CGFloat(n))
-        .background(Color.black)
+        .background(Color.appBackground)
         .navigationTitle(String(localized: "Angepinnt"))
     }
 }
@@ -239,7 +239,7 @@ struct EmptyCard: View {
                     Button(action.0, action: action.1)
                         .font(.system(size: 16, weight: .semibold)).foregroundStyle(.blue)
                         .padding(.horizontal, 14).frame(height: 34)
-                        .background(Capsule().fill(Color(white: 0.2)))
+                        .background(Capsule().fill(Color.appFill2))
                         .buttonStyle(.plain)
                 }
             }
@@ -249,7 +249,7 @@ struct EmptyCard: View {
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 24, style: .continuous).fill(Color(white: 0.11)))
+        .background(RoundedRectangle(cornerRadius: 24, style: .continuous).fill(Color.appFill))
         .padding(.horizontal, 22)
     }
 }
@@ -257,11 +257,11 @@ struct EmptyCard: View {
 struct NewAlbumCard: View {
     @Environment(\.cardSide) private var side
     var body: some View {
-        RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color(white: 0.13))
+        RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color.appFill)
             .frame(width: side, height: side)
             .overlay { Image(systemName: "plus").font(.system(size: 30, weight: .medium)).foregroundStyle(.blue) }
             .overlay(alignment: .bottomLeading) {
-                Text(String(localized: "Neues Album")).font(.system(size: 15, weight: .semibold)).foregroundStyle(.white).padding(12)
+                Text(String(localized: "Neues Album")).font(.system(size: 15, weight: .semibold)).foregroundStyle(.primary).padding(12)
             }
     }
 }

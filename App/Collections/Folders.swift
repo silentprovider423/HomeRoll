@@ -151,7 +151,7 @@ struct FolderTile: View {
     var body: some View {
         let isFolder = !store.children(of: path).isEmpty
         VStack(alignment: .leading, spacing: 4) {
-            RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color(white: 0.14))
+            RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color.appFill)
                 .aspectRatio(1, contentMode: .fit)
                 .overlay {
                     if isFolder && covers.count > 1 {
@@ -162,7 +162,7 @@ struct FolderTile: View {
                                     ForEach(0..<2, id: \.self) { c in
                                         let i = r * 2 + c
                                         Group {
-                                            if i < covers.count { AssetThumb(id: covers[i]) } else { Color(white: 0.2) }
+                                            if i < covers.count { AssetThumb(id: covers[i]) } else { Color.appFill2 }
                                         }
                                         .aspectRatio(1, contentMode: .fill)
                                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
@@ -181,7 +181,7 @@ struct FolderTile: View {
             Group {
                 if isFolder { Label(FolderStore.name(path), systemImage: "folder") } else { Text(FolderStore.name(path)) }
             }
-            .font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+            .font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
             Text(summary.isEmpty ? " " : summary).font(.system(size: 14)).foregroundStyle(.secondary).lineLimit(1)
         }
         .task(id: path) {
@@ -238,7 +238,7 @@ struct FolderScreen: View {
                 .padding(20)
                 .padding(.bottom, 90)
             }
-            .background(Color.black)
+            .background(Color.appBackground)
             .navigationTitle(title)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -279,11 +279,11 @@ private struct OwnPhotosTile: View {
     @State private var count = 0
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color(white: 0.14))
+            RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Color.appFill)
                 .aspectRatio(1, contentMode: .fit)
                 .overlay { if let cover { AssetThumb(id: cover, size: .preview) } }
                 .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-            Text(String(localized: "Fotos in diesem Ordner")).font(.system(size: 16, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+            Text(String(localized: "Fotos in diesem Ordner")).font(.system(size: 16, weight: .semibold)).foregroundStyle(.primary).lineLimit(1)
             Text(count == 1 ? String(localized: "1 Objekt") : String(localized: "\(count) Objekte")).font(.system(size: 14)).foregroundStyle(.secondary)
         }
         .task(id: path) {

@@ -80,7 +80,7 @@ struct SearchView: View {
     var body: some View {
         NavigationStack(path: $path) {
             ZStack(alignment: .bottom) {
-                Color.black.ignoresSafeArea()
+                Color.appBackground.ignoresSafeArea()
                 ScrollView {
                     if active { activeView } else { start }
                 }
@@ -123,7 +123,7 @@ struct SearchView: View {
     private var searchBar: some View {
         HStack(spacing: 12) {
             Button { app.tab = .collections; dismiss() } label: {
-                Image(systemName: "square.stack.fill").font(.system(size: 20)).foregroundStyle(.white).frame(width: 54, height: 54).contentShape(.rect)
+                Image(systemName: "square.stack.fill").font(.system(size: 20)).foregroundStyle(.primary).frame(width: 54, height: 54).contentShape(.rect)
             }
             .glassEffect(.regular.interactive(), in: .circle)
             HStack(spacing: 6) {
@@ -159,7 +159,7 @@ struct SearchView: View {
             .padding(.horizontal, 16).frame(height: 54)
             .glassEffect(.regular.interactive(), in: .capsule)
             Button { dismiss() } label: {
-                Image(systemName: "xmark").font(.system(size: 18, weight: .semibold)).foregroundStyle(.white).frame(width: 54, height: 54).contentShape(.rect)
+                Image(systemName: "xmark").font(.system(size: 18, weight: .semibold)).foregroundStyle(.primary).frame(width: 54, height: 54).contentShape(.rect)
             }
             .glassEffect(.regular.interactive(), in: .circle)
         }
@@ -183,13 +183,13 @@ struct SearchView: View {
                         }
                         ForEach(recentQueries, id: \.self) { q in
                             Button { query = q } label: {
-                                RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color(white: 0.13))
+                                RoundedRectangle(cornerRadius: 22, style: .continuous).fill(Color.appFill)
                                     .frame(width: 128, height: 128)
                                     .overlay(alignment: .topLeading) {
                                         Image(systemName: "magnifyingglass").font(.system(size: 20)).foregroundStyle(.secondary).padding(12)
                                     }
                                     .overlay(alignment: .bottomLeading) {
-                                        Text(q).font(.system(size: 17, weight: .semibold)).foregroundStyle(.white).lineLimit(2).padding(12)
+                                        Text(q).font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary).lineLimit(2).padding(12)
                                     }
                             }
                             .buttonStyle(.plain)
@@ -207,7 +207,7 @@ struct SearchView: View {
                             Button { add(.person(id: p.id, name: p.name)) } label: {
                                 VStack(spacing: 6) {
                                     PersonThumb(id: p.id).frame(width: 76, height: 76).clipShape(Circle())
-                                    Text(p.name).font(.system(size: 13, weight: .medium)).foregroundStyle(.white).lineLimit(1)
+                                    Text(p.name).font(.system(size: 13, weight: .medium)).foregroundStyle(.primary).lineLimit(1)
                                 }
                                 .frame(width: 80)
                             }
@@ -302,7 +302,7 @@ struct SearchView: View {
                     Button(selecting ? String(localized: "Fertig") : String(localized: "Auswählen")) {
                         withAnimation(.snappy) { selecting.toggle(); selected = [] }
                     }
-                    .font(.system(size: 17, weight: .semibold)).foregroundStyle(.white)
+                    .font(.system(size: 17, weight: .semibold)).foregroundStyle(.primary)
                     .padding(.horizontal, 18).frame(height: 44)
                     .glassEffect(.regular.interactive(), in: .capsule)
                 }
@@ -337,7 +337,7 @@ struct SearchView: View {
                 }
                 if resultKey == key, result.next != nil {
                     Button { Task { await loadMore() } } label: {
-                        if loadingMore { ProgressView().tint(.white) }
+                        if loadingMore { ProgressView() }
                         else { Text(String(localized: "Mehr laden")).font(.headline) }
                     }
                     .buttonStyle(.glass).disabled(loadingMore).padding(.vertical, 16).frame(maxWidth: .infinity)
@@ -358,7 +358,7 @@ struct SearchView: View {
                 }
             }
         }
-        .overlay(alignment: .top) { if searching && resultKey != key { ProgressView().tint(.white).padding(.top, 240) } }
+        .overlay(alignment: .top) { if searching && resultKey != key { ProgressView().padding(.top, 240) } }
     }
 
     private func grid(_ list: [Asset], all: [Asset]) -> some View {
@@ -396,7 +396,7 @@ struct SearchView: View {
                 .disabled(selected.isEmpty)
         }
         .font(.system(size: 20, weight: .medium))
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .buttonStyle(.plain)
         .padding(.horizontal, 20).padding(.bottom, 6)
         .confirmationDialog("", isPresented: $confirmDelete) {
@@ -427,7 +427,7 @@ struct SearchView: View {
                 Spacer()
                 if let sub { Text(sub).font(.system(size: 14)).foregroundStyle(.secondary) }
             }
-            .foregroundStyle(.white).padding(.horizontal, 20).frame(height: 46)
+            .foregroundStyle(.primary).padding(.horizontal, 20).frame(height: 46)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -630,8 +630,8 @@ struct FlowChips: View {
             ForEach(items) { c in
                 Button { action(c) } label: {
                     Label(c.title, systemImage: c.icon).font(.system(size: 15, weight: .medium))
-                        .foregroundStyle(.white).padding(.horizontal, 14).frame(height: 36)
-                        .background(Capsule().fill(Color(white: 0.15)))
+                        .foregroundStyle(.primary).padding(.horizontal, 14).frame(height: 36)
+                        .background(Capsule().fill(Color.appFill2))
                 }
                 .buttonStyle(.plain)
             }

@@ -220,7 +220,7 @@ struct MemoryPlayer: View {
             guard countdown == c, !Task.isCancelled else { return }
             if c <= 1 { playNext() } else { countdown = c - 1 }
         }
-        .sheet(isPresented: $mixSheet, onDismiss: { if !chrome && !ended { resume() } }) { mixPicker.presentationDetents([.height(330)]) }
+        .sheet(isPresented: $mixSheet, onDismiss: { if !chrome && !ended { resume() } }) { mixPicker.presentationDetents([.height(330)]).preferredColorScheme(.dark) }
         .sheet(isPresented: $grid) {
             MemoryGrid(assets: memory.assets, open: { i in grid = false; viewer = ViewerRequest(assets: memory.assets, index: i) },
                        remove: { a in
@@ -241,7 +241,7 @@ struct MemoryPlayer: View {
             .overlay(alignment: .top) { ToastBadge() }
         }
         .overlay(alignment: .top) { ToastBadge() }
-        .fullScreenCover(item: $viewer) { r in ViewerView(assets: r.assets, start: r.index) }
+        .fullScreenCover(item: $viewer) { r in ViewerView(assets: r.assets, start: r.index).preferredColorScheme(.dark) }
         .alert(String(localized: "Titel bearbeiten"), isPresented: $renaming) {
             TextField(String(localized: "Titel"), text: $newTitle)
             Button(String(localized: "Sichern")) {
