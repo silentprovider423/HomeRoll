@@ -153,7 +153,15 @@ struct SearchView: View {
                         _ = withAnimation(.snappy) { tokens.removeLast() }; return .handled
                     }
                 if active {
-                    Button { query = ""; tokens = [] } label: { Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary) }
+                    // Suchbegriff löschen und gleich weitertippen (GitHub #49): große Trefferfläche, sonst nahm auf dem
+                    // iPhone die Glasfläche drumherum den Fingertipp
+                    Button { query = ""; tokens = []; focused = true } label: {
+                        Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary)
+                            .frame(width: 44, height: 54).contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.trailing, -12)
+                    .accessibilityLabel(String(localized: "Löschen"))
                 }
             }
             .padding(.horizontal, 16).frame(height: 54)

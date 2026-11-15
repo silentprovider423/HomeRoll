@@ -117,8 +117,9 @@ Optional server add-ons (see [`server/README.md`](server/README.md)): relevance 
 
 You need your own Immich server for this. **Step-by-step guide from zero (server, access from outside, install, backup): [docs/SETUP.md](docs/SETUP.md).**
 
-1. Download `HomeRoll-<version>.ipa` (e.g. `HomeRoll-1.0.3.ipa`) from the [latest release](https://github.com/silentprovider423/HomeRoll/releases/latest).
+1. Download `HomeRoll.ipa` from the [latest release](https://github.com/silentprovider423/HomeRoll/releases/latest).
 2. Install it with [SideStore](https://sidestore.io) or [AltStore](https://altstore.io). A free Apple ID is enough, the app then has to be refreshed every 7 days (SideStore does that on the phone).
+   To get updates right in SideStore/AltStore, add this source: `https://raw.githubusercontent.com/silentprovider423/HomeRoll/main/sidestore.json`
 3. Open the app and log in with your Immich server address and your Immich account.
 
 ### Verify the download
