@@ -89,7 +89,9 @@ final class BackupEngine {
 
     /// `tagged`: Kategorie-Tags (Bildschirmfotos, Panoramen …) sind sicher auf dem Server; nil = noch nachholen.
     /// `editedAt`: Stand der Bearbeitung (Änderungsdatum in Fotos), die als `edited` auf dem Server liegt.
-    struct Entry: Codable { var remote: String; var edited: String?; var tagged: Bool?; var editedAt: Date? }
+    /// `syncedAt`: Zeitpunkt des letzten erfolgreichen Backup-/Sync-Schritts für dieses lokale Objekt.
+    /// Wenn das lokale Asset nach diesem Zeitpunkt geändert wurde, darf es nicht gelöscht werden.
+    struct Entry: Codable { var remote: String; var edited: String?; var tagged: Bool?; var editedAt: Date?; var syncedAt: Date? }
 
     private func save() {
         let d = UserDefaults.standard
@@ -243,13 +245,13 @@ final class BackupEngine {
             do {
                 if let r = try await backup(a) {
                     let (id, edited, isNew) = r
-                    state[a.localIdentifier] = Entry(remote: id, edited: edited, editedAt: edited != nil ? a.modificationDate : nil)
+                    state[a.localIdentifier] = Entry(remote: id, edited: edited, editedAt: edited != nil ? a.modificationDate : nil, syncedAt: Date())
                     if isNew { uploaded += 1 } else { duplicates += 1 }
                     saveState()
                     // Tags sofort setzen, nicht erst am Ende des Laufs: wird die App vorher beendet,
                     // stünde das Bildschirmfoto sonst in der Mediathek, aber nie unter „Bildschirmfotos“.
                     var ok = true
-                    for (t, ids) in Self.tagPlan(a, Entry(remote: id, edited: edited)) {
+                    for (t, ids) in Self.tagPlan(a, Entry(remote: id, edited: edited, syncedAt: Date())) {
                         do { try await api.tag(ids, with: t) } catch { ok = false }
                     }
                     if ok { state[a.localIdentifier]?.tagged = true; saveState() }
@@ -318,7 +320,7 @@ final class BackupEngine {
                 // allein in der Mediathek. Wie im Editor der App ersetzt die neue Fassung sie → frühere in den Papierkorb.
                 if let previous = e.edited, previous != r.id { try? await api.trash([previous]) }
             }
-            e.edited = r.id; e.editedAt = stamp; state[lid] = e
+            e.edited = r.id; e.editedAt = stamp; e.syncedAt = Date(); state[lid] = e
             saveState()
             uploaded += r.isNew ? 1 : 0
         }
@@ -393,7 +395,7 @@ final class BackupEngine {
         } catch { try? FileManager.default.removeItem(at: body); throw error }
         try? FileManager.default.removeItem(at: file)   // Platz sparen: ab hier zählt nur noch der Rumpf
         let meta = BackgroundUploader.Meta(user: stateUser, localID: a.localIdentifier, kind: kind, body: body.path,
-                                           localDate: localDate, checksum: sha1)
+                                            localDate: localDate, checksum: sha1)
         let r = try await BackgroundUploader.shared.upload(req, body: body, meta: meta)
         if r.status != "duplicate", let localDate { api.setCaptureTime(r.id, localDate) }
         return (r.id, r.status != "duplicate")
@@ -517,7 +519,7 @@ final class BackupEngine {
         let a = PHAsset.fetchAssets(withLocalIdentifiers: [meta.localID], options: nil).firstObject
         let edited = a.map { PHAssetResource.assetResources(for: $0).contains { $0.type == .fullSizePhoto || $0.type == .fullSizeVideo } } ?? false
         guard !edited else { return }
-        state[meta.localID] = Entry(remote: r.id, edited: nil)   // Tags holt repairTags beim nächsten Lauf nach
+        state[meta.localID] = Entry(remote: r.id, edited: nil, syncedAt: Date())   // Tags holt repairTags beim nächsten Lauf nach
         saveState()
         if r.status != "duplicate", let d = meta.localDate { ImmichClient.shared.setCaptureTime(r.id, d) }
         if let p = storedPending, p > 0 { storedPending = p - 1; UserDefaults.standard.set(p - 1, forKey: "backup.pending") }
@@ -544,6 +546,13 @@ final class BackupEngine {
     func remoteID(forLocal lid: String) -> String? { state[lid]?.remote }
     /// Server-ID der zuletzt gesicherten bearbeiteten Fassung (liegt oben auf dem Stapel, das Original darunter).
     func editedID(forLocal lid: String) -> String? { state[lid]?.edited }
+    func safeToDelete(_ asset: PHAsset) -> Bool {
+        guard let lid = asset.localIdentifier, let e = state[lid] else { return true }
+        let mod = asset.modificationDate ?? .distantPast
+        if let synced = e.syncedAt, mod > synced { return false }
+        if let editedAt = e.editedAt, mod > editedAt { return false }
+        return true
+    }
 
     // MARK: Speicher freigeben (für FreeUpSection)
 
