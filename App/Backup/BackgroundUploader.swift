@@ -31,6 +31,8 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
         let c = URLSessionConfiguration.background(withIdentifier: Self.sessionID)
         c.isDiscretionary = false            // sofort, nicht „wenn es dem System passt“
         c.sessionSendsLaunchEvents = true    // App nach dem Ende im Hintergrund wecken
+        // mehrere Uploads gleichzeitig zum eigenen Server (Standard unter iOS sind wenige je Server)
+        c.httpMaximumConnectionsPerHost = BackupEngine.parallelUploads
         c.timeoutIntervalForResource = 3 * 24 * 3600
         return URLSession(configuration: c, delegate: self, delegateQueue: nil)
     }()
@@ -81,7 +83,7 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
               let meta = task.taskDescription.flatMap({ try? JSONDecoder().decode(Meta.self, from: Data($0.utf8)) }) else { return }
         let p = Double(totalBytesSent) / Double(totalBytesExpectedToSend)
         Task { @MainActor in
-            if BackupEngine.shared.currentLocalID == meta.localID { BackupEngine.shared.progress = p }
+            BackupEngine.shared.setProgress(meta.localID, p)
         }
     }
 
