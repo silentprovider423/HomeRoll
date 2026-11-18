@@ -13,6 +13,7 @@ struct FotosApp: App {
         AppGroup.saveTheme(AppTheme.saved.rawValue)   // Teilen-Erweiterung zeigt dasselbe Erscheinungsbild wie die App
         BackgroundUploader.shared.reconnect()   // Ergebnisse von Übertragungen aus früheren Sitzungen abholen
         PerfLog.start()
+        Diagnostics.shared.start()   // Hänger-/Absturzberichte von iOS (MetricKit)
         #if DEBUG
         // Simulator-Test „lokale Kopie bevorzugen“: simctl kann vollen Fotozugriff nicht setzen → Systemdialog
         if ProcessInfo.processInfo.environment["FOTOS_TEST_ASK_PHOTOS"] != nil { PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in } }

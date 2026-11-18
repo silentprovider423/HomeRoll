@@ -115,13 +115,16 @@ final class BackupEngine {
     /// Kurzer Auftrag (iOS gibt ~30 s): neue Fotos prüfen und an die Hintergrund-Übertragung übergeben – die läuft
     /// nach dem Ende des Auftrags im System weiter, `adopt` trägt das Ergebnis später ein.
     private func handleRefresh(_ t: BGTask) {
-        t.expirationHandler = { Task { @MainActor in BackupEngine.shared.cancel() } }
+        t.expirationHandler = { Task { @MainActor in if UIApplication.shared.applicationState != .active { BackupEngine.shared.cancel() } } }
         Task {
-            if !paused {
+            // Nur einen Lauf beenden, den dieser Auftrag selbst gestartet hat – und nie, solange die App offen ist.
+            // Vorher brach der Weckruf nach 22 s auch ein gerade laufendes Backup bei offener App ab (17.11.2026:
+            // Lauf nach 52 s mit 0 Uploads beendet, Backup schien zu hängen).
+            if !paused, !running {
                 start()
                 let deadline = Date().addingTimeInterval(22)
                 while running, Date() < deadline { try? await Task.sleep(for: .milliseconds(500)) }
-                cancel()
+                if UIApplication.shared.applicationState != .active { cancel() }
             }
             t.setTaskCompleted(success: true)
             schedule()
@@ -129,7 +132,9 @@ final class BackupEngine {
     }
 
     private func handle(_ t: BGTask) {
-        t.expirationHandler = { Task { @MainActor in BackupEngine.shared.cancel(); OfflineSync.shared.stop() } }
+        t.expirationHandler = { Task { @MainActor in
+            if UIApplication.shared.applicationState != .active { BackupEngine.shared.cancel(); OfflineSync.shared.stop() }
+        } }
         Task {
             if !paused { await run() }
             await OfflineSync.shared.runAndWait()      // danach Vorschauen fürs Offline-Blättern nachladen

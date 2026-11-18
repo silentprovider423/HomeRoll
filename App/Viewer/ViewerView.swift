@@ -400,7 +400,7 @@ private struct ZoomableImage: View {
         // Zoom wie in Fotos über eine UIScrollView (GitHub #52): Pinch am Fingerpunkt, gezoomt frei schieben mit
         // Schwung und Abfedern am Rand, Doppeltipp zoomt an die getippte Stelle. Ungezoomt ist das Schieben aus,
         // damit Blättern (TabView) und Wischen zum Schließen wie bisher gehen.
-        ZoomScroll(ratio: asset.ratio, pixelWidth: full.map { $0.size.width * $0.scale } ?? 0, scale: $scale,
+        ZoomScroll(ratio: asset.ratio, pixelWidth: full.map { $0.size.width * $0.scale } ?? 0, scale: $scale, active: analysis != nil,
                    onTap: { withAnimation(.easeInOut(duration: 0.2)) { chrome.toggle() } }) {
             layers.environment(app)
         }
