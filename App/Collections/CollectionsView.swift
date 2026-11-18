@@ -81,6 +81,8 @@ final class CollectionsModel {
 
 struct CollectionsView: View {
     @Environment(AppModel.self) private var app
+    @AppStorage("folderSort") private var folderSortRaw = FolderSort.nameAsc.rawValue
+    @State private var folderOrder: [String] = []
     @Environment(TimelineStore.self) private var timeline
     @State private var model = CollectionsModel()
     @State private var memories = MemoryCenter.shared
@@ -356,10 +358,15 @@ struct CollectionsView: View {
     }
 
     private var foldersRow: some View {
-        row {
-            ForEach(FolderStore.shared.children(of: FolderStore.shared.root).prefix(30), id: \.self) { f in
+        let top = FolderStore.shared.children(of: FolderStore.shared.root)
+        return row {
+            ForEach((folderOrder.isEmpty ? top : folderOrder).prefix(30), id: \.self) { f in
                 NavigationLink(value: CollectionRoute.folder(f)) { FolderCard(path: f) }.buttonStyle(.plain)
             }
+        }
+        // gleiche Reihenfolge wie die in der Ordneransicht gewählte Sortierung (GitHub #57)
+        .task(id: "\(folderSortRaw)\(top.count)\(FolderStore.shared.root)") {
+            folderOrder = await FolderStore.shared.sorted(top, by: FolderSort(rawValue: folderSortRaw) ?? .nameAsc)
         }
     }
 

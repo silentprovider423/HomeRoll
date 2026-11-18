@@ -8576,22 +8576,6 @@
         }
       }
     },
-    "Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Without a connection to the server you see all photos as previews; videos and originals need the server. Downloads only happen over Wi-Fi, and the iPhone always keeps at least 10 GB free."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Без подключения к серверу все фото доступны как превью; для видео и оригиналов нужен сервер. Загрузка выполняется только по Wi-Fi, при этом на iPhone всегда остаётся не менее 10 ГБ свободного места."
-          }
-        }
-      }
-    },
     "Optic ID verwenden oder Code eingeben, um dieses Album anzuzeigen": {
       "localizations": {
         "en": {
@@ -13008,6 +12992,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "_edited"
+          }
+        }
+      }
+    },
+    "Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Kleine Vorschauen sind für das Raster, große für die Einzelansicht. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without a connection to the server you see all photos as previews; videos and originals need the server. Small previews are for the grid, large ones for the full-screen view. Downloads only happen over Wi-Fi, and the iPhone always keeps at least 10 GB free."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без подключения к серверу все фото доступны как превью; для видео и оригиналов нужен сервер. Маленькие превью нужны для сетки, большие — для полноэкранного просмотра. Загрузка выполняется только по Wi-Fi, при этом на iPhone всегда остаётся не менее 10 ГБ свободного места."
+          }
+        }
+      }
+    },
+    "Keine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет"
+          }
+        }
+      }
+    },
+    "Mein Rückblick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Memory"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Моё воспоминание"
           }
         }
       }

@@ -22,6 +22,7 @@ final class FreeUp {
         fetched.enumerateObjects { a, _, _ in
             if days > 0, (a.creationDate ?? Date()) > limit { return }
             if keepFavorites, a.isFavorite { return }
+            if !BackupEngine.shared.currentVersionBackedUp(a) { return }   // Bearbeitung noch nicht gesichert (#56)
             local.append(a)
         }
         // Gegenprobe beim Server: Objekt muss noch da sein (nicht gelöscht, nicht im Papierkorb)

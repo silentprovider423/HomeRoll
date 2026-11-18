@@ -127,6 +127,7 @@ private struct OfflineSection: View {
             row(String(localized: "Kleine Vorschauen"), sync.thumbs, sync.thumbBytes)
             row(String(localized: "Große Vorschauen"), sync.previews, sync.previewBytes)
             Picker(String(localized: "Große Vorschauen höchstens"), selection: $sync.previewLimitGB) {
+                Text(String(localized: "Keine")).tag(-1)
                 Text("2 GB").tag(2); Text("10 GB").tag(10); Text("30 GB").tag(30); Text(String(localized: "Alle")).tag(0)
             }
             if sync.running {
@@ -136,7 +137,7 @@ private struct OfflineSection: View {
             }
             Button(String(localized: "Offline-Speicher leeren"), role: .destructive) { confirmClear = true }
         } header: { Text(String(localized: "Ohne Internet")) } footer: {
-            Text(String(localized: "Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei."))
+            Text(String(localized: "Ohne Verbindung zum Server siehst du alle Fotos als Vorschau; Videos und Originale brauchen den Server. Kleine Vorschauen sind für das Raster, große für die Einzelansicht. Geladen wird nur im WLAN, und das iPhone behält mindestens 10 GB frei."))
         }
         .confirmationDialog(String(localized: "Gespeicherte Vorschauen löschen?"), isPresented: $confirmClear, titleVisibility: .visible) {
             Button(String(localized: "Löschen"), role: .destructive) { sync.stop(); OfflineStore.shared.clear(); sync.refreshStats() }

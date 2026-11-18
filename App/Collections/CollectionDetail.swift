@@ -121,11 +121,11 @@ struct AssetGridScreen: View {
             if list.contains(where: { $0.trashedAt != nil }) { trashGrid(list) }
             else {
                 PhotoGrid(items: list.map { .asset($0, bucket: "") }, columns: columns, topInset: 120, controller: grid,
-                          fit: false, selection: nil, highlight: nil, me: app.userID,
+                          fit: false, selection: app.selecting ? app.selected : nil, highlight: nil, me: app.userID,
                           onTop: { _ in }, onShow: { _ in },
                           onColumns: { columns = $0 },
                           onOpen: { i, _ in app.open(list, at: i) },
-                          onToggle: { _ in }, onSelect: { _ in },
+                          onToggle: { app.toggle($0) }, onSelect: { app.selected = $0 },
                           menu: { a in AssetMenuUIKit.context(a, app: app, timeline: timeline) { onRemove?(a.id) } },
                           autoplay: app.autoplay && app.viewer == nil && app.memory == nil, startAtTop: newestFirst)
                     .id(newestFirst)        // Reihenfolge gewechselt → neu aufbauen und oben bzw. unten beginnen
@@ -134,13 +134,41 @@ struct AssetGridScreen: View {
         }
         .background(Color.appBackground)
         .overlay(alignment: .top) {
-            ScreenHeader(title: title, subtitle: subtitle, menu: AnyView(HStack(spacing: 10) { sortMenu; if let menu { menu } }), back: back)
+            ScreenHeader(title: title, subtitle: subtitle, menu: AnyView(HStack(spacing: 10) { headerButtons(list) }), back: back)
         }
+        .onDisappear { app.endSelection() }
         .overlay {
             if loading { ProgressView() }
             else if assets.isEmpty { ContentUnavailableView(String(localized: "Keine Fotos oder Videos"), systemImage: "photo.on.rectangle") }
         }
         .toolbar(.hidden, for: .navigationBar)
+    }
+
+    /// Wie im Album: „Auswählen“ → Mehrfachauswahl mit „…“-Menü (Teilen/Löschen unten in der Auswahlleiste) – GitHub #55
+    @ViewBuilder private func headerButtons(_ list: [Asset]) -> some View {
+        if app.selecting {
+            Menu {
+                AssetMenu(assets: list.filter { app.selected.contains($0.id) }, style: .selection, present: { app.sheet = $0 }) {
+                    withAnimation(.snappy) { app.endSelection() }
+                }
+            } label: {
+                Image(systemName: "ellipsis").font(.system(size: 16, weight: .semibold)).frame(width: 44, height: 44).contentShape(.rect)
+            }
+            .glassEffect(.regular.interactive(), in: .circle)
+            .disabled(app.selected.isEmpty)
+            Button(String(localized: "Fertig")) { withAnimation(.snappy) { app.endSelection() } }
+                .font(.system(size: 17, weight: .semibold)).lineLimit(1).fixedSize().padding(.horizontal, 16).frame(height: 44)
+                .glassEffect(.regular.interactive(), in: .capsule)
+        } else {
+            sortMenu
+            if let menu { menu }
+            // „Zuletzt gelöscht“ hat sein eigenes Raster ohne Auswahl
+            if !list.isEmpty, !list.contains(where: { $0.trashedAt != nil }) {
+                Button(String(localized: "Auswählen")) { withAnimation(.snappy) { app.selecting = true } }
+                    .font(.system(size: 17, weight: .semibold)).lineLimit(1).fixedSize().padding(.horizontal, 16).frame(height: 44)
+                    .glassEffect(.regular.interactive(), in: .capsule)
+            }
+        }
     }
 
     private var sortMenu: some View {

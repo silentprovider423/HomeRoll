@@ -59,5 +59,12 @@ struct AnalysisOverlay: UIViewRepresentable {
         var interaction: ImageAnalysisInteraction?
         /// Die Fläche ist so groß wie das Foto (Seitenverhältnis), also ganzer Bereich.
         func contentsRect(for interaction: ImageAnalysisInteraction) -> CGRect { CGRect(x: 0, y: 0, width: 1, height: 1) }
+        /// „Teilen“ und „Sticker hinzufügen“ beim freigestellten Motiv öffnen eigene Fenster – ohne Controller,
+        /// von dem aus sie erscheinen dürfen, passierte beim Tippen nichts (GitHub #53).
+        func presentingViewController(for interaction: ImageAnalysisInteraction) -> UIViewController? {
+            var vc = interaction.view?.window?.rootViewController
+            while let p = vc?.presentedViewController, !p.isBeingDismissed { vc = p }
+            return vc
+        }
     }
 }

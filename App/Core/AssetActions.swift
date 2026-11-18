@@ -558,7 +558,7 @@ struct AssetMenu: View {
             }
             .controlGroupStyle(.menu)
             common
-            Section { albumButton }
+            Section { albumButton; memoryButton }
             Section { dateButtons }
         case .viewer:
             common
@@ -567,6 +567,21 @@ struct AssetMenu: View {
             Section { dateButtons }
             Section {
                 Button(String(localized: "Löschen"), systemImage: "trash", role: .destructive) { AssetActions.delete(ids, timeline: timeline); onDelete() }
+            }
+        }
+    }
+
+    /// Eigener Rückblick aus den ausgewählten Fotos (GitHub #55): Titel = häufigster Ort, sonst „Mein Rückblick“;
+    /// spielt gleich ab und lässt sich im Rückblick umbenennen.
+    @ViewBuilder private var memoryButton: some View {
+        let photos = assets.filter(\.isImage)
+        if photos.count >= 3 {
+            Button(String(localized: "Rückblick erstellen"), systemImage: "sparkles") {
+                let cities = Dictionary(grouping: photos.compactMap(\.city), by: { $0 })
+                let title = cities.max { $0.value.count < $1.value.count }?.key ?? String(localized: "Mein Rückblick")
+                guard let m = MemoryCenter.shared.addCustom(title: title, assets: photos) else { return }
+                onDelete()
+                Task { try? await Task.sleep(for: .milliseconds(300)); app.memory = m }
             }
         }
     }

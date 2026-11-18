@@ -84,6 +84,12 @@ final class OfflineStore: @unchecked Sendable {
     }
 
     func count(_ kind: Kind) -> Int { lock.lock(); defer { lock.unlock() }; return keys[kind]?.count ?? 0 }
+    /// Nur Vorschauen von Objekten, die noch in der Mediathek sind (gelöschte/fremde zählen nicht mit – sonst
+    /// stand dort „89 760 von 56 885“, GitHub #51)
+    func count(_ kind: Kind, among ids: Set<String>) -> Int {
+        lock.lock(); defer { lock.unlock() }
+        return keys[kind]?.keys.reduce(0) { ids.contains($1) ? $0 + 1 : $0 } ?? 0
+    }
     func bytes(_ kind: Kind) -> Int { lock.lock(); defer { lock.unlock() }; return sizes[kind] ?? 0 }
 
     /// Große Vorschauen über der Grenze: die am längsten nicht angesehenen zuerst löschen.
@@ -183,10 +189,13 @@ final class OfflineSync {
 
     func refreshStats() {
         let s = OfflineStore.shared
-        thumbs = s.count(.thumbnail); previews = s.count(.preview)
+        let all = timeline?.allLoaded ?? []
+        if all.count != idSet.count { idSet = Set(all.map(\.id)) }
+        thumbs = s.count(.thumbnail, among: idSet); previews = s.count(.preview, among: idSet)
         thumbBytes = s.bytes(.thumbnail); previewBytes = s.bytes(.preview)
-        total = timeline?.allLoaded.count ?? 0
+        total = all.count
     }
+    @ObservationIgnored private var idSet: Set<String> = []
 
     /// Bei Bedarf starten (WLAN da, eingeschaltet, Zeitleiste geladen); stoppt selbst ohne WLAN.
     func kick() {
@@ -218,6 +227,8 @@ final class OfflineSync {
             let todo = await Task.detached(priority: .utility) {
                 all.filter { ImageCache.shared.hash($0) != nil && !s.has(kind, $0) }
             }.value
+            // „Keine“ große Vorschauen: nur die kleinen fürs Raster behalten (GitHub #51)
+            if kind == .preview, previewLimitGB < 0 { s.evict(.preview, limit: 0); refreshStats(); continue }
             if kind == .preview {
                 let limit = previewLimitGB == 0 ? Int.max : previewLimitGB << 30
                 if s.bytes(.preview) >= limit { s.evict(.preview, limit: limit); refreshStats(); continue }

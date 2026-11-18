@@ -68,9 +68,15 @@ import SwiftUI
     var allDirectories: [String] {
         var out = Set<String>()
         let pre = root.isEmpty ? "" : root + "/"
+        // vom Pfad aus nach oben bis zur obersten Ebene; der Pfad bleibt dabei unverändert (auch der führende „/“,
+        // sonst öffnete ein Treffer bei Ordnern aus mehreren Hauptordnern einen leeren Ordner – GitHub #49)
         for p in paths where p.hasPrefix(pre) {
-            var comps = p.dropFirst(pre.count).split(separator: "/").map(String.init)
-            while !comps.isEmpty { out.insert(pre + comps.joined(separator: "/")); comps.removeLast() }
+            var d = p
+            while d.count > pre.count, d.hasPrefix(pre) {
+                out.insert(d)
+                guard let i = d.lastIndex(of: "/") else { break }
+                d = String(d[..<i])
+            }
         }
         return out.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
     }
@@ -105,6 +111,18 @@ import SwiftUI
         return best
     }
     private var latestCache: [String: Date] = [:]
+
+    /// Ordner sortieren wie in der Ordneransicht gewählt – gilt auch für die Ordner-Reihe in den Sammlungen (GitHub #57)
+    func sorted(_ subs: [String], by sort: FolderSort) async -> [String] {
+        switch sort {
+        case .nameAsc: return subs.sorted { Self.name($0).localizedStandardCompare(Self.name($1)) == .orderedAscending }
+        case .nameDesc: return subs.sorted { Self.name($0).localizedStandardCompare(Self.name($1)) == .orderedDescending }
+        case .newest, .oldest:
+            var d: [String: Date] = [:]
+            for s in subs { d[s] = await latest(s) }
+            return subs.sorted { sort == .newest ? d[$0]! > d[$1]! : d[$0]! < d[$1]! }
+        }
+    }
 
     nonisolated static func name(_ dir: String) -> String { dir.split(separator: "/").last.map(String.init) ?? dir }
 
@@ -250,19 +268,7 @@ struct FolderScreen: View {
                     .accessibilityLabel(String(localized: "Sortieren"))
                 }
             }
-            .task(id: sortRaw) { order = await sorted(subs) }
-        }
-    }
-
-    private func sorted(_ subs: [String]) async -> [String] {
-        switch FolderSort(rawValue: sortRaw) ?? .nameAsc {
-        case .nameAsc: return subs.sorted { FolderStore.name($0).localizedStandardCompare(FolderStore.name($1)) == .orderedAscending }
-        case .nameDesc: return subs.sorted { FolderStore.name($0).localizedStandardCompare(FolderStore.name($1)) == .orderedDescending }
-        case .newest, .oldest:
-            var d: [String: Date] = [:]
-            for s in subs { d[s] = await store.latest(s) }
-            let newest = sortRaw == FolderSort.newest.rawValue
-            return subs.sorted { newest ? d[$0]! > d[$1]! : d[$0]! < d[$1]! }
+            .task(id: sortRaw) { order = await store.sorted(subs, by: FolderSort(rawValue: sortRaw) ?? .nameAsc) }
         }
     }
 

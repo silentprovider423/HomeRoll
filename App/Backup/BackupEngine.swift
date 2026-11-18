@@ -544,6 +544,16 @@ final class BackupEngine {
     func remoteID(forLocal lid: String) -> String? { state[lid]?.remote }
     /// Server-ID der zuletzt gesicherten bearbeiteten Fassung (liegt oben auf dem Stapel, das Original darunter).
     func editedID(forLocal lid: String) -> String? { state[lid]?.edited }
+    /// Liegt der aktuelle Stand dieses Fotos auf dem Server? Nein, solange eine Bearbeitung aus Fotos noch nicht
+    /// nachgezogen ist (gleiche Regel wie `syncEdits`) – dann darf „Speicher freigeben“ es nicht löschen, sonst wäre
+    /// die neueste Fassung weg (gemeldet von @RedEforIT, GitHub #56). Unbearbeitete Fotos: das Original ist gesichert.
+    func currentVersionBackedUp(_ a: PHAsset) -> Bool {
+        guard let e = state[a.localIdentifier] else { return false }
+        let full: PHAssetResourceType = a.mediaType == .video ? .fullSizeVideo : .fullSizePhoto
+        guard PHAssetResource.assetResources(for: a).contains(where: { $0.type == full }) else { return true }
+        guard e.edited != nil, let done = e.editedAt else { return false }
+        return done >= (a.modificationDate ?? .distantFuture)
+    }
 
     // MARK: Speicher freigeben (für FreeUpSection)
 
