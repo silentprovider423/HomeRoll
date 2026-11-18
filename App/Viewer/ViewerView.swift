@@ -386,9 +386,6 @@ private struct ZoomableImage: View {
     var analysis: PhotoAnalysis? = nil
     @State private var exposure: UIImage?
     @State private var scale: CGFloat = 1
-    @State private var base: CGFloat = 1
-    @State private var offset: CGSize = .zero
-    @State private var lastOffset: CGSize = .zero
     @State private var playLive = false
     @State private var full: UIImage?
     @State private var spatialAvailable = false
@@ -400,64 +397,19 @@ private struct ZoomableImage: View {
     @State private var vitalityShown = false
 
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                AssetThumb(id: asset.id, size: .preview)
-                    .aspectRatio(asset.ratio, contentMode: .fit)
-                    .frame(width: geo.size.width, height: geo.size.height)
-                // Original über der Vorschau: scharf beim Zoomen und mit HDR (Gain-Map) wie bei Apple
-                if let full {
-                    Image(uiImage: full).resizable().aspectRatio(contentMode: .fit)
-                        .allowedDynamicRange(.high)
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .transition(.opacity)
-                }
-                if let analysis, PhotoAnalysis.supported, !playLive, live != .loop, live != .bounce {
-                    AnalysisOverlay(analysis: analysis.analysis(asset.id), chrome: chrome, lookUp: analysis.lookUp)
-                        .aspectRatio(asset.ratio, contentMode: .fit)
-                        .frame(width: geo.size.width, height: geo.size.height)
-                }
-                if let v = asset.livePhotoVideoId {
-                    switch live {
-                    case .loop, .bounce:
-                        LiveEffectPlayer(videoID: v, bounce: live == .bounce).aspectRatio(asset.ratio, contentMode: .fit)
-                            .id("\(v)\(live.rawValue)")
-                    case .longExposure:
-                        if let exposure { Image(uiImage: exposure).resizable().aspectRatio(contentMode: .fit) }
-                        else { ProgressView().tint(.white) }
-                    case .live:
-                        if playLive { LoopingVideo(id: v).aspectRatio(asset.ratio, contentMode: .fit) }
-                        else if let f = vitality {
-                            VitalityVideo(url: f) { withAnimation(.easeOut(duration: 0.3)) { vitality = nil } }
-                                .aspectRatio(asset.ratio, contentMode: .fit).transition(.opacity)
-                        }
-                    case .off: EmptyView()
-                    }
-                }
+        // Zoom wie in Fotos über eine UIScrollView (GitHub #52): Pinch am Fingerpunkt, gezoomt frei schieben mit
+        // Schwung und Abfedern am Rand, Doppeltipp zoomt an die getippte Stelle. Ungezoomt ist das Schieben aus,
+        // damit Blättern (TabView) und Wischen zum Schließen wie bisher gehen.
+        ZoomScroll(ratio: asset.ratio, pixelWidth: full.map { $0.size.width * $0.scale } ?? 0, scale: $scale,
+                   onTap: { withAnimation(.easeInOut(duration: 0.2)) { chrome.toggle() } }) {
+            layers.environment(app)
+        }
+        .ignoresSafeArea()
+        .overlay(alignment: .bottom) {
+            // ohne Server: gespeicherte Vorschau statt Original (wie Apple bei „Speicher optimieren“)
+            if Connectivity.shared.serverOffline && chrome && scale <= 1.01 {
+                OfflineBadge(text: String(localized: "Offline – Vorschau, Original nicht verfügbar")).padding(.bottom, 170)
             }
-            .overlay(alignment: .bottom) {
-                // ohne Server: gespeicherte Vorschau statt Original (wie Apple bei „Speicher optimieren“)
-                if Connectivity.shared.serverOffline && chrome && scale <= 1.01 {
-                    OfflineBadge(text: String(localized: "Offline – Vorschau, Original nicht verfügbar")).padding(.bottom, 170)
-                }
-            }
-            .scaleEffect(scale)
-            .offset(offset)
-            .gesture(MagnifyGesture()
-                .onChanged { v in scale = max(1, min(base * v.magnification, 6)) }
-                .onEnded { _ in base = scale; if scale <= 1.01 { reset() } })
-            .simultaneousGesture(scale > 1 ? DragGesture()
-                .onChanged { v in offset = CGSize(width: lastOffset.width + v.translation.width, height: lastOffset.height + v.translation.height) }
-                .onEnded { _ in lastOffset = offset } : nil)
-            .onTapGesture(count: 2) {
-                withAnimation(.snappy) {
-                    if scale > 1 { reset() } else { scale = 2.5; base = 2.5 }
-                }
-            }
-            .onTapGesture { withAnimation(.easeInOut(duration: 0.2)) { chrome.toggle() } }
-            .onLongPressGesture(minimumDuration: 0.3, perform: {}, onPressingChanged: { p in
-                if asset.isLivePhoto, live == .live { playLive = p }
-            })
         }
         .task(id: live) {
             guard live == .longExposure, exposure == nil, let v = asset.livePhotoVideoId else { return }
@@ -499,7 +451,42 @@ private struct ZoomableImage: View {
         }
     }
 
-    private func reset() { scale = 1; base = 1; offset = .zero; lastOffset = .zero }
+    /// Alle Ebenen eines Fotos in der Größe des eingepassten Bildes (Vorschau, Original, Live-Text, Live Photo)
+    private var layers: some View {
+        ZStack {
+            AssetThumb(id: asset.id, size: .preview)
+            // Original über der Vorschau: scharf beim Zoomen und mit HDR (Gain-Map) wie bei Apple
+            if let full {
+                Image(uiImage: full).resizable()
+                    .allowedDynamicRange(.high)
+                    .transition(.opacity)
+            }
+            if let analysis, PhotoAnalysis.supported, !playLive, live != .loop, live != .bounce {
+                AnalysisOverlay(analysis: analysis.analysis(asset.id), chrome: chrome, lookUp: analysis.lookUp)
+            }
+            if let v = asset.livePhotoVideoId {
+                switch live {
+                case .loop, .bounce:
+                    LiveEffectPlayer(videoID: v, bounce: live == .bounce).id("\(v)\(live.rawValue)")
+                case .longExposure:
+                    if let exposure { Image(uiImage: exposure).resizable() }
+                    else { ProgressView().tint(.white) }
+                case .live:
+                    if playLive { LoopingVideo(id: v) }
+                    else if let f = vitality {
+                        VitalityVideo(url: f) { withAnimation(.easeOut(duration: 0.3)) { vitality = nil } }.transition(.opacity)
+                    }
+                case .off: EmptyView()
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
+        .contentShape(.rect)
+        .onLongPressGesture(minimumDuration: 0.3, perform: {}, onPressingChanged: { p in
+            if asset.isLivePhoto, live == .live, scale <= 1.01 { playLive = p }
+        })
+    }
 }
 
 private struct VideoPage: View {
