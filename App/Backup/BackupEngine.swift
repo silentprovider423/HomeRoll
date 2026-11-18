@@ -33,19 +33,9 @@ final class BackupEngine {
     var fullLibrary = UserDefaults.standard.bool(forKey: "backup.full") { didSet { save() } }
     /// Großer Hintergrund-Lauf nur am Ladekabel (vorher immer so); aus = auch im Akkubetrieb, wenn iOS es zulässt
     var chargingOnly = UserDefaults.standard.bool(forKey: "backup.chargingOnly") { didSet { save(); schedule() } }
-    /// Gerade übertragene iPhone-Fotos und ihr Fortschritt (0…1) – für die Ringe auf den Kacheln.
-    /// Mehrere gleichzeitig (siehe `parallelUploads`).
-    private(set) var uploading: [String: Double] = [:]
-    func setProgress(_ lid: String, _ p: Double) {
-        guard uploading[lid] != nil else { return }
-        uploading[lid] = p
-        LocalPending.shared.progressChanged(lid)
-    }
-    /// So viele Objekte laden gleichzeitig hoch. Auf langen Strecken (Paraguay → zu Hause, ~285 ms, Paketverlust)
-    /// schafft eine Verbindung ~8 Mbit/s, 8 parallel ~18 Mbit/s, mehr bringt nichts (gemessen 17.11.2026).
-    nonisolated static let parallelUploads = 6
-    /// Videos werden vor dem Hochladen kopiert (Zwischendatei + Rumpf) → höchstens so viele gleichzeitig
-    nonisolated static let parallelVideos = 2
+    /// Gerade übertragenes iPhone-Foto und sein Fortschritt (0…1) – für den Ring auf der Kachel
+    var currentLocalID: String?
+    var progress: Double = 0 { didSet { LocalPending.shared.progressChanged() } }
     /// Während eines Laufs kam ein neues Foto dazu → danach gleich noch einmal
     @ObservationIgnored private var rerun = false
     /// Bis hierher ist die Mediathek schon auf dem Server (eigener Import); nil = ganze Mediathek sichern.
@@ -244,33 +234,35 @@ final class BackupEngine {
         await repairTags(api)
         phase = .uploading
 
-        // Mehrere gleichzeitig: auf langen Strecken mit Paketverlust bringt eine einzelne Verbindung nur einen
-        // Bruchteil der Leitung (siehe `parallelUploads`). Reihenfolge bleibt grob nach Aufnahmedatum.
-        let list = todo.filter { !inFlight.contains($0.localIdentifier) }   // laufen schon im Hintergrund (frühere Sitzung)
-        var next = 0
-        var heldVideos: [PHAsset] = []
-        func take(videosRunning: Int) -> PHAsset? {
-            if videosRunning < Self.parallelVideos, !heldVideos.isEmpty { return heldVideos.removeFirst() }
-            while next < list.count {
-                let a = list[next]; next += 1
-                if a.mediaType == .video, videosRunning >= Self.parallelVideos { heldVideos.append(a); continue }
-                return a
-            }
-            return nil
-        }
-        await withTaskGroup(of: (video: Bool, stop: Bool).self) { g in
-            var active = 0, videos = 0, stop = false
-            while true {
-                while !stop, !Task.isCancelled, active < Self.parallelUploads, let a = take(videosRunning: videos) {
-                    let v = a.mediaType == .video
-                    active += 1; if v { videos += 1 }
-                    let lid = a.localIdentifier   // PHAsset ist nicht Sendable → per ID weiterreichen
-                    g.addTask { (v, await BackupEngine.shared.backupOne(lid)) }
+        for a in todo {
+            if Task.isCancelled { break }
+            if inFlight.contains(a.localIdentifier) { continue }   // läuft schon im Hintergrund (frühere Sitzung)
+            current = PHAssetResource.assetResources(for: a).first?.originalFilename ?? ""
+            currentLocalID = a.localIdentifier; progress = 0
+            defer { currentLocalID = nil; LocalPending.shared.refresh() }
+            do {
+                if let r = try await backup(a) {
+                    let (id, edited, isNew) = r
+                    state[a.localIdentifier] = Entry(remote: id, edited: edited, editedAt: edited != nil ? a.modificationDate : nil)
+                    if isNew { uploaded += 1 } else { duplicates += 1 }
+                    saveState()
+                    // Tags sofort setzen, nicht erst am Ende des Laufs: wird die App vorher beendet,
+                    // stünde das Bildschirmfoto sonst in der Mediathek, aber nie unter „Bildschirmfotos“.
+                    var ok = true
+                    for (t, ids) in Self.tagPlan(a, Entry(remote: id, edited: edited)) {
+                        do { try await api.tag(ids, with: t) } catch { ok = false }
+                    }
+                    if ok { state[a.localIdentifier]?.tagged = true; saveState() }
                 }
-                guard let r = await g.next() else { break }
-                active -= 1; if r.video { videos -= 1 }
-                if r.stop { stop = true }
+            } catch is CancellationError {
+                break
+            } catch let e as URLError where e.code == .cancelled {
+                break   // Pausieren bricht den laufenden Upload ab – kein Fehler, das Objekt kommt beim nächsten Lauf dran
+            } catch {
+                failed += 1
+                problems.append("\(current): \(error.localizedDescription)")
             }
+            finished += 1
         }
         if !Task.isCancelled { await syncEdits() }
         current = ""
@@ -310,8 +302,8 @@ final class BackupEngine {
             let stamp = a.modificationDate ?? Date()
             if let done = e.editedAt, done >= stamp { continue }
             if e.edited != nil, e.editedAt == nil { e.editedAt = stamp; state[lid] = e; continue }   // Altbestand: nichts doppelt
-            current = main.originalFilename; uploading[lid] = 0
-            defer { uploading[lid] = nil }
+            current = main.originalFilename; currentLocalID = lid; progress = 0
+            defer { currentLocalID = nil }
             var x: [String: String] = [:]
             if a.isFavorite { x["isFavorite"] = "true" }
             if a.isHidden { x["visibility"] = "archive" }
@@ -331,40 +323,6 @@ final class BackupEngine {
             uploaded += r.isNew ? 1 : 0
         }
         LocalPending.shared.reloadSoon()
-    }
-
-    /// Ein Objekt des Laufs sichern und zählen. true = Lauf anhalten (pausiert/abgebrochen).
-    private func backupOne(_ lid: String) async -> Bool {
-        guard let a = PHAsset.fetchAssets(withLocalIdentifiers: [lid], options: nil).firstObject else { return false }
-        let api = ImmichClient.shared
-        let name = PHAssetResource.assetResources(for: a).first?.originalFilename ?? ""
-        current = name
-        uploading[lid] = 0
-        defer { uploading[lid] = nil; LocalPending.shared.refresh() }
-        do {
-            if let r = try await backup(a) {
-                let (id, edited, isNew) = r
-                state[lid] = Entry(remote: id, edited: edited, editedAt: edited != nil ? a.modificationDate : nil)
-                if isNew { uploaded += 1 } else { duplicates += 1 }
-                saveState()
-                // Tags sofort setzen, nicht erst am Ende des Laufs: wird die App vorher beendet,
-                // stünde das Bildschirmfoto sonst in der Mediathek, aber nie unter „Bildschirmfotos“.
-                var ok = true
-                for (t, ids) in Self.tagPlan(a, Entry(remote: id, edited: edited)) {
-                    do { try await api.tag(ids, with: t) } catch { ok = false }
-                }
-                if ok { state[lid]?.tagged = true; saveState() }
-            }
-        } catch is CancellationError {
-            return true
-        } catch let e as URLError where e.code == .cancelled {
-            return true   // Pausieren bricht den laufenden Upload ab – kein Fehler, das Objekt kommt beim nächsten Lauf dran
-        } catch {
-            failed += 1
-            problems.append("\(name): \(error.localizedDescription)")
-        }
-        finished += 1
-        return false
     }
 
     /// Ein Objekt sichern → (Server-ID, ID der bearbeiteten Fassung, neu hochgeladen?) oder nil = übersprungen.
@@ -455,7 +413,7 @@ final class BackupEngine {
             let dayAgo = Date().addingTimeInterval(-24 * 3600)
             for f in files(fm.temporaryDirectory) {
                 let n = f.lastPathComponent
-                // „backup-…“ legt nur `send` an; aufgeräumt wird vor dem Start eines Laufs → alles Vorhandene ist verwaist.
+                // „backup-…“ legt nur `send` an, und es läuft immer nur ein Lauf → alles Vorhandene ist verwaist.
                 // „upload-…“ kann gerade vom Kürzen im Editor stammen → nur Altes löschen.
                 let old = ((try? f.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast) < dayAgo
                 if n.hasPrefix("backup-") || (n.hasPrefix("upload-") && old) { try? fm.removeItem(at: f) }

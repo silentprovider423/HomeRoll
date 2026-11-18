@@ -82,7 +82,7 @@ final class LocalPending {
             // nur die Fassung oben auf dem Stapel, das Original selbst nie → auch nach der bearbeiteten Fassung schauen.
             if let remote, timeline.asset(remote) != nil { return }
             if let edited = engine.editedID(forLocal: lid), timeline.asset(edited) != nil { return }
-            let badge: Badge = engine.uploading[lid].map { .uploading($0) } ?? (remote != nil ? .processing : .waiting)
+            let badge: Badge = engine.currentLocalID == lid ? .uploading(engine.progress) : remote != nil ? .processing : .waiting
             let created = a.creationDate ?? Date()
             let wall = created.addingTimeInterval(TimeInterval(TimeZone.current.secondsFromGMT(for: created)))
             let ratio = a.pixelHeight > 0 ? Double(a.pixelWidth) / Double(a.pixelHeight) : 1
@@ -113,11 +113,11 @@ final class LocalPending {
     }
 
     /// Fortschritt während des Hochladens nur am Ring ändern, ohne die Mediathek neu zu bündeln
-    func progressChanged(_ lid: String) {
-        guard let p = BackupEngine.shared.uploading[lid] else { return }
+    func progressChanged() {
+        guard let lid = BackupEngine.shared.currentLocalID else { return }
         let id = Self.prefix + lid
         if badges[id] != nil {
-            badges[id] = .uploading(p)
+            badges[id] = .uploading(BackupEngine.shared.progress)
             NotificationCenter.default.post(name: .localBadgesChanged, object: nil)
         }
     }
