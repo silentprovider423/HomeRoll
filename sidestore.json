@@ -16,6 +16,14 @@
       "category": "photo-video",
       "versions": [
         {
+          "version": "1.0.25",
+          "date": "2026-11-18T00:28:58Z",
+          "localizedDescription": "## Zoom like Photos, select everywhere\n\n- **Zoom in the photo viewer** (#52): pinch zooms the photo itself instead of closing the viewer. While zoomed you can pan in every direction with momentum, double tap zooms into the spot you tapped (again to zoom out), up to the original's full resolution.\n- **Select in folders, trips, days and other photo lists** (#55), with **Create Memory** for the selected photos.\n- **Folders from search** no longer open empty when your folders sit under more than one top-level location (#49).\n- **Folders row in Collections** follows the sort you picked in the folder view (#57).\n- **Subject lift**: Share and Add Sticker now open (#53).\n- **Free Up Space** skips photos whose edit from Apple Photos isn't backed up yet (#56, thanks @RedEforIT).\n- **Offline previews**: the count only includes photos still in your library, new option to keep no large previews, and a note on what small and large previews are for (#51).",
+          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.25/HomeRoll.ipa",
+          "size": 3150861,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.24",
           "date": "2026-11-15T15:44:43Z",
           "localizedDescription": "## Fast scrolling and search fixes\n\n- **Fast scroller in All**: when you scroll, a handle appears on the right. Grab it right away (no long press) and drag, a bubble shows month and year. Idea from @vands2013's fork.\n- **Search**: the clear button in the search field is easier to hit and keeps the keyboard open, so you can type the next word right away (#49).\n- **SideStore / AltStore source** (#50): add `https://raw.githubusercontent.com/silentprovider423/HomeRoll/main/sidestore.json` to get updates right in SideStore or AltStore.",
@@ -45,14 +53,6 @@
           "localizedDescription": "## Folders, the way Photos shows them\n\n- **Folders look like album folders in Photos** (#46): folders that contain folders show a 2x2 preview, the last folder in a chain shows up like an album with its cover photo. Bigger tiles, sort by name or date, and counts for one level only (\"3 folders · 120 items\").\n- **Back button** inside the last folder instead of the close button (#46).\n- **Search finds folder names** (#45). Folders with the same name show their parent folder, tap to open.\n- **Years and Months switch instantly too** (#44): both stay loaded in the background like All, and the highlight fits around \"Months\" on every screen size.",
           "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.21/HomeRoll.ipa",
           "size": 2967803,
-          "minOSVersion": "26.0"
-        },
-        {
-          "version": "1.0.20",
-          "date": "2026-11-13T16:54:19Z",
-          "localizedDescription": "## New: folders and a smoother library\n\n- **Folders** in Collections (#42): browse your photos the way they're stored on the server, folder by folder. Made for external libraries with their own folder structure. Only shows up when your server has real folders – Immich's internal upload storage is hidden.\n- **Years / Months / All switches instantly** (#37). The grid stays loaded in the background, so going back to All no longer lags, and the switcher's highlight is centered on each option.\n\nFixes from @PunditSharp – thank you:\n- English names for categories, memory titles and edited files (#38)\n- Edited photos and videos keep their capture time zone (#39)\n- Backed-up edited photos no longer show as \"processing\" (#40)\n- Editing a photo again in Apple Photos replaces the previous edit instead of adding another one (#41)",
-          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.20/HomeRoll.ipa",
-          "size": 2934803,
           "minOSVersion": "26.0"
         }
       ],
