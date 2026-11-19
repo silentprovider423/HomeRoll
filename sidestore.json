@@ -16,6 +16,14 @@
       "category": "photo-video",
       "versions": [
         {
+          "version": "1.0.26",
+          "date": "2026-11-19T02:56:26Z",
+          "localizedDescription": "## Zoom and backup fixes\n\n- **Zooming back out no longer closes the photo** (#58): while a photo is zoomed, the pinch-to-close and swipe-down gestures are paused, so pinching out stays in the viewer. Swiping to the next photo resets the zoom, like Photos.\n- **Backup no longer stops by itself**: a short background wake-up from iOS could end a backup that was running with the app open after about 20 seconds, so it looked stuck. Fixed.\n- **Hang and crash reports** from iOS are now kept on the device, which helps track down stutters.",
+          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.26/HomeRoll.ipa",
+          "size": 3157745,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.25",
           "date": "2026-11-18T00:28:58Z",
           "localizedDescription": "## Zoom like Photos, select everywhere\n\n- **Zoom in the photo viewer** (#52): pinch zooms the photo itself instead of closing the viewer. While zoomed you can pan in every direction with momentum, double tap zooms into the spot you tapped (again to zoom out), up to the original's full resolution.\n- **Select in folders, trips, days and other photo lists** (#55), with **Create Memory** for the selected photos.\n- **Folders from search** no longer open empty when your folders sit under more than one top-level location (#49).\n- **Folders row in Collections** follows the sort you picked in the folder view (#57).\n- **Subject lift**: Share and Add Sticker now open (#53).\n- **Free Up Space** skips photos whose edit from Apple Photos isn't backed up yet (#56, thanks @RedEforIT).\n- **Offline previews**: the count only includes photos still in your library, new option to keep no large previews, and a note on what small and large previews are for (#51).",
@@ -45,14 +53,6 @@
           "localizedDescription": "## HomeRoll on iPad\n\n- **Runs full screen on iPad** (#47) in all orientations, instead of the small iPhone window.\n- **More columns on wide screens**: the photo grid keeps tiles about iPhone size, so you see 6 columns in portrait and 8 in landscape on an 11\" iPad (iPhone landscape gets more columns too).\n- **Years and months in two columns** on iPad, album headers and the bottom bar no longer stretch across the whole screen.\n- Layout follows the window width, so it also fits when sharing the screen with another app.\n\nA full iPad layout with a sidebar (like Photos on iPad) is planned for later.",
           "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.22/HomeRoll.ipa",
           "size": 3075060,
-          "minOSVersion": "26.0"
-        },
-        {
-          "version": "1.0.21",
-          "date": "2026-11-14T16:19:47Z",
-          "localizedDescription": "## Folders, the way Photos shows them\n\n- **Folders look like album folders in Photos** (#46): folders that contain folders show a 2x2 preview, the last folder in a chain shows up like an album with its cover photo. Bigger tiles, sort by name or date, and counts for one level only (\"3 folders · 120 items\").\n- **Back button** inside the last folder instead of the close button (#46).\n- **Search finds folder names** (#45). Folders with the same name show their parent folder, tap to open.\n- **Years and Months switch instantly too** (#44): both stay loaded in the background like All, and the highlight fits around \"Months\" on every screen size.",
-          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.21/HomeRoll.ipa",
-          "size": 2967803,
           "minOSVersion": "26.0"
         }
       ],
