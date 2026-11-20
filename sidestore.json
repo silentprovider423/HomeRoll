@@ -16,6 +16,14 @@
       "category": "photo-video",
       "versions": [
         {
+          "version": "1.0.27",
+          "date": "2026-11-20T00:18:16Z",
+          "localizedDescription": "## Swipe down like Photos, folders fixed\n\n- **Closing the photo viewer** (#59): pinch-to-close is gone, so zooming back out never closes the photo. Swipe down is new: only the photo follows your finger and shrinks while the bars and background fade, release to close or let go early and it springs back.\n- **Folders no longer show up empty** (#60): if loading a folder failed on the phone, the app kept it empty until the next start. It now retries and loads fewer folders at once.",
+          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.27/HomeRoll.ipa",
+          "size": 3167855,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.26",
           "date": "2026-11-19T02:56:26Z",
           "localizedDescription": "## Zoom and backup fixes\n\n- **Zooming back out no longer closes the photo** (#58): while a photo is zoomed, the pinch-to-close and swipe-down gestures are paused, so pinching out stays in the viewer. Swiping to the next photo resets the zoom, like Photos.\n- **Backup no longer stops by itself**: a short background wake-up from iOS could end a backup that was running with the app open after about 20 seconds, so it looked stuck. Fixed.\n- **Hang and crash reports** from iOS are now kept on the device, which helps track down stutters.",
@@ -45,14 +53,6 @@
           "localizedDescription": "## Light mode and Russian\n\n- **Light mode** (#28): new Settings page (Library menu or account menu in Collections) with Automatic, Light and Dark. Automatic follows your iPhone. The whole app follows it: library, collections, albums, people, folders and search. The photo viewer, editor, info panel, memories player and slideshow stay dark so photos look their best. Thanks @RedEforIT for the groundwork.\n- **Russian translation** of the app, widget and share extension. Thanks @awiqu.\n- **Builds with Xcode 27** (#48). Thanks @PunditSharp.",
           "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.23/HomeRoll.ipa",
           "size": 3128022,
-          "minOSVersion": "26.0"
-        },
-        {
-          "version": "1.0.22",
-          "date": "2026-11-14T18:01:00Z",
-          "localizedDescription": "## HomeRoll on iPad\n\n- **Runs full screen on iPad** (#47) in all orientations, instead of the small iPhone window.\n- **More columns on wide screens**: the photo grid keeps tiles about iPhone size, so you see 6 columns in portrait and 8 in landscape on an 11\" iPad (iPhone landscape gets more columns too).\n- **Years and months in two columns** on iPad, album headers and the bottom bar no longer stretch across the whole screen.\n- Layout follows the window width, so it also fits when sharing the screen with another app.\n\nA full iPad layout with a sidebar (like Photos on iPad) is planned for later.",
-          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.22/HomeRoll.ipa",
-          "size": 3075060,
           "minOSVersion": "26.0"
         }
       ],
