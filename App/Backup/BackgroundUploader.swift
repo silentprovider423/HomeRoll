@@ -113,7 +113,7 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
               let meta = task.taskDescription.flatMap({ try? JSONDecoder().decode(Meta.self, from: Data($0.utf8)) }) else { return }
         let p = Double(totalBytesSent) / Double(totalBytesExpectedToSend)
         Task { @MainActor in
-            if BackupEngine.shared.currentLocalID == meta.localID { BackupEngine.shared.progress = p }
+            BackupEngine.shared.setProgress(meta.localID, p)
         }
     }
 
@@ -208,7 +208,7 @@ private final class UploadProgress: NSObject, URLSessionTaskDelegate, @unchecked
         guard totalBytesExpectedToSend > 0 else { return }
         let p = Double(totalBytesSent) / Double(totalBytesExpectedToSend), id = localID
         Task { @MainActor in
-            if BackupEngine.shared.currentLocalID == id { BackupEngine.shared.progress = p }
+            BackupEngine.shared.setProgress(id, p)
         }
     }
 }
