@@ -126,12 +126,39 @@ import SwiftUI
 
     nonisolated static func name(_ dir: String) -> String { dir.split(separator: "/").last.map(String.init) ?? dir }
 
+    /// Fotos direkt im Ordner. Nur Erfolge werden gemerkt: früher blieb ein Ordner nach einer abgebrochenen Anfrage
+    /// bis zum nächsten Start „leer“ (leere Kacheln und Ordner auf dem iPhone, GitHub #60). Höchstens 3 Ordner
+    /// gleichzeitig, mit zwei Wiederholungen – jede Kachel lädt dafür den ganzen Ordnerinhalt.
     func assets(_ dir: String) async -> [Asset] {
         if let c = contents[dir] { return c }
-        let a = ((try? await ImmichClient.shared.folderAssets(dir)) ?? []).map(\.asset)
-            .sorted { $0.date < $1.date }
-        contents[dir] = a
-        return a
+        if let t = loading[dir] { return await t.value ?? [] }
+        let t = Task { () -> [Asset]? in
+            await acquire()
+            defer { release() }
+            for attempt in 0..<3 {
+                if Task.isCancelled { return nil }
+                if let r = try? await ImmichClient.shared.folderAssets(dir) {
+                    return r.map(\.asset).sorted { $0.date < $1.date }
+                }
+                try? await Task.sleep(for: .seconds(attempt == 0 ? 1 : 3))
+            }
+            return nil
+        }
+        loading[dir] = t
+        let r = await t.value
+        loading[dir] = nil
+        if let r { contents[dir] = r }
+        return r ?? []
+    }
+    private var loading: [String: Task<[Asset]?, Never>] = [:]
+    private var active = 0
+    private var waiting: [CheckedContinuation<Void, Never>] = []
+    private func acquire() async {
+        if active < 3 { active += 1; return }
+        await withCheckedContinuation { waiting.append($0) }
+    }
+    private func release() {
+        if waiting.isEmpty { active -= 1 } else { waiting.removeFirst().resume() }
     }
 
     /// Titelbild: neuestes Foto im Ordner selbst, sonst im ersten Unterordner mit Fotos

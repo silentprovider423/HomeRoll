@@ -16,6 +16,9 @@ struct ViewerView: View {
     @State private var liveModes: [String: LiveMode] = [:]
     /// Wischen durch die Vorschau-Leiste: Fotos wechseln im Takt, Video und Analyse erst beim Loslassen
     @State private var stripScrubbing = false
+    /// Wischen nach unten zum Schließen: Versatz des Fotos (eigene Geste, siehe ViewerDismissGesture)
+    @State private var drag: CGSize = .zero
+    private var dragProgress: CGFloat { min(1, max(0, drag.height / 400)) }
     @Environment(\.dismiss) private var dismiss
     @Environment(TimelineStore.self) private var timeline
     @Environment(AppModel.self) private var app
@@ -30,7 +33,7 @@ struct ViewerView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color.black.opacity(1 - dragProgress).ignoresSafeArea()
             TabView(selection: $selection) {
                 ForEach(assets) { a in
                     Page(asset: a, isCurrent: a.id == selection, chrome: $chrome, video: video,
@@ -40,8 +43,15 @@ struct ViewerView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
+            // wie in Fotos: nur das Foto folgt dem Finger und wird kleiner, Leisten und Hintergrund blenden aus
+            .scaleEffect(1 - dragProgress * 0.3)
+            .offset(drag)
+            .background(ViewerDismissGesture(changed: { drag = $0 }, ended: { t, v in
+                if t.height > 110 || (t.height > 40 && v.y > 900) { dismiss() }
+                else { withAnimation(.spring(duration: 0.3)) { drag = .zero } }
+            }))
 
-            if chrome, let a = current {
+            if chrome, drag == .zero, let a = current {
                 VStack {
                     topBar(a)
                     if a.isLivePhoto && a.isImage { liveMenu(a).frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 18) }
@@ -75,7 +85,7 @@ struct ViewerView: View {
         .onChange(of: video.playing) { _, p in if !p { withAnimation(.easeInOut(duration: 0.2)) { chrome = true } } }
         .onDisappear { video.stop(); Orientation.set(.portrait) }
         // Quer drehen nur in der Einzelansicht selbst – Bearbeiten, Info und Teilen bleiben im Hochformat
-        .onAppear { Orientation.set(.allButUpsideDown) }
+        .onAppear { Orientation.set(.allButUpsideDown); ViewerZoom.zoomed = false }
         .onChange(of: editing != nil || showInfo || sheet != nil, initial: true) { _, busy in
             Orientation.set(busy ? .portrait : .allButUpsideDown)
         }

@@ -51,7 +51,6 @@ struct ZoomScroll<Content: View>: UIViewRepresentable {
         if v.pixelWidth != pixelWidth { v.pixelWidth = pixelWidth; v.updateMaxZoom() }
         if !active, v.zoomScale > 1.01 {
             v.setZoomScale(1, animated: false)
-            Coordinator.dismissGestures(enabled: true, above: v)
         }
     }
 
@@ -66,7 +65,7 @@ struct ZoomScroll<Content: View>: UIViewRepresentable {
             guard let v = scrollView as? ZoomScrollView else { return }
             v.center()
             v.isScrollEnabled = v.zoomScale > 1.01
-            if v.zoomScale > 1.01 { Self.dismissGestures(enabled: false, above: v) }
+            ViewerZoom.zoomed = v.zoomScale > 1.01
             // SwiftUI nur beim Überschreiten der Schwelle informieren (sonst bei jedem Zoomschritt neu zeichnen)
             let s = v.zoomScale
             if (s > 1.01) != (parent.scale > 1.01) { parent.scale = s }
@@ -74,21 +73,9 @@ struct ZoomScroll<Content: View>: UIViewRepresentable {
 
         func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
             parent.scale = scale
-            if scale <= 1.01 { Self.dismissGestures(enabled: true, above: scrollView) }
+            ViewerZoom.zoomed = scale > 1.01
         }
 
-        /// Apples Zoom-Übergang schließt die Einzelansicht per Pinch-zu („Transform“) und Wischen nach unten. Solange
-        /// ein Foto gezoomt ist, gehören diese Gesten dem Foto – sonst schloss Herauszoomen die Ansicht (GitHub #58).
-        static func dismissGestures(enabled: Bool, above v: UIView) {
-            var x = v.superview
-            while let view = x, !(view is UIWindow) {
-                for g in view.gestureRecognizers ?? [] where !(g.view is UIScrollView) {
-                    let n = String(describing: type(of: g))
-                    if n.contains("Transform") || n.contains("SwipeDismiss"), g.isEnabled != enabled { g.isEnabled = enabled }
-                }
-                x = view.superview
-            }
-        }
 
         @objc func singleTap(_ g: UITapGestureRecognizer) { parent.onTap() }
 
