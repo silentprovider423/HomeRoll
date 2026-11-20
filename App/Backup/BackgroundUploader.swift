@@ -38,9 +38,26 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
     /// Beim App-Start einmal anlegen, damit Meldungen aus einer früheren Sitzung ankommen.
     func reconnect() { _ = session }
 
-    /// Hochladen und auf das Ergebnis warten. Wird die wartende Aufgabe abgebrochen (App geht in den Hintergrund und
-    /// iOS nimmt die Zeit weg), läuft die Übertragung trotzdem weiter – das Ergebnis kommt dann über `adopt`.
+    /// Normale Sitzung für Uploads bei offener App. Grund: Die Hintergrund-Übertragung teilt iOS nach eigenem Ermessen
+    /// zu – über VPN aus dem Ausland kroch sie mit ~0,1 Mbit/s, während Safari über dieselbe Leitung ~11 Mbit/s schaffte
+    /// (gemessen 20.11.2026, Backup lief die ganze Nacht nicht durch).
+    private lazy var foreground: URLSession = {
+        let c = URLSessionConfiguration.default
+        c.timeoutIntervalForRequest = 120          // ohne Fortschritt so lange warten (lange Strecke, große Dateien)
+        c.timeoutIntervalForResource = 24 * 3600
+        c.waitsForConnectivity = true
+        return URLSession(configuration: c, delegate: ForegroundDelegate(), delegateQueue: nil)
+    }()
+
+    /// Hochladen und auf das Ergebnis warten.
+    /// - App offen: direkt über eine normale Verbindung (schnell). Geht die App dabei in den Hintergrund, bricht der
+    ///   Upload nach iOS' Gnadenfrist ab und das Objekt kommt beim nächsten Lauf dran.
+    /// - App im Hintergrund (Nachtlauf, kurzer Weckruf): über die Hintergrund-Sitzung. Wird die wartende Aufgabe
+    ///   abgebrochen, läuft die Übertragung trotzdem weiter – das Ergebnis kommt dann über `adopt`.
     func upload(_ req: URLRequest, body: URL, meta: Meta) async throws -> ImmichClient.UploadResult {
+        if await UIApplication.shared.applicationState == .active {
+            return try await uploadNow(req, body: body, meta: meta)
+        }
         let task = session.uploadTask(with: req, fromFile: body)
         task.taskDescription = (try? String(data: JSONEncoder().encode(meta), encoding: .utf8)) ?? nil
         let id = task.taskIdentifier
@@ -52,6 +69,21 @@ final class BackgroundUploader: NSObject, URLSessionDataDelegate, @unchecked Sen
         } onCancel: {
             // nur nicht mehr warten – NICHT die Übertragung abbrechen
             if let c = lock.withLock({ waiting.removeValue(forKey: id) }) { c.resume(throwing: CancellationError()) }
+        }
+    }
+
+    private func uploadNow(_ req: URLRequest, body: URL, meta: Meta) async throws -> ImmichClient.UploadResult {
+        defer { try? FileManager.default.removeItem(atPath: meta.body) }
+        let progress = UploadProgress(localID: meta.localID)
+        let (data, resp) = try await foreground.upload(for: req, fromFile: body, delegate: progress)
+        do { return try ImmichClient.shared.uploadResult(data, resp) } catch {
+            // angekommen (2xx), aber Antwort leer → über die Prüfsumme beim Server nachfragen (wie bei der Hintergrund-Sitzung)
+            let status = (resp as? HTTPURLResponse)?.statusCode ?? 0
+            if (200..<300).contains(status), let sum = meta.checksum,
+               let id = try? await ImmichClient.shared.bulkUploadCheck(id: meta.localID, checksum: sum) {
+                return ImmichClient.UploadResult(id: id, status: "created")
+            }
+            throw error
         }
     }
 
@@ -155,6 +187,28 @@ final class HomeRollAppDelegate: NSObject, UIApplicationDelegate {
             if mask == .portrait, scene.interfaceOrientation != .portrait {
                 scene.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait))
             }
+        }
+    }
+}
+
+/// Anmeldung/Zertifikat für die normale Upload-Sitzung wie bei allen anderen Anfragen der App.
+private final class ForegroundDelegate: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge) async
+        -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+        await ImmichClient.shared.urlSession(session, didReceive: challenge)
+    }
+}
+
+/// Fortschritt eines Uploads bei offener App für den Ring auf der Kachel.
+private final class UploadProgress: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    let localID: String
+    init(localID: String) { self.localID = localID }
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64,
+                    totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        guard totalBytesExpectedToSend > 0 else { return }
+        let p = Double(totalBytesSent) / Double(totalBytesExpectedToSend), id = localID
+        Task { @MainActor in
+            if BackupEngine.shared.currentLocalID == id { BackupEngine.shared.progress = p }
         }
     }
 }
