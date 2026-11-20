@@ -64,7 +64,16 @@ final class BackupEngine {
     var pending: Int? { total > 0 ? max(0, total - uploaded - duplicates) : storedPending }
     private var storedPending = UserDefaults.standard.object(forKey: "backup.pending") as? Int
 
-    var phase: Phase = .idle
+    var phase: Phase = .idle { didSet { keepAwake() } }
+
+    /// Wie beim Erst-Import in Fotos: Solange gesichert wird, die App offen ist und das iPhone am Strom hängt, sperrt
+    /// sich der Bildschirm nicht – sonst stoppt iOS das Hochladen bei offener App nach der Auto-Sperre.
+    private func keepAwake() {
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let plugged = UIDevice.current.batteryState == .charging || UIDevice.current.batteryState == .full
+        let on = running && plugged && UIApplication.shared.applicationState == .active
+        if UIApplication.shared.isIdleTimerDisabled != on { UIApplication.shared.isIdleTimerDisabled = on }
+    }
     var total = 0
     var finished = 0
     var uploaded = 0
