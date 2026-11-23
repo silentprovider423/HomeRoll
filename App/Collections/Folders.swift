@@ -10,7 +10,9 @@ import SwiftUI
     /// gemeinsamer Anfang aller Pfade – die oberste Ebene der Ansicht
     private(set) var root = ""
     private(set) var loaded = false
-    private var covers: [String: String] = [:]
+    private var covers: [String: String] = (UserDefaults.standard.dictionary(forKey: "folders.covers") as? [String: String]) ?? [:] {
+        didSet { UserDefaults.standard.set(covers, forKey: "folders.covers") }
+    }
     private var contents: [String: [Asset]] = [:]
 
     func load() async {
@@ -21,11 +23,20 @@ import SwiftUI
         let showAll = false
         #endif
         let keep = showAll ? all : all.filter { !Self.isInternal($0) }
-        paths = keep.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
-        root = Self.commonDirectory(paths)
-        covers = [:]; contents = [:]; latestCache = [:]
+        let sorted = keep.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+        // Zwischenspeicher nur verwerfen, wenn sich die Ordner wirklich geändert haben – sonst luden die Titelbilder bei
+        // jedem Öffnen der Sammlungen neu und blieben ~2 s leer (GitHub #60)
+        if sorted != paths || !loaded {
+            paths = sorted
+            root = Self.commonDirectory(paths)
+            contents = [:]; latestCache = [:]
+            covers = covers.filter { k, _ in paths.contains { $0 == k || $0.hasPrefix(k + "/") } }
+        }
         loaded = true
     }
+
+    /// Abmelden: nichts vom Konto behalten
+    func reset() { paths = []; root = ""; loaded = false; covers = [:]; contents = [:]; latestCache = [:] }
 
     nonisolated static func isInternal(_ p: String) -> Bool {
         let c = p.split(separator: "/")

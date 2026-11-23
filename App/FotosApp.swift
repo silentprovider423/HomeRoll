@@ -95,6 +95,7 @@ final class AppModel {
         // alles vom Konto vom Gerät löschen: Offline-Vorschauen, Bild-Speicher, Widget-Bilder (GitHub-Issue #8)
         OfflineSync.shared.stop(); OfflineStore.shared.clear(); ImageCache.shared.purge()
         if let w = WidgetSnapshot.folder { try? FileManager.default.removeItem(at: w) }
+        FolderStore.shared.reset()   // gemerkte Ordner-Titelbilder gehören zum Konto
         // Liste heikler Fotos (IDs) des Kontos
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         for f in (try? FileManager.default.contentsOfDirectory(atPath: support.path)) ?? [] where f.hasPrefix("heikel-") {
