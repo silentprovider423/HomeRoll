@@ -65,11 +65,24 @@ struct ViewerDismissGesture: UIViewRepresentable {
         @objc func pan(_ g: UIPanGestureRecognizer) {
             let t = g.translation(in: g.view)
             switch g.state {
+            case .began: paging(g.view, enabled: false)
             case .changed: parent?.changed(CGSize(width: t.x, height: max(0, t.y)))
-            case .ended, .cancelled, .failed: parent?.ended(CGSize(width: t.x, height: max(0, t.y)), g.velocity(in: g.view))
+            case .ended, .cancelled, .failed:
+                paging(g.view, enabled: true)
+                parent?.ended(CGSize(width: t.x, height: max(0, t.y)), g.velocity(in: g.view))
             default: break
             }
         }
+        /// Während des Wischens nicht seitlich blättern – sonst zog das Nachbarfoto mit ins Bild (GitHub #63)
+        private func paging(_ root: UIView?, enabled: Bool) {
+            func find(_ v: UIView) -> UIScrollView? {
+                if let s = v as? UIScrollView, s.isPagingEnabled { return s }
+                for c in v.subviews { if let s = find(c) { return s } }
+                return nil
+            }
+            if let root, let s = find(root) { s.isScrollEnabled = enabled }
+        }
+
         /// Nur senkrecht nach unten und nur ungezoomt – seitlich bleibt Blättern, gezoomt bleibt Schieben.
         func gestureRecognizerShouldBegin(_ g: UIGestureRecognizer) -> Bool {
             guard let p = g as? UIPanGestureRecognizer, !ViewerZoom.zoomed else { return false }

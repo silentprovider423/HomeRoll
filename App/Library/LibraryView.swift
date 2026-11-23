@@ -248,7 +248,8 @@ struct AllGrid: View {
         let app = self.app, timeline = self.timeline, query = self.query
         PhotoGrid(items: items, columns: app.columns,
                   topInset: 120, controller: grid,
-                  fit: app.aspectGrid, selection: app.selecting ? app.selected : nil, highlight: highlight, me: app.userID,
+                  fit: app.aspectGrid, selection: app.selecting ? app.selected : nil, highlight: highlight,
+                  hiddenID: app.viewer != nil ? app.zoomID : nil, me: app.userID,
                   onTop: { i in
                       guard i < items.count else { return }
                       let date: Date

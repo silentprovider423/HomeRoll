@@ -284,7 +284,7 @@ final class AssetCell: UICollectionViewCell {
         playerLayer = nil; looper = nil; playing = false
     }
 
-    func show(_ a: Asset, size: ImmichClient.Size, fit: Bool, selected: Bool?, highlighted: Bool, sharedFromOther: Bool) {
+    func show(_ a: Asset, size: ImmichClient.Size, fit: Bool, selected: Bool?, highlighted: Bool, sharedFromOther: Bool, hidden: Bool = false) {
         let changed = id != a.id || self.size != size
         id = a.id; self.size = size
         image.contentMode = fit ? .scaleAspectFit : .scaleAspectFill
@@ -292,7 +292,7 @@ final class AssetCell: UICollectionViewCell {
         duration.isHidden = !a.isVideo
         heart.isHidden = !a.isFavorite
         shared.isHidden = !sharedFromOther
-        update(selected: selected, highlighted: highlighted)
+        update(selected: selected, highlighted: highlighted, hidden: hidden)
         accessibilityLabel = (a.isVideo ? String(localized: "Video, ") : String(localized: "Foto, ")) + Fmt.dayLongMonthYear.string(from: a.date)
             + (a.isLocalOnly ? String(localized: ", noch nicht gesichert") : "")
         updateCloud()
@@ -300,7 +300,9 @@ final class AssetCell: UICollectionViewCell {
         setNeedsLayout()
     }
 
-    func update(selected: Bool?, highlighted: Bool) {
+    func update(selected: Bool?, highlighted: Bool, hidden: Bool = false) {
+        // wie in Fotos: die Kachel des geöffneten Fotos bleibt leer, dorthin fliegt es beim Schließen zurück (#63)
+        contentView.alpha = hidden ? 0 : 1
         dim.isHidden = selected != true
         check.isHidden = selected != true
         flash.isHidden = !highlighted
@@ -379,6 +381,8 @@ struct PhotoGrid: UIViewRepresentable {
     /// nil = keine Auswahl aktiv, sonst die ausgewählten IDs
     let selection: Set<String>?
     let highlight: String?
+    /// gerade in der Einzelansicht geöffnetes Objekt – seine Kachel bleibt leer (GitHub #63)
+    var hiddenID: String? = nil
     /// Eigenes Konto (Kennzeichen „geteilt“ für Fotos anderer)
     let me: String
     /// Oberstes sichtbares Objekt (für Datum/Monat/Jahr in der Überschrift)
@@ -493,7 +497,7 @@ struct PhotoGrid: UIViewRepresentable {
                 v.layoutIfNeeded()
                 v.contentOffset.y = max(-topInset, v.contentSize.height - fromBottom)
             }
-        } else if old.selection != selection || old.highlight != highlight {
+        } else if old.selection != selection || old.highlight != highlight || old.hiddenID != hiddenID {
             // Auswahl/Markierung: nur die sichtbaren Kacheln umschalten
             c.refreshVisible()
         } else {
@@ -554,7 +558,7 @@ struct PhotoGrid: UIViewRepresentable {
             let p = parent!
             cell.show(a, size: columns == 1 ? .preview : .thumbnail, fit: p.fit && columns > 1,
                       selected: p.selection.map { $0.contains(a.id) }, highlighted: p.highlight == a.id,
-                      sharedFromOther: !p.me.isEmpty && a.ownerId != nil && a.ownerId != p.me)
+                      sharedFromOther: !p.me.isEmpty && a.ownerId != nil && a.ownerId != p.me, hidden: p.hiddenID == a.id)
         }
 
         /// Sichtbare Kacheln an den Zustand angleichen (ohne reloadData – das würde die Bilder neu setzen).
@@ -563,7 +567,8 @@ struct PhotoGrid: UIViewRepresentable {
             for ip in v.indexPathsForVisibleItems where ip.item < parent.items.count {
                 guard let cell = v.cellForItem(at: ip) as? AssetCell, case .asset(let a, _) = parent.items[ip.item] else { continue }
                 if content { configure(cell, parent.items[ip.item]) }
-                else { cell.update(selected: parent.selection.map { $0.contains(a.id) }, highlighted: parent.highlight == a.id) }
+                else { cell.update(selected: parent.selection.map { $0.contains(a.id) }, highlighted: parent.highlight == a.id,
+                                   hidden: parent.hiddenID == a.id) }
             }
         }
 

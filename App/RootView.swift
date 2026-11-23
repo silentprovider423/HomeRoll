@@ -82,6 +82,9 @@ struct RootView: View {
             ViewerView(assets: req.assets, start: req.index)
                 .navigationTransition(.zoom(sourceID: app.zoomID, in: zoom))
                 .preferredColorScheme(.dark)   // Fotos-Ansicht und Editor bleiben auch im hellen Modus dunkel
+                // durchsichtig: beim Wischen nach unten scheint das Raster durch, wie in Fotos (GitHub #63);
+                // den schwarzen Grund zeichnet der Viewer selbst und blendet ihn beim Ziehen aus
+                .presentationBackground(.clear)
         }
         .fullScreenCover(isPresented: $app.showSearch) { SearchView() }
         // Tippen aufs Widget: homeroll://memory/<id> bzw. homeroll://asset/<id>

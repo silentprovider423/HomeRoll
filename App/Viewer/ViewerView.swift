@@ -33,19 +33,19 @@ struct ViewerView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(1 - dragProgress).ignoresSafeArea()
+            Color.black.opacity(Double(max(0, 1 - dragProgress * 2.5))).ignoresSafeArea()   // Raster scheint schnell durch (#63)
             TabView(selection: $selection) {
                 ForEach(assets) { a in
                     Page(asset: a, isCurrent: a.id == selection, chrome: $chrome, video: video,
                          live: liveModes[a.id] ?? LiveMode.get(a.id), analysis: analysis)
+                        // wie in Fotos: nur das aktuelle Foto folgt dem Finger und wird kleiner (GitHub #63)
+                        .scaleEffect(a.id == selection ? CGFloat(1) - dragProgress * 0.3 : CGFloat(1))
+                        .offset(a.id == selection ? drag : .zero)
                         .tag(a.id)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
-            // wie in Fotos: nur das Foto folgt dem Finger und wird kleiner, Leisten und Hintergrund blenden aus
-            .scaleEffect(1 - dragProgress * 0.3)
-            .offset(drag)
             .background(ViewerDismissGesture(changed: { drag = $0 }, ended: { t, v in
                 if t.height > 110 || (t.height > 40 && v.y > 900) { dismiss() }
                 else { withAnimation(.spring(duration: 0.3)) { drag = .zero } }
@@ -503,13 +503,23 @@ private struct VideoPage: View {
     let asset: Asset
     let video: VideoState
     @Binding var chrome: Bool
+    @State private var scale: CGFloat = 1
 
     var body: some View {
-        ZStack {
-            AssetThumb(id: asset.id, size: .preview).aspectRatio(asset.ratio, contentMode: .fit)
+        // Videos zoomen wie Fotos (GitHub #64): dieselbe Zoom-Ansicht, Hinweise bleiben ungezoomt obenauf
+        ZoomScroll(ratio: asset.ratio, scale: $scale, active: video.id == asset.id || video.id.isEmpty,
+                   onTap: { withAnimation(.easeInOut(duration: 0.2)) { chrome.toggle() } }) {
+            ZStack {
+                AssetThumb(id: asset.id, size: .preview)
+                if video.id == asset.id, !video.unplayable, let p = video.player { PlayerSurface(player: p) }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
+        }
+        .ignoresSafeArea()
+        .overlay {
             if video.id == asset.id, video.unplayable { UnplayableVideoNote() }
-            else if video.id == asset.id, let p = video.player { PlayerSurface(player: p) }
-            else if Connectivity.shared.serverOffline {
+            else if video.id != asset.id, Connectivity.shared.serverOffline {
                 VStack(spacing: 10) {
                     Image(systemName: "play.slash.fill").font(.system(size: 40))
                     Text(String(localized: "Video braucht Verbindung zum Server")).font(.headline)
@@ -517,8 +527,6 @@ private struct VideoPage: View {
                 .foregroundStyle(.white).shadow(radius: 6)
             }
         }
-        .contentShape(Rectangle())
-        .onTapGesture { withAnimation(.easeInOut(duration: 0.2)) { chrome.toggle() } }
         .onChange(of: Connectivity.shared.serverOffline) { _, off in
             if !off, video.id.isEmpty || video.id == asset.id { video.attach(asset); video.play() }
         }

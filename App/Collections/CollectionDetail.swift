@@ -121,7 +121,8 @@ struct AssetGridScreen: View {
             if list.contains(where: { $0.trashedAt != nil }) { trashGrid(list) }
             else {
                 PhotoGrid(items: list.map { .asset($0, bucket: "") }, columns: columns, topInset: 120, controller: grid,
-                          fit: false, selection: app.selecting ? app.selected : nil, highlight: nil, me: app.userID,
+                          fit: false, selection: app.selecting ? app.selected : nil, highlight: nil,
+                          hiddenID: app.viewer != nil ? app.zoomID : nil, me: app.userID,
                           onTop: { _ in }, onShow: { _ in },
                           onColumns: { columns = $0 },
                           onOpen: { i, _ in app.open(list, at: i) },
