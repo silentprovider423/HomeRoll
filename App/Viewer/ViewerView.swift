@@ -351,8 +351,27 @@ final class OriginalImages {
     func hasDepth(_ id: String) -> Bool { depthData.contains { $0.0 == id } }
 
     /// Vorder-/Hintergrund für die räumliche Szene (auf 2048 px verkleinert).
+    /// Ohne Tiefenkarte (alle Fotos außer Porträts) wie Apple in iOS 26 eine Tiefe schätzen (GitHub #61):
+    /// das freigestellte Motiv vorne, der Hintergrund von unten (nah) nach oben (fern).
     func spatialLayers(_ id: String) async -> SpatialLayers? {
-        guard let data = depthData.first(where: { $0.0 == id })?.1 else { return nil }
+        guard let data = depthData.first(where: { $0.0 == id })?.1 else {
+            guard let ui = cache.first(where: { $0.0 == id })?.1,
+                  let src = CIImage(image: ui, options: [.applyOrientationProperty: true]) else { return nil }
+            return await Task.detached(priority: .userInitiated) { () -> SpatialLayers? in
+                let s = min(1, 2048 / max(src.extent.width, src.extent.height))
+                let img = src.transformed(by: CGAffineTransform(scaleX: s, y: s))
+                let img0 = img.transformed(by: CGAffineTransform(translationX: -img.extent.minX, y: -img.extent.minY))
+                guard let subject = SpatialLayers.subjectMask(img0) else { return nil }
+                let e = img0.extent
+                let mask = EditRenderer.fit(subject, to: e)
+                // Boden-Verlauf: unten nah (0,6) → oben fern (0); Core Image zählt y von unten
+                let ground = CIImage(color: .black).cropped(to: e).applyingFilter("CILinearGradient", parameters: [
+                    "inputPoint0": CIVector(x: 0, y: e.minY), "inputColor0": CIColor(red: 0.6, green: 0.6, blue: 0.6),
+                    "inputPoint1": CIVector(x: 0, y: e.maxY), "inputColor1": CIColor(red: 0, green: 0, blue: 0)]).cropped(to: e)
+                let disparity = mask.applyingFilter("CIMaximumCompositing", parameters: [kCIInputBackgroundImageKey: ground]).cropped(to: e)
+                return SpatialLayers.make(image: img0, depth: DepthMaps(disparity: disparity, matte: nil))
+            }.value
+        }
         return await Task.detached(priority: .userInitiated) { () -> SpatialLayers? in
             guard let img = CIImage(data: data, options: [.applyOrientationProperty: true]), let depth = DepthMaps(data: data) else { return nil }
             let s = min(1, 2048 / max(img.extent.width, img.extent.height))
@@ -441,7 +460,7 @@ private struct ZoomableImage: View {
             guard analysis != nil, full == nil, app.alwaysOriginal || scale > 1.01 else { return }
             try? await Task.sleep(for: .milliseconds(app.alwaysOriginal ? 200 : 0))
             guard !Task.isCancelled, let img = await OriginalImages.shared.load(asset.id) else { return }
-            withAnimation(.easeOut(duration: 0.2)) { full = img; spatialAvailable = OriginalImages.shared.hasDepth(asset.id) }
+            withAnimation(.easeOut(duration: 0.2)) { full = img; spatialAvailable = asset.isImage && !asset.isLivePhoto || OriginalImages.shared.hasDepth(asset.id) }
         }
         .overlay(alignment: .topTrailing) {
             // Apple: Knopf für die räumliche Szene oben rechts bei geeigneten Fotos

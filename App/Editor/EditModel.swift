@@ -294,6 +294,7 @@ enum PortraitLight: String, CaseIterable, Identifiable, Codable {
 struct DepthMaps: @unchecked Sendable {
     let disparity: CIImage
     let matte: CIImage?
+    init(disparity: CIImage, matte: CIImage?) { self.disparity = disparity; self.matte = matte }
     init?(data: Data) {
         guard let d = CIImage(data: data, options: [.auxiliaryDisparity: true, .applyOrientationProperty: true]) else { return nil }
         disparity = d
