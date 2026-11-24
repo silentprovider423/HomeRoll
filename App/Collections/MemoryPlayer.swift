@@ -155,7 +155,12 @@ struct MemoryPlayer: View {
         let n = [15, 30, 999][length]
         let ready = memory.assets.filter { ImageCache.shared.hash($0.id) != nil }
         let src = ready.isEmpty ? memory.assets : ready
-        return src.count > n ? MemoryEngine.curate(src, max: n) : src
+        guard src.count > n else { return src }
+        let picked = MemoryEngine.curate(src, max: n)
+        // eigene Reihenfolge (GitHub #62) auch bei kurzer Fassung beibehalten
+        guard MemoryPrefs.shared.order[memory.id] != nil else { return picked }
+        let pos = Dictionary(src.enumerated().map { ($1.id, $0) }, uniquingKeysWith: { a, _ in a })
+        return picked.sorted { (pos[$0.id] ?? 0) < (pos[$1.id] ?? 0) }
     }
 
     var body: some View {
@@ -237,6 +242,10 @@ struct MemoryPlayer: View {
                 memory = Memory(id: memory.id, title: memory.title, subtitle: memory.subtitle, assets: memory.assets, key: a,
                                 date: memory.date, custom: memory.custom, place: memory.place, personID: memory.personID, personName: memory.personName)
                 app.toast(String(localized: "Titelbild festgelegt"))
+            }, save: { list in
+                memory = MemoryCenter.shared.saveEdits(memory, assets: list)
+                scenes = StoryTimeline.build(curated, mood: mood)
+                app.toast(String(localized: "Rückblick gesichert"))
             })
             .overlay(alignment: .top) { ToastBadge() }
         }

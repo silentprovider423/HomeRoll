@@ -36,6 +36,9 @@ struct MemoryPrefs: Codable {
     var removed: [String: Set<String>] = [:]
     /// „Als Titelbild“ (REA: PXStoryMakeKeyPhotoActionPerformer): selbst gewähltes Titelbild je Rückblick
     var keys: [String: String] = [:]
+    /// Selbst hinzugefügte Fotos und eigene Reihenfolge je Rückblick (GitHub #62)
+    var added: [String: [String]] = [:]
+    var order: [String: [String]] = [:]
     struct Custom: Codable, Hashable { let id: String; let title: String; let ids: [String]; let created: Date }
 
     init() {}
@@ -54,6 +57,8 @@ struct MemoryPrefs: Codable {
         lessPeople = try c.decodeIfPresent(Set<String>.self, forKey: .lessPeople) ?? []
         removed = try c.decodeIfPresent([String: Set<String>].self, forKey: .removed) ?? [:]
         keys = try c.decodeIfPresent([String: String].self, forKey: .keys) ?? [:]
+        added = try c.decodeIfPresent([String: [String]].self, forKey: .added) ?? [:]
+        order = try c.decodeIfPresent([String: [String]].self, forKey: .order) ?? [:]
     }
 
     nonisolated static func dayKey(_ d: Date) -> String {
@@ -219,9 +224,12 @@ final class MemoryCenter {
         }
         guard gen == generation else { return }
         if let early { shown = Self.without(early, shown) }
-        items = shown
+        let byID = Dictionary(all.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+        items = shown.map { Self.applyEdits($0, prefs: prefs, byID: byID) }
         settled = true
         await addBirthdays(skip: skip, prefs: prefs, gen: gen)
+        guard gen == generation else { return }
+        items = items.map { Self.applyEdits($0, prefs: prefs, byID: byID) }
         await fixCovers(gen: gen)
         dump("angezeigt")
         await filterSensitive(gen: gen, account: account)
@@ -325,6 +333,48 @@ final class MemoryCenter {
         let m = items[i]
         items[i] = Memory(id: m.id, title: m.title, subtitle: m.subtitle, assets: m.assets, key: a, date: m.date,
                           custom: m.custom, place: m.place, personID: m.personID, personName: m.personName)
+    }
+
+    /// Eigene Änderungen einrechnen: hinzugefügte Fotos dazu, eigene Reihenfolge (GitHub #62). Mehrfach anwendbar.
+    nonisolated static func applyEdits(_ m: Memory, prefs: MemoryPrefs, byID: [String: Asset]) -> Memory {
+        let removed = prefs.removed[m.id] ?? []
+        let extra = (prefs.added[m.id] ?? []).compactMap { byID[$0] }
+            .filter { !removed.contains($0.id) && !m.assets.contains($0) }
+        guard !extra.isEmpty || prefs.order[m.id] != nil else { return m }
+        var list = m.assets + extra
+        if let ord = prefs.order[m.id] {
+            let pos = Dictionary(ord.enumerated().map { ($1, $0) }, uniquingKeysWith: { a, _ in a })
+            // Bekanntes nach eigener Reihenfolge, Neues (z. B. nach Neuaufbau) ans Ende nach Datum
+            list = list.enumerated().sorted { a, b in
+                switch (pos[a.element.id], pos[b.element.id]) {
+                case let (x?, y?): return x < y
+                case (_?, nil): return true
+                case (nil, _?): return false
+                default: return a.offset < b.offset
+                }
+            }.map(\.element)
+        }
+        let key = list.contains(m.key) ? m.key : (MemoryEngine.keyPhoto(list) ?? list[0])
+        return Memory(id: m.id, title: m.title, subtitle: MemoryEngine.range(list), assets: list, key: key, date: m.date,
+                      custom: m.custom, place: m.place, personID: m.personID, personName: m.personName)
+    }
+
+    /// Bearbeiten-Bogen: neue Fotos und Reihenfolge eines Rückblicks übernehmen (entfernte merken wie „Aus Rückblick entfernen“).
+    func saveEdits(_ m: Memory, assets list: [Asset]) -> Memory {
+        let before = Set(m.assets.map(\.id)), after = Set(list.map(\.id))
+        var p = MemoryPrefs.shared
+        p.removed[m.id, default: []].formUnion(before.subtracting(after))
+        p.removed[m.id]?.subtract(after)
+        var add = (p.added[m.id] ?? []).filter { after.contains($0) }
+        for a in list where !before.contains(a.id) && !add.contains(a.id) { add.append(a.id) }
+        p.added[m.id] = add.isEmpty ? nil : add
+        p.order[m.id] = list.map(\.id)
+        MemoryPrefs.shared = p
+        let key = list.contains(m.key) ? m.key : (MemoryEngine.keyPhoto(list) ?? list[0])
+        let new = Memory(id: m.id, title: m.title, subtitle: MemoryEngine.range(list), assets: list, key: key, date: m.date,
+                         custom: m.custom, place: m.place, personID: m.personID, personName: m.personName)
+        if let i = items.firstIndex(where: { $0.id == m.id }) { items[i] = new }
+        return new
     }
 
     /// Foto aus einem Rückblick nehmen; ist danach zu wenig übrig, verschwindet der Rückblick wie bei Apple.
@@ -856,6 +906,9 @@ struct MemoryGrid: View {
     /// gesetzt = Fotos lassen sich aus dem Rückblick nehmen (lange drücken)
     var remove: ((Asset) -> Void)? = nil
     var makeKey: ((Asset) -> Void)? = nil
+    /// gesetzt = „Bearbeiten“: Fotos hinzufügen, entfernen, umsortieren (GitHub #62)
+    var save: (([Asset]) -> Void)? = nil
+    @State private var editing = false
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -876,8 +929,68 @@ struct MemoryGrid: View {
             .background(Color.black)
             .navigationTitle(String(localized: "\(assets.count) Fotos"))
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if save != nil {
+                    ToolbarItem(placement: .topBarTrailing) { Button(String(localized: "Bearbeiten")) { editing = true } }
+                }
+            }
+            .sheet(isPresented: $editing) {
+                MemoryEditSheet(start: assets) { list in save?(list) }
+            }
         }
         .preferredColorScheme(.dark)
+    }
+}
+
+/// Rückblick bearbeiten (GitHub #62): Reihenfolge ziehen, Fotos löschen, aus der Mediathek hinzufügen.
+struct MemoryEditSheet: View {
+    let start: [Asset]
+    let onSave: ([Asset]) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @Environment(TimelineStore.self) private var timeline
+    @State private var list: [Asset] = []
+    @State private var picker = false
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(list) { a in
+                        HStack(spacing: 12) {
+                            GridCell(asset: a).frame(width: 56, height: 56).clipShape(RoundedRectangle(cornerRadius: 6))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(Fmt.dayLongMonthYear.string(from: a.date)).font(.subheadline)
+                                if let c = a.city { Text(c).font(.caption).foregroundStyle(.secondary) }
+                            }
+                        }
+                    }
+                    .onMove { list.move(fromOffsets: $0, toOffset: $1) }
+                    .onDelete { list.remove(atOffsets: $0) }
+                } footer: {
+                    if list.count < 3 { Text(String(localized: "Ein Rückblick braucht mindestens 3 Fotos.")).foregroundStyle(.orange) }
+                }
+            }
+            .environment(\.editMode, .constant(.active))
+            .navigationTitle(String(localized: "Rückblick bearbeiten"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) { Button(String(localized: "Abbrechen")) { dismiss() } }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "Fertig")) { onSave(list); dismiss() }.disabled(list.count < 3).bold()
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Button(String(localized: "Fotos hinzufügen"), systemImage: "plus") { picker = true }
+                }
+            }
+            .sheet(isPresented: $picker) {
+                PhotoPicker(exclude: Set(list.map(\.id))) { ids in
+                    let byID = Dictionary(timeline.allLoaded.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+                    list += ids.compactMap { byID[$0] }
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+        .onAppear { if list.isEmpty { list = start } }
     }
 }
 
