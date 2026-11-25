@@ -13187,6 +13187,310 @@
           }
         }
       }
+    },
+    "Gesperrter Ordner": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Защищённая папка"
+          }
+        }
+      }
+    },
+    "Öffne zuerst „Gesperrter Ordner“ in den Sammlungen und gib deine PIN ein.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open “Locked Folder” in Collections first and enter your PIN."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сначала откройте «Защищённую папку» в коллекциях и введите PIN."
+          }
+        }
+      }
+    },
+    "Konnte nicht bewegt werden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t be moved"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось переместить"
+          }
+        }
+      }
+    },
+    "In gesperrten Ordner bewegt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moved to Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перемещено в защищённую папку"
+          }
+        }
+      }
+    },
+    "%lld in gesperrten Ordner bewegt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld moved to Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перемещено в защищённую папку: %lld"
+          }
+        }
+      }
+    },
+    "Aus gesperrtem Ordner entfernt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removed from Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрано из защищённой папки"
+          }
+        }
+      }
+    },
+    "%lld aus gesperrtem Ordner entfernt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld removed from Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрано из защищённой папки: %lld"
+          }
+        }
+      }
+    },
+    "Die PIN gilt für dein Immich-Konto, also auch im Browser und in der Immich-App. HomeRoll merkt sie sich, danach reicht Face ID.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The PIN belongs to your Immich account, so it also works in the browser and the Immich app. HomeRoll remembers it, after that Face ID is enough."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN относится к вашей учётной записи Immich, поэтому действует и в браузере, и в приложении Immich. HomeRoll запомнит его, дальше достаточно Face ID."
+          }
+        }
+      }
+    },
+    "Die PIN deines Immich-Kontos. HomeRoll merkt sie sich, danach reicht Face ID.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The PIN of your Immich account. HomeRoll remembers it, after that Face ID is enough."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN вашей учётной записи Immich. HomeRoll запомнит его, дальше достаточно Face ID."
+          }
+        }
+      }
+    },
+    "PIN eingeben": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите PIN"
+          }
+        }
+      }
+    },
+    "PIN festlegen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задайте PIN"
+          }
+        }
+      }
+    },
+    "PIN bestätigen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подтвердите PIN"
+          }
+        }
+      }
+    },
+    "Die PINs stimmen nicht überein.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The PINs don’t match."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN-коды не совпадают."
+          }
+        }
+      }
+    },
+    "PIN konnte nicht angelegt werden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The PIN couldn’t be set."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось задать PIN."
+          }
+        }
+      }
+    },
+    "Falsche PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrong PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Неверный PIN"
+          }
+        }
+      }
+    },
+    "Weiter": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Далее"
+          }
+        }
+      }
+    },
+    "PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN"
+          }
+        }
+      }
+    },
+    "Aus gesperrtem Ordner entfernen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove from Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрать из защищённой папки"
+          }
+        }
+      }
+    },
+    "In gesperrten Ordner bewegen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move to Locked Folder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переместить в защищённую папку"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

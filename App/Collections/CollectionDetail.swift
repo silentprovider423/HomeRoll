@@ -17,6 +17,7 @@ struct CollectionDetail: View {
         case .category(.map): MapScreen(markers: model.markers)
         case .category(.duplicates): DuplicatesScreen()
         case .category(.largeVideos): LargeVideosScreen()
+        case .category(.lockedFolder): LockGate(title: Category.lockedFolder.title) { LockedFolderScreen() }
         case .category(let c) where c.locked: LockGate(title: c.title) { grid }
         case .allMemories: MemoriesScreen()
         case .allMediaTypes: CategoryListScreen(title: String(localized: "Medienarten"), items: Category.mediaTypes)

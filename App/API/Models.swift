@@ -56,7 +56,7 @@ struct BucketColumns: Decodable {
 
 /// Ein Foto/Video. `date` ist die lokale Aufnahme-Uhrzeit („Wanduhr“), als UTC gespeichert
 /// und immer mit `Calendar.wall` / UTC-Formattern angezeigt → Tage kippen nie um Mitternacht.
-struct Asset: Identifiable, Hashable, Sendable {
+struct Asset: Identifiable, Hashable, Sendable, Codable {
     let id: String
     let isImage: Bool
     var isFavorite: Bool
@@ -69,6 +69,7 @@ struct Asset: Identifiable, Hashable, Sendable {
     var addedAt: Date? = nil
     var ownerId: String? = nil
     var isHidden = false             // liegt in „Ausgeblendet“ (Immich „archive“; „hidden“ sind Live-Videoteile)
+    var isLocked = false             // liegt in Immichs „Gesperrtem Ordner“ (visibility „locked“, GitHub #68)
     var trashedAt: Date? = nil       // liegt in „Zuletzt gelöscht“ (seit ungefähr)
 
     var isVideo: Bool { !isImage }
@@ -149,7 +150,7 @@ struct AssetDTO: Decodable {
                      livePhotoVideoId: livePhotoVideoId,
                      city: exifInfo?.city, country: exifInfo?.country,
                      addedAt: createdAt.flatMap(DateParsing.wallClock), ownerId: ownerId,
-                     isHidden: visibility == "archive",
+                     isHidden: visibility == "archive", isLocked: visibility == "locked",
                      trashedAt: isTrashed == true ? (updatedAt.flatMap(DateParsing.wallClock) ?? Date()) : nil)
     }
 }

@@ -41,6 +41,15 @@ final class CollectionsModel {
         featured.removeAll { $0.id == id }
     }
 
+    /// Empfohlene Fotos vom letzten Mal sofort zeigen (GitHub #69); `load()` ersetzt sie.
+    func restore(account: String) {
+        guard featured.isEmpty, !account.isEmpty,
+              let d = UserDefaults.standard.data(forKey: "featured.cache.\(account)"),
+              let saved = try? JSONDecoder().decode([Asset].self, from: d) else { return }
+        let removed = Set(UserDefaults.standard.stringArray(forKey: "featured.removed") ?? [])
+        featured = saved.filter { !removed.contains($0.id) }
+    }
+
     func reloadAlbums() async {
         guard let a = try? await ImmichClient.shared.albums() else { return }
         albums = a
@@ -77,6 +86,9 @@ final class CollectionsModel {
         // danach einzeln prüfen (Fotos ohne KI-Merkmale fängt die Suche oben nicht)
         let bad = await SensitiveFilter.flagged(picks, account: account)
         if !bad.isEmpty { featured.removeAll { bad.contains($0.id) } }
+        if !account.isEmpty, let d = try? JSONEncoder().encode(featured) {
+            UserDefaults.standard.set(d, forKey: "featured.cache.\(account)")
+        }
     }
 }
 
@@ -135,6 +147,8 @@ struct CollectionsView: View {
         }
         .environment(\.cardSide, [100, 128, 160][min(2, max(0, cardSize))])
         .task {
+            model.restore(account: timeline.account)
+            memories.restore(account: timeline.account)
             if !model.loaded { await model.load() }
             await timeline.loadAll()
             await memories.rebuild(timeline: timeline, server: model.memories)

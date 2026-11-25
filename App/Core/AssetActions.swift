@@ -593,7 +593,7 @@ struct AssetMenu: View {
     }
 
     @ViewBuilder private var common: some View {
-        if assets.count == 1, let a = assets.first, app.outsideLibrary, !a.isHidden {
+        if assets.count == 1, let a = assets.first, app.outsideLibrary, !a.isHidden, !a.isLocked {
             Button("In Mediathek zeigen", systemImage: "photo.on.rectangle") { app.showInLibrary(a.id) }
         }
         Button(String(localized: "Kopieren"), systemImage: "doc.on.doc") { Task { await AssetActions.copy(assets, app: app) } }
@@ -613,6 +613,15 @@ struct AssetMenu: View {
         if EditClipboard.hasEdits, assets.contains(where: \.isImage) {
             Button("Bearbeitungen einsetzen", systemImage: "doc.on.clipboard") {
                 Task { await EditClipboard.paste(on: assets, app: app, timeline: timeline) }
+            }
+        }
+        if assets.allSatisfy(\.isLocked), !assets.isEmpty {
+            Button(String(localized: "Aus gesperrtem Ordner entfernen"), systemImage: "lock.open") {
+                LockedFolder.moveOut(ids, app: app, timeline: timeline); onDelete()
+            }
+        } else {
+            Button(String(localized: "In gesperrten Ordner bewegen"), systemImage: "lock") {
+                Task { if await LockedFolder.move(ids, app: app, timeline: timeline) { onDelete() } }
             }
         }
         if allHidden {
@@ -674,7 +683,7 @@ enum AssetMenuUIKit {
             },
         ])
         var common: [UIMenuElement] = []
-        if app.outsideLibrary, !a.isHidden {
+        if app.outsideLibrary, !a.isHidden, !a.isLocked {
             common.append(UIAction(title: String(localized: "In Mediathek zeigen"), image: img("photo.on.rectangle")) { _ in app.showInLibrary(a.id) })
         }
         common += [
@@ -682,7 +691,11 @@ enum AssetMenuUIKit {
             UIAction(title: String(localized: "Duplizieren"), image: img("plus.square.on.square")) { _ in
                 Task { await AssetActions.duplicate([a], app: app, timeline: timeline) }
             },
-            UIAction(title: String(localized: "Ausblenden"), image: img("eye.slash")) { _ in app.sheet = .confirmHide([a], done: { onRemove?() }) },
+            a.isLocked
+                ? UIAction(title: String(localized: "Aus gesperrtem Ordner entfernen"), image: img("lock.open")) { _ in
+                    LockedFolder.moveOut(ids, app: app, timeline: timeline); onRemove?()
+                }
+                : UIAction(title: String(localized: "Ausblenden"), image: img("eye.slash")) { _ in app.sheet = .confirmHide([a], done: { onRemove?() }) },
             UIAction(title: String(localized: "Zum Album hinzufügen"), image: img("rectangle.stack.badge.plus")) { _ in app.sheet = .addToAlbum(ids) },
         ]
         return UIMenu(children: [top] + common)

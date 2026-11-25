@@ -267,7 +267,11 @@ final class ImmichClient: NSObject, URLSessionDelegate, @unchecked Sendable {
         catch { Connectivity.report(error); throw error }
         let code = (resp as? HTTPURLResponse)?.statusCode ?? 0
         guard (200..<300).contains(code) else {
-            if code == 401 { await MainActor.run { NotificationCenter.default.post(name: .sessionExpired, object: nil) } }
+            // „Elevated permission is required“ (gesperrter Ordner ohne PIN) ist kein abgelaufenes Konto
+            let msg = String(data: data, encoding: .utf8) ?? ""
+            if code == 401, !msg.contains("Elevated permission") {
+                await MainActor.run { NotificationCenter.default.post(name: .sessionExpired, object: nil) }
+            }
             throw APIError.http(code, String(data: data, encoding: .utf8)?.prefix(200).description ?? "")
         }
         return data
@@ -532,6 +536,14 @@ final class ImmichClient: NSObject, URLSessionDelegate, @unchecked Sendable {
     }
 
     // MARK: Mehrfach-Aktionen (Auswahl)
+
+    // MARK: Gesperrter Ordner (PIN der Immich-Sitzung, GitHub #68)
+
+    struct AuthStatus: Decodable { let pinCode: Bool; let isElevated: Bool }
+    func authStatus() async throws -> AuthStatus { try await request("auth/status") }
+    func setupPin(_ pin: String) async throws { try await raw("auth/pin-code", method: "POST", body: json(["pinCode": pin])) }
+    func unlockSession(_ pin: String) async throws { try await raw("auth/session/unlock", method: "POST", body: json(["pinCode": pin])) }
+    func lockSession() async { _ = try? await raw("auth/session/lock", method: "POST") }
 
     func update(_ ids: [String], _ fields: [String: Any]) async throws {
         var body = fields; body["ids"] = ids

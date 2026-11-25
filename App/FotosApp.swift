@@ -96,6 +96,9 @@ final class AppModel {
         OfflineSync.shared.stop(); OfflineStore.shared.clear(); ImageCache.shared.purge()
         if let w = WidgetSnapshot.folder { try? FileManager.default.removeItem(at: w) }
         FolderStore.shared.reset()   // gemerkte Ordner-Titelbilder gehören zum Konto
+        for k in UserDefaults.standard.dictionaryRepresentation().keys where k.hasPrefix("featured.cache.") {
+            UserDefaults.standard.removeObject(forKey: k)
+        }
         // Liste heikler Fotos (IDs) des Kontos
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         for f in (try? FileManager.default.contentsOfDirectory(atPath: support.path)) ?? [] where f.hasPrefix("heikel-") {
@@ -182,10 +185,14 @@ final class AppModel {
 
     /// Kachel, in die die Einzelansicht beim Schließen zurückzoomt.
     var zoomID = ""
+    /// Bildschirm-Rahmen der Kachel, zu der das Foto beim Wischen nach unten zurückfliegt (nur die Mediathek kennt ihn;
+    /// sonst nil → Apples Zoom-Übergang). Eigener Rückflug, weil Apples Übergang das Raster dabei verkleinert (GitHub #63).
+    var zoomRect: CGRect?
 
     func open(_ assets: [Asset], at index: Int) {
         guard !assets.isEmpty else { return }
         var i = min(max(index, 0), assets.count - 1)
+        zoomRect = nil
         zoomID = assets[i].id
         // Einzelansicht baut je Objekt Seite + Vorschauleiste → bei 80 000 Objekten Sekunden zum Auf-/Abbauen.
         // Ein Fenster von 1 000 um das angetippte Foto reicht zum Wischen.

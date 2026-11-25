@@ -5,7 +5,7 @@ import Vision
 // MARK: - Modell
 
 /// Ein Rückblick wie in Fotos: Titel, Untertitel, ausgewählte Fotos, Schlüsselfoto.
-struct Memory: Identifiable, Hashable {
+struct Memory: Identifiable, Hashable, Codable {
     let id: String
     var title: String
     let subtitle: String
@@ -188,6 +188,27 @@ final class MemoryCenter {
     /// hat sonst den gleichnamigen Rückblick des neuen Kontos durch seinen ersetzt.
     private var generation = 0
 
+    /// Letzte Rückblicke vom iPhone: erscheinen beim Öffnen sofort, der Neuaufbau ersetzt sie still (GitHub #69).
+    func restore(account: String) {
+        guard items.isEmpty, !account.isEmpty, let url = Self.cacheURL(account),
+              let d = try? Data(contentsOf: url), let saved = try? JSONDecoder().decode([Memory].self, from: d), !saved.isEmpty
+        else { return }
+        let prefs = MemoryPrefs.shared
+        items = saved.filter { !prefs.deleted.contains($0.id) }
+        builtAccount = account
+        settled = true
+    }
+
+    private func store(account: String) {
+        guard let url = Self.cacheURL(account), let d = try? JSONEncoder().encode(items) else { return }
+        try? d.write(to: url, options: .atomic)
+    }
+
+    private static func cacheURL(_ account: String) -> URL? {
+        guard !account.isEmpty else { return nil }
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("memories-\(account).json")
+    }
+
     func rebuild(timeline: TimelineStore, server: [MemoryDTO], force: Bool = false) async {
         let all = timeline.allLoaded
         let account = timeline.account
@@ -234,7 +255,7 @@ final class MemoryCenter {
         await fixCovers(gen: gen)
         dump("angezeigt")
         await filterSensitive(gen: gen, account: account)
-        if gen == generation { dump("fertig") }
+        if gen == generation { dump("fertig"); store(account: account) }
     }
 
     /// Heikle Fotos (Wunde, Ausweis …) raus: zuerst die Titelbilder (schnell), dann alle Fotos der ersten
@@ -326,7 +347,13 @@ final class MemoryCenter {
     }
 
     /// Abmelden: nichts vom bisherigen Konto stehen lassen.
-    func reset() { items = []; builtAccount = ""; builtFor = ""; generation += 1 }
+    func reset() {
+        let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        for f in (try? FileManager.default.contentsOfDirectory(atPath: caches.path)) ?? [] where f.hasPrefix("memories-") {
+            try? FileManager.default.removeItem(at: caches.appendingPathComponent(f))
+        }
+        items = []; builtAccount = ""; builtFor = ""; generation += 1
+    }
 
     func setKey(_ assetID: String, for memoryID: String) {
         var p = MemoryPrefs.shared; p.keys[memoryID] = assetID; MemoryPrefs.shared = p

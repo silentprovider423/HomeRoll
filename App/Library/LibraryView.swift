@@ -275,6 +275,7 @@ struct AllGrid: View {
                   onOpen: { i, rect in
                       guard i < items.count, case .asset(let a, _) = items[i] else { return }
                       zoomRect = rect
+                      defer { app.zoomRect = rect }   // nach open() (das setzt ihn zurück)
                       // noch nicht gesicherte iPhone-Fotos stehen hinter der Server-Zeitleiste
                       let all = app.libraryCustomized ? (query.list ?? []) : timeline.allLoaded + timeline.localAssets.sorted { $0.date < $1.date }
                       app.open(all, at: all.firstIndex { $0.id == a.id } ?? 0)
@@ -360,6 +361,7 @@ struct AllGrid: View {
             .onChange(of: app.zoomID) { _, id in
                 guard app.viewer != nil, let i = cellIndex[id] else { return }
                 zoomRect = grid.frame(of: i, reveal: true)
+                if app.zoomRect != nil { app.zoomRect = zoomRect }   // nur wenn die Mediathek das Foto geöffnet hat
             }
             .onReceive(NotificationCenter.default.publisher(for: .scrollToNewest)) { _ in grid.scrollToEnd() }
             .task(id: query.key(app, timeline)) {

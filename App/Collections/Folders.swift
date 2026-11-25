@@ -15,6 +15,12 @@ import SwiftUI
     }
     private var contents: [String: [Asset]] = [:]
 
+    /// Ordnerliste vom letzten Mal: Der Abschnitt „Ordner“ steht beim Öffnen sofort an seinem Platz (GitHub #69).
+    init() {
+        let saved = UserDefaults.standard.stringArray(forKey: "folders.paths") ?? []
+        if !saved.isEmpty { paths = saved; root = Self.commonDirectory(saved) }
+    }
+
     func load() async {
         guard let all = try? await ImmichClient.shared.folderPaths() else { return }
         #if DEBUG
@@ -29,6 +35,7 @@ import SwiftUI
         if sorted != paths || !loaded {
             paths = sorted
             root = Self.commonDirectory(paths)
+            UserDefaults.standard.set(sorted, forKey: "folders.paths")
             contents = [:]; latestCache = [:]
             covers = covers.filter { k, _ in paths.contains { $0 == k || $0.hasPrefix(k + "/") } }
         }
@@ -36,7 +43,10 @@ import SwiftUI
     }
 
     /// Abmelden: nichts vom Konto behalten
-    func reset() { paths = []; root = ""; loaded = false; covers = [:]; contents = [:]; latestCache = [:] }
+    func reset() {
+        paths = []; root = ""; loaded = false; covers = [:]; contents = [:]; latestCache = [:]
+        UserDefaults.standard.removeObject(forKey: "folders.paths")
+    }
 
     nonisolated static func isInternal(_ p: String) -> Bool {
         let c = p.split(separator: "/")

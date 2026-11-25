@@ -8,13 +8,13 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
     case videos, selfies, livePhotos, portrait, panoramas, timelapse, slomo, cinematic, bursts,
          screenshots, screenRecordings, animated, raw, prores
     case favorites, hidden, trash, duplicates, receipts, handwriting, illustrations, qrCodes,
-         recentlySaved, recentlyViewed, recentlyEdited, recentlyShared, documents, imports, map, pets, largeVideos
+         recentlySaved, recentlyViewed, recentlyEdited, recentlyShared, documents, imports, map, pets, largeVideos, lockedFolder
 
     var id: String { rawValue }
 
     static let mediaTypes: [Category] = [.videos, .selfies, .livePhotos, .portrait, .panoramas, .timelapse,
                                          .slomo, .cinematic, .bursts, .screenshots, .screenRecordings, .animated, .raw, .prores]
-    static let others: [Category] = [.favorites, .pets, .hidden, .trash, .duplicates, .largeVideos, .receipts, .handwriting,
+    static let others: [Category] = [.favorites, .pets, .hidden, .lockedFolder, .trash, .duplicates, .largeVideos, .receipts, .handwriting,
                                      .illustrations, .qrCodes, .recentlySaved, .recentlyViewed, .recentlyEdited,
                                      .recentlyShared, .documents, .imports, .map]
 
@@ -29,7 +29,7 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
         case .illustrations: String(localized: "Illustrationen"); case .qrCodes: String(localized: "QR-Codes"); case .recentlySaved: String(localized: "Zuletzt gesichert")
         case .recentlyViewed: String(localized: "Zuletzt angesehen"); case .recentlyEdited: String(localized: "Zuletzt bearbeitet")
         case .recentlyShared: String(localized: "Zuletzt geteilt"); case .documents: String(localized: "Dokumente"); case .imports: String(localized: "Importe"); case .map: String(localized: "Karte")
-        case .pets: String(localized: "Haustiere")
+        case .pets: String(localized: "Haustiere"); case .lockedFolder: String(localized: "Gesperrter Ordner")
         }
     }
 
@@ -45,7 +45,7 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
         case .qrCodes: "qrcode"; case .recentlySaved: "square.and.arrow.down"; case .recentlyViewed: "eye"
         case .recentlyEdited: "slider.horizontal.3"; case .recentlyShared: "square.and.arrow.up"
         case .documents: "doc"; case .imports: "square.and.arrow.down.on.square"; case .map: "map"
-        case .pets: "pawprint"; case .largeVideos: "externaldrive"
+        case .pets: "pawprint"; case .largeVideos: "externaldrive"; case .lockedFolder: "lock.rectangle.stack"
         }
     }
 
@@ -63,7 +63,7 @@ enum Category: String, CaseIterable, Hashable, Identifiable {
         }
     }
 
-    var locked: Bool { self == .hidden || self == .trash }
+    var locked: Bool { self == .hidden || self == .trash || self == .lockedFolder }
 
     /// Anhang an den Dateinamen bearbeiteter Fassungen (in der Sprache des iPhones; liest niemand zurück).
     static var editedSuffix: String { String(localized: "_bearbeitet", comment: "Anhang an Dateinamen bearbeiteter Fotos") }
@@ -129,7 +129,8 @@ enum CategoryLoader {
             let have = Set(out.map(\.id))
             out += timeline.allLoaded.filter { $0.isLivePhoto && !have.contains($0.id) }
             return out
-        case .hidden: return await s(["visibility": ["eq": "archive"]])
+        // Gelöschtes gehört nach „Zuletzt gelöscht“, nicht zusätzlich hierher
+        case .hidden: return await s(["visibility": ["eq": "archive"], "trashedAt": ["eq": NSNull()]])
         case .trash: return await s(["trashedAt": ["ne": NSNull()]])
         case .recentlySaved:
             let since = ISO8601DateFormatter().string(from: Date().addingTimeInterval(-30 * 86400))
@@ -137,6 +138,8 @@ enum CategoryLoader {
         case .recentlyViewed, .recentlyShared:
             return RecentStore.ids(c).compactMap { timeline.asset($0) }
         case .duplicates, .map, .largeVideos: return []
+        case .lockedFolder:   // braucht die entsperrte Sitzung (LockedFolderScreen)
+            return await s(["visibility": ["eq": "locked"], "trashedAt": ["eq": NSNull()]], 50_000)
         case .pets:
             // Immich erkennt keine Tiere als Personen → KI-Bildsuche + Relevanz-Prüfung (wie Apples „Haustiere“)
             var seen = Set<String>(), out: [Asset] = []

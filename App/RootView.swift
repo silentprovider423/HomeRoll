@@ -34,6 +34,7 @@ struct RootView: View {
         .task {
             if timeline.buckets.isEmpty { await timeline.showCached() }
             Task { await ImmichClient.shared.prepareVideo() }
+            Task { await LockedFolder.lock() }   // falls die App mit offenem gesperrten Ordner beendet wurde
             var reloaded = false
             if let me = try? await ImmichClient.shared.me() {
                 app.userID = me.id; app.userName = me.name; reloaded = await timeline.setUser(me.id)
@@ -71,7 +72,8 @@ struct RootView: View {
             OfflineSync.shared.stop()
             Task { await MemoryNotifications.schedule(timeline: timeline); await WidgetFeeder.update(timeline: timeline) }
             app.privateUnlocked = false
-            if app.viewer?.assets.contains(where: { $0.isHidden || $0.trashedAt != nil }) == true { app.viewer = nil }
+            Task { await LockedFolder.lock() }   // Immich-Sitzung wieder sperren (GitHub #68)
+            if app.viewer?.assets.contains(where: { $0.isHidden || $0.isLocked || $0.trashedAt != nil }) == true { app.viewer = nil }
         }
         .onChange(of: app.tabsExpanded) { _, open in
             // wie bei Apple klappt die Leiste nach kurzer Zeit wieder zu

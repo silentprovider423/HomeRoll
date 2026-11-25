@@ -66,10 +66,11 @@ struct ViewerDismissGesture: UIViewRepresentable {
             let t = g.translation(in: g.view)
             switch g.state {
             case .began: paging(g.view, enabled: false)
-            case .changed: parent?.changed(CGSize(width: t.x, height: max(0, t.y)))
+            // frei in alle Richtungen, auch nach oben – wie in Fotos (GitHub #63)
+            case .changed: parent?.changed(CGSize(width: t.x, height: t.y))
             case .ended, .cancelled, .failed:
                 paging(g.view, enabled: true)
-                parent?.ended(CGSize(width: t.x, height: max(0, t.y)), g.velocity(in: g.view))
+                parent?.ended(CGSize(width: t.x, height: t.y), g.velocity(in: g.view))
             default: break
             }
         }

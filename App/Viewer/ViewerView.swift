@@ -19,6 +19,10 @@ struct ViewerView: View {
     /// Wischen nach unten zum Schließen: Versatz des Fotos (eigene Geste, siehe ViewerDismissGesture)
     @State private var drag: CGSize = .zero
     private var dragProgress: CGFloat { min(1, max(0, drag.height / 400)) }
+    /// Eigener Rückflug in die Kachel (GitHub #63): Rahmen des fliegenden Fotos auf dem Bildschirm
+    @State private var flyRect: CGRect?
+    @State private var flyImage: UIImage?
+    @State private var screen: CGSize = .zero
     @Environment(\.dismiss) private var dismiss
     @Environment(TimelineStore.self) private var timeline
     @Environment(AppModel.self) private var app
@@ -33,11 +37,12 @@ struct ViewerView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(Double(max(0, 1 - dragProgress * 2.5))).ignoresSafeArea()   // Raster scheint schnell durch (#63)
+            Color.black.opacity(flyRect != nil ? 0 : Double(max(0, 1 - dragProgress * 2.5))).ignoresSafeArea()   // Raster scheint schnell durch (#63)
+                .onGeometryChange(for: CGSize.self) { $0.size } action: { screen = $0 }
             TabView(selection: $selection) {
                 ForEach(assets) { a in
                     Page(asset: a, isCurrent: a.id == selection, chrome: $chrome, video: video,
-                         live: liveModes[a.id] ?? LiveMode.get(a.id), analysis: analysis)
+                         live: liveModes[a.id] ?? LiveMode.get(a.id), analysis: analysis, dragging: drag != .zero)
                         // wie in Fotos: nur das aktuelle Foto folgt dem Finger und wird kleiner (GitHub #63)
                         .scaleEffect(a.id == selection ? CGFloat(1) - dragProgress * 0.3 : CGFloat(1))
                         .offset(a.id == selection ? drag : .zero)
@@ -46,10 +51,20 @@ struct ViewerView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
+            .opacity(flyRect == nil ? 1 : 0)
             .background(ViewerDismissGesture(changed: { drag = $0 }, ended: { t, v in
-                if t.height > 110 || (t.height > 40 && v.y > 900) { dismiss() }
+                if t.height > 110 || (t.height > 40 && v.y > 900) { flyBack() }
                 else { withAnimation(.spring(duration: 0.3)) { drag = .zero } }
             }))
+
+            if let r = flyRect, let img = flyImage {
+                Image(uiImage: img).resizable().scaledToFill()
+                    .frame(width: r.width, height: r.height)
+                    .clipped()
+                    .position(x: r.midX, y: r.midY)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+            }
 
             if chrome, drag == .zero, let a = current {
                 VStack {
@@ -106,6 +121,29 @@ struct ViewerView: View {
                     .presentationDetents([.medium, .large])
                     .preferredColorScheme(.dark)   // wie die Fotos-Ansicht immer dunkel (Bögen erben das Fenster-Erscheinungsbild)
             }
+        }
+    }
+
+    /// Wie in Fotos: das Foto gleitet von der Fingerposition in seine Kachel, das Raster dahinter bleibt unverändert;
+    /// die Kachel bleibt leer, bis es angekommen ist. Ohne bekannte Kachel (andere Raster) Apples Zoom-Übergang.
+    private func flyBack() {
+        guard let target = app.zoomRect, let a = current, a.id == app.zoomID, !ViewerZoom.zoomed,
+              screen.width > 0, screen.height > 0, screen.height > screen.width,
+              let img = OriginalImages.shared.cached(a.id) ?? ImageCache.shared.get("\(a.id)-preview")
+                ?? ImageCache.shared.get("\(a.id)-thumbnail") else { dismiss(); return }
+        flyImage = img
+        let ratio = max(0.05, a.ratio)
+        let fit = screen.width / screen.height > ratio
+            ? CGSize(width: screen.height * ratio, height: screen.height)
+            : CGSize(width: screen.width, height: screen.width / ratio)
+        let k = 1 - dragProgress * 0.3
+        let size = CGSize(width: fit.width * k, height: fit.height * k)
+        flyRect = CGRect(x: screen.width / 2 + drag.width - size.width / 2, y: screen.height / 2 + drag.height - size.height / 2,
+                         width: size.width, height: size.height)
+        video.stop()
+        withAnimation(.spring(duration: 0.34, bounce: 0)) { flyRect = target } completion: {
+            var t = Transaction(); t.disablesAnimations = true
+            withTransaction(t) { app.viewer = nil }
         }
     }
 
@@ -327,6 +365,7 @@ private struct Page: View {
     let video: VideoState
     let live: LiveMode
     let analysis: PhotoAnalysis
+    var dragging = false
 
     var body: some View {
         Group {
@@ -334,7 +373,7 @@ private struct Page: View {
                 VideoPage(asset: asset, video: video, chrome: $chrome)
             } else {
                 ZoomableImage(asset: asset, chrome: $chrome, live: isCurrent ? live : .live,
-                              analysis: isCurrent ? analysis : nil)
+                              analysis: isCurrent ? analysis : nil, dragging: dragging)
             }
         }
     }
@@ -345,6 +384,8 @@ private struct Page: View {
 final class OriginalImages {
     static let shared = OriginalImages()
     private var cache: [(String, UIImage)] = []
+    /// schon geladenes Original (ohne Laden) – für den Rückflug in die Kachel
+    func cached(_ id: String) -> UIImage? { cache.last { $0.0 == id }?.1 }
     private var running: [String: Task<UIImage?, Never>] = [:]
     /// Originaldaten von Fotos mit Tiefenkarte (für die räumliche Szene)
     private var depthData: [(String, Data)] = []
@@ -413,6 +454,8 @@ private struct ZoomableImage: View {
     @Binding var chrome: Bool
     var live: LiveMode = .live
     var analysis: PhotoAnalysis? = nil
+    /// Wischen nach unten läuft: 3D-Knopf weg (GitHub #63)
+    var dragging = false
     @State private var exposure: UIImage?
     @State private var scale: CGFloat = 1
     @State private var playLive = false
@@ -464,7 +507,7 @@ private struct ZoomableImage: View {
         }
         .overlay(alignment: .topTrailing) {
             // Apple: Knopf für die räumliche Szene oben rechts bei geeigneten Fotos
-            if spatialAvailable && chrome && scale <= 1.01 {
+            if spatialAvailable && chrome && scale <= 1.01 && !dragging {
                 Button {
                     Task { spatial = await OriginalImages.shared.spatialLayers(asset.id); if spatial == nil { app.toast(String(localized: "Räumliche Szene nicht möglich")) } }
                 } label: {
