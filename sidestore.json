@@ -16,6 +16,14 @@
       "category": "photo-video",
       "versions": [
         {
+          "version": "1.0.32",
+          "date": "2026-11-25T23:13:40Z",
+          "localizedDescription": "## Fixes for people, map, rename and hidden album\n\n- **Map no longer freezes** (#67): the map now opens on the area with most photos and builds its pins in the background, also with many thousand photos.\n- **Keyboard shows up when renaming** (#65, #66): renaming a person or a memory title now uses a small sheet with the text field focused, instead of an alert. The current name is filled in.\n- **Link contact works again** (#65): picking a contact for a person opens the system contact picker directly.\n- **People with more than 1000 photos** (#65): albums and people now load all their photos.\n- **Don't feature this person** (#65): in the person menu. Photos of that person no longer show up in memories and featured photos.\n- **Hidden and Recently Deleted** (#69): Face ID is asked right when you open them, with a button to try again and a hint when Face ID is turned off for HomeRoll.\n- **Recent Days** (#69): shows the newest days again.\n- **Translations** (#62): new texts are translated to English and Russian.",
+          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.32/HomeRoll.ipa",
+          "size": 3215908,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.31",
           "date": "2026-11-24T01:29:49Z",
           "localizedDescription": "## Edit memories, spatial scenes for more photos\n\n- **Edit a memory** (#62): in a memory, open all photos and tap Edit. Drag to reorder, delete, or add photos from your library. The order and added photos are kept, also when memories are rebuilt.\n- **Spatial scene for regular photos** (#61): the spatial scene button now also shows for photos without depth data. The subject is lifted in front and the background gets an estimated depth, so tilting the phone gives the same 3D effect as for portrait photos.",
@@ -45,14 +53,6 @@
           "localizedDescription": "## Much faster backup while the app is open\n\n- **Uploads no longer crawl**: with the app open, every upload still went through iOS's background transfer, which iOS can throttle a lot. On a slow, long-distance connection (abroad over a VPN) it managed about 0.1 Mbit/s all night with the app open and the screen on. Now the app uploads directly while it's open, as fast as Safari on the same connection (15–20× faster in that case). The background transfer is only used when the app runs in the background.\n- **Screen stays on while backing up** when the app is open and the phone is plugged in, so a big backup doesn't stop at auto-lock. On battery, auto-lock works as usual.",
           "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.28/HomeRoll.ipa",
           "size": 3171044,
-          "minOSVersion": "26.0"
-        },
-        {
-          "version": "1.0.27",
-          "date": "2026-11-20T00:18:16Z",
-          "localizedDescription": "## Swipe down like Photos, folders fixed\n\n- **Closing the photo viewer** (#59): pinch-to-close is gone, so zooming back out never closes the photo. Swipe down is new: only the photo follows your finger and shrinks while the bars and background fade, release to close or let go early and it springs back.\n- **Folders no longer show up empty** (#60): if loading a folder failed on the phone, the app kept it empty until the next start. It now retries and loads fewer folders at once.",
-          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.27/HomeRoll.ipa",
-          "size": 3167855,
           "minOSVersion": "26.0"
         }
       ],
