@@ -193,7 +193,7 @@ final class MemoryCenter {
         let account = timeline.account
         // anderes Konto: alte Rückblicke sofort weg (sonst zeigt das neue Konto Fotos des vorigen)
         if account != builtAccount { items = []; settled = false; builtAccount = account; builtFor = ""; generation += 1 }
-        let stamp = "\(account)-\(all.count)-\(server.count)-\(MemoryPrefs.shared.custom.count)"
+        let stamp = "\(account)-\(all.count)-\(server.count)-\(MemoryPrefs.shared.custom.count)-\(NotFeatured.people.count)"
         if all.isEmpty { settled = true }   // leere Mediathek: dann wirklich „Keine Rückblicke“
         guard force || stamp != builtFor, !all.isEmpty else { return }
         builtFor = stamp
@@ -205,6 +205,7 @@ final class MemoryCenter {
             skip.formUnion(await CategoryLoader.load(c, timeline: timeline).map(\.id))
         }
         skip.formUnion(await SensitiveFilter.ids())
+        skip.formUnion(await NotFeatured.assetIDs())   // „Diese Person nicht vorschlagen“ (GitHub #65)
         let serverSets = server.map { ($0.data.year, $0.assets.map(\.asset).filter { !skip.contains($0.id) }) }
         let prefs = MemoryPrefs.shared
         let pool = all.filter { !skip.contains($0.id) }

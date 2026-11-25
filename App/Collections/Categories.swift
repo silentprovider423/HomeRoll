@@ -227,24 +227,37 @@ struct LockGate<Content: View>: View {
     let title: String
     @ViewBuilder let content: () -> Content
     @Environment(AppModel.self) private var app
-    @Environment(\.scenePhase) private var phase
+    @State private var hint: String?
+    @State private var asking = false
 
     var body: some View {
-        if app.privateUnlocked && phase == .active {
+        // nur am Entsperrt-Zustand hängen (nicht an der Szenen-Phase): Während der Face-ID-/Code-Abfrage ist die App
+        // „inaktiv“ – das ließ die Ansicht zwischen Sperre und Inhalt springen und die Abfrage abbrechen (GitHub #69)
+        if app.privateUnlocked {
             content()
         } else {
             VStack(spacing: 16) {
                 Image(systemName: "lock.fill").font(.system(size: 44)).foregroundStyle(.secondary)
                 Text(Self.prompt).font(.system(size: 22, weight: .bold)).multilineTextAlignment(.center)
-                Button(String(localized: "Album anzeigen")) { Task { await unlock(allowCode: true) } }
-                    .font(.system(size: 17)).foregroundStyle(.blue)
+                Button(String(localized: "Album anzeigen")) { Task { await unlock() } }
+                    .font(.system(size: 17)).foregroundStyle(.blue).disabled(asking)
+                if let hint {
+                    Text(hint).font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    Button(String(localized: "Einstellungen öffnen")) {
+                        if let u = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(u) }
+                    }.font(.footnote)
+                }
             }
             .padding(.horizontal, 44)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBackground)
             .overlay(alignment: .top) { ScreenHeader(title: title) }
             .toolbar(.hidden, for: .navigationBar)
-            .task { await unlock(allowCode: false) }
+            .task {
+                // erst nach dem Hereinschieben der Seite fragen – sonst brach iOS die Face-ID-Abfrage oft sofort ab
+                try? await Task.sleep(for: .milliseconds(450))
+                await unlock()
+            }
         }
     }
 
@@ -259,22 +272,33 @@ struct LockGate<Content: View>: View {
         }
     }
 
-    /// allowCode = false: nur Face ID (startet beim Öffnen von selbst); „Code eingeben“ darin führt zur Code-Abfrage.
-    private func unlock(allowCode: Bool) async {
-        guard !app.privateUnlocked, phase == .active else { return }
+    /// Face ID mit Code als Ausweg (wie Fotos). Jede Abfrage mit frischem Kontext; abgebrochene System-Abfragen einmal wiederholen.
+    private func unlock(retry: Bool = true) async {
+        guard !app.privateUnlocked, !asking else { return }
+        asking = true; defer { asking = false }
         let ctx = LAContext()
         ctx.localizedCancelTitle = String(localized: "Abbrechen")
         ctx.localizedFallbackTitle = String(localized: "Code eingeben")
+        var err: NSError?
         // Ohne Gerätecode gibt es nichts zu schützen (wie bei Apple).
-        guard ctx.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil) else { app.privateUnlocked = true; return }
-        let policy: LAPolicy = allowCode ? .deviceOwnerAuthentication : .deviceOwnerAuthenticationWithBiometrics
-        guard ctx.canEvaluatePolicy(policy, error: nil) else { return }
+        guard ctx.canEvaluatePolicy(.deviceOwnerAuthentication, error: &err) else {
+            if (err as? LAError)?.code == .passcodeNotSet { app.privateUnlocked = true }
+            return
+        }
+        // Face ID für die App abgeschaltet → trotzdem per Code, aber sagen, wo man es einschaltet
+        var bioErr: NSError?
+        if !ctx.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &bioErr), ctx.biometryType != .none,
+           (bioErr as? LAError)?.code == .biometryNotAvailable {
+            hint = String(localized: "Face ID ist für HomeRoll ausgeschaltet. Du kannst es in den Einstellungen erlauben.")
+        }
         do {
-            if try await ctx.evaluatePolicy(policy, localizedReason: String(localized: "Geschützte Alben anzeigen")) {
+            if try await ctx.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: String(localized: "Geschützte Alben anzeigen")) {
                 withAnimation(.snappy) { app.privateUnlocked = true }
             }
-        } catch let e as LAError where e.code == .userFallback {
-            await unlock(allowCode: true)
+        } catch let e as LAError where retry && (e.code == .systemCancel || e.code == .appCancel) {
+            asking = false
+            try? await Task.sleep(for: .milliseconds(500))
+            await unlock(retry: false)
         } catch {}
     }
 }

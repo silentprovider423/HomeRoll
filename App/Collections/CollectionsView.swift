@@ -62,6 +62,7 @@ final class CollectionsModel {
         let account = (await me)?.id ?? ""
         let random = (await r ?? []).map(\.asset)
         var sensitive = await SensitiveFilter.ids()
+        sensitive.formUnion(await NotFeatured.assetIDs())   // „Diese Person nicht vorschlagen“
         sensitive.formUnion(SensitiveFilter.known(random.map(\.id), account: account))
         var picks: [Asset] = []
         let removed = Set(UserDefaults.standard.stringArray(forKey: "featured.removed") ?? [])
@@ -155,6 +156,9 @@ struct CollectionsView: View {
         .sheet(isPresented: $showBackup) { BackupView() }
         .sheet(isPresented: $showShared) { SharedLibraryView() }
         .onReceive(NotificationCenter.default.publisher(for: .albumsChanged)) { _ in Task { await model.reloadAlbums() } }
+        .onReceive(NotificationCenter.default.publisher(for: .notFeaturedChanged)) { _ in
+            Task { await model.load(); await memories.rebuild(timeline: timeline, server: model.memories, force: true) }
+        }
     }
 
     @ViewBuilder private func sectionView(_ sec: Sec) -> some View {
@@ -427,7 +431,10 @@ struct CollectionsView: View {
     private func rebuildDerived() async {
         let all = timeline.allLoaded
         let worker = Task.detached(priority: .userInitiated) { () -> ([DayGroup], [Trip]) in
-            let tail = all.suffix(5000)   // die letzten 10 Tage stecken sicher in den neuesten Objekten
+            // die neuesten Objekte nach Aufnahmedatum (nicht nach Ladereihenfolge der Monate – sonst zeigte „Letzte Tage“
+            // Monate alte Tage, solange die neuesten Monate noch nicht geladen waren, GitHub #69); Zukunftsdaten raus
+            let limit = Date().addingTimeInterval(2 * 86_400)
+            let tail = all.filter { $0.date < limit && $0.trashedAt == nil }.sorted { $0.date > $1.date }.prefix(5000)
             let g = Dictionary(grouping: tail) { Calendar.wall.startOfDay(for: $0.date) }
             let days = g.keys.sorted(by: >).prefix(10).map { DayGroup(day: $0, assets: g[$0]!) }
             return (days, CollectionsView.trips(from: all))

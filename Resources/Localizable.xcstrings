@@ -13043,6 +13043,150 @@
           }
         }
       }
+    },
+    "Diese Person nicht vorschlagen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Don't Feature This Person"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не предлагать этого человека"
+          }
+        }
+      }
+    },
+    "Diese Person wieder vorschlagen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feature This Person Again"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Снова предлагать этого человека"
+          }
+        }
+      }
+    },
+    "Ein Rückblick braucht mindestens 3 Fotos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A memory needs at least 3 photos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для воспоминания нужно не менее 3 фото."
+          }
+        }
+      }
+    },
+    "Einstellungen öffnen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть настройки"
+          }
+        }
+      }
+    },
+    "Face ID ist für HomeRoll ausgeschaltet. Du kannst es in den Einstellungen erlauben.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID is turned off for HomeRoll. You can allow it in Settings."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID для HomeRoll выключен. Его можно разрешить в настройках."
+          }
+        }
+      }
+    },
+    "Kommt nicht mehr in Rückblicke und Empfehlungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Won't appear in memories and featured photos anymore"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Больше не появится в воспоминаниях и рекомендациях"
+          }
+        }
+      }
+    },
+    "Rückblick bearbeiten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Memory"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Редактировать воспоминание"
+          }
+        }
+      }
+    },
+    "Rückblick gesichert": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memory saved"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Воспоминание сохранено"
+          }
+        }
+      }
+    },
+    "Wird wieder vorgeschlagen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Will be featured again"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Снова будет предлагаться"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

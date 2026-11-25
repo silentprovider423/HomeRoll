@@ -82,9 +82,9 @@ struct CollectionDetail: View {
         case .category(let cat): return await CategoryLoader.load(cat, timeline: timeline)
         case .allTrips, .allMemories: return all
         case .album(let a):
-            return ((try? await c.search(filter: ["albumIds": ["any": [a.id]]], size: 1000, order: "asc")) ?? []).map(\.asset)
+            return ((try? await c.search(filter: ["albumIds": ["any": [a.id]]], size: 200_000, order: "asc")) ?? []).map(\.asset)
         case .person(let p):
-            return ((try? await c.search(filter: ["personIds": ["any": [p.id]]], size: 1000, order: "asc")) ?? []).map(\.asset)
+            return ((try? await c.search(filter: ["personIds": ["any": [p.id]]], size: 200_000, order: "asc")) ?? []).map(\.asset)
         case .assets(_, let ids):
             let set = Set(ids); return all.filter { set.contains($0.id) }
         case .folderPhotos(let p): return await FolderStore.shared.assets(p)
@@ -298,7 +298,6 @@ struct PersonMenu: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppModel.self) private var app
     @State private var askName = false
-    @State private var name = ""
     @State private var merging = false
     @State private var reviewing = false
     @State private var askBirthday = false
@@ -306,12 +305,12 @@ struct PersonMenu: View {
     @State private var birthdayDraft = Date()
     @State private var favorite = false
     @State private var hidden = false
-    @State private var pickingContact = false
     @State private var linked = false
+    @State private var notFeatured = false
 
     var body: some View {
         Menu {
-            Button(person.name.isEmpty ? String(localized: "Name hinzufügen") : String(localized: "Umbenennen"), systemImage: "pencil") { name = person.name; askName = true }
+            Button(person.name.isEmpty ? String(localized: "Name hinzufügen") : String(localized: "Umbenennen"), systemImage: "pencil") { askName = true }
             Button(favorite ? String(localized: "Kein Favorit") : String(localized: "Als Favorit"), systemImage: favorite ? "heart.slash" : "heart") {
                 favorite.toggle()
                 let on = favorite
@@ -328,9 +327,16 @@ struct PersonMenu: View {
                     app.toast(String(localized: "Kontakt getrennt"))
                 }
             } else {
-                Button(String(localized: "Kontaktdaten verknüpfen"), systemImage: "person.crop.circle.badge.plus") { pickingContact = true }
+                Button(String(localized: "Kontaktdaten verknüpfen"), systemImage: "person.crop.circle.badge.plus") { ContactPicker.present { c in link(c) } }
             }
             Divider()
+            Button(notFeatured ? String(localized: "Diese Person wieder vorschlagen") : String(localized: "Diese Person nicht vorschlagen"),
+                   systemImage: notFeatured ? "star" : "star.slash") {
+                notFeatured.toggle()
+                NotFeatured.set(person.id, notFeatured)
+                app.toast(notFeatured ? String(localized: "Kommt nicht mehr in Rückblicke und Empfehlungen") : String(localized: "Wird wieder vorgeschlagen"))
+                NotificationCenter.default.post(name: .notFeaturedChanged, object: nil)
+            }
             Button(hidden ? String(localized: "Wieder anzeigen") : String(localized: "Aus „Personen“ ausblenden"), systemImage: hidden ? "eye" : "eye.slash") {
                 hidden.toggle()
                 let on = hidden
@@ -342,23 +348,15 @@ struct PersonMenu: View {
             Image(systemName: "ellipsis").font(.system(size: 17, weight: .semibold)).frame(width: 44, height: 44).contentShape(.rect)
         }
         .glassEffect(.regular.interactive(), in: .circle)
-        .alert(person.name.isEmpty ? String(localized: "Name hinzufügen") : String(localized: "Umbenennen"), isPresented: $askName) {
-            TextField(String(localized: "Name"), text: $name)
-            Button(String(localized: "Abbrechen"), role: .cancel) {}
-            Button(String(localized: "Sichern")) {
-                let n = name.trimmingCharacters(in: .whitespaces)
+        .onAppear { notFeatured = NotFeatured.contains(person.id) }
+        .sheet(isPresented: $askName) {
+            TextPrompt(title: person.name.isEmpty ? String(localized: "Name hinzufügen") : String(localized: "Umbenennen"),
+                       placeholder: String(localized: "Name"), text: person.name) { n in
                 Task { try? await ImmichClient.shared.updatePerson(person.id, ["name": n]) }
                 renamed(n)
             }
         }
         .sheet(isPresented: $merging) { MergePeopleSheet(target: person) { dismiss() } }
-        .sheet(isPresented: $pickingContact) {
-            ContactPicker { c in
-                pickingContact = false
-                link(c)
-            }
-            .ignoresSafeArea()
-        }
         .sheet(isPresented: $reviewing) { FaceReviewSheet(person: person) }
         .sheet(isPresented: $askBirthday) {
             NavigationStack {
@@ -616,7 +614,12 @@ struct MapScreen: View {
             .padding(.horizontal, 16)
         }
         .toolbar(.hidden, for: .navigationBar)
-        .onAppear { let r = startRegion; position = .region(r); recluster(r) }
+        // Startausschnitt im Hintergrund berechnen – bei großen Mediatheken (80 000 Orte) hing hier der Hauptthread (#67)
+        .task {
+            let m = markers
+            let r = await Task.detached(priority: .userInitiated) { Self.startRegion(m) }.value
+            position = .region(r); recluster(r)
+        }
         .onChange(of: markers.count) { if let region { recluster(region) } }
         .navigationDestination(item: $opened) { g in
             AssetGridScreen(title: g.title, subtitle: String(localized: "\(g.ids.count) Objekte"), assets: assets(for: g.ids))
@@ -639,8 +642,14 @@ struct MapScreen: View {
     }
 
     /// Start wie Apple: um den Ort mit den meisten Fotos, nicht die ganze Welt.
-    private var startRegion: MKCoordinateRegion {
-        let cell = Dictionary(grouping: markers) { "\(Int($0.lat))/\(Int($0.lon))" }.max { $0.value.count < $1.value.count }?.value ?? []
+    nonisolated static func startRegion(_ markers: [MapMarkerDTO]) -> MKCoordinateRegion {
+        var count: [Int64: Int] = [:], best: Int64 = 0, bestN = 0
+        for m in markers {
+            let k = Int64(Int(m.lat)) << 32 | Int64(UInt32(truncatingIfNeeded: Int(m.lon)))
+            let n = (count[k] ?? 0) + 1; count[k] = n
+            if n > bestN { bestN = n; best = k }
+        }
+        let cell = markers.filter { (Int64(Int($0.lat)) << 32 | Int64(UInt32(truncatingIfNeeded: Int($0.lon)))) == best }
         // ohne Orte: Weltkarte statt eines festen Ortes
         guard !cell.isEmpty else { return MKCoordinateRegion(center: .init(latitude: 20, longitude: 0), span: .init(latitudeDelta: 120, longitudeDelta: 120)) }
         let c = CLLocationCoordinate2D(latitude: cell.map(\.lat).reduce(0, +) / Double(cell.count), longitude: cell.map(\.lon).reduce(0, +) / Double(cell.count))
@@ -666,7 +675,7 @@ struct MapScreen: View {
         let span = max(r.span.latitudeDelta, 0.002)
         let cellSize = span / 6, near = span / 8
         let all = span >= 30 || r.span.longitudeDelta >= 90          // Weltansicht: nichts wegfiltern
-        let latHalf = span, lonHalf = max(r.span.longitudeDelta, span)   // eine Bildschirmhälfte Rand: Ziehen zeigt keine leeren Ränder
+        let latHalf = span * 0.75, lonHalf = max(r.span.longitudeDelta, span) * 0.75   // etwas Rand: Ziehen zeigt keine leeren Ränder
         func key(_ y: Int, _ x: Int) -> Int64 { Int64(y) << 32 | Int64(UInt32(truncatingIfNeeded: x)) }
         struct Cell { var idx: [Int] = []; var lat = 0.0; var lon = 0.0 }
         var cells: [Int64: Cell] = [:]
@@ -698,7 +707,9 @@ struct MapScreen: View {
         }
         var merged: [Int: [Int]] = [:]
         for (n, k) in keys.enumerated() { merged[find(n), default: []] += cells[k]!.idx }
-        return merged.values.map { idx in
+        // höchstens 120 Stecknadeln (die größten) – jede ist ein eigenes Vorschaubild; mehr ließ die Karte hängen (#67)
+        let biggest = merged.values.sorted { $0.count > $1.count }.prefix(120)
+        return biggest.map { idx in
             var lat = 0.0, lon = 0.0, first = markers[idx[0]].id
             var places: [String: Int] = [:]
             for i in idx {

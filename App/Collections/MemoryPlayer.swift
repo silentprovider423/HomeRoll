@@ -129,7 +129,6 @@ struct MemoryPlayer: View {
     @State private var muted = false
     @State private var mixSheet = false
     @State private var renaming = false
-    @State private var newTitle = ""
     @State private var grid = false
     @State private var viewer: ViewerRequest?
     @State private var music = MemoryMusic()
@@ -251,14 +250,11 @@ struct MemoryPlayer: View {
         }
         .overlay(alignment: .top) { ToastBadge() }
         .fullScreenCover(item: $viewer) { r in ViewerView(assets: r.assets, start: r.index).preferredColorScheme(.dark) }
-        .alert(String(localized: "Titel bearbeiten"), isPresented: $renaming) {
-            TextField(String(localized: "Titel"), text: $newTitle)
-            Button(String(localized: "Sichern")) {
-                let t = newTitle.trimmingCharacters(in: .whitespaces)
-                guard !t.isEmpty else { return }
+        .sheet(isPresented: $renaming, onDismiss: { if !chrome && !ended { resume() } }) {
+            TextPrompt(title: String(localized: "Titel bearbeiten"), placeholder: String(localized: "Titel"), text: title) { t in
                 title = t; MemoryCenter.shared.update { $0.titles[memory.id] = t }
             }
-            Button(String(localized: "Abbrechen"), role: .cancel) {}
+            .preferredColorScheme(.dark)
         }
     }
 
@@ -437,7 +433,7 @@ struct MemoryPlayer: View {
                 .glassEffect(.regular.tint(.black.opacity(0.35)), in: .capsule)
                 Spacer()
                 Menu {
-                    Button(String(localized: "Titel bearbeiten"), systemImage: "pencil") { newTitle = title; renaming = true }
+                    Button(String(localized: "Titel bearbeiten"), systemImage: "pencil") { renaming = true }
                     Picker(selection: $length) {
                         Text(String(localized: "Kurz")).tag(0); Text(String(localized: "Mittel")).tag(1); Text(String(localized: "Lang")).tag(2)
                     } label: { Label(String(localized: "Dauer"), systemImage: "timer") }
