@@ -16,6 +16,14 @@
       "category": "photo-video",
       "versions": [
         {
+          "version": "1.0.34",
+          "date": "2026-11-26T19:12:49Z",
+          "localizedDescription": "## Smoother opening, recent days\n\n- **Opening a photo** (#63): the photo now flies out of its tile by itself instead of Apple's zoom transition, so the grid behind keeps its size (no white bars on the sides) and nothing jumps when you swipe back down. From other grids the photo view fades in and out.\n- **Recent Days** (#69): also shows photos that are only on the iPhone and not backed up yet, like in Photos.",
+          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.34/HomeRoll.ipa",
+          "size": 3210140,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.33",
           "date": "2026-11-25T23:34:48Z",
           "localizedDescription": "## Locked Folder, instant collections, smoother swipe down\n\n- **Locked Folder** (#68): new in Collections → Other. It shows the photos and videos in your Immich Locked Folder. The first time you enter your Immich PIN (or create one), after that Face ID is enough. Move photos in or out from the photo menu (\"Move to Locked Folder\" / \"Remove from Locked Folder\"). The folder locks again when you leave it or the app goes to the background.\n- **Collections show right away** (#69): memories, featured photos and folders are kept on the iPhone, so your section order is there immediately instead of jumping after a few seconds.\n- **Hidden** no longer shows deleted photos (they stay in Recently Deleted).\n- **Swipe down to close** (#63): the photo follows your finger in every direction, also up. When you let go it flies into its tile in the grid, the grid stays the same size and the tile stays empty until the photo lands. The 3D button hides while you drag.",
@@ -45,14 +53,6 @@
           "localizedDescription": "## Swipe down like Photos, zoom in videos\n\n- **Swipe down to close** (#63): only the photo moves now, the grid already shows behind it and its tile stays empty until the photo lands there. Neighbouring photos no longer slide in while swiping.\n- **Pinch to zoom in videos** (#64), with panning and double tap, like photos.\n- **Folder covers** (#60) stay in place instead of reloading every time you open Collections, also after restarting the app.",
           "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.30/HomeRoll.ipa",
           "size": 3168806,
-          "minOSVersion": "26.0"
-        },
-        {
-          "version": "1.0.29",
-          "date": "2026-11-20T13:10:31Z",
-          "localizedDescription": "## Backup: next item gets ready while one uploads\n\n- **Faster backup on slow or distant connections**: with the app open, the next photo or video is already prepared (copied, checked with your server) while the current one uploads, so the line no longer sits idle between items. Over a long-distance VPN this more than doubled the speed in testing. At most one video is handled at a time, and in the background it's still one item after the other.\n- Each tile that's uploading shows its own progress ring.",
-          "downloadURL": "https://github.com/silentprovider423/HomeRoll/releases/download/v1.0.29/HomeRoll.ipa",
-          "size": 3167410,
           "minOSVersion": "26.0"
         }
       ],
