@@ -84,6 +84,9 @@ struct ViewerRequest: Identifiable {
     let id = UUID()
     let assets: [Asset]
     let index: Int
+    /// Kachel-Rahmen, aus der das Foto selbst herausfliegt (sonst Apples Zoom-Übergang, der das Raster dahinter
+    /// verkleinert und weiße Ränder zeigt, GitHub #63)
+    var from: CGRect? = nil
 }
 
 @MainActor @Observable
@@ -189,10 +192,10 @@ final class AppModel {
     /// sonst nil → Apples Zoom-Übergang). Eigener Rückflug, weil Apples Übergang das Raster dabei verkleinert (GitHub #63).
     var zoomRect: CGRect?
 
-    func open(_ assets: [Asset], at index: Int) {
+    func open(_ assets: [Asset], at index: Int, from rect: CGRect? = nil) {
         guard !assets.isEmpty else { return }
         var i = min(max(index, 0), assets.count - 1)
-        zoomRect = nil
+        zoomRect = rect
         zoomID = assets[i].id
         // Einzelansicht baut je Objekt Seite + Vorschauleiste → bei 80 000 Objekten Sekunden zum Auf-/Abbauen.
         // Ein Fenster von 1 000 um das angetippte Foto reicht zum Wischen.
@@ -201,6 +204,10 @@ final class AppModel {
             let lo = max(0, i - 500), hi = min(assets.count, lo + 1001)
             list = Array(assets[max(0, hi - 1001)..<hi]); i -= max(0, hi - 1001)
         }
-        viewer = ViewerRequest(assets: list, index: i)
+        // ohne System-Animation einblenden: die Einzelansicht fliegt selbst aus der Kachel (nur mit schon geladenem
+        // Kachelbild) oder blendet sich ein
+        let from = rect.flatMap { r in ImageCache.shared.get("\(list[i].id)-thumbnail") != nil ? r : nil }
+        var t = Transaction(); t.disablesAnimations = true
+        withTransaction(t) { viewer = ViewerRequest(assets: list, index: i, from: from) }
     }
 }

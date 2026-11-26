@@ -444,11 +444,13 @@ struct CollectionsView: View {
     /// Kommt eine neuere Version, bricht die Rechnung ab und überschreibt deren Ergebnis nicht (Idee aus dem Fork vands2013).
     private func rebuildDerived() async {
         let all = timeline.allLoaded
+        // wie Apple auch Aufnahmen, die erst auf dem iPhone liegen (noch nicht gesichert) – GitHub #69
+        let local = timeline.localAssets
         let worker = Task.detached(priority: .userInitiated) { () -> ([DayGroup], [Trip]) in
             // die neuesten Objekte nach Aufnahmedatum (nicht nach Ladereihenfolge der Monate – sonst zeigte „Letzte Tage“
             // Monate alte Tage, solange die neuesten Monate noch nicht geladen waren, GitHub #69); Zukunftsdaten raus
             let limit = Date().addingTimeInterval(2 * 86_400)
-            let tail = all.filter { $0.date < limit && $0.trashedAt == nil }.sorted { $0.date > $1.date }.prefix(5000)
+            let tail = (all + local).filter { $0.date < limit && $0.trashedAt == nil }.sorted { $0.date > $1.date }.prefix(5000)
             let g = Dictionary(grouping: tail) { Calendar.wall.startOfDay(for: $0.date) }
             let days = g.keys.sorted(by: >).prefix(10).map { DayGroup(day: $0, assets: g[$0]!) }
             return (days, CollectionsView.trips(from: all))

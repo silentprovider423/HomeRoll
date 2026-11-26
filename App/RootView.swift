@@ -81,8 +81,9 @@ struct RootView: View {
             Task { try? await Task.sleep(for: .seconds(6)); withAnimation(.snappy) { app.tabsExpanded = false } }
         }
         .fullScreenCover(item: $app.viewer) { req in
-            ViewerView(assets: req.assets, start: req.index)
-                .navigationTransition(.zoom(sourceID: app.zoomID, in: zoom))
+            // ohne Apples Zoom-Übergang: der verkleinerte das Raster dahinter (weiße Ränder, GitHub #63);
+            // das Foto fliegt selbst aus seiner Kachel bzw. die Ansicht blendet ein
+            ViewerView(assets: req.assets, start: req.index, from: req.from)
                 .preferredColorScheme(.dark)   // Fotos-Ansicht und Editor bleiben auch im hellen Modus dunkel
                 // durchsichtig: beim Wischen nach unten scheint das Raster durch, wie in Fotos (GitHub #63);
                 // den schwarzen Grund zeichnet der Viewer selbst und blendet ihn beim Ziehen aus

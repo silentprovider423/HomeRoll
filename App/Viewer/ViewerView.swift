@@ -23,22 +23,41 @@ struct ViewerView: View {
     @State private var flyRect: CGRect?
     @State private var flyImage: UIImage?
     @State private var screen: CGSize = .zero
+    /// Deckkraft des schwarzen Grunds (Hin- und Rückflug blenden ihn mit, Wischen zusätzlich über dragProgress)
+    @State private var blackLevel: Double = 1
+    /// Hinflug aus der Kachel startet, sobald die Bildschirmgröße bekannt ist
+    @State private var flyInPending = false
+    /// Deckkraft von Foto und Leisten (ohne Kachel: Ein-/Ausblenden statt Flug)
+    @State private var shown: Double = 0
     @Environment(\.dismiss) private var dismiss
     @Environment(TimelineStore.self) private var timeline
     @Environment(AppModel.self) private var app
 
-    init(assets: [Asset], start: Int) {
+    init(assets: [Asset], start: Int, from: CGRect? = nil) {
         _assets = State(initialValue: assets)
         self.start = start
         _selection = State(initialValue: assets.indices.contains(start) ? assets[start].id : "")
+        // wie in Fotos: das Foto fliegt aus seiner Kachel, das Raster dahinter bleibt unverändert (GitHub #63)
+        if let from, assets.indices.contains(start),
+           let img = ImageCache.shared.get("\(assets[start].id)-preview") ?? ImageCache.shared.get("\(assets[start].id)-thumbnail") {
+            _flyRect = State(initialValue: from)
+            _flyImage = State(initialValue: img)
+            _flyInPending = State(initialValue: true)
+            _shown = State(initialValue: 1)
+        }
+        _blackLevel = State(initialValue: 0)
     }
 
     private var current: Asset? { assets.first { $0.id == selection } }
 
     var body: some View {
         ZStack {
-            Color.black.opacity(flyRect != nil ? 0 : Double(max(0, 1 - dragProgress * 2.5))).ignoresSafeArea()   // Raster scheint schnell durch (#63)
-                .onGeometryChange(for: CGSize.self) { $0.size } action: { screen = $0 }
+            Color.black.opacity(blackLevel * Double(max(0, 1 - dragProgress * 2.5))).ignoresSafeArea()   // Raster scheint schnell durch (#63)
+                .onGeometryChange(for: CGSize.self) { $0.size } action: { size in
+                    screen = size
+                    if flyInPending { flyInPending = false; flyIn() }
+                    else if shown == 0 { withAnimation(.easeOut(duration: 0.22)) { shown = 1; blackLevel = 1 } }
+                }
             TabView(selection: $selection) {
                 ForEach(assets) { a in
                     Page(asset: a, isCurrent: a.id == selection, chrome: $chrome, video: video,
@@ -51,7 +70,7 @@ struct ViewerView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
-            .opacity(flyRect == nil ? 1 : 0)
+            .opacity(flyRect == nil ? shown : 0)
             .background(ViewerDismissGesture(changed: { drag = $0 }, ended: { t, v in
                 if t.height > 110 || (t.height > 40 && v.y > 900) { flyBack() }
                 else { withAnimation(.spring(duration: 0.3)) { drag = .zero } }
@@ -66,7 +85,7 @@ struct ViewerView: View {
                     .allowsHitTesting(false)
             }
 
-            if chrome, drag == .zero, let a = current {
+            if chrome, drag == .zero, flyRect == nil, let a = current {
                 VStack {
                     topBar(a)
                     if a.isLivePhoto && a.isImage { liveMenu(a).frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 18) }
@@ -82,6 +101,7 @@ struct ViewerView: View {
                     bottomBar(a)
                 }
                 .transition(.opacity)
+                .opacity(shown)
             }
         }
         .statusBarHidden(!chrome)
@@ -127,24 +147,45 @@ struct ViewerView: View {
     /// Wie in Fotos: das Foto gleitet von der Fingerposition in seine Kachel, das Raster dahinter bleibt unverändert;
     /// die Kachel bleibt leer, bis es angekommen ist. Ohne bekannte Kachel (andere Raster) Apples Zoom-Übergang.
     private func flyBack() {
-        guard let target = app.zoomRect, let a = current, a.id == app.zoomID, !ViewerZoom.zoomed,
+        guard flyRect == nil, let target = app.zoomRect, let a = current, a.id == app.zoomID, !ViewerZoom.zoomed,
               screen.width > 0, screen.height > 0, screen.height > screen.width,
               let img = OriginalImages.shared.cached(a.id) ?? ImageCache.shared.get("\(a.id)-preview")
-                ?? ImageCache.shared.get("\(a.id)-thumbnail") else { dismiss(); return }
+                ?? ImageCache.shared.get("\(a.id)-thumbnail") else { fadeOut(); return }
         flyImage = img
+        flyRect = photoRect(a, scale: 1 - dragProgress * 0.3, offset: drag)
+        video.stop()
+        withAnimation(.spring(duration: 0.34, bounce: 0)) { flyRect = target; blackLevel = 0 } completion: {
+            var t = Transaction(); t.disablesAnimations = true
+            withTransaction(t) { app.viewer = nil }
+        }
+    }
+
+    /// Ohne bekannte Kachel: ausblenden, dann ohne System-Animation schließen.
+    private func fadeOut() {
+        video.stop()
+        withAnimation(.easeIn(duration: 0.2)) { shown = 0; blackLevel = 0 } completion: {
+            var t = Transaction(); t.disablesAnimations = true
+            withTransaction(t) { app.viewer = nil }
+        }
+    }
+
+    /// Hinflug: von der Kachel auf die eingepasste Größe, Schwarz blendet mit ein; danach übernimmt die Seite.
+    private func flyIn() {
+        guard let a = current, screen.width > 0, screen.height > 0 else { flyRect = nil; blackLevel = 1; return }
+        withAnimation(.spring(duration: 0.36, bounce: 0)) { flyRect = photoRect(a, scale: 1, offset: .zero); blackLevel = 1 } completion: {
+            flyRect = nil; flyImage = nil
+        }
+    }
+
+    /// Bildschirm-Rahmen des eingepassten Fotos (wie ZoomScroll es zeigt), verkleinert/verschoben wie beim Wischen.
+    private func photoRect(_ a: Asset, scale k: CGFloat, offset: CGSize) -> CGRect {
         let ratio = max(0.05, a.ratio)
         let fit = screen.width / screen.height > ratio
             ? CGSize(width: screen.height * ratio, height: screen.height)
             : CGSize(width: screen.width, height: screen.width / ratio)
-        let k = 1 - dragProgress * 0.3
         let size = CGSize(width: fit.width * k, height: fit.height * k)
-        flyRect = CGRect(x: screen.width / 2 + drag.width - size.width / 2, y: screen.height / 2 + drag.height - size.height / 2,
-                         width: size.width, height: size.height)
-        video.stop()
-        withAnimation(.spring(duration: 0.34, bounce: 0)) { flyRect = target } completion: {
-            var t = Transaction(); t.disablesAnimations = true
-            withTransaction(t) { app.viewer = nil }
-        }
+        return CGRect(x: screen.width / 2 + offset.width - size.width / 2, y: screen.height / 2 + offset.height - size.height / 2,
+                      width: size.width, height: size.height)
     }
 
     /// Foto steht (nicht nur vorbeigewischt): merken, Video starten (wie Apple sofort), sonst anhalten.
@@ -156,7 +197,7 @@ struct ViewerView: View {
 
     private func topBar(_ a: Asset) -> some View {
         HStack {
-            Button { dismiss() } label: {
+            Button { flyBack() } label: {
                 Image(systemName: "chevron.left").font(.system(size: 19, weight: .semibold))
                     .foregroundStyle(.white).frame(width: 46, height: 46).contentShape(.rect)
             }
@@ -353,7 +394,7 @@ struct ViewerView: View {
     private func removeLocal(_ a: Asset) {
         guard let i = assets.firstIndex(where: { $0.id == a.id }) else { return }
         assets.remove(at: i)
-        if assets.isEmpty { dismiss(); return }
+        if assets.isEmpty { fadeOut(); return }
         selection = assets[min(i, assets.count - 1)].id
     }
 }

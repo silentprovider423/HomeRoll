@@ -275,10 +275,9 @@ struct AllGrid: View {
                   onOpen: { i, rect in
                       guard i < items.count, case .asset(let a, _) = items[i] else { return }
                       zoomRect = rect
-                      defer { app.zoomRect = rect }   // nach open() (das setzt ihn zurück)
                       // noch nicht gesicherte iPhone-Fotos stehen hinter der Server-Zeitleiste
                       let all = app.libraryCustomized ? (query.list ?? []) : timeline.allLoaded + timeline.localAssets.sorted { $0.date < $1.date }
-                      app.open(all, at: all.firstIndex { $0.id == a.id } ?? 0)
+                      app.open(all, at: all.firstIndex { $0.id == a.id } ?? 0, from: rect)
                   },
                   onToggle: { app.toggle($0) },
                   onSelect: { app.selected = $0.filter { !$0.hasPrefix(LocalPending.prefix) } },

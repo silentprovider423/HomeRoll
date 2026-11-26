@@ -45,6 +45,12 @@ struct ViewerDismissGesture: UIViewRepresentable {
                 if host == nil, view.next is UIViewController { host = view }
                 v = view.superview
             }
+            // ohne Apples Zoom-Übergang gibt es dessen Gesten nicht → an die Ansicht der obersten Präsentation (= Viewer)
+            if host == nil {
+                var top = window?.rootViewController
+                while let p = top?.presentedViewController { top = p }
+                host = top?.view
+            }
             let pan = UIPanGestureRecognizer(target: c, action: #selector(Coordinator.pan(_:)))
             pan.delegate = c
             pan.maximumNumberOfTouches = 1
